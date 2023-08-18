@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Theme scaling="100%">
+        <Theme scaling="90%">
           <main>{children}</main>
         </Theme>
       </body>

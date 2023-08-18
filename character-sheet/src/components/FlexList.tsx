@@ -3,13 +3,21 @@ import React from "react";
 
 type FlexListProps = {
   children?: React.ReactNode;
+  paddingBottom?: boolean;
+  grow?: boolean;
 };
 
-export const FlexList = ({ children }: FlexListProps) => {
+export const FlexList = ({
+  children,
+  paddingBottom = false,
+  grow = false,
+}: FlexListProps) => {
   return (
-    <Flex wrap={"wrap"}>
+    <Flex wrap={"wrap"} align={"stretch"}>
       {React.Children.map(children, (child) => (
-        <Box pl={"2"}>{child}</Box>
+        <Box pr={"2"} pb={paddingBottom ? "2" : "0"} grow={grow ? "1" : "0"}>
+          {child}
+        </Box>
       ))}
     </Flex>
   );

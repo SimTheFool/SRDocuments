@@ -1,0 +1,21 @@
+.card {
+    overflow-y: visible;
+    position: relative;
+}
+
+.card > div {
+    overflow-y: visible;
+    position: unset;
+    padding: var(--space-1);
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+}
+
+.cardTitle {
+    transform: translateY(-50%) translateX(-10px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-background);
+    z-index: 1;
+}

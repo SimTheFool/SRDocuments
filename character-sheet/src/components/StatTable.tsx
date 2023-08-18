@@ -12,12 +12,7 @@ export const StatTable = ({ items }: StateTableProps) => {
   const [_, ...rows] = items;
 
   return (
-    <Theme
-    /* style={{
-        //@ts-ignore
-        ["--scaling"]: 0.8,
-      }} */
-    >
+    <Theme>
       <Table.Root size="1">
         <Table.Header>
           <Table.Row>

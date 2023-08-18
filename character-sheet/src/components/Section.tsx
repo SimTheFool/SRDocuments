@@ -7,14 +7,15 @@ type SectionProps = {
 
 export const Section = ({ children, title }: SectionProps) => {
   return (
-    <RadSection py={"0"}>
-      <Box py={"0"} asChild>
+    <RadSection py={"0"} pb={"4"}>
+      <Box py={"0"} asChild pb={"2"}>
         <Heading
-          size={"5"}
+          size={"4"}
           as={"h2"}
           style={{
             display: "block",
             textTransform: "uppercase",
+            paddingBottom: "0",
           }}
         >
           {title}
