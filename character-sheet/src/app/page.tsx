@@ -1,13 +1,12 @@
-import { Card } from "@/components/Card";
-import { FlexList } from "@/components/FlexList";
 import { Header } from "@/components/Header";
-
-import { InlineMonitor, Monitor } from "@/components/Monitor";
+import { Box, Container, Grid } from "@radix-ui/themes";
+import { Effects } from "./_Effects";
+import { Identities } from "./_Indentities";
+import { Monitors } from "./_Monitors";
+import { Resources } from "./_Resources";
+import { Skills } from "./_Skills";
+import { Stats } from "./_Stats";
 import { Section } from "@/components/Section";
-import { StatTable } from "@/components/StatTable";
-import { TextStandard } from "@/components/TextStandard";
-import { TitleMin } from "@/components/TitleMin";
-import { Box, Container, Grid, Heading, Text } from "@radix-ui/themes";
 
 export default function Home() {
   return (
@@ -15,77 +14,98 @@ export default function Home() {
       <Header />
       <Grid
         columns="2"
-        gap="2"
+        gap="4"
         style={{
-          gridTemplateColumns: "4fr 3fr",
+          gridTemplateColumns: "5fr 5fr",
           gridTemplateRows: "1fr",
         }}
         pt={"4"}
         px={"2"}
       >
-        <Section title="Stats">
-          <FlexList>
-            <StatTable
-              items={[
-                ["CON", "AGI", "REA", "FOR"],
-                ["1", "4", "4", "4"],
-              ]}
-            />
-            <StatTable
-              items={[
-                ["RES", "ESS", "Subm."],
-                ["1", "4", "1"],
-              ]}
-            />
-            <StatTable
-              items={[
-                ["CON", "AGI", "REA", "FOR"],
-                ["1", "4", "4", "4"],
-              ]}
-            />
-            <StatTable items={[["Res"], ["CON(1)"]]} />
-            <StatTable items={[["Res"], ["VOL(2)"]]} />
-          </FlexList>
-
-          <Grid pt={"4"} pl={"2"} columns="2" gap="2" align={"start"}>
-            <Monitor hit={10} title={"Dom. Physique"} />
-            <Monitor hit={8} title={"Dom. Etourdissant"} />
-          </Grid>
-
-          <Container pt={"4"} pl={"2"}>
-            <InlineMonitor hit={5} title={"Surplus"} />
-          </Container>
-        </Section>
+        <Container>
+          <Stats />
+          <Resources edgeNb={2} minActionNb={3} />
+          <Monitors />
+        </Container>
 
         <Container>
-          <Section title="Identités">
-            <FlexList paddingBottom grow>
-              <Card title={"Nuyens"}>
-                <TextStandard>_______</TextStandard>
-              </Card>
-              <Card title={"Style de vie"}>
-                <TextStandard>Squatteur</TextStandard>
-              </Card>
-              <Card title={"Détails"}>
-                <TitleMin
-                  title={"Laurence Guinvite"}
-                  subtitle={"SIN I4 - 5000Y"}
-                />
-                <TextStandard>1m80, 80kg, 18 ans. Coursier</TextStandard>
-              </Card>
-
-              <Card title={"Contact"}>
-                <TitleMin title={"D-Boss"} subtitle={"L4 - R4"} />
-                <TextStandard>Decker fan de complot</TextStandard>
-              </Card>
-              <Card title={"Contact"}>
-                <TitleMin title={"Terrance"} subtitle={"L3 - R2"} />
-                <TextStandard>Ouvrier de casse militaire d'ARES</TextStandard>
-              </Card>
-            </FlexList>
-          </Section>
+          <Box
+            pl={"3"}
+            style={{
+              borderLeft: "2px solid var(--gray-10)",
+            }}
+          >
+            <Identities />
+          </Box>
+          <Box
+            pl={"3"}
+            style={{
+              borderLeft: "2px solid var(--gray-10)",
+            }}
+          >
+            <Effects />
+          </Box>
         </Container>
       </Grid>
+      <Box
+        pt={"3"}
+        mx={"3"}
+        style={{
+          borderTop: "2px solid var(--gray-10)",
+        }}
+      >
+        <Skills
+          skills={[
+            {
+              name: "Electronique",
+              score: 4,
+              master: [],
+            },
+            {
+              name: "Combat rapproché",
+              score: 1,
+              master: [],
+            },
+            {
+              name: "Furtivité",
+              score: 1,
+              master: [],
+            },
+            {
+              name: "Athlétisme",
+              score: 3,
+              master: [],
+            },
+            {
+              name: "Ingénierie",
+              score: 6,
+              master: [{ name: "Artillerie", bonus: 2 }],
+            },
+            {
+              name: "Pilotage",
+              score: 3,
+              master: [{ name: "Appareils au sol", bonus: 2 }],
+            },
+            {
+              name: "Technomancie",
+              score: 6,
+              master: [
+                { name: "Compilation", bonus: 2 },
+                { name: "Inscription", bonus: 3 },
+              ],
+            },
+          ]}
+        />
+      </Box>
+      <Box
+        pt={"3"}
+        mx={"3"}
+        style={{
+          borderTop: "2px solid var(--gray-10)",
+        }}
+      >
+        <Section title="notes"></Section>
+      </Box>
     </>
   );
 }

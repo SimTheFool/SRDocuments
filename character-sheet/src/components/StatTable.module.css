@@ -1,0 +1,12 @@
+.table {
+
+}
+
+.table th, .table td {
+    padding: var(--space-1);
+    padding-left: 0;
+    padding-bottom: 0;
+    padding-right: var(--space-2);
+    height: unset;
+    text-align: center;
+}

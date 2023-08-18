@@ -1,5 +1,6 @@
 import { Table, Theme } from "@radix-ui/themes";
 import { ReactNode } from "react";
+import styles from "./StatTable.module.css";
 
 type Items = [ReactNode[], ...ReactNode[][]];
 
@@ -13,7 +14,7 @@ export const StatTable = ({ items }: StateTableProps) => {
 
   return (
     <Theme>
-      <Table.Root size="1">
+      <Table.Root size="1" className={styles.table}>
         <Table.Header>
           <Table.Row>
             {headers.map((title) => (

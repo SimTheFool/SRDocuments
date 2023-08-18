@@ -4,7 +4,7 @@ type TextStandard = { children?: React.ReactNode };
 export const TextStandard = ({ children }: TextStandard) => {
   return (
     <Theme>
-      <Text size={"2"} as="span" style={{ display: "block" }}>
+      <Text size={"2"} as="span" style={{ display: "block", lineHeight: 1 }}>
         {children}
       </Text>
     </Theme>

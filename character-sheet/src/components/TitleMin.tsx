@@ -8,7 +8,13 @@ type MinTitleProps = {
 export const TitleMin = ({ title, subtitle }: MinTitleProps) => {
   return (
     <>
-      <Heading size={"2"} as={"h4"}>
+      <Heading
+        size={"2"}
+        as={"h4"}
+        style={{
+          lineHeight: 1,
+        }}
+      >
         {title}
       </Heading>
       <Text
@@ -17,6 +23,8 @@ export const TitleMin = ({ title, subtitle }: MinTitleProps) => {
         weight={"light"}
         style={{
           display: "block",
+          lineHeight: 1,
+          paddingBottom: "var(--space-1)",
         }}
       >
         {subtitle}
