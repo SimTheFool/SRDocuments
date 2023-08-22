@@ -1,33 +1,30 @@
-use domain::descriptions::CharacterDescription;
 use utils::result::AppResult;
 
+pub mod adapters;
 pub mod domain;
-pub mod infra;
+pub mod infra_yml;
 pub mod utils;
 
-#[async_trait::async_trait]
-pub trait ReadDescriptionsAdapter {
-    async fn get_characters_descriptions(
-        &self,
-        identifiers: Vec<String>,
-    ) -> AppResult<Vec<CharacterDescription>>;
+pub struct App {
+    reader: Box<dyn adapters::ReadDescriptionsAdapter>,
 }
 
-pub async fn get_all_characters(
-    read_descriptions_adapter: &dyn ReadDescriptionsAdapter,
-) -> AppResult<Vec<domain::character::Character>> {
-    let descriptions = read_descriptions_adapter
-        .get_characters_descriptions(vec![
-            "wicca".to_string(),
-            "warrior".to_string(),
-            "thief".to_string(),
-        ])
-        .await?;
+impl App {
+    pub fn new(reader: Box<dyn adapters::ReadDescriptionsAdapter>) -> Self {
+        Self { reader }
+    }
 
-    let result = descriptions
-        .into_iter()
-        .map(|description| description.into())
-        .collect();
+    pub async fn get_all_characters(
+        &self,
+        ids: Vec<String>,
+    ) -> AppResult<Vec<domain::character::Character>> {
+        let descriptions = self.reader.get_characters_descriptions(ids).await?;
 
-    Ok(result)
+        let result = descriptions
+            .into_iter()
+            .map(|description| description.into())
+            .collect();
+
+        Ok(result)
+    }
 }

@@ -1,28 +1,10 @@
-use std::path::PathBuf;
+use serde::Deserialize;
+use serde_yaml::Value;
 
-use crate::{
-    domain::{
-        descriptions::{CharacterDescription, SpecializationDescription},
-        transformation::{self, Operation, Property, Transformation},
-    },
-    utils::result::{AppError, AppResult},
-    ReadDescriptionsAdapter,
+use crate::domain::{
+    descriptions::SpecializationDescription,
+    transformation::{Operation, Property, Transformation},
 };
-use serde::{Deserialize, Serialize};
-use serde_yaml::{self, Value};
-
-#[derive(Debug, Serialize, Deserialize)]
-struct CharacterYml {
-    pub name: String,
-    #[serde(alias = "CON")]
-    pub constitution: u8,
-    #[serde(alias = "VOL")]
-    pub willpower: u8,
-    #[serde(alias = "STR")]
-    pub strength: u8,
-    #[serde(alias = "specialisation")]
-    pub specializations: Vec<String>,
-}
 
 impl<'de> Deserialize<'de> for Transformation {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -99,55 +81,5 @@ impl<'de> Deserialize<'de> for SpecializationDescription {
             description: xxx.description,
             transform: xxx.transform,
         })
-    }
-}
-
-pub struct YmlDescriptionReader {
-    path: PathBuf,
-}
-impl YmlDescriptionReader {
-    pub fn new(path: PathBuf) -> Self {
-        YmlDescriptionReader { path }
-    }
-}
-#[async_trait::async_trait]
-impl ReadDescriptionsAdapter for YmlDescriptionReader {
-    async fn get_characters_descriptions(
-        &self,
-        ids: Vec<String>,
-    ) -> AppResult<Vec<CharacterDescription>> {
-        let id = &ids[0];
-        let file = std::fs::File::open(&self.path.join("characters").join(format!("{id}.yml")))
-            .map_err(AppError::as_other)?;
-
-        let charac_yml: CharacterYml = serde_yaml::from_reader(file).map_err(AppError::as_other)?;
-
-        let specialization_files = charac_yml
-            .specializations
-            .iter()
-            .map(|spec| {
-                let path = self
-                    .path
-                    .join("specializations")
-                    .join(format!("{spec}.yml"));
-
-                std::fs::File::open(path).map_err(AppError::as_other)
-            })
-            .collect::<AppResult<Vec<_>>>()?;
-
-        let specializations = specialization_files
-            .iter()
-            .map(|file| serde_yaml::from_reader(file).map_err(AppError::as_other))
-            .collect::<AppResult<Vec<SpecializationDescription>>>()?;
-
-        let description = CharacterDescription {
-            constitution: charac_yml.constitution,
-            willpower: charac_yml.willpower,
-            strength: charac_yml.strength,
-            magic: None,
-            specializations,
-        };
-
-        return Ok(vec![description]);
     }
 }

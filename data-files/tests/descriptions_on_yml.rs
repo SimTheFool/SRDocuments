@@ -1,14 +1,11 @@
-use std::path::PathBuf;
-
+use data_files::adapters::ReadDescriptionsAdapter;
 use data_files::domain::transformation::{Operation, Property};
-use data_files::infra::read_yml_description::YmlDescriptionReader;
-use data_files::ReadDescriptionsAdapter;
+
+pub mod test_infra;
 
 #[tokio::test]
 async fn it_should_read_description_from_filesystem() {
-    let reader = YmlDescriptionReader::new(
-        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/yml_fixtures"),
-    );
+    let reader = test_infra::get_test_infra();
 
     let descriptions = reader
         .get_characters_descriptions(vec!["Aragola".to_string()])
