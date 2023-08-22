@@ -6,18 +6,19 @@ pub struct CharacterDescription {
     pub willpower: u8,
     pub strength: u8,
     pub magic: Option<u8>,
-    pub spec_descriptions: Vec<SpecializationDescription>,
+    pub specializations: Vec<SpecializationDescription>,
 }
 
 impl CharacterDescription {
     pub fn get_transformations(&self) -> Vec<&Transformation> {
-        self.spec_descriptions
+        self.specializations
             .iter()
             .flat_map(|spec| &spec.transform)
             .collect()
     }
+
     pub fn get_effects(&self) -> Vec<CharacterEffect> {
-        self.spec_descriptions
+        self.specializations
             .iter()
             .map(|spec| CharacterEffect {
                 name: spec.name.clone(),

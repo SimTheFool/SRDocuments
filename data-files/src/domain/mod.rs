@@ -23,7 +23,7 @@ fn should_apply_transformations() {
         willpower: 10,
         strength: 10,
         magic: None,
-        spec_descriptions: vec![wicca],
+        specializations: vec![wicca],
     };
 
     let character: Character = description.into();
