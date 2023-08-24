@@ -31,19 +31,19 @@ impl Transformation {
 
         match self.property {
             Property::Constitution => Character {
-                constitution: closure(c.constitution),
+                con: (c.con.0, c.con.1.or(Some(0)).map(|v| closure(v))),
                 ..c
             },
             Property::Willpower => Character {
-                willpower: closure(c.willpower),
+                wil: (c.wil.0, c.wil.1.or(Some(0)).map(|v| closure(v))),
                 ..c
             },
             Property::Strength => Character {
-                strength: closure(c.strength),
+                str: (c.str.0, c.str.1.or(Some(0)).map(|v| closure(v))),
                 ..c
             },
             Property::Magic => Character {
-                magic: Some(closure(c.magic.unwrap_or(0))),
+                magic: c.magic.or(Some(0)).map(|v| closure(v)),
                 ..c
             },
         }

@@ -19,17 +19,17 @@ fn should_apply_transformations() {
     };
 
     let description = CharacterDescription {
-        constitution: 10,
-        willpower: 10,
-        strength: 10,
-        magic: None,
+        con: 10,
+        wil: 10,
+        str: 10,
         specializations: vec![wicca],
+        ..CharacterDescription::default()
     };
 
     let character: Character = description.into();
 
-    assert_eq!(character.constitution, 10);
-    assert_eq!(character.willpower, 10);
+    assert_eq!(character.con, (10, None));
+    assert_eq!(character.wil, (10, None));
     assert_eq!(character.magic, Some(6));
     assert_eq!(character.effects.len(), 1);
     let effect = &character.effects[0];

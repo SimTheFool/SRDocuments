@@ -2,10 +2,18 @@ use super::{character::CharacterEffect, transformation::Transformation};
 
 #[derive(Debug, Default)]
 pub struct CharacterDescription {
-    pub constitution: u8,
-    pub willpower: u8,
-    pub strength: u8,
-    pub magic: Option<u8>,
+    pub name: String,
+    pub description: String,
+    pub con: u8,
+    pub agi: u8,
+    pub rea: u8,
+    pub str: u8,
+    pub wil: u8,
+    pub log: u8,
+    pub int: u8,
+    pub cha: u8,
+    pub essence: u8,
+    pub edge_rank: u8,
     pub specializations: Vec<SpecializationDescription>,
 }
 

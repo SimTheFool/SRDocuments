@@ -1,0 +1,5 @@
+title: Juliette coupe le gateau
+summary: L'anniversaire de Juliette tourne mal
+story: !stories/birthday
+  name: Juliette
+  age: 21
