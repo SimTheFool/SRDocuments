@@ -7,6 +7,8 @@ use serde::{de::Visitor, Deserialize, Serialize};
 use serde_yaml::{self, from_value, value::TaggedValue, Mapping, Value};
 use std::{clone, path::PathBuf};
 
+use super::yml_visitors::YmlAggregatorVisitor;
+
 #[derive(Debug, Serialize, Deserialize)]
 struct CharacterYml {
     pub name: String,
@@ -35,72 +37,12 @@ struct CharacterYml {
     pub specializations: Vec<String>,
 }
 
-pub struct YmlAggregatorVisitor {
-    yml_filesystem_path: PathBuf,
-}
-
-impl YmlAggregatorVisitor {
-    pub fn new(path: PathBuf) -> Self {
-        YmlAggregatorVisitor {
-            yml_filesystem_path: path,
-        }
-    }
-
-    pub fn visit_from_path(&self, path: &str) -> AppResult<Value> {
-        let path = self.yml_filesystem_path.join(format!("{path}.yml"));
-        let file = std::fs::File::open(path).map_err(AppError::as_other)?;
-        let yml: Value = serde_yaml::from_reader(file).map_err(AppError::as_other)?;
-        let yml = self.visit(&yml)?;
-        Ok(yml)
-    }
-
-    pub fn visit(&self, val: &Value) -> AppResult<Value> {
-        match val {
-            Value::Tagged(t) => self.on_tagged_value(t),
-            Value::Mapping(map) => self.on_mapping_value(map),
-            Value::Sequence(seq) => self.on_sequence_value(seq),
-            x => Ok(x.clone()),
-        }
-    }
-
-    fn on_tagged_value(&self, val: &TaggedValue) -> AppResult<Value> {
-        let tag = val.tag.to_string();
-
-        let file_path = tag.trim_start_matches('!');
-        let path = self.yml_filesystem_path.join(format!("{file_path}.yml"));
-        let file = std::fs::File::open(path).map_err(AppError::as_other)?;
-
-        let yml: Value = serde_yaml::from_reader(file).map_err(AppError::as_other)?;
-        let yml = self.visit(&yml)?;
-        Ok(yml)
-    }
-
-    fn on_mapping_value(&self, val: &Mapping) -> AppResult<Value> {
-        let mut new_map = Mapping::new();
-        for (key, value) in val {
-            let yml = self.visit(&value)?;
-            new_map.insert(key.clone(), yml);
-        }
-        Ok(Value::Mapping(new_map))
-    }
-
-    fn on_sequence_value(&self, val: &Vec<Value>) -> AppResult<Value> {
-        let mut new_seq: Vec<Value> = vec![];
-        for value in val {
-            let yml = self.visit(&value)?;
-            new_seq.push(yml)
-        }
-        Ok(Value::Sequence(new_seq))
-    }
-}
-
 pub struct YmlDescriptionReader {
     yml_visitor: YmlAggregatorVisitor,
 }
 impl YmlDescriptionReader {
     pub fn new(path: PathBuf) -> Self {
         let visitor = YmlAggregatorVisitor::new(path);
-
         YmlDescriptionReader {
             yml_visitor: visitor,
         }

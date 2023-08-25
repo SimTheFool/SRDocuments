@@ -2,6 +2,8 @@
 pub enum AppError {
     #[error(transparent)]
     Other(#[from] anyhow::Error),
+    #[error("{0}")]
+    ParseYml(String),
 }
 
 impl AppError {
