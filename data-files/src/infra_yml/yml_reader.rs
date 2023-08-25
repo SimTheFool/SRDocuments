@@ -1,5 +1,5 @@
 use crate::utils::result::{AppError, AppResult};
-use serde_yaml::{Mapping, Value};
+use serde_yaml::Value;
 use std::path::PathBuf;
 
 pub struct YmlReader {

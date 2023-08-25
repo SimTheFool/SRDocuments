@@ -3,3 +3,5 @@ summary: L'anniversaire de Juliette tourne mal
 story: !stories/birthday
   name: Juliette
   age: 21
+  chap1: 2
+  chap2: 3

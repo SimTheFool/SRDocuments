@@ -33,9 +33,9 @@ async fn it_should_read_description_from_filesystem() {
  */
 
 #[tokio::test]
-async fn it_should_aggregate_yml_on_filesystem() {
+async fn it_should_aggregate_filesystem_yml_files() {
     let reader = test_infra::get_test_infra("yml_other");
-    let yml = reader.get_aggregated_yml("jul_21").unwrap();
+    let yml = reader.visit_from_path("jul_21").unwrap();
 
     #[derive(Debug, serde::Deserialize)]
     struct BookFromYml {
@@ -55,5 +55,5 @@ async fn it_should_aggregate_yml_on_filesystem() {
     assert_eq!(book.title, "Juliette coupe le gateau");
     assert_eq!(book.summary, "L'anniversaire de Juliette tourne mal");
     assert_eq!(book.story.content, "Ca y est ! Elle a 21 ans, et a invité tout le monde à pré coustille. Malheureusement Juliette n'est pas très adroite et se coupe le doigt en coupant le gâteau. Elle est emmenée à l'hôpital et se fait recoudre le doigt. Elle est très déçue de rater sa fête d'anniversaire.");
-    assert_eq!(book.story.chapter, 2);
+    assert_eq!(book.story.chapter, 5);
 }

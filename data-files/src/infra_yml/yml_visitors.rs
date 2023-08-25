@@ -1,11 +1,16 @@
 use super::yml_reader::YmlReader;
 use crate::utils::result::{AppError, AppResult};
-use eval::{eval, Expr};
+use eval::eval;
 use serde_yaml::{
     value::{Tag, TaggedValue},
     Mapping, Number, Value,
 };
-use std::{collections::HashMap, path::PathBuf, str::FromStr};
+use std::{
+    collections::HashMap,
+    ops::{Deref, DerefMut},
+    path::PathBuf,
+    str::FromStr,
+};
 
 pub struct YmlAggregatorVisitor {
     reader: YmlReader,
@@ -54,27 +59,7 @@ impl YmlAggregatorVisitor {
 
         match variables {
             Some(variables) => {
-                let variables = variables
-                    .into_iter()
-                    .map(|(key, value)| {
-                        let key = match key {
-                            Value::String(str) => Ok(str),
-                            _ => Err(AppError::ParseYml(format!("Variable key is not a string"))),
-                        }?;
-
-                        let value = match value {
-                            Value::String(str) => Ok(str),
-                            Value::Number(n) => Ok(n.to_string()),
-                            Value::Bool(b) => Ok(b.to_string()),
-                            _ => Err(AppError::ParseYml(format!(
-                                "Variable {key} can not be parsed as string"
-                            ))),
-                        }?;
-
-                        Ok((key, value))
-                    })
-                    .collect::<AppResult<HashMap<String, String>>>()?;
-                let variable_injector = YmlVariableInjectionVisitor::new(variables);
+                let variable_injector = YmlVariableInjectionVisitor::new(variables)?;
                 let injected_yml = variable_injector.visit(&yml)?;
                 Ok(injected_yml)
             }
@@ -101,13 +86,63 @@ impl YmlAggregatorVisitor {
     }
 }
 
-pub struct YmlVariableInjectionVisitor {
-    variables: HashMap<String, String>,
+struct Variables(HashMap<String, String>);
+impl Deref for Variables {
+    type Target = HashMap<String, String>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl DerefMut for Variables {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl Variables {
+    pub fn new() -> Self {
+        Variables(HashMap::new())
+    }
+}
+
+impl TryInto<Variables> for Mapping {
+    type Error = AppError;
+
+    fn try_into(self) -> Result<Variables, Self::Error> {
+        let mut variables = Variables::new();
+        for (key, value) in self {
+            let key = match key {
+                Value::String(str) => Ok(str),
+                _ => Err(AppError::ParseYml(format!("Variable key is not a string"))),
+            }?;
+
+            let value = match value {
+                Value::String(str) => Ok(str),
+                Value::Number(n) => Ok(n.to_string()),
+                Value::Bool(b) => Ok(b.to_string()),
+                _ => Err(AppError::ParseYml(format!(
+                    "Variable {key} can not be parsed as string"
+                ))),
+            }?;
+
+            variables.insert(key, value);
+        }
+        Ok(variables)
+    }
+}
+
+struct YmlVariableInjectionVisitor {
+    variables: Variables,
 }
 
 impl YmlVariableInjectionVisitor {
-    pub fn new(variables: HashMap<String, String>) -> Self {
-        YmlVariableInjectionVisitor { variables }
+    pub fn new<T>(variables: T) -> AppResult<Self>
+    where
+        T: TryInto<Variables, Error = AppError>,
+    {
+        let variables = variables.try_into()?;
+
+        Ok(YmlVariableInjectionVisitor { variables })
     }
 
     pub fn visit(&self, val: &Value) -> AppResult<Value> {
@@ -148,18 +183,11 @@ impl YmlVariableInjectionVisitor {
     }
 
     fn on_string(&self, val: &str) -> AppResult<Value> {
-        println!("?????????");
         let new_string = self.inject_variables_in_string(val);
 
         if contains_multibyte(&new_string) {
             return Ok(Value::String(new_string));
         }
-
-        println!("new_string: {}", new_string);
-        let xxx = Expr::new(&new_string)
-            .exec()
-            .map_err(|_| AppError::ParseYml("sdfsdf".to_string()))?;
-        println!("##### {:?}", xxx);
 
         let result = match eval(&new_string) {
             Ok(evaluated) => match evaluated {
@@ -175,7 +203,6 @@ impl YmlVariableInjectionVisitor {
             },
             Err(_) => Value::String(new_string),
         };
-        println!("!!!!!");
         Ok(result)
     }
 

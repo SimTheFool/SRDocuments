@@ -1,10 +1,38 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use serde_yaml::Value;
 
 use crate::domain::{
     descriptions::SpecializationDescription,
     transformation::{Operation, Property, Transformation},
 };
+
+#[derive(Debug, Serialize, Deserialize)]
+struct CharacterYml {
+    pub name: String,
+    pub description: String,
+    #[serde(alias = "CON")]
+    pub constitution: u8,
+    #[serde(alias = "AGI")]
+    pub agility: u8,
+    #[serde(alias = "REA")]
+    pub reaction: u8,
+    #[serde(alias = "FOR")]
+    pub strength: u8,
+    #[serde(alias = "VOL")]
+    pub willpower: u8,
+    #[serde(alias = "LOG")]
+    pub logic: u8,
+    #[serde(alias = "INT")]
+    pub intuition: u8,
+    #[serde(alias = "CHA")]
+    pub charisma: u8,
+    #[serde(alias = "ESS")]
+    pub essence: u8,
+    #[serde(alias = "Edge")]
+    pub edge: u8,
+    #[serde(alias = "specialisation")]
+    pub specializations: Vec<String>,
+}
 
 impl<'de> Deserialize<'de> for Transformation {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
