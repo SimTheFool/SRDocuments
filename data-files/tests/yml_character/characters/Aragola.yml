@@ -10,5 +10,7 @@ INT: 4
 CHA: 2
 ESS: 6
 Edge: 4
-specialisation:
-  - wicca
+specs:
+  - !specs/magician
+    MAG: 6
+    TRAD: INT

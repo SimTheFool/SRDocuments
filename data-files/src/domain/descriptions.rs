@@ -28,9 +28,15 @@ impl CharacterDescription {
     pub fn get_effects(&self) -> Vec<CharacterEffect> {
         self.specializations
             .iter()
-            .map(|spec| CharacterEffect {
-                name: spec.name.clone(),
-                description: spec.description.clone(),
+            .filter_map(|spec| {
+                if spec.name.is_none() && spec.description.is_none() {
+                    return None;
+                }
+
+                Some(CharacterEffect {
+                    name: spec.name.clone().unwrap_or("".to_string()),
+                    description: spec.description.clone().unwrap_or("".to_string()),
+                })
             })
             .collect()
     }
@@ -38,7 +44,7 @@ impl CharacterDescription {
 
 #[derive(Debug)]
 pub struct SpecializationDescription {
-    pub name: String,
-    pub description: String,
+    pub name: Option<String>,
+    pub description: Option<String>,
     pub transform: Vec<Transformation>,
 }

@@ -1,6 +1,0 @@
-name: Tradition Wicca
-description: Vous êtes adepte Wicca. Vous révérez la nature, la lune et les animaux.
-transform:
-  - property: MAG
-    operation: ADD
-    parameter: 4

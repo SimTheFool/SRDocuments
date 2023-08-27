@@ -10,11 +10,11 @@ fn should_apply_transformations() {
     use crate::domain::transformation::{Operation, Property, Transformation};
 
     let wicca = SpecializationDescription {
-        name: "Wicca".to_string(),
-        description: "A mage is a spellcaster".to_string(),
+        name: Some("Wicca".to_string()),
+        description: Some("A mage is a spellcaster".to_string()),
         transform: vec![Transformation {
-            property: Property::Magic,
-            operation: Operation::Add(6),
+            output: Property::Magic,
+            operation: Operation::Inc(6),
         }],
     };
 
@@ -28,8 +28,8 @@ fn should_apply_transformations() {
 
     let character: Character = description.into();
 
-    assert_eq!(character.con, (10, None));
-    assert_eq!(character.wil, (10, None));
+    assert_eq!(character.con, 10);
+    assert_eq!(character.wil, 10);
     assert_eq!(character.magic, Some(6));
     assert_eq!(character.effects.len(), 1);
     let effect = &character.effects[0];

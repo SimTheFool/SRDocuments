@@ -2,21 +2,28 @@ use std::fmt::Debug;
 
 use super::descriptions::CharacterDescription;
 
-type ModdedStat<T> = (T, Option<T>);
-
 #[derive(Debug, Default)]
 pub struct Character {
     pub name: String,
     pub description: String,
 
-    pub con: ModdedStat<u8>,
-    pub agi: ModdedStat<u8>,
-    pub rea: ModdedStat<u8>,
-    pub str: ModdedStat<u8>,
-    pub wil: ModdedStat<u8>,
-    pub log: ModdedStat<u8>,
-    pub int: ModdedStat<u8>,
-    pub cha: ModdedStat<u8>,
+    pub con: u8,
+    pub agi: u8,
+    pub rea: u8,
+    pub str: u8,
+    pub wil: u8,
+    pub log: u8,
+    pub int: u8,
+    pub cha: u8,
+
+    pub con_mod: Option<u8>,
+    pub agi_mod: Option<u8>,
+    pub rea_mod: Option<u8>,
+    pub str_mod: Option<u8>,
+    pub wil_mod: Option<u8>,
+    pub log_mod: Option<u8>,
+    pub int_mod: Option<u8>,
+    pub cha_mod: Option<u8>,
 
     pub ess: u8,
     pub edge: u8,
@@ -53,14 +60,14 @@ impl From<CharacterDescription> for Character {
             name: cd.name.clone(),
             description: cd.description.clone(),
 
-            con: (cd.con, None),
-            agi: (cd.agi, None),
-            rea: (cd.rea, None),
-            str: (cd.str, None),
-            wil: (cd.wil, None),
-            log: (cd.log, None),
-            int: (cd.int, None),
-            cha: (cd.cha, None),
+            con: cd.con,
+            agi: cd.agi,
+            rea: cd.rea,
+            str: cd.str,
+            wil: cd.wil,
+            log: cd.log,
+            int: cd.int,
+            cha: cd.cha,
 
             ess: 6,
             edge: cd.edge_rank,
@@ -76,14 +83,18 @@ impl From<CharacterDescription> for Character {
             .fold(unmodded, |acc, transf| transf.transform(acc));
 
         let final_character = Character {
-            natural_healing: modded.con.0 + modded.wil.0,
-            physical_hit: 8 + f32::floor((modded.con.0 + modded.con.1.unwrap_or(0)) as f32 / 2.0)
+            natural_healing: modded.con
+                + modded.con_mod.unwrap_or(0)
+                + modded.wil
+                + modded.wil_mod.unwrap_or(0),
+
+            physical_hit: 8 + f32::floor((modded.con + modded.con_mod.unwrap_or(0)) as f32 / 2.0)
                 as u8,
-            mental_hit: 8 + f32::floor((modded.wil.0 + modded.wil.1.unwrap_or(0)) as f32 / 2.0)
+            mental_hit: 8 + f32::floor((modded.wil + modded.wil_mod.unwrap_or(0)) as f32 / 2.0)
                 as u8,
-            resist_physical: f32::floor((modded.con.0 + modded.con.1.unwrap_or(0)) as f32 / 2.0)
+            resist_physical: f32::floor((modded.con + modded.con_mod.unwrap_or(0)) as f32 / 3.0)
                 as u8,
-            over_hit: modded.con.0,
+            over_hit: modded.con,
             minor_actions: 1 + modded.init,
             ..modded
         };

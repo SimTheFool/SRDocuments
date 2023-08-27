@@ -4,12 +4,12 @@ use serde_yaml;
 
 pub mod test_infra;
 
-/* #[tokio::test]
-async fn it_should_read_description_from_filesystem() {
-    let reader = test_infra::get_test_infra();
+#[tokio::test]
+async fn it_should_read_character_description_from_filesystem() {
+    let reader = test_infra::get_test_infra("yml_character");
 
     let descriptions = reader
-        .get_characters_descriptions(vec!["Aragola".to_string()])
+        .get_characters_descriptions(vec!["characters/Aragola".to_string()])
         .await
         .unwrap();
 
@@ -20,17 +20,25 @@ async fn it_should_read_description_from_filesystem() {
     assert_eq!(description.str, 4);
     assert_eq!(description.specializations.len(), 1);
     let spec_description = &description.specializations[0];
-    assert_eq!(spec_description.name, "Tradition Wicca");
+    assert_eq!(spec_description.transform.len(), 2);
+
+    let increment_magic = spec_description
+        .transform
+        .iter()
+        .find(|t| t.output == Property::Magic)
+        .unwrap();
+    assert_eq!(increment_magic.operation, Operation::Inc(6));
+
+    let set_resist_drain = spec_description
+        .transform
+        .iter()
+        .find(|t| t.output == Property::ResistDrain)
+        .unwrap();
     assert_eq!(
-        spec_description.description,
-        "Vous êtes adepte Wicca. Vous révérez la nature, la lune et les animaux."
+        set_resist_drain.operation,
+        Operation::CeilFrac(Property::Intuition, 2)
     );
-    assert_eq!(spec_description.transform.len(), 1);
-    let transformation = &spec_description.transform[0];
-    assert_eq!(transformation.property, Property::Magic);
-    assert_eq!(transformation.operation, Operation::Add(4));
 }
- */
 
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {

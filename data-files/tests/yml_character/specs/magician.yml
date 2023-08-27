@@ -1,0 +1,10 @@
+transform:
+  - operation: INC
+    output: MAG
+    parameters:
+      - $MAG
+  - operation: CEIL_FRAC
+    output: RESIST_DRAIN
+    parameters:
+      - $TRAD
+      - 2
