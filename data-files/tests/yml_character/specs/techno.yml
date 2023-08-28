@@ -1,4 +1,4 @@
 transform:
-  - property: Resist_drain
-    operation: CEIL_FRAG
-    parameter: [LOG, 2]
+  - "RES += $RES"
+  - "SUBM = $SUBM"
+  - "RESIST_DRAIN = ceil($TRAD / 2.0)"

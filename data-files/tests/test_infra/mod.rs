@@ -1,6 +1,4 @@
-use data_files::{
-    adapters::ReadDescriptionsAdapter, infra_yml::yml_visitors::YmlAggregatorVisitor, App,
-};
+use data_files::{infra_yml::yml_visitors::YmlAggregatorVisitor, App};
 use std::path::PathBuf;
 
 pub fn get_test_infra(root: &str) -> Box<YmlAggregatorVisitor> {

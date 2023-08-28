@@ -5,10 +5,13 @@ AGI: 4
 REA: 2
 FOR: 1
 VOL: 4
-LOG: 6
+LOG: 5
 INT: 4
 CHA: 2
 ESS: 6
 Edge: 4
-specialisation:
-  - wicca
+specs:
+  - !specs/techno
+    RES: 7
+    TRAD: LOG
+    SUBM: 1
