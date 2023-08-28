@@ -1,3 +1,4 @@
+use domain::character::Character;
 use utils::result::AppResult;
 
 pub mod adapters;
@@ -14,16 +15,13 @@ impl App {
         Self { reader }
     }
 
-    pub async fn get_all_characters(
-        &self,
-        ids: Vec<String>,
-    ) -> AppResult<Vec<domain::character::Character>> {
+    pub async fn get_all_characters(&self, ids: Vec<String>) -> AppResult<Vec<Character>> {
         let descriptions = self.reader.get_characters_descriptions(ids).await?;
 
         let result = descriptions
             .into_iter()
-            .map(|description| description.into())
-            .collect();
+            .map(|description| description.try_into())
+            .collect::<AppResult<Vec<Character>>>()?;
 
         Ok(result)
     }

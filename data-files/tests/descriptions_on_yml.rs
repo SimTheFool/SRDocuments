@@ -1,5 +1,4 @@
 use data_files::adapters::ReadDescriptionsAdapter;
-use data_files::domain::transformation::{Operation, Property};
 use serde_yaml;
 
 pub mod test_infra;
@@ -22,21 +21,10 @@ async fn it_should_read_character_description_from_filesystem() {
     let spec_description = &description.specializations[0];
     assert_eq!(spec_description.transform.len(), 2);
 
-    let increment_magic = spec_description
-        .transform
-        .iter()
-        .find(|t| t.output == Property::Magic)
-        .unwrap();
-    assert_eq!(increment_magic.operation, Operation::Inc(6));
-
-    let set_resist_drain = spec_description
-        .transform
-        .iter()
-        .find(|t| t.output == Property::ResistDrain)
-        .unwrap();
+    assert_eq!(spec_description.transform[0].0, "MAG += 6");
     assert_eq!(
-        set_resist_drain.operation,
-        Operation::CeilFrac(Property::Intuition, 2)
+        spec_description.transform[1].0,
+        "RESIST_DRAIN = ceil(INT / 2)"
     );
 }
 

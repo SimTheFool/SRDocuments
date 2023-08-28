@@ -1,5 +1,7 @@
 use std::fmt::Debug;
 
+use crate::utils::result::{AppError, AppResult};
+
 use super::descriptions::CharacterDescription;
 
 #[derive(Debug, Default)]
@@ -51,8 +53,10 @@ pub struct CharacterEffect {
     pub description: String,
 }
 
-impl From<CharacterDescription> for Character {
-    fn from(cd: CharacterDescription) -> Self {
+impl TryFrom<CharacterDescription> for Character {
+    type Error = AppError;
+
+    fn try_from(cd: CharacterDescription) -> AppResult<Self> {
         let transformations = cd.get_transformations();
         let effects = cd.get_effects();
 
@@ -80,7 +84,7 @@ impl From<CharacterDescription> for Character {
 
         let modded = transformations
             .iter()
-            .fold(unmodded, |acc, transf| transf.transform(acc));
+            .try_fold(unmodded, |acc, transf| transf.transform(acc))?;
 
         let final_character = Character {
             natural_healing: modded.con
@@ -99,6 +103,6 @@ impl From<CharacterDescription> for Character {
             ..modded
         };
 
-        final_character
+        Ok(final_character)
     }
 }

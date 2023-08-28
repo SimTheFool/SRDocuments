@@ -1,5 +1,5 @@
 use data_files::adapters::ReadDescriptionsAdapter;
-use data_files::domain::transformation::{Operation, Property};
+use data_files::domain::transformation;
 
 pub mod test_infra;
 

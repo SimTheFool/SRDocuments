@@ -3,10 +3,10 @@ use serde_yaml::Value;
 
 use crate::domain::{
     descriptions::{CharacterDescription, SpecializationDescription},
-    transformation::{Operation, Property, Transformation},
+    transformation::Transformation,
 };
 
-impl<'de> Deserialize<'de> for Property {
+/* impl<'de> Deserialize<'de> for Property {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: serde::Deserializer<'de>,
@@ -96,14 +96,14 @@ impl<'de> Deserialize<'de> for Operation {
 
         Ok(operation)
     }
-}
+} */
 
 impl<'de> Deserialize<'de> for Transformation {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: serde::Deserializer<'de>,
     {
-        let yml = serde_yaml::Value::deserialize(deserializer)?;
+        /* let yml = serde_yaml::Value::deserialize(deserializer)?;
         let yml = match yml {
             Value::Mapping(map) => Ok(map),
             _ => Err(Error::custom(
@@ -136,7 +136,16 @@ impl<'de> Deserialize<'de> for Transformation {
         ]))
         .map_err(|e| Error::custom(e))?;
 
-        Ok(Transformation { output, operation })
+        Ok(Transformation { output, operation }) */
+
+        let yml = serde_yaml::Value::deserialize(deserializer)?;
+
+        match yml {
+            Value::String(s) => Ok(Transformation::new(s.as_str())),
+            _ => Err(Error::custom(
+                "Expected a string for transformation deserialization",
+            )),
+        }
     }
 }
 

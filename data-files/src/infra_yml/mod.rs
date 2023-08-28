@@ -23,7 +23,7 @@ impl ReadDescriptionsAdapter for YmlAggregatorVisitor {
 
         let descriptions: Vec<CharacterDescription> = character_ymls
             .iter()
-            .map(|yml_value| serde_yaml::from_value(yml_value.clone()).map_err(AppError::as_other))
+            .map(|yml_value| serde_yaml::from_value(yml_value.clone()).map_err(AppError::other))
             .collect::<AppResult<Vec<CharacterDescription>>>()?;
 
         println!("descriptions: {:?}", descriptions);

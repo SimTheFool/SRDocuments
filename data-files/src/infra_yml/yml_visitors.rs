@@ -1,6 +1,6 @@
 use super::yml_reader::YmlReader;
 use crate::utils::result::{AppError, AppResult};
-use eval::eval;
+use evalexpr::eval;
 use serde_yaml::{
     value::{Tag, TaggedValue},
     Mapping, Number, Value,
@@ -191,8 +191,15 @@ impl YmlVariableInjectionVisitor {
 
         let result = match eval(&new_string) {
             Ok(evaluated) => match evaluated {
-                eval::Value::Bool(b) => Value::Bool(b),
-                eval::Value::Number(n) => {
+                evalexpr::Value::Boolean(b) => Value::Bool(b),
+                evalexpr::Value::Int(n) => {
+                    let number = Number::from_str(&n.to_string());
+                    match number {
+                        Ok(number) => Value::Number(number),
+                        Err(_) => Value::String(new_string),
+                    }
+                }
+                evalexpr::Value::Float(n) => {
                     let number = Number::from_str(&n.to_string());
                     match number {
                         Ok(number) => Value::Number(number),
