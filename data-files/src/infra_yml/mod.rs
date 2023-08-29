@@ -26,67 +26,6 @@ impl ReadDescriptionsAdapter for YmlAggregatorVisitor {
             .map(|yml_value| serde_yaml::from_value(yml_value.clone()).map_err(AppError::other))
             .collect::<AppResult<Vec<CharacterDescription>>>()?;
 
-        println!("descriptions: {:?}", descriptions);
-
-        /* character_ymls
-        .iter()
-        .map(|c| {
-
-        })
-        .collect::<AppResult<Vec<Value>>>()?; */
-
-        /*         let files = ids
-            .iter()
-            .map(|id| {
-                let path = self.path.join("characters").join(format!("{id}.yml"));
-
-                std::fs::File::open(path).map_err(AppError::as_other)
-            })
-            .collect::<AppResult<Vec<_>>>()?;
-
-        let descriptions = files
-            .into_iter()
-            .map(|file| {
-                let charac_yml: CharacterYml =
-                    serde_yaml::from_reader(file).map_err(AppError::as_other)?;
-
-                let specialization_files = charac_yml
-                    .specializations
-                    .iter()
-                    .map(|spec| {
-                        let path = self
-                            .path
-                            .join("specializations")
-                            .join(format!("{spec}.yml"));
-
-                        std::fs::File::open(path).map_err(AppError::as_other)
-                    })
-                    .collect::<AppResult<Vec<_>>>()?;
-
-                let specializations = specialization_files
-                    .iter()
-                    .map(|file| serde_yaml::from_reader(file).map_err(AppError::as_other))
-                    .collect::<AppResult<Vec<SpecializationDescription>>>()?;
-
-                Ok(CharacterDescription {
-                    name: charac_yml.name,
-                    description: charac_yml.description,
-                    con: charac_yml.constitution,
-                    agi: charac_yml.agility,
-                    rea: charac_yml.reaction,
-                    str: charac_yml.strength,
-                    wil: charac_yml.willpower,
-                    log: charac_yml.logic,
-                    int: charac_yml.intuition,
-                    cha: charac_yml.charisma,
-                    essence: charac_yml.essence,
-                    edge_rank: charac_yml.edge,
-                    specializations,
-                    ..CharacterDescription::default()
-                })
-            })
-            .collect::<AppResult<Vec<_>>>()?; */
-
         return Ok(descriptions);
     }
 }

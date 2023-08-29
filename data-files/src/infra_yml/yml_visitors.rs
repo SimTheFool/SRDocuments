@@ -33,8 +33,8 @@ impl YmlAggregatorVisitor {
         match val {
             Value::Tagged(t) => {
                 let tag = t.tag.to_string();
-                let file = match tag.starts_with('!') {
-                    true => Ok(tag.trim_start_matches('!')),
+                let file = match tag.starts_with("!inc::") {
+                    true => Ok(tag.trim_start_matches("!inc::")),
                     false => Err(AppError::ParseYml(format!("Tag {tag} is not supported"))),
                 }?;
 

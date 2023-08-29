@@ -11,6 +11,6 @@ CHA: 2
 ESS: 6
 Edge: 4
 specs:
-  - !specs/magician
+  - !inc::specs/magician
     MAG: 6
     TRAD: INT

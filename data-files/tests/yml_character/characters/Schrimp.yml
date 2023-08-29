@@ -11,7 +11,7 @@ CHA: 2
 ESS: 6
 Edge: 4
 specs:
-  - !specs/techno
+  - !inc::specs/techno
     RES: 7
     TRAD: LOG
     SUBM: 1
