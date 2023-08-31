@@ -1,3 +1,5 @@
+use data_files::adapters::ReadDescriptionsAdapter;
+
 pub mod test_infra;
 
 #[tokio::test]
@@ -36,4 +38,29 @@ async fn it_should_read_base_stats() {
     assert_eq!(schrimp.physical_hit, 8);
     assert_eq!(schrimp.mental_hit, 10);
     assert_eq!(schrimp.over_hit, 1);
+}
+
+#[tokio::test]
+async fn it_should_read_character_description_from_filesystem() {
+    let reader = test_infra::get_test_infra("yml_character");
+
+    let descriptions = reader
+        .get_characters_descriptions(vec!["characters/Aragola".to_string()])
+        .await
+        .unwrap();
+
+    assert_eq!(descriptions.len(), 1);
+    let description = &descriptions[0];
+    assert_eq!(description.con, 5);
+    assert_eq!(description.wil, 3);
+    assert_eq!(description.str, 4);
+    assert_eq!(description.specializations.len(), 1);
+    let spec_description = &description.specializations[0];
+    assert_eq!(spec_description.transform.len(), 2);
+
+    assert_eq!(spec_description.transform[0].0, "MAG += 6");
+    assert_eq!(
+        spec_description.transform[1].0,
+        "RESIST_DRAIN = ceil(INT / 2)"
+    );
 }

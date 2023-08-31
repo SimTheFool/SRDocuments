@@ -1,4 +1,4 @@
 transform:
-  - "RES += $RES"
-  - "SUBM = $SUBM"
-  - "RESIST_DRAIN = ceil($TRAD / 2.0)"
+  - RES += $RES
+  - SUBM = $SUBM
+  - RESIST_DRAIN = ceil($TRAD / 2.0)
