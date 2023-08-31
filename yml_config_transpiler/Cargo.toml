@@ -1,5 +1,5 @@
 [package]
-name = "data_files"
+name = "yml_config_transpiler"
 version = "0.1.0"
 edition = "2021"
 
