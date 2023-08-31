@@ -25,8 +25,8 @@ struct CoverFromYml {
 
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {
-    let reader = test_infra::get_test_infra("yml_other");
-    let yml = reader.visit_from_path("jul_21").unwrap();
+    let app = test_infra::get_test_app();
+    let yml = app.get_transformed_yml("jul_21").await.unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -38,8 +38,8 @@ async fn it_should_aggregate_filesystem_yml_files() {
 
 #[tokio::test]
 async fn it_should_mix_properties() {
-    let reader = test_infra::get_test_infra("yml_other");
-    let yml = reader.visit_from_path("jul_21").unwrap();
+    let app = test_infra::get_test_app();
+    let yml = app.get_transformed_yml("jul_21").await.unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 

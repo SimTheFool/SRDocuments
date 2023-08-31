@@ -1,4 +1,3 @@
-use self::yml_visitors::YmlAggregatorVisitor;
 use crate::{
     adapters::ReadDescriptionsAdapter,
     domain::descriptions::CharacterDescription,
@@ -6,12 +5,16 @@ use crate::{
 };
 use serde_yaml::Value;
 
+use self::yml_aggregator::YmlAggregator;
+
 pub mod deserialization;
+pub mod yml_aggregator;
+pub mod yml_loader;
+pub mod yml_mixer;
 pub mod yml_reader;
-pub mod yml_visitors;
 
 #[async_trait::async_trait]
-impl ReadDescriptionsAdapter for YmlAggregatorVisitor {
+impl ReadDescriptionsAdapter for YmlAggregator {
     async fn get_characters_descriptions(
         &self,
         ids: Vec<String>,

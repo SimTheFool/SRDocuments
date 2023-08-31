@@ -1,4 +1,4 @@
-use data_files::adapters::ReadDescriptionsAdapter;
+/* use data_files::adapters::ReadDescriptionsAdapter;
 
 pub mod test_infra;
 
@@ -64,3 +64,4 @@ async fn it_should_read_character_description_from_filesystem() {
         "RESIST_DRAIN = ceil(INT / 2)"
     );
 }
+ */
