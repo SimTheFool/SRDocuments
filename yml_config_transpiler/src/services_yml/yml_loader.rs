@@ -60,11 +60,11 @@ impl TryInto<Variables> for Mapping {
 }
 
 pub struct YmlLoader {
-    reader: Rc<dyn adapters::ReaderAdapter>,
+    reader: Rc<dyn adapters::YmlReaderAdapter>,
 }
 
 impl YmlLoader {
-    pub fn new(reader: Rc<dyn adapters::ReaderAdapter>) -> Self {
+    pub fn new(reader: Rc<dyn adapters::YmlReaderAdapter>) -> Self {
         YmlLoader { reader }
     }
 
@@ -152,16 +152,16 @@ impl YmlLoader {
         let mut replaced = true;
 
         while replaced {
-            (new_string, replaced) = variables.clone().iter().fold(
-                (new_string, false),
-                |(acc, replaced), (key, value)| {
-                    let new_string = acc.replace(&format!("${key}"), &value);
-                    if new_string != acc {
-                        return (new_string, true);
-                    }
-                    return (new_string, replaced);
-                },
-            );
+            (new_string, replaced) =
+                variables
+                    .iter()
+                    .fold((new_string, false), |(acc, replaced), (key, value)| {
+                        let new_string = acc.replace(&format!("${key}"), &value);
+                        if new_string != acc {
+                            return (new_string, true);
+                        }
+                        return (new_string, replaced);
+                    });
         }
 
         new_string

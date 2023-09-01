@@ -6,6 +6,8 @@ pub enum AppError {
     ApplyFormula(String),
     #[error("{0}")]
     ParseYml(String),
+    #[error("{0}")]
+    ValidateYml(String),
 }
 
 impl AppError {

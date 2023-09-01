@@ -1,16 +1,46 @@
-use serde_yaml::Value;
+use crate::utils::result::{AppError, AppResult};
+use std::path::PathBuf;
 
-use crate::{domain::descriptions::CharacterDescription, utils::result::AppResult};
-
-#[async_trait::async_trait]
-pub trait ReadDescriptionsAdapter {
-    async fn get_characters_descriptions(
-        &self,
-        identifiers: Vec<String>,
-    ) -> AppResult<Vec<CharacterDescription>>;
+pub trait YmlReaderAdapter {
+    fn get_value(&self, identifier: &str) -> AppResult<serde_yaml::Value>;
 }
 
-#[async_trait::async_trait]
-pub trait ReaderAdapter {
-    fn get_value(&self, identifier: &str) -> AppResult<Value>;
+pub trait ValidationSchemaReaderAdapter {
+    fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value>;
+}
+
+/// Implems
+
+pub struct YmlFileSystemReader {
+    context: PathBuf,
+}
+impl YmlFileSystemReader {
+    pub fn new(path: PathBuf) -> Self {
+        YmlFileSystemReader { context: path }
+    }
+}
+impl YmlReaderAdapter for YmlFileSystemReader {
+    fn get_value(&self, identifier: &str) -> AppResult<serde_yaml::Value> {
+        let path = self.context.join(format!("{identifier}.yml"));
+        let file = std::fs::File::open(path).map_err(AppError::other)?;
+        let yml: serde_yaml::Value = serde_yaml::from_reader(file).map_err(AppError::other)?;
+        Ok(yml)
+    }
+}
+
+pub struct ValidationSchemaFileSystemReader {
+    context: PathBuf,
+}
+impl ValidationSchemaFileSystemReader {
+    pub fn new(path: PathBuf) -> Self {
+        ValidationSchemaFileSystemReader { context: path }
+    }
+}
+impl ValidationSchemaReaderAdapter for ValidationSchemaFileSystemReader {
+    fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value> {
+        let path = self.context.join(format!("{identifier}.json"));
+        let file = std::fs::File::open(path).map_err(AppError::other)?;
+        let schema: serde_json::Value = serde_json::from_reader(file).map_err(AppError::other)?;
+        Ok(schema)
+    }
 }
