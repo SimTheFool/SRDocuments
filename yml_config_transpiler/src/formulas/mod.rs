@@ -1,6 +1,5 @@
 use crate::utils::result::{AppError, AppResult};
-use serde::Serialize;
-use serde_yaml::Value;
+use serde_yaml::{Mapping, Sequence, Value};
 use std::{
     collections::HashMap,
     ops::{Deref, DerefMut},
@@ -31,6 +30,123 @@ impl DerefMut for FlatYml {
 impl FlatYml {
     pub fn new() -> Self {
         FlatYml(HashMap::new())
+    }
+}
+
+impl TryInto<Value> for FlatYml {
+    type Error = AppError;
+
+    fn try_into(self) -> Result<Value, Self::Error> {
+        if self.is_empty() {
+            return Ok(Value::Null);
+        }
+
+        let (first_key, first_value) = self.iter().next().unwrap();
+
+        if first_key == "" {
+            match first_value {
+                FlatYmlValue::String(s) => return Ok(Value::String(s.clone())),
+                FlatYmlValue::Number(n) => {
+                    return Ok(Value::Number(serde_yaml::Number::from(n.clone())))
+                }
+                FlatYmlValue::Bool(b) => return Ok(Value::Bool(b.clone())),
+                FlatYmlValue::Null => return Ok(Value::Null),
+            }
+        }
+
+        let first_part = first_key
+            .split('.')
+            .next()
+            .ok_or_else(|| AppError::ApplyFormula(format!("No key segment found")))?;
+
+        let first_part_as_number = first_part.parse::<usize>();
+        let first_part_as_string = first_part.parse::<String>();
+
+        let mut yml = match (first_part_as_number, first_part_as_string) {
+            (Ok(_), _) => Value::Sequence(Sequence::new()),
+            (_, Ok(_)) => Value::Mapping(Mapping::new()),
+            _ => Err(AppError::ApplyFormula(format!(
+                "{first_part:?} is not a valid key",
+            )))?,
+        };
+
+        let mut keys: Vec<&String> = self.keys().collect();
+        keys.sort();
+
+        for key in keys {
+            let value = self.get(key).unwrap();
+            let mut current = &mut yml;
+            let mut parts = key.split('.').peekable();
+            let value = match value {
+                FlatYmlValue::String(s) => Value::String(s.clone()),
+                FlatYmlValue::Number(n) => Value::Number(serde_yaml::Number::from(n.clone())),
+                FlatYmlValue::Bool(b) => Value::Bool(b.clone()),
+                FlatYmlValue::Null => Value::Null,
+            };
+
+            while let Some(part) = parts.next() {
+                enum NextPart {
+                    Number(usize),
+                    String(String),
+                    None,
+                }
+                impl NextPart {
+                    fn try_new(next_part: Option<&str>) -> AppResult<Self> {
+                        match next_part {
+                            Some(part) => match (part.parse::<usize>(), part.parse::<String>()) {
+                                (Ok(i), _) => Ok(NextPart::Number(i)),
+                                (_, Ok(s)) => Ok(NextPart::String(s)),
+                                _ => Err(AppError::ApplyFormula(format!(
+                                    "{next_part:?} is not a valid key",
+                                )))?,
+                            },
+                            None => Ok(NextPart::None),
+                        }
+                    }
+
+                    fn to_next_container_or_value(&self, val: &Value) -> Value {
+                        match self {
+                            NextPart::Number(_) => Value::Sequence(Sequence::new()),
+                            NextPart::String(_) => Value::Mapping(Mapping::new()),
+                            NextPart::None => val.clone(),
+                        }
+                    }
+                }
+
+                let next_part = NextPart::try_new(parts.peek().map(|x| *x))?;
+
+                match current {
+                    Value::Sequence(seq) => {
+                        let index = part.parse::<usize>().map_err(|_| {
+                            AppError::ApplyFormula(format!("Expected a number, got {part:?}"))
+                        })?;
+                        let entry = seq.get(index);
+                        if let None = entry {
+                            seq.push(next_part.to_next_container_or_value(&value));
+                        }
+                        current = seq.get_mut(index).unwrap();
+                    }
+                    Value::Mapping(map) => {
+                        let key = part.parse::<String>().map_err(|_| {
+                            AppError::ApplyFormula(format!("Expected a string, got {part:?}"))
+                        })?;
+                        let entry = map.get(&key);
+                        if let None = entry {
+                            map.insert(
+                                Value::String(key.clone()),
+                                next_part.to_next_container_or_value(&value),
+                            );
+                        }
+                        current = map.get_mut(key).unwrap();
+                    }
+                    _ => Err(AppError::ApplyFormula(format!(
+                        "Can only insert something in mapping or sequence, got {current:?}"
+                    )))?,
+                }
+            }
+        }
+
+        Ok(yml)
     }
 }
 
@@ -104,6 +220,8 @@ impl TryFrom<Value> for FlatYml {
 
 #[test]
 fn it_should_flatten_yml_value() {
+    use serde::Serialize;
+
     #[derive(Debug, Serialize)]
     struct TestStruct<'a> {
         structure: SubStruct<'a>,
@@ -167,4 +285,72 @@ fn it_should_flatten_yml_value() {
         &FlatYmlValue::String("I'm a content 0".to_string())
     );
     assert_eq!(flat_yml.get("flag").unwrap(), &FlatYmlValue::Bool(true));
+}
+
+#[test]
+fn it_should_unflatten_hashmap_to_yml() {
+    use serde::Serialize;
+    let mut flat_yml = FlatYml::new();
+    flat_yml.insert(
+        "structure.sub_entry".to_string(),
+        FlatYmlValue::String("I'm a sub entry".to_string()),
+    );
+    flat_yml.insert(
+        "structure.sub_content.0".to_string(),
+        FlatYmlValue::String("I'm a sub content 0".to_string()),
+    );
+    flat_yml.insert(
+        "structure.sub_content.1".to_string(),
+        FlatYmlValue::String("I'm a sub content 1".to_string()),
+    );
+    flat_yml.insert(
+        "structure.sub_content.2".to_string(),
+        FlatYmlValue::String("I'm a sub content 2".to_string()),
+    );
+    flat_yml.insert("structure.sub_flag".to_string(), FlatYmlValue::Bool(false));
+    flat_yml.insert(
+        "entry".to_string(),
+        FlatYmlValue::String("I'm an entry".to_string()),
+    );
+    flat_yml.insert(
+        "content.0".to_string(),
+        FlatYmlValue::String("I'm a content 0".to_string()),
+    );
+    flat_yml.insert("flag".to_string(), FlatYmlValue::Bool(true));
+
+    let yml: Value = flat_yml.try_into().unwrap();
+
+    #[derive(Debug, Serialize)]
+    struct TestStruct<'a> {
+        structure: SubStruct<'a>,
+        entry: &'a str,
+        content: Vec<&'a str>,
+        flag: bool,
+    }
+
+    #[derive(Debug, Serialize)]
+    struct SubStruct<'a> {
+        sub_entry: &'a str,
+        sub_content: Vec<&'a str>,
+        sub_flag: bool,
+    }
+
+    let test_struct = TestStruct {
+        structure: SubStruct {
+            sub_entry: "I'm a sub entry",
+            sub_content: vec![
+                "I'm a sub content 0",
+                "I'm a sub content 1",
+                "I'm a sub content 2",
+            ],
+            sub_flag: false,
+        },
+        entry: "I'm an entry",
+        content: vec!["I'm a content 0"],
+        flag: true,
+    };
+
+    let test_yml = serde_yaml::to_value(&test_struct).unwrap();
+
+    assert_eq!(yml, test_yml);
 }
