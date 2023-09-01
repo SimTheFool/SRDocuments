@@ -3,11 +3,11 @@ pub enum AppError {
     #[error(transparent)]
     Other(#[from] anyhow::Error),
     #[error("{0}")]
-    ApplyFormula(String),
-    #[error("{0}")]
     ParseYml(String),
     #[error("{0}")]
     ValidateYml(String),
+    #[error("{0}")]
+    ApplyFormula(String),
 }
 
 impl AppError {

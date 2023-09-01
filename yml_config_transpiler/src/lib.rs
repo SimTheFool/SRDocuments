@@ -6,6 +6,7 @@ use utils::result::AppError;
 use utils::result::AppResult;
 
 pub mod adapters;
+pub mod formulas;
 pub mod services_yml;
 pub mod utils;
 
