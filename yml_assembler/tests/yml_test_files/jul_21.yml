@@ -8,3 +8,5 @@ story: !inc::stories/birthday
 tags:
   - !inc::tags/investigation
   - !inc::tags/horror
+page:
+  number: 40

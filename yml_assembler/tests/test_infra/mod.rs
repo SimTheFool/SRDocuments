@@ -1,5 +1,5 @@
 use std::{path::PathBuf, rc::Rc};
-use yml_config_transpiler::{
+use yml_assembler::{
     adapters::{ValidationSchemaFileSystemReader, YmlFileSystemReader},
     App,
 };

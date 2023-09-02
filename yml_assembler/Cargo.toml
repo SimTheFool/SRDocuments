@@ -1,5 +1,5 @@
 [package]
-name = "yml_config_transpiler"
+name = "yml_assembler"
 version = "0.1.0"
 edition = "2021"
 

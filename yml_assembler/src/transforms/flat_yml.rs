@@ -6,7 +6,7 @@ use std::{
 };
 
 #[derive(Clone, PartialEq, Debug)]
-enum FlatYmlValue {
+pub enum FlatYmlValue {
     String(String),
     Number(f64),
     Bool(bool),
@@ -14,7 +14,7 @@ enum FlatYmlValue {
 }
 
 #[derive(Clone, PartialEq, Debug)]
-struct FlatYml(HashMap<String, FlatYmlValue>);
+pub struct FlatYml(HashMap<String, FlatYmlValue>);
 impl Deref for FlatYml {
     type Target = HashMap<String, FlatYmlValue>;
 
@@ -290,6 +290,7 @@ fn it_should_flatten_yml_value() {
 #[test]
 fn it_should_unflatten_hashmap_to_yml() {
     use serde::Serialize;
+
     let mut flat_yml = FlatYml::new();
     flat_yml.insert(
         "structure.sub_entry".to_string(),
