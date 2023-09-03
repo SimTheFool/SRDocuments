@@ -70,4 +70,6 @@ fn cli() -> Result<(), anyhow::Error> {
 
 fn main() {
     cli().unwrap();
+
+    println!("Assembling done!")
 }

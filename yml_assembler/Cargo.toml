@@ -20,4 +20,5 @@ clap = "4.4.2"
 [dev-dependencies]
 assert_cmd = "2.0.12"
 predicates = "3.0.3"
+serial_test = "2.0.0"
 
