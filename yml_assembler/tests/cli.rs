@@ -107,3 +107,21 @@ fn it_should_run_twice_and_completely_replace_file() {
     //delete assembles folder
     fs::remove_dir_all(PathBuf::from(&root).join(&output)).unwrap();
 }
+
+#[test]
+#[serial]
+fn it_should_fail() {
+    let root = PathBuf::from("./non_existing_root")
+        .to_str()
+        .unwrap()
+        .to_string();
+    let output = "assembles";
+
+    let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
+    cmd.arg("-r").arg(&root);
+    cmd.arg("-f").arg("jul_21.yml");
+    cmd.arg("-s").arg("book-schema.json");
+    cmd.arg("-o").arg(output);
+
+    cmd.assert().failure();
+}
