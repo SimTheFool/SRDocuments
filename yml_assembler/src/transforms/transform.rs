@@ -1,6 +1,6 @@
-use super::flat_yml::{self, FlatYml, FlatYmlValue};
+use super::flat_yml::{FlatYml, FlatYmlValue};
 use crate::utils::result::{AppError, AppResult};
-use evalexpr::{Context, ContextWithMutableVariables, HashMapContext, IterateVariablesContext};
+use evalexpr::{ContextWithMutableVariables, HashMapContext, IterateVariablesContext};
 use serde_yaml::Value;
 
 static TRANSFORMATIONS_KEY: &str = "_transform";

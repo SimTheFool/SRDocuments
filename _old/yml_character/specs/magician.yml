@@ -1,3 +1,0 @@
-transform:
-  - "MAG += $MAG"
-  - "RESIST_DRAIN = ceil($TRAD / 2)"

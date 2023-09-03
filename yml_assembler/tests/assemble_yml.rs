@@ -33,7 +33,7 @@ struct CoverFromYml {
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml("jul_21", None).await.unwrap();
+    let yml = app.compile_and_validate_yml("jul_21.yml", None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -46,7 +46,7 @@ async fn it_should_aggregate_filesystem_yml_files() {
 #[tokio::test]
 async fn it_should_mix_properties() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml("jul_21", None).await.unwrap();
+    let yml = app.compile_and_validate_yml("jul_21.yml", None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -70,15 +70,14 @@ async fn it_should_mix_properties() {
 #[tokio::test]
 async fn it_should_validate_yml() {
     let app = test_infra::get_test_app();
-    app.compile_and_validate_yml("jul_21", Some("book-schema"))
-        .await
+    app.compile_and_validate_yml("jul_21.yml", Some("book-schema.json"))
         .unwrap();
 }
 
 #[tokio::test]
 async fn it_should_transform_properties() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml("jul_21", None).await.unwrap();
+    let yml = app.compile_and_validate_yml("jul_21.yml", None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 

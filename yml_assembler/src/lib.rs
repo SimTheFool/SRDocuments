@@ -27,7 +27,7 @@ impl App {
         }
     }
 
-    pub async fn compile_and_validate_yml(
+    pub fn compile_and_validate_yml(
         &self,
         yml_id: &str,
         schema_id: Option<&str>,
@@ -40,6 +40,8 @@ impl App {
         let yml = yml_aggregator.visit(&yml)?;
         let yml = yml_mixer.mix(&yml)?;
         let yml = apply_transform(yml)?;
+
+        println!("yml aggregated !");
 
         if let Some(schema_id) = schema_id {
             let yml_json_representation = serde_json::to_value(&yml).map_err(AppError::other)?;
