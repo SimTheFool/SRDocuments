@@ -1,7 +1,7 @@
 use assert_cmd::prelude::*; // Add methods on commands
 use predicates::prelude::*;
 use serial_test::serial; // Used for writing assertions
-use std::{fs, io::Stdout, path::PathBuf, process::Command}; // Run programs
+use std::{fs, path::PathBuf, process::Command}; // Run programs
 
 #[test]
 #[serial]

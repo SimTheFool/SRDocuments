@@ -1,5 +1,5 @@
 use crate::utils::result::{AppError, AppResult};
-use std::{env, path::PathBuf};
+use std::path::PathBuf;
 
 pub trait YmlReaderAdapter {
     fn get_value(&self, identifier: &str) -> AppResult<serde_yaml::Value>;

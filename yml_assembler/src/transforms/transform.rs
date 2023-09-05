@@ -31,14 +31,16 @@ pub fn apply_transform(yml: Value) -> AppResult<Value> {
         _ => None,
     };
 
-    match operations {
+    let result = match operations {
         Some(transformations) => {
             let mut flat_yml = FlatYml::try_from(yml)?;
             let flat_yml = apply_operations(transformations, &mut flat_yml)?;
             Ok(flat_yml.try_into()?)
         }
         None => Ok(yml),
-    }
+    };
+
+    result
 }
 
 fn apply_operations(operations: Vec<String>, yml: &mut FlatYml) -> AppResult<FlatYml> {
@@ -62,7 +64,7 @@ fn apply_operations(operations: Vec<String>, yml: &mut FlatYml) -> AppResult<Fla
             .map_err(|e| AppError::ApplyFormula(e.to_string()))?;
     }
 
-    let mut yml = FlatYml::new();
+    let mut flat_yml = FlatYml::new();
     for (key, value) in context.iter_variables() {
         let value = match value {
             evalexpr::Value::String(s) => FlatYmlValue::String(s.clone()),
@@ -72,10 +74,12 @@ fn apply_operations(operations: Vec<String>, yml: &mut FlatYml) -> AppResult<Fla
             _ => return Err(AppError::ApplyFormula(format!("Unhandled value: {}", key))),
         };
 
-        yml.insert(key.to_string(), value);
+        flat_yml.insert(key.to_string(), value);
     }
 
-    Ok(yml)
+    println!("flat_yml 2222: {:#?}", flat_yml.len());
+
+    Ok(flat_yml)
 }
 
 #[test]
@@ -92,10 +96,9 @@ fn it_should_apply_transformations() {
 
     let result = apply_operations(operations, &mut yml).unwrap();
 
-    assert_eq!(
-        result.get("a.0.u").unwrap(),
-        &FlatYmlValue::Number(2 as f64)
-    );
-    assert_eq!(result.get("a.0.v").unwrap(), &FlatYmlValue::Bool(true));
-    assert_eq!(result.get("b.x").unwrap(), &FlatYmlValue::Number(3.0));
+    let get_value = |key: &str| &result.iter().find(|(k, _)| k == key).unwrap().1;
+
+    assert_eq!(get_value("a.0.u"), &FlatYmlValue::Number(2 as f64));
+    assert_eq!(get_value("a.0.v"), &FlatYmlValue::Bool(true));
+    assert_eq!(get_value("b.x"), &FlatYmlValue::Number(3.0));
 }

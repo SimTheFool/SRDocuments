@@ -41,11 +41,8 @@ impl App {
         let yml = yml_mixer.mix(&yml)?;
         let yml = apply_transform(yml)?;
 
-        println!("yml aggregated !");
-
         if let Some(schema_id) = schema_id {
             let yml_json_representation = serde_json::to_value(&yml).map_err(AppError::other)?;
-
             let schema = self.schema_reader.get_validation_schema(schema_id)?;
             let validator = JSONSchema::compile(&schema)
                 .map_err(|e| AppError::ValidateYml(format!("Schema is not valid: {}", e)))?;

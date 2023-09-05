@@ -1,9 +1,9 @@
-use crate::utils::result::{AppError, AppResult};
-use serde_yaml::{Mapping, Sequence, Value};
-use std::{
-    collections::HashMap,
-    ops::{Deref, DerefMut},
+use crate::{
+    utils::result::{AppError, AppResult},
+    App,
 };
+use serde_yaml::{Mapping, Sequence, Value};
+use std::ops::{Deref, DerefMut};
 
 #[derive(Clone, PartialEq, Debug)]
 pub enum FlatYmlValue {
@@ -14,9 +14,9 @@ pub enum FlatYmlValue {
 }
 
 #[derive(Clone, PartialEq, Debug)]
-pub struct FlatYml(HashMap<String, FlatYmlValue>);
+pub struct FlatYml(Vec<(String, FlatYmlValue)>);
 impl Deref for FlatYml {
-    type Target = HashMap<String, FlatYmlValue>;
+    type Target = Vec<(String, FlatYmlValue)>;
 
     fn deref(&self) -> &Self::Target {
         &self.0
@@ -29,7 +29,11 @@ impl DerefMut for FlatYml {
 }
 impl FlatYml {
     pub fn new() -> Self {
-        FlatYml(HashMap::new())
+        FlatYml(vec![])
+    }
+
+    pub fn insert(&mut self, key: String, value: FlatYmlValue) {
+        self.0.push((key, value));
     }
 }
 
@@ -70,11 +74,7 @@ impl TryInto<Value> for FlatYml {
             )))?,
         };
 
-        let mut keys: Vec<&String> = self.keys().collect();
-        keys.sort();
-
-        for key in keys {
-            let value = self.get(key).unwrap();
+        for (key, value) in &*self {
             let mut current = &mut yml;
             let mut parts = key.split('.').peekable();
             let value = match value {
@@ -120,11 +120,21 @@ impl TryInto<Value> for FlatYml {
                         let index = part.parse::<usize>().map_err(|_| {
                             AppError::ApplyFormula(format!("Expected a number, got {part:?}"))
                         })?;
-                        let entry = seq.get(index);
-                        if let None = entry {
-                            seq.push(next_part.to_next_container_or_value(&value));
+                        if index >= seq.len() {
+                            seq.resize_with(index + 1, || Value::Null);
                         }
-                        current = seq.get_mut(index).unwrap();
+                        let entry = seq.get_mut(index).ok_or_else(|| {
+                            AppError::ApplyFormula(format!("Nothing at {part:?}"))
+                        })?;
+                        match entry {
+                            Value::Null => {
+                                *entry = next_part.to_next_container_or_value(&value);
+                            }
+                            _ => {}
+                        }
+                        current = seq.get_mut(index).ok_or_else(|| {
+                            AppError::ApplyFormula(format!("Can't get mutable at {part:?}"))
+                        })?;
                     }
                     Value::Mapping(map) => {
                         let key = part.parse::<String>().map_err(|_| {
@@ -155,7 +165,7 @@ impl TryFrom<Value> for FlatYml {
 
     fn try_from(value: Value) -> AppResult<Self> {
         fn visit(val: &Value, parent_key: &str) -> AppResult<FlatYml> {
-            let mut flat_yml = FlatYml(HashMap::new());
+            let mut flat_yml = FlatYml::new();
             match val {
                 Value::String(s) => {
                     flat_yml.insert(format!("{parent_key}"), FlatYmlValue::String(s.clone()));
@@ -255,36 +265,35 @@ fn it_should_flatten_yml_value() {
     let test_yml = serde_yaml::to_value(&test_struct).unwrap();
     let flat_yml = FlatYml::try_from(test_yml).unwrap();
 
+    let get_value = |key: &str| &flat_yml.iter().find(|(k, _)| k == key).unwrap().1;
+
     assert_eq!(flat_yml.len(), 8);
     assert_eq!(
-        flat_yml.get("structure.sub_entry").unwrap(),
+        get_value("structure.sub_entry"),
         &FlatYmlValue::String("I'm a sub entry".to_string())
     );
     assert_eq!(
-        flat_yml.get("structure.sub_content.0").unwrap(),
+        get_value("structure.sub_content.0"),
         &FlatYmlValue::String("I'm a sub content 0".to_string())
     );
     assert_eq!(
-        flat_yml.get("structure.sub_content.1").unwrap(),
+        get_value("structure.sub_content.1"),
         &FlatYmlValue::String("I'm a sub content 1".to_string())
     );
     assert_eq!(
-        flat_yml.get("structure.sub_content.2").unwrap(),
+        get_value("structure.sub_content.2"),
         &FlatYmlValue::String("I'm a sub content 2".to_string())
     );
+    assert_eq!(get_value("structure.sub_flag"), &FlatYmlValue::Bool(false));
     assert_eq!(
-        flat_yml.get("structure.sub_flag").unwrap(),
-        &FlatYmlValue::Bool(false)
-    );
-    assert_eq!(
-        flat_yml.get("entry").unwrap(),
+        get_value("entry"),
         &FlatYmlValue::String("I'm an entry".to_string())
     );
     assert_eq!(
-        flat_yml.get("content.0").unwrap(),
+        get_value("content.0"),
         &FlatYmlValue::String("I'm a content 0".to_string())
     );
-    assert_eq!(flat_yml.get("flag").unwrap(), &FlatYmlValue::Bool(true));
+    assert_eq!(get_value("flag"), &FlatYmlValue::Bool(true));
 }
 
 #[test]
@@ -292,6 +301,7 @@ fn it_should_unflatten_hashmap_to_yml() {
     use serde::Serialize;
 
     let mut flat_yml = FlatYml::new();
+
     flat_yml.insert(
         "structure.sub_entry".to_string(),
         FlatYmlValue::String("I'm a sub entry".to_string()),
