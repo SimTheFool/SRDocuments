@@ -1,14 +1,12 @@
-use crate::{
-    utils::result::{AppError, AppResult},
-    App,
-};
+use crate::utils::result::{AppError, AppResult};
 use serde_yaml::{Mapping, Sequence, Value};
 use std::ops::{Deref, DerefMut};
 
 #[derive(Clone, PartialEq, Debug)]
 pub enum FlatYmlValue {
     String(String),
-    Number(f64),
+    Float(f64),
+    Integer(i64),
     Bool(bool),
     Null,
 }
@@ -50,7 +48,10 @@ impl TryInto<Value> for FlatYml {
         if first_key == "" {
             match first_value {
                 FlatYmlValue::String(s) => return Ok(Value::String(s.clone())),
-                FlatYmlValue::Number(n) => {
+                FlatYmlValue::Float(n) => {
+                    return Ok(Value::Number(serde_yaml::Number::from(n.clone())))
+                }
+                FlatYmlValue::Integer(n) => {
                     return Ok(Value::Number(serde_yaml::Number::from(n.clone())))
                 }
                 FlatYmlValue::Bool(b) => return Ok(Value::Bool(b.clone())),
@@ -79,7 +80,8 @@ impl TryInto<Value> for FlatYml {
             let mut parts = key.split('.').peekable();
             let value = match value {
                 FlatYmlValue::String(s) => Value::String(s.clone()),
-                FlatYmlValue::Number(n) => Value::Number(serde_yaml::Number::from(n.clone())),
+                FlatYmlValue::Float(n) => Value::Number(serde_yaml::Number::from(n.clone())),
+                FlatYmlValue::Integer(n) => Value::Number(serde_yaml::Number::from(n.clone())),
                 FlatYmlValue::Bool(b) => Value::Bool(b.clone()),
                 FlatYmlValue::Null => Value::Null,
             };
@@ -176,7 +178,7 @@ impl TryFrom<Value> for FlatYml {
                 Value::Number(s) => {
                     flat_yml.insert(
                         format!("{parent_key}"),
-                        FlatYmlValue::Number(s.as_f64().ok_or_else(|| {
+                        FlatYmlValue::Float(s.as_f64().ok_or_else(|| {
                             AppError::ApplyFormula(format!("Your numbers must be f64"))
                         })?),
                     );
