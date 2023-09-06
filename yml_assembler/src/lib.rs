@@ -2,13 +2,13 @@ use jsonschema::JSONSchema;
 use serde_yaml::Mapping;
 use serde_yaml::Value;
 use std::rc::Rc;
-use transforms::transform::apply_transform;
+use transformable::TransformableList;
 use utils::result::AppError;
 use utils::result::AppResult;
 
 pub mod adapters;
 pub mod services_yml;
-pub mod transforms;
+pub mod transformable;
 pub mod utils;
 
 pub struct App {
@@ -39,7 +39,10 @@ impl App {
         let yml = yml_loader.load(yml_id, Mapping::new())?;
         let yml = yml_aggregator.visit(&yml)?;
         let yml = yml_mixer.mix(&yml)?;
-        let yml = apply_transform(yml)?;
+
+        let mut list = TransformableList::try_from(yml)?;
+        list.transform()?;
+        let yml = list.try_into()?;
 
         if let Some(schema_id) = schema_id {
             let yml_json_representation = serde_json::to_value(&yml).map_err(AppError::other)?;
