@@ -1,9 +1,8 @@
 [tasks.localexp]
 script = '''
 cargo build
-cd ../target/debug/bundle/deb
-sudo dpkg -i time-tracker_*.deb
-time-tracker
+cd ./target/debug
+sudo cp yml_assembler /usr/local/bin
 '''
 
 
