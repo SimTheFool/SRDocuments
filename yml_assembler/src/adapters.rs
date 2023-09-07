@@ -21,12 +21,7 @@ impl YmlFileSystemReader {
 }
 impl YmlReaderAdapter for YmlFileSystemReader {
     fn get_value(&self, identifier: &str) -> AppResult<serde_yaml::Value> {
-        let path = self.context.join(format!("{identifier}"));
-        let extension = path.extension();
-        let path = match extension {
-            Some(_) => path.clone(),
-            None => path.with_extension("yml"),
-        };
+        let path = self.context.join(format!("{identifier}.pyml"));
         println!("loading: {:?}", path);
         let file = std::fs::File::open(path).map_err(AppError::other)?;
         let yml: serde_yaml::Value = serde_yaml::from_reader(file).map_err(AppError::other)?;

@@ -29,17 +29,22 @@
     "covers": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "color": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          }
-        }
+        "$ref": "#/definitions/cover"
       }
     }
   },
-  "required": ["title", "summary", "story"]
+  "required": ["title", "summary", "story"],
+  "definitions": {
+    "cover": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        }
+      }
+    }
+  }
 }
