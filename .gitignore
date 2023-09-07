@@ -8,6 +8,7 @@
 */out/
 */build
 */target
+**/output
 
 # debug
 yarn-debug.log*

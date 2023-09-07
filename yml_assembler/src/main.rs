@@ -69,7 +69,11 @@ fn cli() -> Result<(), anyhow::Error> {
 }
 
 fn main() {
-    cli().unwrap();
-
-    println!("Assembling done!")
+    match cli() {
+        Ok(_) => println!("Assembling done!"),
+        Err(e) => {
+            println!("Error: {}", e);
+            std::process::exit(1);
+        }
+    }
 }

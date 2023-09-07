@@ -1,4 +1,6 @@
-use evalexpr::{Context, ContextWithMutableVariables, EvalexprResult, Value};
+use evalexpr::{
+    Context, ContextWithMutableVariables, EmptyContextWithBuiltinFunctions, EvalexprResult, Value,
+};
 
 use crate::utils::result::{AppError, AppResult};
 
@@ -13,8 +15,13 @@ impl Context for TransformableList {
         Ok(())
     }
 
-    fn call_function(&self, _: &str, _: &evalexpr::Value) -> EvalexprResult<evalexpr::Value> {
-        EvalexprResult::Ok(evalexpr::Value::Empty)
+    fn call_function(
+        &self,
+        _identifier: &str,
+        _arg: &evalexpr::Value,
+    ) -> EvalexprResult<evalexpr::Value> {
+        let ctx = EmptyContextWithBuiltinFunctions {};
+        ctx.call_function(_identifier, _arg)
     }
 
     fn get_value(&self, identifier: &str) -> Option<&Value> {
@@ -24,6 +31,7 @@ impl Context for TransformableList {
 
 impl ContextWithMutableVariables for TransformableList {
     fn set_value(&mut self, _identifier: String, _value: Value) -> EvalexprResult<()> {
+        println!("Setting {} to {:?}", _identifier, _value);
         self.set(_identifier, _value);
         Ok(())
     }
@@ -62,4 +70,16 @@ fn it_should_apply_transformations() {
     assert_eq!(transf_list.get("a.0.u").unwrap(), &Value::Float(2.0));
     assert_eq!(transf_list.get("a.0.v").unwrap(), &Value::Boolean(true));
     assert_eq!(transf_list.get("b.x").unwrap(), &Value::Float(3.0));
+}
+
+#[test]
+fn it_should_ceil() {
+    let operations = vec!["var = ceil(var / 2.0)".to_string()];
+
+    let mut transf_list = TransformableList::new(Some(operations));
+    transf_list.set("var".to_string(), Value::Int(3));
+
+    transf_list.transform().unwrap();
+
+    assert_eq!(transf_list.get("var").unwrap(), &Value::Float(2.0));
 }

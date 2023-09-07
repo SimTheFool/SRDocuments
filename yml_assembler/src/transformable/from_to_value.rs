@@ -266,6 +266,13 @@ mod test {
         sub_flag: bool,
     }
 
+    #[derive(Debug, Serialize)]
+    struct NumberStruct {
+        entry_int: u8,
+        entry_float: f64,
+        _transform: Vec<String>,
+    }
+
     #[test]
     pub fn it_should_flatten_keys_on_try_to() {
         let test_struct = TestStruct {
@@ -378,15 +385,30 @@ mod test {
     }
 
     #[test]
-    fn it_should_output_float_and_int() {
-        #[derive(Debug, Serialize)]
-        struct InputStruct {
-            entry_int: u8,
-            entry_float: f64,
-            _transform: Vec<String>,
-        }
+    fn it_should_handle_input_int_as_float() {
+        let test_struct = NumberStruct {
+            entry_int: 3,
+            entry_float: 1.0,
+            _transform: vec!["ceiled_int = ceil(entry_int / 2)".to_string()],
+        };
 
-        let test_struct = InputStruct {
+        let yml = serde_yaml::to_value(&test_struct).unwrap();
+        let mut trans_list = TransformableList::try_from(yml).unwrap();
+
+        assert_eq!(
+            trans_list.get("entry_int").unwrap(),
+            &evalexpr::Value::Float(3.0)
+        );
+        trans_list.transform().unwrap();
+        assert_eq!(
+            trans_list.get("ceiled_int").unwrap(),
+            &evalexpr::Value::Float(2.0)
+        );
+    }
+
+    #[test]
+    fn it_should_output_int_when_no_decimals() {
+        let test_struct = NumberStruct {
             entry_int: 1,
             entry_float: 1.0,
             _transform: vec![

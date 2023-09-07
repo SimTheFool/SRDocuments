@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "char-gen": "yml_assembler -r ./assets/characters -f shrimp.yml -o _output"
   },
   "dependencies": {
     "@radix-ui/themes": "^1.0.0",
