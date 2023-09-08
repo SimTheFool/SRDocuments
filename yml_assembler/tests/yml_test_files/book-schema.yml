@@ -18,7 +18,7 @@ properties:
   tags:
     type: array
     items:
-      type: string
+      $ref: "#/definitions/tag"
   covers:
     type: array
     items:
@@ -28,6 +28,7 @@ required:
   - summary
   - story
 definitions:
+  #~~~ COVER ~~~#
   cover:
     type: object
     properties:
@@ -35,3 +36,6 @@ definitions:
         type: string
       size:
         type: integer
+  #~~~ TAG ~~~#
+  tag:
+    type: string
