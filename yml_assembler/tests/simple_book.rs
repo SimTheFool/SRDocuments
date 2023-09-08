@@ -30,7 +30,7 @@ struct CoverFromYml {
     size: f64,
 }
 
-static TEST_FILE: &str = "jul_21";
+static TEST_FILE: &str = "simple_book";
 
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {

@@ -5,7 +5,7 @@ use std::{fs, path::PathBuf, process::Command};
 
 fn run_cli(root: &str) -> (Command, String, String, String, String) {
     let output = "./tests/yml_test_files/output";
-    let entry = "jul_21";
+    let entry = "simple_book";
     let schema = "book-schema.json";
 
     let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
@@ -110,7 +110,7 @@ fn it_should_generate_file_with_ordered_entries() {
     let std_output = cmd.assert().success().get_output().clone();
     println!("{}", String::from_utf8_lossy(&std_output.stdout));
 
-    let assembled_file_path = PathBuf::from(&output).join("jul_21.yml");
+    let assembled_file_path = PathBuf::from(&output).join("simple_book.yml");
     let assembled_file = fs::read_to_string(assembled_file_path).unwrap();
     predicate::str::contains("title: Juliette coupe le gateau\nsummary: L'anniversaire de Juliette tourne mal\nstory:\ncontent: Ca y est ! Elle a 21 ans, et a invité tout le monde à pré coustille. Malheureusement Juliette n'est pas très adroite et se coupe le doigt en coupant le gâteau. Elle est emmenée à l'hôpital et se fait recoudre le doigt. Elle est très déçue de rater sa fête d'anniversaire.\nchapter: 5").eval(&assembled_file);
 

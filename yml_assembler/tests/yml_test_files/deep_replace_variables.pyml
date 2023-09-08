@@ -1,0 +1,2 @@
+main: !inc::stories/car_crash
+  content: "Some amazing content"
