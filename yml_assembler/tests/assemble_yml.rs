@@ -77,6 +77,13 @@ async fn it_should_validate_from_json() {
 }
 
 #[tokio::test]
+async fn it_should_validate_from_yml() {
+    let app = test_infra::get_test_app();
+    app.compile_and_validate_yml(TEST_FILE, Some("book-schema.yml"))
+        .unwrap();
+}
+
+#[tokio::test]
 async fn it_should_transform_properties() {
     let app = test_infra::get_test_app();
     let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();

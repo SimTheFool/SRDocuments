@@ -7,6 +7,10 @@ pub trait YmlReaderAdapter {
 
 pub trait ValidationSchemaReaderAdapter {
     fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value>;
+
+    fn get_schema_from_yml(&self, path: &PathBuf) -> AppResult<serde_json::Value>;
+
+    fn get_schema_from_json(&self, path: &PathBuf) -> AppResult<serde_json::Value>;
 }
 
 /// Implems
@@ -40,14 +44,45 @@ impl ValidationSchemaFileSystemReader {
 impl ValidationSchemaReaderAdapter for ValidationSchemaFileSystemReader {
     fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value> {
         let path = self.context.join(format!("{identifier}"));
-        let extension = path.extension();
-        let path = match extension {
-            Some(_) => path.clone(),
-            None => path.with_extension("json"),
+        let extension = path
+            .extension()
+            .ok_or_else(|| {
+                AppError::FileSystem(format!(
+                    "{identifier} has no extension, load either a json, yml or yaml file"
+                ))
+            })?
+            .to_str()
+            .ok_or_else(|| {
+                AppError::FileSystem(format!(
+                    "{identifier} filename probably contains invalid characters"
+                ))
+            })?;
+
+        let schema = match extension {
+            "json" => self.get_schema_from_json(&path)?,
+            "yml" => self.get_schema_from_yml(&path)?,
+            "yaml" => self.get_schema_from_yml(&path)?,
+            _ => {
+                return Err(AppError::FileSystem(format!(
+                    "{identifier} has an invalid extension, load either a json, yml or yaml file"
+                )))
+            }
         };
-        println!("loading: {:?}", path);
+
+        Ok(schema)
+    }
+
+    fn get_schema_from_json(&self, path: &PathBuf) -> AppResult<serde_json::Value> {
+        println!("loading json schema: {:?}", path);
         let file = std::fs::File::open(path).map_err(AppError::other)?;
         let schema: serde_json::Value = serde_json::from_reader(file).map_err(AppError::other)?;
+        Ok(schema)
+    }
+
+    fn get_schema_from_yml(&self, path: &PathBuf) -> AppResult<serde_json::Value> {
+        println!("loading yml schema: {:?}", path);
+        let file = std::fs::File::open(path).map_err(AppError::other)?;
+        let schema: serde_json::Value = serde_yaml::from_reader(file).map_err(AppError::other)?;
         Ok(schema)
     }
 }

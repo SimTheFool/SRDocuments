@@ -56,7 +56,7 @@ impl App {
                     .collect::<Vec<String>>()
                     .join("\n");
 
-                AppError::ValidateYml(format!("Yml is not valid: {}", str_errors))
+                AppError::ValidateYml(format!("Generated yml is not valid: {}", str_errors))
             })?;
         }
 

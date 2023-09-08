@@ -3,6 +3,8 @@ pub enum AppError {
     #[error(transparent)]
     Other(#[from] anyhow::Error),
     #[error("{0}")]
+    FileSystem(String),
+    #[error("{0}")]
     ParseYml(String),
     #[error("{0}")]
     ValidateYml(String),
