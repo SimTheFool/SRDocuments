@@ -1,0 +1,38 @@
+con: $CON
+agi: $AGI
+rea: $REA
+for: $FOR
+vol: $VOL
+log: $LOG
+int: $INT
+cha: $CHA
+con_mod: 0
+agi_mod: 0
+rea_mod: 0
+for_mod: 0
+vol_mod: 0
+log_mod: 0
+int_mod: 0
+ess: $ESS
+resist_phy: 0
+#resist_drain: 0
+#mag: 0
+#initiation: 0
+#res: 0
+#submersion: 0
+edge: 0
+max_edge: 0
+init: 1
+action_maj: 1
+action_min: 0
+hit_phy: 8
+hit_stun: 8
+hit_over: 0
+natural_heal: 0
+_transform: !mix
+  - "stats.resist_phy = stats.con"
+  - "stats.action_min = stats.action_min + stats.init"
+  - "stats.hit_phy = stats.hit_phy + floor(stats.con / 2)"
+  - "stats.hit_stun = stats.hit_stun + floor(stats.vol / 2)"
+  - "stats.hit_over = stats.hit_over + stats.con - stats.con_mod"
+  - "stats.natural_heal = stats.natural_heal + stats.con + stats.vol"

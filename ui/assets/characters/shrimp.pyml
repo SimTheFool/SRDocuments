@@ -1,0 +1,13 @@
+name: shrimp
+stats: !inc::rules/base_stats
+  CON: 1
+  AGI: 4
+  REA: 2
+  FOR: 1
+  VOL: 4
+  LOG: 6
+  INT: 4
+  CHA: 2
+  ESS: 6
+speciality: !inc::rules/technomancer
+  RES: 7

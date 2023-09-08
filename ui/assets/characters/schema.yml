@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=http://json-schema.org/draft-07/schema#
+type: "object"
+properties:
+  stats:
+    $ref: "#/definitions/stats"
+required: ["stats"]
+definitions:
+  #~~~ STATS ~~~#
+  stats:
+    type: "object"
+    required:
+      [
+        "con",
+        "agi",
+        "rea",
+        "for",
+        "vol",
+        "log",
+        "int",
+        "cha",
+        "resist_phy",
+        "ess",
+        "edge",
+        "max_edge",
+        "init",
+        "action_maj",
+        "action_min",
+        "hit_phy",
+        "hit_stun",
+        "hit_over",
+        "natural_heal",
+      ]
+    properties:
+      con:
+        type: "integer"
+      agi:
+        type: "integer"
+      rea:
+        type: "integer"
+      for:
+        type: "integer"
+      vol:
+        type: "integer"
+      log:
+        type: "integer"
+      int:
+        type: "integer"
+      cha:
+        type: "integer"
+      con_mod:
+        type: "integer"
+      agi_mod:
+        type: "integer"
+      rea_mod:
+        type: "integer"
+      for_mod:
+        type: "integer"
+      vol_mod:
+        type: "integer"
+      log_mod:
+        type: "integer"
+      int_mod:
+        type: "integer"
+      resist_phy:
+        type: "integer"
+      resist_drain:
+        type: "integer"
+      ess:
+        type: "integer"
+      mag:
+        type: "integer"
+      initiation:
+        type: "integer"
+      res:
+        type: "integer"
+      submersion:
+        type: "integer"
+      edge:
+        type: "integer"
+      max_edge:
+        type: "integer"
+      init:
+        type: "integer"
+      action_maj:
+        type: "integer"
+      action_min:
+        type: "integer"
+      hit_phy:
+        type: "integer"
+      hit_stun:
+        type: "integer"
+      hit_over:
+        type: "integer"
+      natural_heal:
+        type: "integer"

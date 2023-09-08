@@ -8,8 +8,6 @@ stats:
   log: 6
   int: 4
   cha: 2
-  resis_drain: 2
-mods:
   con_mod: 0
   agi_mod: 0
   rea_mod: 0
@@ -17,4 +15,14 @@ mods:
   vol_mod: 0
   log_mod: 0
   int_mod: 0
-  cha_mod: 0
+  ess: 6
+  resist_phy: 1
+  edge: 0
+  max_edge: 0
+  init: 1
+  action_maj: 1
+  action_min: 1
+  hit_phy: 8
+  hit_stun: 10
+  hit_over: 1
+  natural_heal: 5
