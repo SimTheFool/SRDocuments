@@ -49,7 +49,7 @@ fn cli() -> Result<(), anyhow::Error> {
     let app = yml_assembler::App::new(Rc::new(yml_reader), Rc::new(schema_reader));
     let yml = app.compile_and_validate_yml(&file, schema.as_deref())?;
 
-    let outdir_path = PathBuf::from(root).join(outdir);
+    let outdir_path = PathBuf::from(outdir);
     let outfile_path = Path::new(&outdir_path).join(&file).with_extension("yml");
 
     //create directory if not exists
