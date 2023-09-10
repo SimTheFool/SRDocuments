@@ -30,7 +30,7 @@ struct CoverFromYml {
     size: f64,
 }
 
-static TEST_FILE: &str = "jul_21";
+static TEST_FILE: &str = "simple_book";
 
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {
@@ -55,18 +55,26 @@ async fn it_should_mix_properties() {
     assert_eq!(book.covers.len(), 4);
     assert_eq!(book.tags.len(), 3);
 
-    assert_eq!(book.covers[0].color, "yellow");
-    assert_eq!(book.covers[0].size, 36 as f64);
-    assert_eq!(book.covers[1].color, "rose");
-    assert_eq!(book.covers[1].size, 15 as f64);
-    assert_eq!(book.covers[2].color, "red");
-    assert_eq!(book.covers[2].size, 10 as f64);
-    assert_eq!(book.covers[3].color, "black");
-    assert_eq!(book.covers[3].size, 20 as f64);
+    let yellow_cover = book.covers.iter().find(|c| c.color == "yellow");
+    assert_eq!(yellow_cover.unwrap().size, 36 as f64);
 
-    assert_eq!(book.tags[0], "ivestigation");
-    assert_eq!(book.tags[1], "adult");
-    assert_eq!(book.tags[2], "horror");
+    let rose_cover = book.covers.iter().find(|c| c.color == "rose");
+    assert_eq!(rose_cover.unwrap().size, 15 as f64);
+
+    let red_cover = book.covers.iter().find(|c| c.color == "red");
+    assert_eq!(red_cover.unwrap().size, 10 as f64);
+
+    let black_cover = book.covers.iter().find(|c| c.color == "black");
+    assert_eq!(black_cover.unwrap().size, 20 as f64);
+
+    let investigation_tag = book.tags.iter().find(|t| t == &"ivestigation");
+    assert!(investigation_tag.is_some());
+
+    let adult_tag = book.tags.iter().find(|t| t == &"adult");
+    assert!(adult_tag.is_some());
+
+    let horror_tag = book.tags.iter().find(|t| t == &"horror");
+    assert!(horror_tag.is_some());
 }
 
 #[tokio::test]

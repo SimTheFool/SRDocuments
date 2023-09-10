@@ -1,0 +1,6 @@
+tags:
+  - childhood
+covers:
+  color: green
+  size: 41
+extends: !inc::tags/adult

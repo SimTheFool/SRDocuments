@@ -16,6 +16,7 @@ evalexpr = "11.1.0"
 serde_json = "1.0.105"
 jsonschema = "0.17.1"
 clap = "4.4.2"
+regex = "1.9.5"
 
 [dev-dependencies]
 assert_cmd = "2.0.12"

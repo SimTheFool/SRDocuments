@@ -1,5 +1,5 @@
+use aggregator::variables::Variables;
 use jsonschema::JSONSchema;
-use serde_yaml::Mapping;
 use serde_yaml::Value;
 use std::rc::Rc;
 use transformable::TransformableList;
@@ -7,9 +7,9 @@ use utils::result::AppError;
 use utils::result::AppResult;
 
 pub mod adapters;
-pub mod services_yml;
-pub mod transformable;
-pub mod utils;
+mod aggregator;
+mod transformable;
+mod utils;
 
 pub struct App {
     yml_reader: Rc<dyn adapters::YmlReaderAdapter>,
@@ -32,13 +32,12 @@ impl App {
         yml_id: &str,
         schema_id: Option<&str>,
     ) -> AppResult<Value> {
-        let yml_loader = services_yml::yml_loader::YmlLoader::new(Rc::clone(&self.yml_reader));
-        let yml_aggregator = services_yml::yml_aggregator::YmlAggregator::new(&yml_loader);
-        let mut yml_mixer = services_yml::yml_mixer::YmlMixer::new();
+        let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.yml_reader));
 
-        let yml = yml_loader.load(yml_id, Mapping::new())?;
-        let yml = yml_aggregator.visit(&yml)?;
-        let yml = yml_mixer.mix(&yml)?;
+        let variables = Variables::new();
+        let yml = aggregator.load(yml_id, &variables)?;
+        let mixins = aggregator.mixins;
+        let yml = mixins.inject(&yml)?;
 
         let mut list = TransformableList::try_from(yml)?;
         list.transform()?;
