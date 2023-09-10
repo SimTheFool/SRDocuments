@@ -1,13 +1,12 @@
 use std::rc::Rc;
 
-use self::{mixins::MixIns, variables::Variables};
-use crate::{adapters, utils::result::AppResult};
+use self::variables::Variables;
+use crate::{adapters, mixins::MixIns, utils::result::AppResult};
 use serde_yaml::{
     value::{Tag, TaggedValue},
     Mapping, Value,
 };
 
-pub mod mixins;
 pub mod variables;
 
 pub struct YmlAggregator {

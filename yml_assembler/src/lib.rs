@@ -8,6 +8,7 @@ use utils::result::AppResult;
 
 pub mod adapters;
 mod aggregator;
+mod mixins;
 mod transformable;
 mod utils;
 
