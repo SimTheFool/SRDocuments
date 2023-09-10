@@ -164,7 +164,7 @@ impl MixIns {
 mod test {
     use super::*;
 
-    fn get_yml_part() -> &'static str {
+    fn get_mixin_yml() -> &'static str {
         r#"
             foo: abcde
             hue: !inc::hue
@@ -184,7 +184,7 @@ mod test {
 
     #[test]
     fn it_should_apply_trim_yml_mixins() {
-        let yml_part: Value = serde_yaml::from_str(get_yml_part()).unwrap();
+        let yml_part: Value = serde_yaml::from_str(get_mixin_yml()).unwrap();
         let mut mixin = MixIns::new();
 
         mixin.trim(&yml_part).unwrap();
@@ -230,7 +230,7 @@ mod test {
 
     #[test]
     fn it_leave_non_mix_tags() {
-        let yml_part: Value = serde_yaml::from_str(get_yml_part()).unwrap();
+        let yml_part: Value = serde_yaml::from_str(get_mixin_yml()).unwrap();
         let mut mixin = MixIns::new();
 
         let trimed_yml = mixin.trim(&yml_part).unwrap();
@@ -244,5 +244,38 @@ mod test {
         )
         .unwrap();
         assert_eq!(trimed_yml, expected_yml);
+    }
+
+    #[test]
+    fn it_should_mix_as_sequence_when_origin_is_leaf() {
+        let root_yml: Value = serde_yaml::from_str(
+            r#"
+            toto: some_toto
+        "#,
+        )
+        .unwrap();
+
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
+            toto: !mix my_mixin_3
+        "#,
+        )
+        .unwrap();
+        let mut mixin = MixIns::new();
+        let trimed_yml = mixin.trim(&yml_part).unwrap();
+
+        assert_eq!(trimed_yml, Value::Null);
+
+        let injected_yml = mixin.inject(&root_yml).unwrap();
+        let expected_yml: Value = serde_yaml::from_str(
+            r#"
+            toto:
+                - my_mixin_3
+                - some_toto
+            "#,
+        )
+        .unwrap();
+
+        assert_eq!(injected_yml, expected_yml);
     }
 }

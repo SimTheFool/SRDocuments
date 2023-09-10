@@ -1,2 +1,3 @@
-main: !inc::stories/car_crash
-  content: "Some amazing content"
+!inc::stories/car_crash
+  content: "Some car crashed"
+  chap: 2

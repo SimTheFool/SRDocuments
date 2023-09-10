@@ -16,20 +16,20 @@ struct CoverFromYml {
 
 static TEST_FILE: &str = "mix_in_existing_key";
 
-#[ignore = "reason"]
 #[tokio::test]
 async fn it_should_mix_on_exisiting_property() {
-    /* let app = test_infra::get_test_app();
+    let app = test_infra::get_test_app();
     let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
-    assert_eq!(book.tags, vec!["childhood", "adult"]);
-    assert_eq!(book.covers.len(), 2);
-    assert_eq!(book.covers[0].color, "green");
-    assert_eq!(book.covers[0].size, 41.0);
-    assert_eq!(book.covers[1].color, "rose");
-    assert_eq!(book.covers[0].size, 15.0); */
+    assert_eq!(book.tags.len(), 2);
+    assert!(book.tags.contains(&"childhood".to_string()));
+    assert!(book.tags.contains(&"adult".to_string()));
 
-    panic!("TODO");
+    assert_eq!(book.covers.len(), 2);
+    let green_cover = book.covers.iter().find(|c| c.color == "green").unwrap();
+    assert_eq!(green_cover.size, 41.0);
+    let rose_cover = book.covers.iter().find(|c| c.color == "rose").unwrap();
+    assert_eq!(rose_cover.size, 15.0);
 }
