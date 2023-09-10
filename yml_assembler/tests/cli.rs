@@ -72,7 +72,7 @@ fn it_should_run_cli_with_relative_root() {
     let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files");
 
     let std_output = cmd.assert().success().get_output().clone();
-    println!("{}", String::from_utf8_lossy(&std_output.stdout));
+    println!("{:?}", String::from_utf8_lossy(&std_output.stdout));
 
     check_generated_file_ok(&output, &file);
     delete_output_folder(&output);

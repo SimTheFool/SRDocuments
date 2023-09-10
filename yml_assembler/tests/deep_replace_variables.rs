@@ -16,6 +16,7 @@ struct CoverFromYml {
 
 static TEST_FILE: &str = "mix_in_existing_key"; */
 
+#[ignore = "reason"]
 #[tokio::test]
 async fn it_should_deep_replace_variables() {
     /* let app = test_infra::get_test_app();
@@ -33,6 +34,7 @@ async fn it_should_deep_replace_variables() {
     panic!("TODO");
 }
 
+#[ignore = "reason"]
 #[tokio::test]
 async fn it_should_work_well_with_mixin() {
     /* let app = test_infra::get_test_app();

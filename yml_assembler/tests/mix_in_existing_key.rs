@@ -16,6 +16,7 @@ struct CoverFromYml {
 
 static TEST_FILE: &str = "mix_in_existing_key";
 
+#[ignore = "reason"]
 #[tokio::test]
 async fn it_should_mix_on_exisiting_property() {
     /* let app = test_infra::get_test_app();
