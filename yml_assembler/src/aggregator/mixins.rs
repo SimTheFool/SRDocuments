@@ -1,4 +1,7 @@
-use crate::utils::result::{AppError, AppResult};
+use crate::{
+    utils::result::{AppError, AppResult},
+    App,
+};
 use serde_yaml::{
     value::{Tag, TaggedValue},
     Mapping, Value,
@@ -39,37 +42,64 @@ impl MixIns {
         entry.append(&mut value.clone());
     }
 
-    pub fn trim(&mut self, val: &Value) -> AppResult<Value> {
-        match val {
-            Value::Tagged(t) => self.on_tag(t),
-            Value::Mapping(map) => self.on_mapping(map),
-            Value::Sequence(seq) => self.on_sequence(seq),
-            x => Ok(x.clone()),
-        }
-    }
+    pub fn inject(&self, injected: &Value) -> AppResult<Value> {
+        fn merge_values(val_base: &Value, val_mix: &Value) -> AppResult<Value> {
+            let val_base = val_base.clone();
+            let val_mix = val_mix.clone();
 
-    pub fn inject(&self, val: &Value) -> AppResult<Value> {
-        let val = match (val, self) {
-            (yml, mixed_in) if mixed_in.is_empty() => Ok(yml.clone()),
-            (Value::Mapping(map), mixed_in) => {
-                let mut new_map = map.clone();
-                for (key, value) in mixed_in.iter() {
-                    let current_value = map.get(&key);
-                    let new_value = match current_value {
-                        None => value.clone(),
-                        Some(Value::Sequence(current_value)) => {
-                            let mut new_value = value.clone();
-                            new_value.extend(current_value.clone());
-                            new_value
-                        }
-                        Some(current_value) => {
-                            let mut new_value = value.clone();
-                            new_value.push(current_value.clone());
-                            new_value
-                        }
-                    };
-                    new_map.insert(Value::String(key.clone()), Value::Sequence(new_value));
+            let val_mixed: Value = match (val_base, val_mix) {
+                (Value::Null, val_mix) => val_mix,
+                (val_base, Value::Null) => val_base,
+                (Value::Mapping(mut val_base), Value::Mapping(val_mix)) => {
+                    val_base.extend(val_mix);
+                    Value::Mapping(val_base)
                 }
+                (Value::Sequence(mut val_base), Value::Sequence(val_mix)) => {
+                    val_base.extend(val_mix);
+                    Value::Sequence(val_base)
+                }
+                (Value::Sequence(val_base), Value::Mapping(val_mix)) => {
+                    Err(AppError::ParseYml(format!(
+                        "Cannot mix a mapping value into a sequence
+                        val_base: {val_base:#?}
+                        val_mix: {val_mix:#?}
+                        "
+                    )))?
+                }
+                (Value::Sequence(mut val_base), val_mix) => {
+                    val_base.push(val_mix);
+                    Value::Sequence(val_base)
+                }
+                (val_base, Value::Sequence(mut val_mix)) => {
+                    val_mix.push(val_base);
+                    Value::Sequence(val_mix)
+                }
+                (val_base, val_mix) => Value::Sequence(vec![val_base, val_mix]),
+            };
+
+            Ok(val_mixed)
+        }
+
+        let val = match (injected, self) {
+            (yml, mixins) if mixins.is_empty() => Ok(yml.clone()),
+            (Value::Mapping(map), mixins) => {
+                let mut new_map = map.clone();
+                mixins.iter().try_for_each(
+                    |(key_to_inject, values_to_inject)| -> AppResult<()> {
+                        let injected_entry =
+                            new_map.get(&key_to_inject).unwrap_or(&Value::Null).clone();
+
+                        let final_value: Value = values_to_inject.iter().try_fold(
+                            injected_entry,
+                            |injected_entry, value_to_inject| {
+                                merge_values(&injected_entry, &value_to_inject)
+                            },
+                        )?;
+
+                        new_map.insert(Value::String(key_to_inject.clone()), final_value);
+                        Ok(())
+                    },
+                )?;
 
                 Ok(Value::Mapping(new_map))
             }
@@ -79,6 +109,15 @@ impl MixIns {
         }?;
 
         Ok(val)
+    }
+
+    pub fn trim(&mut self, val: &Value) -> AppResult<Value> {
+        match val {
+            Value::Tagged(t) => self.on_tag(t),
+            Value::Mapping(map) => self.on_mapping(map),
+            Value::Sequence(seq) => self.on_sequence(seq),
+            x => Ok(x.clone()),
+        }
     }
 
     fn on_tag(&mut self, val: &TaggedValue) -> AppResult<Value> {
@@ -129,13 +168,7 @@ impl MixIns {
                                 }
                             };
 
-                            self.entry(key.clone())
-                                .or_insert(Vec::new())
-                                .extend(match yml {
-                                    Value::Sequence(seq) => seq,
-                                    _ => vec![yml],
-                                });
-
+                            self.entry(key.clone()).or_insert(Vec::new()).push(yml);
                             Ok(Value::Null)
                         }
                         false => Ok(Value::Tagged(Box::new(TaggedValue {
@@ -229,7 +262,36 @@ mod test {
     }
 
     #[test]
-    fn it_leave_non_mix_tags() {
+    fn it_not_spread_sequence_into_several_mixins() {
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
+            hue: !mix
+                - a: 1
+                  b: 2
+                - a: 3
+                  b: 4
+            "#,
+        )
+        .unwrap();
+        let mut mixin = MixIns::new();
+        mixin.trim(&yml_part).unwrap();
+
+        let hue_mixin = mixin.get("hue").unwrap();
+        let expected_hue_mixin: Vec<Value> = vec![serde_yaml::from_str(
+            r#"
+                - a: 1
+                  b: 2
+                - a: 3
+                  b: 4
+            "#,
+        )
+        .unwrap()];
+
+        assert_eq!(hue_mixin, &expected_hue_mixin);
+    }
+
+    #[test]
+    fn it_should_leave_non_mix_tags() {
         let yml_part: Value = serde_yaml::from_str(get_mixin_yml()).unwrap();
         let mut mixin = MixIns::new();
 
@@ -270,8 +332,47 @@ mod test {
         let expected_yml: Value = serde_yaml::from_str(
             r#"
             toto:
-                - my_mixin_3
                 - some_toto
+                - my_mixin_3
+            "#,
+        )
+        .unwrap();
+
+        assert_eq!(injected_yml, expected_yml);
+    }
+
+    #[test]
+    fn it_should_mix_merging_mappings() {
+        let root_yml: Value = serde_yaml::from_str(
+            r#"
+            toto:
+                a: 1
+                b: 2
+        "#,
+        )
+        .unwrap();
+
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
+            toto: !mix
+                c: 3
+                d: 4
+        "#,
+        )
+        .unwrap();
+        let mut mixin = MixIns::new();
+        let trimed_yml = mixin.trim(&yml_part).unwrap();
+
+        assert_eq!(trimed_yml, Value::Null);
+
+        let injected_yml = mixin.inject(&root_yml).unwrap();
+        let expected_yml: Value = serde_yaml::from_str(
+            r#"
+            toto:
+                a: 1
+                b: 2
+                c: 3
+                d: 4
             "#,
         )
         .unwrap();

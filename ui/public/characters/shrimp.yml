@@ -26,3 +26,6 @@ stats:
   hit_stun: 10
   hit_over: 1
   natural_heal: 5
+  res: 7
+  submersion: 0
+  resist_drain: 3

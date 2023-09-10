@@ -174,7 +174,7 @@ mod test {
 
         let expected_mixins: Value = serde_yaml::from_str(
             r#"
-                test_value is test_value2
+                - test_value is test_value2
             "#,
         )
         .unwrap();
