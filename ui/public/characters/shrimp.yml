@@ -17,11 +17,11 @@ stats:
   int_mod: 0
   ess: 6
   resist_phy: 1
-  edge: 0
-  max_edge: 0
+  edge: 4
+  max_edge: 7
   init: 1
   action_maj: 1
-  action_min: 1
+  action_min: 2
   hit_phy: 8
   hit_stun: 10
   hit_over: 1

@@ -9,5 +9,6 @@ stats: !inc::rules/base_stats
   INT: 4
   CHA: 2
   ESS: 6
+  EDGE: 4
 speciality: !inc::rules/technomancer
   RES: 7
