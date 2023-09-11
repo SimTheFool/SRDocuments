@@ -1,16 +1,17 @@
-use aggregator::variables::Variables;
 use jsonschema::JSONSchema;
 use serde_yaml::Value;
 use std::rc::Rc;
 use transformable::TransformableList;
 use utils::result::AppError;
 use utils::result::AppResult;
+use variables::Variables;
 
 pub mod adapters;
 mod aggregator;
 mod mixins;
 mod transformable;
 mod utils;
+mod variables;
 
 pub struct App {
     yml_reader: Rc<dyn adapters::YmlReaderAdapter>,
