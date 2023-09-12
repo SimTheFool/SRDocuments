@@ -1,0 +1,7 @@
+name: $NAME
+nuyens: $NUYENS
+lifestyle: $LIFESTYLE
+contacts: $CONTACTS
+licences: $LICENCES
+_transform: !mix
+    - "identities.0.name = name"

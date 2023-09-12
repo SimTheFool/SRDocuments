@@ -152,12 +152,15 @@ mod test {
         yml_part
     }
 
-    /* #[test]
+    #[test]
     fn it_should_inject_variables_and_get_mixins() {
         let yml_part = serde_yaml::from_str(get_yml_part()).unwrap();
         let mut variables = Variables::new();
-        variables.insert("test".to_string(), "test_value".to_string());
-        variables.insert("test2".to_string(), "test_value2".to_string());
+        variables.insert("test".to_string(), Value::String("test_value".to_string()));
+        variables.insert(
+            "test2".to_string(),
+            Value::String("test_value2".to_string()),
+        );
 
         let expected_yml: Value = serde_yaml::from_str(
             r#"
@@ -180,5 +183,5 @@ mod test {
         assert_eq!(yml, expected_yml);
         let bar_mixin = mixins.get("bar").unwrap();
         assert_eq!(bar_mixin, &vec![expected_mixins]);
-    } */
+    }
 }

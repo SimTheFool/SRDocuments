@@ -160,16 +160,7 @@ mod test {
             c:
                 foo: foo_string
                 bar: false
-        "#;
-        yml_part
-    }
-
-    fn get_yml_part() -> &'static str {
-        let yml_part = r#"
-            - $test + $test2
-            - I am $a
-            - $b
-            - $c
+            d: null
         "#;
         yml_part
     }
@@ -179,7 +170,15 @@ mod test {
         let variables: Value = serde_yaml::from_str(get_yml_variables()).unwrap();
         let variables: Variables = variables.try_into().unwrap();
 
-        let yml_part: Value = serde_yaml::from_str(get_yml_part()).unwrap();
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
+            - $test + $test2
+            - I am $a
+            - $b
+            - $c
+        "#,
+        )
+        .unwrap();
         let yml = variables.inject(&yml_part).unwrap();
 
         let expected_yml: Value = serde_yaml::from_str(
@@ -197,5 +196,51 @@ mod test {
         .unwrap();
 
         assert_eq!(yml, expected_yml);
+    }
+
+    #[test]
+    fn it_should_inject_null_variables() {
+        let variables: Value = serde_yaml::from_str(get_yml_variables()).unwrap();
+        let variables: Variables = variables.try_into().unwrap();
+
+        let yml_sequence: Value = serde_yaml::from_str(
+            r#"
+            - $d
+            - I am $d
+            - I am not null
+        "#,
+        )
+        .unwrap();
+        let yml_sequence = variables.inject(&yml_sequence).unwrap();
+
+        match yml_sequence {
+            Value::Sequence(seq) => {
+                assert_eq!(seq.len(), 3);
+                assert_eq!(seq[0], Value::Null);
+                assert_eq!(seq[1], Value::String("I am ".to_string()));
+                assert_eq!(seq[2], Value::String("I am not null".to_string()));
+            }
+            _ => panic!("yml should be a sequence"),
+        };
+
+        let yml_mapping: Value = serde_yaml::from_str(
+            r#"
+            a: $d
+            b: I am $d
+            c: I am not null
+        "#,
+        )
+        .unwrap();
+        let yml_mapping = variables.inject(&yml_mapping).unwrap();
+
+        match yml_mapping {
+            Value::Mapping(map) => {
+                assert_eq!(map.len(), 3);
+                assert_eq!(map["a"], Value::Null);
+                assert_eq!(map["b"], Value::String("I am ".to_string()));
+                assert_eq!(map["c"], Value::String("I am not null".to_string()));
+            }
+            _ => panic!("yml should be a mapping"),
+        };
     }
 }

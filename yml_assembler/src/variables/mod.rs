@@ -7,7 +7,7 @@ use std::{
 mod from_value;
 mod inject;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Variables(HashMap<String, Value>);
 impl Deref for Variables {
     type Target = HashMap<String, Value>;

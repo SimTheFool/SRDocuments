@@ -63,4 +63,36 @@ mod test {
         .unwrap();
         assert_eq!(toto_variable, &expected_toto_mapping);
     }
+
+    #[test]
+    fn it_should_hold_null_values() {
+        let mapping: Value = serde_yaml::from_str(
+            r#"
+                foo: 3.5
+                bar: null
+                toto:
+                    a: null
+                    b: 2
+            "#,
+        )
+        .unwrap();
+
+        let variables: Variables = mapping.try_into().unwrap();
+
+        let foo_variable = variables.get("foo").unwrap();
+        assert_eq!(foo_variable, &Value::Number(Number::from(3.5)));
+
+        let bar_variable = variables.get("bar").unwrap();
+        assert_eq!(bar_variable, &Value::Null);
+
+        let toto_variable = variables.get("toto").unwrap();
+        let expected_toto_mapping: Value = serde_yaml::from_str(
+            r#"
+                a: null
+                b: 2
+            "#,
+        )
+        .unwrap();
+        assert_eq!(toto_variable, &expected_toto_mapping);
+    }
 }

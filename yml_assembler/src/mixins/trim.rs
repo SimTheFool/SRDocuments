@@ -32,14 +32,7 @@ impl MixIns {
         let mut new_seq: Vec<Value> = vec![];
         for value in val {
             let yml = self.trim(&value)?;
-
-            if let Value::Null = yml {
-                continue;
-            }
             new_seq.push(yml)
-        }
-        if new_seq.is_empty() {
-            return Ok(Value::Null);
         }
         Ok(Value::Sequence(new_seq))
     }
@@ -66,25 +59,20 @@ impl MixIns {
                             };
 
                             self.entry(key.clone()).or_insert(Vec::new()).push(yml);
-                            Ok(Value::Null)
+                            Ok(None)
                         }
-                        false => Ok(Value::Tagged(Box::new(TaggedValue {
+                        false => Ok(Some(Value::Tagged(Box::new(TaggedValue {
                             tag: Tag::new(tag),
                             value: self.trim(value)?,
-                        }))),
+                        })))),
                     }
                 }
-                _ => self.trim(value),
+                _ => self.trim(value).map(|x| Some(x)),
             }?;
 
-            if let Value::Null = value {
-                continue;
+            if let Some(value) = value {
+                new_map.insert(key.clone(), value);
             }
-            let yml = self.trim(&value)?;
-            new_map.insert(key.clone(), yml);
-        }
-        if new_map.is_empty() {
-            return Ok(Value::Null);
         }
         Ok(Value::Mapping(new_map))
     }
@@ -94,8 +82,10 @@ impl MixIns {
 mod test {
     use super::*;
 
-    fn get_mixin_yml() -> &'static str {
-        r#"
+    #[test]
+    fn it_should_apply_trim_yml_mixins() {
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
             foo: abcde
             hue: !inc::hue
                 a: 1
@@ -109,12 +99,9 @@ mod test {
                 tota: !mix
                     my_mixin_3
                 totu: what
-        "#
-    }
-
-    #[test]
-    fn it_should_apply_trim_yml_mixins() {
-        let yml_part: Value = serde_yaml::from_str(get_mixin_yml()).unwrap();
+        "#,
+        )
+        .unwrap();
         let mut mixin = MixIns::new();
 
         mixin.trim(&yml_part).unwrap();

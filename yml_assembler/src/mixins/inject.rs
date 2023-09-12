@@ -93,9 +93,7 @@ mod test {
         )
         .unwrap();
         let mut mixin = MixIns::new();
-        let trimed_yml = mixin.trim(&yml_part).unwrap();
-
-        assert_eq!(trimed_yml, Value::Null);
+        mixin.trim(&yml_part).unwrap();
 
         let injected_yml = mixin.inject(&root_yml).unwrap();
         let expected_yml: Value = serde_yaml::from_str(
@@ -130,9 +128,7 @@ mod test {
         )
         .unwrap();
         let mut mixin = MixIns::new();
-        let trimed_yml = mixin.trim(&yml_part).unwrap();
-
-        assert_eq!(trimed_yml, Value::Null);
+        mixin.trim(&yml_part).unwrap();
 
         let injected_yml = mixin.inject(&root_yml).unwrap();
         let expected_yml: Value = serde_yaml::from_str(

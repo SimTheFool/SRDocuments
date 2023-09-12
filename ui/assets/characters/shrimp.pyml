@@ -12,3 +12,25 @@ stats: !inc::rules/base_stats
   EDGE: 4
 speciality: !inc::rules/technomancer
   RES: 7
+identities:
+  - !inc::identities/i_leg
+      NUYENS: null
+      LICENCES: null
+      LIFESTYLE: !inc::identities/squat
+      CONTACTS:
+        - name: D-Boss
+          loyalty: 4
+          connection: 4
+          description: Decker fan de complot
+        - name: Terrance
+          loyalty: 3
+          connection: 2
+          description: Ouvrier de casse militaire d'ARES
+  - !inc::identities/i4
+      NAME: Laurence Guinvite
+      NUYENS: null
+      LICENCES: null
+      LIFESTYLE: null
+      CONTACTS: null
+        
+        

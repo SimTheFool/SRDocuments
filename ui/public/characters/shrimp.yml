@@ -29,3 +29,20 @@ stats:
   res: 7
   submersion: 0
   resist_drain: 3
+identities:
+- name: shrimp
+  lifestyle:
+    name: Squatteur
+    price: 100
+  contacts:
+  - name: D-Boss
+    loyalty: 4
+    connection: 4
+    description: Decker fan de complot
+  - name: Terrance
+    loyalty: 3
+    connection: 2
+    description: Ouvrier de casse militaire d'ARES
+- name: Laurence Guinvite
+  quality: 2
+  price: 5000

@@ -1,95 +1,156 @@
 # yaml-language-server: $schema=http://json-schema.org/draft-07/schema#
-type: "object"
+type: object
 properties:
+  name:
+    type: string
   stats:
     $ref: "#/definitions/stats"
-required: ["stats"]
+  identities:
+    type: array
+    items:
+      $ref: "#/definitions/identities"
+required: [stats]
 definitions:
   #~~~ STATS ~~~#
   stats:
     type: "object"
     required:
       [
-        "con",
-        "agi",
-        "rea",
-        "for",
-        "vol",
-        "log",
-        "int",
-        "cha",
-        "resist_phy",
-        "ess",
-        "edge",
-        "max_edge",
-        "init",
-        "action_maj",
-        "action_min",
-        "hit_phy",
-        "hit_stun",
-        "hit_over",
-        "natural_heal",
+        con,
+        agi,
+        rea,
+        for,
+        vol,
+        log,
+        int,
+        cha,
+        resist_phy,
+        ess,
+        edge,
+        max_edge,
+        init,
+        action_maj,
+        action_min,
+        hit_phy,
+        hit_stun,
+        hit_over,
+        natural_heal,
       ]
     properties:
       con:
-        type: "integer"
+        type: integer
       agi:
-        type: "integer"
+        type: integer
       rea:
-        type: "integer"
+        type: integer
       for:
-        type: "integer"
+        type: integer
       vol:
-        type: "integer"
+        type: integer
       log:
-        type: "integer"
+        type: integer
       int:
-        type: "integer"
+        type: integer
       cha:
-        type: "integer"
+        type: integer
       con_mod:
-        type: "integer"
+        type: integer
       agi_mod:
-        type: "integer"
+        type: integer
       rea_mod:
-        type: "integer"
+        type: integer
       for_mod:
-        type: "integer"
+        type: integer
       vol_mod:
-        type: "integer"
+        type: integer
       log_mod:
-        type: "integer"
+        type: integer
       int_mod:
-        type: "integer"
+        type: integer
       resist_phy:
-        type: "integer"
+        type: integer
       resist_drain:
-        type: "integer"
+        type: integer
       ess:
-        type: "integer"
+        type: integer
       mag:
-        type: "integer"
+        type: integer
       initiation:
-        type: "integer"
+        type: integer
       res:
-        type: "integer"
+        type: integer
       submersion:
-        type: "integer"
+        type: integer
       edge:
-        type: "integer"
+        type: integer
       max_edge:
-        type: "integer"
+        type: integer
       init:
-        type: "integer"
+        type: integer
       action_maj:
-        type: "integer"
+        type: integer
       action_min:
-        type: "integer"
+        type: integer
       hit_phy:
-        type: "integer"
+        type: integer
       hit_stun:
-        type: "integer"
+        type: integer
       hit_over:
-        type: "integer"
+        type: integer
       natural_heal:
-        type: "integer"
+        type: integer
+  #~~~ IDENTITIES ~~~#
+  identities:
+    type: object
+    properties:
+      name:
+        type: string
+      quality:
+        type: integer
+      price:
+        type: integer
+      nuyens:
+        type: integer
+      lifestyle:
+        $ref: "#/definitions/lifestyle"
+      licences:
+        type: array
+        items:
+          $ref: "#/definitions/licences"
+      contacts:
+        type: array
+        items:
+          $ref: "#/definitions/contact"
+  #~~~ CONTACT ~~~#
+  contact:
+    type: object
+    required: [name, loyalty, connection]
+    properties:
+      name:
+        type: string
+      loyalty:
+        type: integer
+      connection:
+        type: integer
+      description:
+        type: string
+  #~~~ LIFESTYLE ~~~#
+  lifestyle:
+    type: object
+    required: [name, price]
+    properties:
+      name:
+        type: string
+      price:
+        type: integer
+  #~~~ LICENCES ~~~#
+  licences:
+    type: object
+    required: [name, quality, price]
+    properties:
+      name:
+        type: string
+      quality:
+        type: string
+      price:
+        type: integer
