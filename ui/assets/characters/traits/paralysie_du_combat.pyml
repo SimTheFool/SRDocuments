@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Paralysie du combat
+      type: Trait
+      description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier

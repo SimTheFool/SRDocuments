@@ -11,6 +11,10 @@ properties:
     type: array
     items:
       $ref: "#/definitions/identities"
+  effects:
+    type: array
+    items:
+      $ref: "#/definitions/effect"
 required: [stats, skills]
 definitions:
   #~~~ STATS ~~~#
@@ -191,3 +195,13 @@ definitions:
         type: string
       price:
         type: integer
+  #~~~ EFFECT ~~~#
+  effect:
+    type: object
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      description:
+        type: string

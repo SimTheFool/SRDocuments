@@ -71,3 +71,19 @@ skills:
     - Compilation
     expertises:
     - Inscription
+effects:
+- name: Reseau vivant
+  type: Echo
+  description: Utlisez votre persona incarné comme noeud PAN.
+- name: Bricoleur prévoyant
+  type: Trait
+  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
+- name: Ami des sprites machine
+  type: Trait
+  description: __A1__ lorsque vous compilez un sprite machine.
+- name: Paralysie du combat
+  type: Trait
+  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
+- name: Rhinite chronique
+  type: Trait
+  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.

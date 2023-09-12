@@ -1,4 +1,5 @@
 name: shrimp
+
 stats: !inc::rules/base_stats
   CON: 1
   AGI: 4
@@ -10,8 +11,10 @@ stats: !inc::rules/base_stats
   CHA: 2
   ESS: 6
   EDGE: 4
+
 speciality: !inc::rules/technomancer
   RES: 7
+
 skills:
   - !inc::skills/perception
       BASE: 1
@@ -49,6 +52,7 @@ skills:
         - Compilation
       EXP:
         - Inscription
+
 identities:
   - !inc::identities/i_leg
       NUYENS: null
@@ -69,5 +73,13 @@ identities:
       LICENCES: null
       LIFESTYLE: null
       CONTACTS: null
-        
-        
+
+echoes:
+  - !inc::echoes/reseau_vivant
+
+traits:
+  - !inc::traits/bricoleur_prevoyant
+  - !inc::traits/ami_des_sprites
+    TYPE: machine
+  - !inc::traits/paralysie_du_combat
+  - !inc::traits/rhinite_chronique

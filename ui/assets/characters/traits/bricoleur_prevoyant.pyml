@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Bricoleur prévoyant
+      type: Trait
+      description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.

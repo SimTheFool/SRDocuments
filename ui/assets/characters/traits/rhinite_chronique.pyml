@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Rhinite chronique
+      type: Trait
+      description: Vous éternuez souvent. __D1__ lors des tests de discrétion.

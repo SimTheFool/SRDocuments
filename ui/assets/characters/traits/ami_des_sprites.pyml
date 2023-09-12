@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Ami des sprites $TYPE
+      type: Trait
+      description: __A1__ lorsque vous compilez un sprite $TYPE.

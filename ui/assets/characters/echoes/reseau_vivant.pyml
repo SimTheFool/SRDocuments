@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Reseau vivant
+      type: Echo
+      description: Utlisez votre persona incarné comme noeud PAN.
