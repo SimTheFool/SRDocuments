@@ -46,3 +46,28 @@ identities:
 - name: Laurence Guinvite
   quality: 2
   price: 5000
+skills:
+  perception:
+    base: 1
+  furtivite:
+    base: 1
+  athletisme:
+    base: 3
+  electronique:
+    base: 4
+  combat_rapp:
+    base: 1
+  ingenierie:
+    base: 6
+    specialisations:
+    - Artillerie
+  pilotage:
+    base: 6
+    specialisations:
+    - Appareils au sol
+  technomancie:
+    base: 6
+    specialisations:
+    - Compilation
+    expertises:
+    - Inscription

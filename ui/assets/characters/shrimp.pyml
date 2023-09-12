@@ -12,6 +12,43 @@ stats: !inc::rules/base_stats
   EDGE: 4
 speciality: !inc::rules/technomancer
   RES: 7
+skills:
+  - !inc::skills/perception
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::skills/furtivite
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::skills/athletisme
+      BASE: 3
+      SPEC: null
+      EXP: null
+  - !inc::skills/electronique
+      BASE: 4
+      SPEC: null
+      EXP: null
+  - !inc::skills/combat_rapp
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::skills/ingenierie
+      BASE: 6
+      SPEC:
+        - Artillerie
+      EXP: null
+  - !inc::skills/pilotage
+      BASE: 6
+      SPEC:
+        - Appareils au sol
+      EXP: null
+  - !inc::skills/technomancie
+      BASE: 6
+      SPEC:
+        - Compilation
+      EXP:
+        - Inscription
 identities:
   - !inc::identities/i_leg
       NUYENS: null

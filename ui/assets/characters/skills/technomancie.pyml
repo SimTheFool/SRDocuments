@@ -1,0 +1,5 @@
+skills: !mix
+    technomancie:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP

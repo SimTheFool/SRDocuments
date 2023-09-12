@@ -1,0 +1,5 @@
+skills: !mix
+    ingenierie:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP

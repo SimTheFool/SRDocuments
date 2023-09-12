@@ -5,11 +5,13 @@ properties:
     type: string
   stats:
     $ref: "#/definitions/stats"
+  skills:
+    $ref: "#/definitions/skills"
   identities:
     type: array
     items:
       $ref: "#/definitions/identities"
-required: [stats]
+required: [stats, skills]
 definitions:
   #~~~ STATS ~~~#
   stats:
@@ -99,6 +101,41 @@ definitions:
         type: integer
       natural_heal:
         type: integer
+  #~~~ SKILLS ~~~#
+  skill:
+    type: object
+    required: [base]
+    properties:
+      base:
+        type: integer
+      specialisations:
+        type: array
+        items:
+          type: string
+      expertises:
+        type: array
+        items:
+          type: string
+  #~~~ SKILLS ~~~#
+  skills:
+    type: "object"
+    properties:
+      perception:
+        $ref: "#/definitions/skill"
+      furtivite:
+        $ref: "#/definitions/skill"
+      athletisme:
+        $ref: "#/definitions/skill"
+      electronique:
+        $ref: "#/definitions/skill"
+      combat_rapp:
+        $ref: "#/definitions/skill"
+      ingenierie:
+        $ref: "#/definitions/skill"
+      pilotage:
+        $ref: "#/definitions/skill"
+      technomancie:
+        $ref: "#/definitions/skill"
   #~~~ IDENTITIES ~~~#
   identities:
     type: object

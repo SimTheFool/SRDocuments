@@ -1,0 +1,5 @@
+skills: !mix
+    athletisme:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP
