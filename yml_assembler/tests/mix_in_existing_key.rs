@@ -6,12 +6,18 @@ pub mod test_infra;
 struct DataFromYml {
     tags: Vec<String>,
     covers: Vec<CoverFromYml>,
+    key_one: CompoundFromYml,
 }
 
 #[derive(Debug, serde::Deserialize)]
 struct CoverFromYml {
     color: String,
     size: f64,
+}
+
+#[derive(Debug, serde::Deserialize)]
+struct CompoundFromYml {
+    key_two: Vec<String>,
 }
 
 static TEST_FILE: &str = "mix_in_existing_key";
@@ -32,4 +38,16 @@ async fn it_should_mix_on_exisiting_property() {
     assert_eq!(green_cover.size, 41.0);
     let rose_cover = book.covers.iter().find(|c| c.color == "rose").unwrap();
     assert_eq!(rose_cover.size, 15.0);
+}
+
+#[tokio::test]
+async fn it_should_mix_on_compound_property() {
+    let app = test_infra::get_test_app();
+    let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
+
+    let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
+
+    assert_eq!(book.key_one.key_two.len(), 2);
+    assert!(book.key_one.key_two.contains(&"Hi there".to_string()));
+    assert!(book.key_one.key_two.contains(&"I'm a mix".to_string()));
 }

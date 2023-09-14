@@ -3,4 +3,9 @@ tags:
 covers:
   color: green
   size: 41
-extends: !inc::tags/adult
+extends:
+  - !inc::tags/adult
+  - !inc::other/other1
+key_one:
+  key_two:
+    - Hi there

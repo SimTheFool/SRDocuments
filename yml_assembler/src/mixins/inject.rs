@@ -41,35 +41,60 @@ impl MixIns {
             Ok(val_mixed)
         }
 
-        let val = match (injected, self) {
+        fn get_entry_to_mix_on<'a>(key: &str, val: &'a mut Value) -> AppResult<&'a mut Value> {
+            let mut parts = key.split(".").into_iter();
+
+            let mut val_to_be_mix_on: &mut Value = val;
+            while let Some(part) = parts.next() {
+                match part.parse::<usize>() {
+                    Ok(index) => {
+                        let val = val_to_be_mix_on.as_sequence_mut().ok_or_else(|| {
+                            AppError::ParseYml(format!("Cannot find {part} in {key} mixin"))
+                        })?;
+                        if index >= val.len() {
+                            val.resize_with(index + 1, || Value::Null);
+                        }
+                        val_to_be_mix_on = val.get_mut(index).unwrap();
+                    }
+                    Err(_) => {
+                        let val = val_to_be_mix_on.as_mapping_mut().ok_or_else(|| {
+                            AppError::ParseYml(format!("Cannot find {part} in {key} mixin"))
+                        })?;
+                        val_to_be_mix_on = val
+                            .entry(Value::String(part.to_string()))
+                            .or_insert(Value::Null);
+                    }
+                }
+            }
+
+            Ok(val_to_be_mix_on)
+        }
+
+        let val: AppResult<Value> = match (injected, self) {
             (yml, mixins) if mixins.is_empty() => Ok(yml.clone()),
-            (Value::Mapping(map), mixins) => {
-                let mut new_map = map.clone();
+            (yml, mixins) => {
+                let mut yml = yml.clone();
                 mixins.iter().try_for_each(
                     |(key_to_inject, values_to_inject)| -> AppResult<()> {
-                        let injected_entry =
-                            new_map.get(&key_to_inject).unwrap_or(&Value::Null).clone();
+                        let entry_to_inject = get_entry_to_mix_on(key_to_inject, &mut yml)?;
 
                         let final_value: Value = values_to_inject.iter().try_fold(
-                            injected_entry,
-                            |injected_entry, value_to_inject| {
-                                merge_values(&injected_entry, &value_to_inject)
+                            entry_to_inject.clone(),
+                            |entry_to_inject, value_to_inject| {
+                                merge_values(&entry_to_inject, &value_to_inject)
                             },
                         )?;
 
-                        new_map.insert(Value::String(key_to_inject.clone()), final_value);
+                        *entry_to_inject = final_value.clone();
                         Ok(())
                     },
                 )?;
 
-                Ok(Value::Mapping(new_map))
+                Ok(yml)
             }
-            _ => Err(AppError::ParseYml(format!(
-                "Yml root should be a map of key-value pairs if you want to use !mix tag"
-            ))),
-        }?;
+        };
 
-        Ok(val)
+        val
     }
 }
 
@@ -138,6 +163,41 @@ mod test {
                 b: 2
                 c: 3
                 d: 4
+            "#,
+        )
+        .unwrap();
+
+        assert_eq!(injected_yml, expected_yml);
+    }
+
+    #[test]
+    fn it_should_mix_compound_keys() {
+        let root_yml: Value = serde_yaml::from_str(
+            r#"
+            toto:
+                a: 1
+                b: 2
+        "#,
+        )
+        .unwrap();
+
+        let yml_part: Value = serde_yaml::from_str(
+            r#"
+            toto.a: !mix 3
+        "#,
+        )
+        .unwrap();
+        let mut mixin = MixIns::new();
+        mixin.trim(&yml_part).unwrap();
+
+        let injected_yml = mixin.inject(&root_yml).unwrap();
+        let expected_yml: Value = serde_yaml::from_str(
+            r#"
+            toto:
+                a:
+                   - 1
+                   - 3
+                b: 2
             "#,
         )
         .unwrap();
