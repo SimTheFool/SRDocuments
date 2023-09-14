@@ -46,8 +46,21 @@ impl Variables {
     fn on_mapping(&self, val: &Mapping) -> AppResult<Value> {
         let mut new_map = Mapping::new();
         for (key, value) in val {
+            let new_key = match key {
+                Value::String(str) => self.on_string(str)?,
+                _ => key.clone(),
+            };
+
+            match new_key {
+                Value::String(_) => (),
+                _ => Err(AppError::ParseYml(format!(
+                    "{:?} can't be used as mapping key",
+                    key
+                )))?,
+            };
+
             let yml = self.inject(&value)?;
-            new_map.insert(key.clone(), yml);
+            new_map.insert(new_key, yml);
         }
         Ok(Value::Mapping(new_map))
     }

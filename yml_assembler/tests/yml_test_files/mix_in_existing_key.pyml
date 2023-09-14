@@ -6,6 +6,8 @@ covers:
 extends:
   - !inc::tags/adult
   - !inc::other/other1
+  - !inc::other/other2
+    ON: key_one.key_two
 key_one:
   key_two:
     - Hi there
