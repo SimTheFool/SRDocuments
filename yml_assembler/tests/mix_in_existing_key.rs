@@ -18,6 +18,7 @@ struct CoverFromYml {
 #[derive(Debug, serde::Deserialize)]
 struct CompoundFromYml {
     key_two: Vec<String>,
+    key_three: Vec<String>,
 }
 
 static TEST_FILE: &str = "mix_in_existing_key";
@@ -64,4 +65,10 @@ async fn it_should_mix_on_map_key() {
         .key_one
         .key_two
         .contains(&"I'm a second mix".to_string()));
+
+    assert_eq!(book.key_one.key_three.len(), 1);
+    assert!(book
+        .key_one
+        .key_three
+        .contains(&"I'm a third mix".to_string()));
 }
