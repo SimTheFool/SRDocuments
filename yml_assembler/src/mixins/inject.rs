@@ -1,6 +1,6 @@
 use super::MixIns;
 use crate::utils::result::{AppError, AppResult};
-use serde_yaml::Value;
+use serde_yaml::{Mapping, Value};
 
 impl MixIns {
     pub fn inject(&self, injected: &Value) -> AppResult<Value> {
@@ -44,27 +44,55 @@ impl MixIns {
         fn get_entry_to_mix_on<'a>(key: &str, val: &'a mut Value) -> AppResult<&'a mut Value> {
             let mut parts = key.split(".").into_iter();
 
-            let mut val_to_be_mix_on: &mut Value = val;
+            let mut val_to_be_mix_on = val;
             while let Some(part) = parts.next() {
-                match part.parse::<usize>() {
-                    Ok(index) => {
-                        let val = val_to_be_mix_on.as_sequence_mut().ok_or_else(|| {
-                            AppError::ParseYml(format!("Cannot find {part} in {key} mixin"))
-                        })?;
-                        if index >= val.len() {
-                            val.resize_with(index + 1, || Value::Null);
+                let entry = match val_to_be_mix_on.clone() {
+                    Value::Null => match part.parse::<usize>() {
+                        Ok(index) => {
+                            let mut vec = vec![];
+                            vec.resize(index + 1, Value::Null);
+                            *val_to_be_mix_on = Value::Sequence(vec);
+                            val_to_be_mix_on.get_mut(index)
                         }
-                        val_to_be_mix_on = val.get_mut(index).unwrap();
+                        Err(_) => {
+                            let mut map = Mapping::new();
+                            map.insert(Value::String(part.to_string()), Value::Null);
+                            *val_to_be_mix_on = Value::Mapping(map);
+                            val_to_be_mix_on.get_mut(&Value::String(part.to_string()))
+                        }
+                    },
+                    Value::Mapping(map) => {
+                        let entry = map.get(&Value::String(part.to_string()));
+                        let map = val_to_be_mix_on.as_mapping_mut().unwrap();
+                        if entry.is_none() {
+                            map.insert(Value::String(part.to_string()), Value::Null);
+                        }
+                        map.get_mut(&Value::String(part.to_string()))
                     }
-                    Err(_) => {
-                        let val = val_to_be_mix_on.as_mapping_mut().ok_or_else(|| {
-                            AppError::ParseYml(format!("Cannot find {part} in {key} mixin"))
-                        })?;
-                        val_to_be_mix_on = val
-                            .entry(Value::String(part.to_string()))
-                            .or_insert(Value::Null);
-                    }
+                    Value::Sequence(_) => match part.parse::<usize>() {
+                        Ok(index) => {
+                            let seq = val_to_be_mix_on.as_sequence_mut().unwrap();
+                            if index >= seq.len() {
+                                seq.resize_with(index + 1, || Value::Null);
+                            }
+                            val_to_be_mix_on.get_mut(index)
+                        }
+                        Err(_) => Err(AppError::ParseYml(format!(
+                            "Cannot mix on {key} because it is a sequence"
+                        )))?,
+                    },
+                    _ => Err(AppError::ParseYml(format!(
+                        "Cannot mix on {key} because it is a leaf"
+                    )))?,
+                };
+
+                if entry.is_none() {
+                    Err(AppError::ParseYml(format!(
+                        "Did not find any entry to mix on for {key}"
+                    )))?;
                 }
+
+                val_to_be_mix_on = entry.unwrap();
             }
 
             Ok(val_to_be_mix_on)

@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use super::TransformableList;
 use crate::utils::result::{AppError, AppResult};
 use serde_yaml::{Mapping, Sequence, Value};
@@ -218,13 +220,67 @@ impl TryFrom<Value> for TransformableList {
                 match entry {
                     Some(Value::String(s)) => Some(vec![s.clone()]),
                     Some(Value::Sequence(s)) => {
-                        let transformations: Vec<String> =
-                            serde_yaml::from_value(Value::Sequence(s.clone())).map_err(|_| {
-                                AppError::ApplyFormula(format!(
-                                    "_transform should be a list of string"
+                        let transformations = s.iter().try_fold(vec![], |mut acc, v| match v {
+                            Value::String(s) => {
+                                acc.push(s.clone());
+                                Ok(acc)
+                            }
+                            Value::Sequence(seq) => {
+                                let seq: Vec<String> = serde_yaml::from_value(Value::Sequence(
+                                    seq.clone(),
                                 ))
-                            })?;
+                                .map_err(|_| {
+                                    AppError::ApplyFormula(format!(
+                                        "_transform should be a list of string"
+                                    ))
+                                })?;
+                                acc.extend(seq);
+                                Ok(acc)
+                            }
+                            _ => Err(AppError::ApplyFormula(format!(
+                                "_transform should be composed of strings or of lists of string"
+                            ))),
+                        })?;
+
                         Some(transformations)
+                    }
+                    Some(Value::Mapping(map)) => {
+                        let mut keys = map
+                            .keys()
+                            .cloned()
+                            .map(|k| match k {
+                                Value::String(s) => Ok(s.clone()),
+                                _ => Err(AppError::ApplyFormula(format!(
+                                    "_transform should be a mapping of string"
+                                ))),
+                            })
+                            .collect::<AppResult<Vec<_>>>()?;
+                        keys.sort();
+
+                        let transformations: AppResult<Vec<String>> =
+                            keys.iter().try_fold(vec![], |mut acc, k| {
+                                let v = match map.get(k) {
+                                    Some(Value::String(s)) => Ok(vec![s.clone()]),
+                                    Some(Value::Sequence(seq)) => {
+                                        let seq: Vec<String> =
+                                            serde_yaml::from_value(Value::Sequence(seq.clone()))
+                                                .map_err(|_| {
+                                                    AppError::ApplyFormula(format!(
+                                                        "_transform should be a list of string"
+                                                    ))
+                                                })?;
+                                        Ok(seq)
+                                    }
+                                    _ => Err(AppError::ApplyFormula(format!(
+                                        "_transform should be a mapping of string"
+                                    ))),
+                                }?;
+
+                                acc.extend(v);
+                                Ok(acc)
+                            });
+
+                        Some(transformations?)
                     }
                     None => None,
                     _ => {

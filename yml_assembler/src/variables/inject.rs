@@ -51,8 +51,10 @@ impl Variables {
                 _ => key.clone(),
             };
 
-            match new_key {
-                Value::String(_) => (),
+            let new_key = match new_key {
+                Value::String(str) => str,
+                Value::Number(i) => i.to_string(),
+                Value::Bool(b) => b.to_string(),
                 _ => Err(AppError::ParseYml(format!(
                     "{:?} can't be used as mapping key",
                     key
@@ -60,7 +62,7 @@ impl Variables {
             };
 
             let yml = self.inject(&value)?;
-            new_map.insert(new_key, yml);
+            new_map.insert(Value::String(new_key), yml);
         }
         Ok(Value::Mapping(new_map))
     }
