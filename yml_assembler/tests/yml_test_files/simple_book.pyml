@@ -10,3 +10,5 @@ tags:
   - !inc::tags/horror
 page:
   number: 40
+meta: $META
+meta2: $META2

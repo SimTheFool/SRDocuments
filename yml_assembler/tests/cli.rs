@@ -1,9 +1,12 @@
 use assert_cmd::prelude::*;
 use predicates::prelude::*;
 use serial_test::serial;
-use std::{fs, path::PathBuf, process::Command};
+use std::{collections::HashMap, fs, path::PathBuf, process::Command};
 
-fn run_cli(root: &str) -> (Command, String, String, String, String) {
+fn run_cli(
+    root: &str,
+    vars: Option<HashMap<String, String>>,
+) -> (Command, String, String, String, String) {
     let output = "./tests/yml_test_files/output";
     let entry = "simple_book";
     let schema = "book-schema.json";
@@ -13,6 +16,11 @@ fn run_cli(root: &str) -> (Command, String, String, String, String) {
     cmd.arg("-f").arg(entry);
     cmd.arg("-s").arg(schema);
     cmd.arg("-o").arg(output);
+    vars.unwrap_or_default()
+        .into_iter()
+        .for_each(|(key, value)| {
+            cmd.arg("-v").arg(format!("{}={}", key, value));
+        });
 
     (
         cmd,
@@ -23,11 +31,14 @@ fn run_cli(root: &str) -> (Command, String, String, String, String) {
     )
 }
 
-fn check_generated_file_ok(output: &str, file: &str) {
+fn check_generated_file_ok(output: &str, file: &str, string_to_test: Option<&str>) {
     //read assembles
     let assembled_file_path = PathBuf::from(output).join(format!("{}.yml", file));
     let assembled_file = fs::read_to_string(assembled_file_path).unwrap();
-    predicate::str::contains("title: Juliette coupe le gateau").eval(&assembled_file);
+    assert!(
+        predicate::str::contains(string_to_test.unwrap_or("title: Juliette coupe le gateau"))
+            .eval(&assembled_file)
+    );
 }
 
 fn delete_output_folder(output: &str) {
@@ -43,7 +54,7 @@ fn it_should_run_cli() {
         .unwrap()
         .to_string();
 
-    let (mut cmd, root, output, file, schema) = run_cli(&root);
+    let (mut cmd, root, output, file, schema) = run_cli(&root, None);
 
     let std_output = cmd
         .assert()
@@ -62,50 +73,50 @@ fn it_should_run_cli() {
 
     println!("{}", String::from_utf8_lossy(&std_output.stdout));
 
-    check_generated_file_ok(&output, &file);
+    check_generated_file_ok(&output, &file, None);
     delete_output_folder(&output);
 }
 
 #[test]
 #[serial]
 fn it_should_run_cli_with_relative_root() {
-    let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files");
+    let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files", None);
 
     let std_output = cmd.assert().success().get_output().clone();
     println!("{:?}", String::from_utf8_lossy(&std_output.stdout));
 
-    check_generated_file_ok(&output, &file);
+    check_generated_file_ok(&output, &file, None);
     delete_output_folder(&output);
 }
 
 #[test]
 #[serial]
 fn it_should_run_twice_and_completely_replace_file() {
-    let (mut cmd, _, _, _, _) = run_cli("./tests/yml_test_files");
+    let (mut cmd, _, _, _, _) = run_cli("./tests/yml_test_files", None);
 
     let std_output = cmd.assert().success().get_output().clone();
     println!("{}", String::from_utf8_lossy(&std_output.stdout));
 
-    let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files");
+    let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files", None);
 
     let std_output = cmd.assert().success().get_output().clone();
     println!("{}", String::from_utf8_lossy(&std_output.stdout));
 
-    check_generated_file_ok(&output, &file);
+    check_generated_file_ok(&output, &file, None);
     delete_output_folder(&output);
 }
 
 #[test]
 #[serial]
 fn it_should_fail_if_non_existing_root() {
-    let (mut cmd, _, _, _, _) = run_cli("./non_existing_root");
+    let (mut cmd, _, _, _, _) = run_cli("./non_existing_root", None);
     cmd.assert().failure();
 }
 
 #[test]
 #[serial]
 fn it_should_generate_file_with_ordered_entries() {
-    let (mut cmd, _, output, _, _) = run_cli("./tests/yml_test_files");
+    let (mut cmd, _, output, _, _) = run_cli("./tests/yml_test_files", None);
 
     let std_output = cmd.assert().success().get_output().clone();
     println!("{}", String::from_utf8_lossy(&std_output.stdout));
@@ -114,5 +125,22 @@ fn it_should_generate_file_with_ordered_entries() {
     let assembled_file = fs::read_to_string(assembled_file_path).unwrap();
     predicate::str::contains("title: Juliette coupe le gateau\nsummary: L'anniversaire de Juliette tourne mal\nstory:\ncontent: Ca y est ! Elle a 21 ans, et a invité tout le monde à pré coustille. Malheureusement Juliette n'est pas très adroite et se coupe le doigt en coupant le gâteau. Elle est emmenée à l'hôpital et se fait recoudre le doigt. Elle est très déçue de rater sa fête d'anniversaire.\nchapter: 5").eval(&assembled_file);
 
+    delete_output_folder(&output);
+}
+
+#[test]
+#[serial]
+fn it_should_input_base_variables() {
+    let mut variables = HashMap::new();
+    variables.insert("META".to_string(), "I'm a root variable".to_string());
+    variables.insert("META2".to_string(), "I'm another variable".to_string());
+
+    let (mut cmd, _, output, file, _) = run_cli("./tests/yml_test_files", Some(variables));
+
+    let std_output = cmd.assert().success().get_output().clone();
+    println!("{}", String::from_utf8_lossy(&std_output.stdout));
+
+    check_generated_file_ok(&output, &file, Some("meta: I'm a root variable"));
+    check_generated_file_ok(&output, &file, Some("meta2: I'm another variable"));
     delete_output_folder(&output);
 }

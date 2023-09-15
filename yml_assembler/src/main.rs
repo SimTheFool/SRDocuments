@@ -1,5 +1,7 @@
 use clap::Parser;
 use std::{
+    collections::HashMap,
+    error::Error,
     path::{Path, PathBuf},
     rc::Rc,
 };
@@ -23,9 +25,27 @@ struct Cli {
     /// The path in root to the output folder
     #[arg(short, long)]
     output: Option<String>,
+
+    /// Variables to insert in the yml file
+    #[arg(short, long, value_parser = parse_key_val::<String, String>)]
+    vars: Option<Vec<(String, String)>>,
 }
 
 static DEFAULT_OUTPUT: &str = "output";
+
+/// Parse a single key-value pair
+fn parse_key_val<T, U>(s: &str) -> Result<(T, U), Box<dyn Error + Send + Sync + 'static>>
+where
+    T: std::str::FromStr,
+    T::Err: Error + Send + Sync + 'static,
+    U: std::str::FromStr,
+    U::Err: Error + Send + Sync + 'static,
+{
+    let pos = s
+        .find('=')
+        .ok_or_else(|| format!("invalid KEY=value: no `=` found in `{s}`"))?;
+    Ok((s[..pos].parse()?, s[pos + 1..].parse()?))
+}
 
 fn cli() -> Result<(), anyhow::Error> {
     let Cli {
@@ -33,7 +53,13 @@ fn cli() -> Result<(), anyhow::Error> {
         file,
         root,
         schema,
+        vars,
     } = Cli::parse();
+
+    println!("Using variables: {:#?}", vars);
+    let variables: HashMap<String, String> =
+        HashMap::from_iter(vars.unwrap_or_default().into_iter());
+
     let outdir = output.as_deref().unwrap_or(DEFAULT_OUTPUT);
 
     println!("Working in: {}", root.display());
@@ -47,7 +73,7 @@ fn cli() -> Result<(), anyhow::Error> {
     let schema_reader = ValidationSchemaFileSystemReader::new(root.clone());
 
     let app = yml_assembler::App::new(Rc::new(yml_reader), Rc::new(schema_reader));
-    let yml = app.compile_and_validate_yml(&file, schema.as_deref())?;
+    let yml = app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
 
     let outdir_path = PathBuf::from(outdir);
     let outfile_path = Path::new(&outdir_path).join(&file).with_extension("yml");

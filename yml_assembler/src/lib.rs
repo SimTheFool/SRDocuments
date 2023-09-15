@@ -1,5 +1,6 @@
 use jsonschema::JSONSchema;
 use serde_yaml::Value;
+use std::collections::HashMap;
 use std::rc::Rc;
 use transformable::TransformableList;
 use utils::result::AppError;
@@ -33,10 +34,11 @@ impl App {
         &self,
         yml_id: &str,
         schema_id: Option<&str>,
+        variables: Option<HashMap<String, String>>,
     ) -> AppResult<Value> {
         let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.yml_reader));
 
-        let variables = Variables::new();
+        let variables: Variables = variables.unwrap_or(HashMap::new()).into();
         let yml = aggregator.load(yml_id, &variables)?;
         let mixins = aggregator.mixins;
         let yml = mixins.inject(&yml)?;

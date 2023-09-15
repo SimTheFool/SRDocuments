@@ -7,7 +7,7 @@ static TEST_FILE: &str = "null_values";
 #[tokio::test]
 async fn it_should_not_output_yml_null_leaves() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
+    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let story = match yml {
         Value::Mapping(m) => {

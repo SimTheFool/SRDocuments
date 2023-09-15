@@ -25,3 +25,13 @@ impl Variables {
         Self(HashMap::new())
     }
 }
+
+impl From<HashMap<String, String>> for Variables {
+    fn from(map: HashMap<String, String>) -> Self {
+        let mut variables = Variables::new();
+        for (key, value) in map {
+            variables.insert(key, Value::String(value));
+        }
+        variables
+    }
+}

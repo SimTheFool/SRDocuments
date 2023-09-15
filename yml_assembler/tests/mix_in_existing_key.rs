@@ -26,7 +26,7 @@ static TEST_FILE: &str = "mix_in_existing_key";
 #[tokio::test]
 async fn it_should_mix_on_exisiting_property() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
+    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -44,7 +44,7 @@ async fn it_should_mix_on_exisiting_property() {
 #[tokio::test]
 async fn it_should_mix_on_compound_property() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
+    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -56,7 +56,7 @@ async fn it_should_mix_on_compound_property() {
 #[tokio::test]
 async fn it_should_mix_on_map_key() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None).unwrap();
+    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
