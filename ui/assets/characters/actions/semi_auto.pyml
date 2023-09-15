@@ -1,0 +1,21 @@
+$WEAPON.actions: !mix
+    tir_semi_auto:
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: P
+        ammo_consumption: 2
+        ranges:
+            contact: 0
+            near: 0
+            short: 0
+            medium: 0
+            far: 0
+_transform: !mix
+    - "$WEAPON.actions.tir_semi_auto.ranges.contact = if($WEAPON.ranges.contact<=0,$WEAPON.ranges.contact-1,$WEAPON.ranges.contact)"
+    - "$WEAPON.actions.tir_semi_auto.ranges.near = if($WEAPON.ranges.near<=0,$WEAPON.ranges.near-1,$WEAPON.ranges.near)"
+    - "$WEAPON.actions.tir_semi_auto.ranges.short = if($WEAPON.ranges.short<=0,$WEAPON.ranges.short-1,$WEAPON.ranges.short)"
+    - "$WEAPON.actions.tir_semi_auto.ranges.medium = if($WEAPON.ranges.medium<=0,$WEAPON.ranges.medium-1,$WEAPON.ranges.medium)"    
+    - "$WEAPON.actions.tir_semi_auto.ranges.far = if($WEAPON.ranges.far<=0,$WEAPON.ranges.far-1,$WEAPON.ranges.far)"
+    - "$WEAPON.actions.tir_semi_auto.damage = $WEAPON.damage + 1"
+    - "$WEAPON.actions.tir_semi_auto.damage_type = $WEAPON.damage_type"

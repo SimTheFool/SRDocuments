@@ -46,6 +46,69 @@ identities:
 - name: Laurence Guinvite
   quality: 2
   price: 5000
+weapons:
+  cavalier_arms_crockett:
+    type: fusil d'assaut
+    name: Cavalier Arms Crockett
+    description: 'Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles.  Cette arme est adaptée pour la monture. '
+    price: 10250
+    legal: false
+    licenced: false
+    ammo: 250
+    damage: 5
+    damage_type: P
+    ranges:
+      contact: -1
+      near: 0
+      short: 1
+      medium: 1
+      far: 0
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 5
+        damage_type: P
+        ammo_consumption: 1
+        ranges:
+          contact: -1
+          near: 0
+          short: 1
+          medium: 1
+          far: 0
+      tir_semi_auto:
+        major: 1
+        minor: 0
+        damage: 6
+        damage_type: P
+        ammo_consumption: 2
+        ranges:
+          contact: -2
+          near: -1
+          short: 1
+          medium: 1
+          far: -1
+      tir_rafale:
+        description: Vous pouvez répartir votre test d'attaque sur plusieurs cibles
+        major: 1
+        minor: 0
+        damage: 7
+        damage_type: P
+        ammo_consumption: 4
+        ranges:
+          contact: -2
+          near: -1
+          short: 0
+          medium: 0
+          far: -1
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 30
+      ajuster:
+        minor: 1
+        major: 0
+        description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
 skills:
   perception:
     base: 1

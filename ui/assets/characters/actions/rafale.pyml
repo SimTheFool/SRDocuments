@@ -1,0 +1,22 @@
+$WEAPON.actions: !mix
+    tir_rafale:
+        description: "Vous pouvez répartir votre test d'attaque sur plusieurs cibles"
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: P
+        ammo_consumption: 4
+        ranges:
+            contact: 0
+            near: 0
+            short: 0
+            medium: 0
+            far: 0
+_transform: !mix
+    - "$WEAPON.actions.tir_rafale.ranges.contact = $WEAPON.ranges.contact-1"
+    - "$WEAPON.actions.tir_rafale.ranges.near = $WEAPON.ranges.near-1"
+    - "$WEAPON.actions.tir_rafale.ranges.short = $WEAPON.ranges.short-1"
+    - "$WEAPON.actions.tir_rafale.ranges.medium = $WEAPON.ranges.medium-1"    
+    - "$WEAPON.actions.tir_rafale.ranges.far = $WEAPON.ranges.far-1"
+    - "$WEAPON.actions.tir_rafale.damage = $WEAPON.damage + 2"
+    - "$WEAPON.actions.tir_rafale.damage_type = $WEAPON.damage_type"

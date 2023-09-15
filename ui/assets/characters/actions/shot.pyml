@@ -1,0 +1,21 @@
+$WEAPON.actions: !mix
+    tir:
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: P
+        ammo_consumption: 1
+        ranges:
+            contact: 0
+            near: 0
+            short: 0
+            medium: 0
+            far: 0
+_transform: !mix
+    - "$WEAPON.actions.tir.ranges.contact = $WEAPON.ranges.contact"
+    - "$WEAPON.actions.tir.ranges.near = $WEAPON.ranges.near"
+    - "$WEAPON.actions.tir.ranges.short = $WEAPON.ranges.short"
+    - "$WEAPON.actions.tir.ranges.medium = $WEAPON.ranges.medium"    
+    - "$WEAPON.actions.tir.ranges.far = $WEAPON.ranges.far"
+    - "$WEAPON.actions.tir.damage = $WEAPON.damage"
+    - "$WEAPON.actions.tir.damage_type = $WEAPON.damage_type"

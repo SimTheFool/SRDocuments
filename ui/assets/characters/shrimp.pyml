@@ -83,3 +83,12 @@ traits:
     TYPE: machine
   - !inc::traits/paralysie_du_combat
   - !inc::traits/rhinite_chronique
+
+weapons:
+  cavalier_arms_crockett: !inc::weapons/cavalier_arms_crockett
+      SELF: weapons.cavalier_arms_crockett
+  cavalier_arms_mods:
+    - !inc::weapon_mods/guncam
+        WEAPON: weapons.cavalier_arms_crockett
+    - !inc::weapon_mods/monture
+        WEAPON: weapons.cavalier_arms_crockett

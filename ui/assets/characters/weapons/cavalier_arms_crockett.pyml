@@ -1,0 +1,24 @@
+type: fusil d'assaut
+name: Cavalier Arms Crockett
+description: Fusil d assaut polyvalent.
+price: 10250
+legal: false
+licenced: false
+ammo: 30
+damage: 5
+damage_type: P
+ranges:
+    contact: -1
+    near: 0
+    short: 1
+    medium: 1
+    far: 0
+extend_actions:
+    - !inc::actions/shot
+        WEAPON: $SELF
+    - !inc::actions/semi_auto
+        WEAPON: $SELF
+    - !inc::actions/rafale
+        WEAPON: $SELF
+    - !inc::actions/recharger
+        WEAPON: $SELF
