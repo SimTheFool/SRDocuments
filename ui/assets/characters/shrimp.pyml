@@ -13,12 +13,12 @@ stats: !inc::rules/base_stats
   EDGE: 4
 
 speciality:
-  - !inc::rules/technomancer
+  - !inc::technomancy/technomancer
       RES: 7
 speciality_powers:
-  - !inc::actions_technomancy/data_storm
-  - !inc::actions_technomancy/data_channel
-  - !inc::echoes/reseau_vivant
+  - !inc::technomancy/powers/data_storm
+  - !inc::technomancy/powers/data_channel
+  - !inc::technomancy/echoes/reseau_vivant
 
 skills:
   - !inc::skills/perception
