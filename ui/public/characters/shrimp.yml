@@ -290,22 +290,44 @@ drones:
       sensors: 2
       armor: 0
     quantity: 2
-effects:
-- name: Reseau vivant
-  type: Echo
-  description: Utlisez votre persona incarné comme noeud PAN.
-- name: Bricoleur prévoyant
-  type: Trait
-  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
-- name: Ami des sprites machine
-  type: Trait
-  description: __A1__ lorsque vous compilez un sprite machine.
-- name: Paralysie du combat
-  type: Trait
-  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
-- name: Rhinite chronique
-  type: Trait
-  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
+outfits:
+  bag:
+    name: Sac
+    price: 0
+    legal: true
+    licenced: false
+    concealment: 0
+    slots:
+    - name: Sac
+      size: XL
+  street_kid:
+    name: Tenue de gamin des rues
+    price: 550
+    legal: true
+    licenced: false
+    concealment: 0
+    description: Tenue pratique. Vous avez __A1__ pour résister aux entraves.
+    slots:
+    - name: Pôche
+      size: S
+    - name: Pôche secrète
+      size: S
+      concealment: 5
+    - name: Pôche secrète
+      size: S
+      concealment: 5
+    actions:
+      utiliser une pôche secrète:
+        major: 1
+        minor: 0
+  invisi_shield:
+    name: Invisi Shield
+    constructor: Securetech
+    price: 5400
+    legal: true
+    licenced: false
+    concealment: 4
+    description: Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.
 skills:
   perception:
     base: 1
@@ -331,3 +353,19 @@ skills:
     - Compilation
     expertises:
     - Inscription
+effects:
+- name: Reseau vivant
+  type: Echo
+  description: Utlisez votre persona incarné comme noeud PAN.
+- name: Bricoleur prévoyant
+  type: Trait
+  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
+- name: Ami des sprites machine
+  type: Trait
+  description: __A1__ lorsque vous compilez un sprite machine.
+- name: Paralysie du combat
+  type: Trait
+  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
+- name: Rhinite chronique
+  type: Trait
+  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.

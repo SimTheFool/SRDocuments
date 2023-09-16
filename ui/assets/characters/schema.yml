@@ -33,6 +33,12 @@ properties:
       type: object
       $ref: "#/definitions/drone"
 
+  outfits:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/outfit"
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -407,6 +413,17 @@ definitions:
                 type: integer
               armor:
                 type: integer
+          slots:
+            type: array
+            items:
+              $ref: "#/definitions/slot"
+
+  #~~~ OUTFIT ~~~#
+  outfit:
+    type: object
+    allOf:
+      - $ref: "#/definitions/base_item"
+      - properties:
           slots:
             type: array
             items:

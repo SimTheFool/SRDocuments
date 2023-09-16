@@ -1,0 +1,7 @@
+name: Invisi Shield
+constructor: Securetech
+price: 5400
+legal: true
+licenced: false
+concealment: !inc::concealment/4_retracted_baton
+description: "Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout."

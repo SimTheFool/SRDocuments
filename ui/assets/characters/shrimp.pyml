@@ -137,3 +137,14 @@ drones:
         DRONE: drones.kanmushi
         QUANTITY: 2
 
+outfits:
+  bag: !inc::outfits/bag
+  street_kid: !inc::outfits/street_kid
+      SELF: outfits.street_kid
+  street_kid_mods:
+    - !inc::outfits_mods/secret_pocket
+        OUTFIT: outfits.street_kid
+    - !inc::outfits_mods/secret_pocket
+        OUTFIT: outfits.street_kid
+  invisi_shield: !inc::outfits/invisi_shield
+      SELF: outfits.invisi_shield
