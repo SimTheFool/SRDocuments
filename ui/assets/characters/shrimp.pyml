@@ -72,12 +72,22 @@ identities:
           loyalty: 3
           connection: 2
           description: Ouvrier de casse militaire d'ARES
-  - !inc::identities/i4
+  - !inc::identities/i_fake
       NAME: Laurence Guinvite
       NUYENS: null
-      LICENCES: null
+      LICENCES:
+        - !inc::datas/licence
+            ITEM: Chasse d'arme
+            QUALITY: 4
+        - !inc::datas/licence
+            ITEM: Packmule
+            QUALITY: 4
+        - !inc::datas/licence
+            ITEM: Crawler
+            QUALITY: 4
       LIFESTYLE: null
       CONTACTS: null
+      QUALITY: 2
 
 traits:
   - !inc::traits/bricoleur_prevoyant
@@ -174,10 +184,7 @@ tech:
     licenced: false
     concealment: !inc::concealment/4_retracted_baton
   
-  
-  
-  
-  
+
   
   
   

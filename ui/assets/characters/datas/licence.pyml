@@ -1,0 +1,3 @@
+name: Fausse Licence - $ITEM
+quality: i$QUALITY
+price: $QUALITY * 200
