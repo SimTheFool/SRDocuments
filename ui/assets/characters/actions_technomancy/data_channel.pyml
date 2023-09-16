@@ -1,0 +1,6 @@
+actions: !mix
+    canal de données:
+        type: technomancy
+        major: 1
+        minor: 0
+        description: "Vous réduisez le bruit de votre connexion de 1 par __SN__."

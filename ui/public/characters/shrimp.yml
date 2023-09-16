@@ -353,6 +353,17 @@ effects:
 - name: Rhinite chronique
   type: Trait
   description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
+actions:
+  tempête de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
+  canal de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
 skills:
   perception:
     base: 1

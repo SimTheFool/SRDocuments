@@ -12,8 +12,13 @@ stats: !inc::rules/base_stats
   ESS: 6
   EDGE: 4
 
-speciality: !inc::rules/technomancer
-  RES: 7
+speciality:
+  - !inc::rules/technomancer
+      RES: 7
+speciality_powers:
+  - !inc::actions_technomancy/data_storm
+  - !inc::actions_technomancy/data_channel
+  - !inc::echoes/reseau_vivant
 
 skills:
   - !inc::skills/perception
@@ -73,9 +78,6 @@ identities:
       LICENCES: null
       LIFESTYLE: null
       CONTACTS: null
-
-echoes:
-  - !inc::echoes/reseau_vivant
 
 traits:
   - !inc::traits/bricoleur_prevoyant

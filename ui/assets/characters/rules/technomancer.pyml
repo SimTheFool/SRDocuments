@@ -2,5 +2,6 @@ stats: !mix
   res: $RES
   submersion: 0
   resist_drain: 0
+
 _transform.$FINALSTATS_LAYER: !mix
   - "stats.resist_drain = ceil(stats.log / 2)"

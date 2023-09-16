@@ -21,6 +21,12 @@ properties:
     items:
       $ref: "#/definitions/effect"
 
+  actions:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/specific_action"
+
   weapons:
     type: object
     additionalProperties:
@@ -238,7 +244,7 @@ definitions:
         type: string
 
   #~~~ LOAD_ACTION ~~~#
-  other_action:
+  base_action:
     type: object
     required: [major, minor]
     properties:
@@ -248,6 +254,16 @@ definitions:
         type: integer
       description:
         type: string
+
+  specific_action:
+    type: object
+    allOf:
+      - $ref: "#/definitions/base_action"
+      - required: [type]
+        properties:
+          type:
+            type: string
+            enum: ["technomancy"]
 
   contact_action:
     type: object
@@ -369,7 +385,7 @@ definitions:
                 $ref: "#/definitions/load_action"
             additionalProperties:
               type: object
-              $ref: "#/definitions/other_action"
+              $ref: "#/definitions/base_action"
 
   #~~~ DRONE ~~~#
   drone:
