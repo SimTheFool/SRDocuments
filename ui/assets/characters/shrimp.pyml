@@ -1,6 +1,6 @@
 name: shrimp
 
-stats: !inc::rules/base_stats
+stats: !inc::stats/base_stats
   CON: 1
   AGI: 4
   REA: 2
@@ -21,37 +21,37 @@ speciality:
   - !inc::technomancy/sprites/machine
 
 skills:
-  - !inc::skills/perception
+  - !inc::stats/skills/perception
       BASE: 1
       SPEC: null
       EXP: null
-  - !inc::skills/furtivite
+  - !inc::stats/skills/furtivite
       BASE: 1
       SPEC: null
       EXP: null
-  - !inc::skills/athletisme
+  - !inc::stats/skills/athletisme
       BASE: 3
       SPEC: null
       EXP: null
-  - !inc::skills/electronique
+  - !inc::stats/skills/electronique
       BASE: 4
       SPEC: null
       EXP: null
-  - !inc::skills/combat_rapp
+  - !inc::stats/skills/combat_rapp
       BASE: 1
       SPEC: null
       EXP: null
-  - !inc::skills/ingenierie
+  - !inc::stats/skills/ingenierie
       BASE: 6
       SPEC:
         - Artillerie
       EXP: null
-  - !inc::skills/pilotage
+  - !inc::stats/skills/pilotage
       BASE: 6
       SPEC:
         - Appareils au sol
       EXP: null
-  - !inc::skills/technomancie
+  - !inc::stats/skills/technomancie
       BASE: 6
       SPEC:
         - Compilation
@@ -76,13 +76,13 @@ identities:
       NAME: Laurence Guinvite
       NUYENS: null
       LICENCES:
-        - !inc::datas/licence
+        - !inc::identities/licence
             ITEM: Chasse d'arme
             QUALITY: 4
-        - !inc::datas/licence
+        - !inc::identities/licence
             ITEM: Packmule
             QUALITY: 4
-        - !inc::datas/licence
+        - !inc::identities/licence
             ITEM: Crawler
             QUALITY: 4
       LIFESTYLE: null
@@ -90,99 +90,118 @@ identities:
       QUALITY: 2
 
 traits:
-  - !inc::traits/bricoleur_prevoyant
-  - !inc::traits/ami_des_sprites
+  - !inc::identities/traits/bricoleur_prevoyant
+  - !inc::identities/traits/ami_des_sprites
       TYPE: machine
-  - !inc::traits/paralysie_du_combat
-  - !inc::traits/rhinite_chronique
+  - !inc::identities/traits/paralysie_du_combat
+  - !inc::identities/traits/rhinite_chronique
 
 weapons:
-  crockett: !inc::weapons/crockett
+  crockett: !inc::objects/weapons/crockett
       SELF: weapons.crockett
+
   cavalier_arms_mods:
-    - !inc::weapon_mods/guncam
+    - !inc::objects/weapons/mods/guncam
         WEAPON: weapons.crockett
-    - !inc::weapon_mods/chasse
+    - !inc::objects/weapons/mods/chasse
         WEAPON: weapons.crockett
-    - !inc::weapon_mods/canon_long
+    - !inc::objects/weapons/mods/canon_long
         WEAPON: weapons.crockett
-    - !inc::weapon_mods/kit_de_demontage
+    - !inc::objects/weapons/mods/kit_de_demontage
         WEAPON: weapons.crockett
-  pulsar: !inc::weapons/pulsar
+
+  pulsar: !inc::objects/weapons/pulsar
       SELF: weapons.pulsar
+
   pulsar_mods:
-    - !inc::weapon_mods/chasse
+    - !inc::objects/weapons/mods/chasse
         WEAPON: weapons.pulsar
-  grappin: !inc::weapons/grappin
+
+  grappin: !inc::objects/weapons/grappin
       SELF: weapons.grappin
+
   grappin_mods:
-    - !inc::weapon_mods/chasse
+    - !inc::objects/weapons/mods/chasse
         WEAPON: weapons.grappin
-  clef_cyber_fictionnelle: !inc::weapons/clef_cyber_fictionnelle
+
+  clef_cyber_fictionnelle: !inc::objects/weapons/clef_cyber_fictionnelle
       SELF: weapons.clef_cyber_fictionnelle
-  mecanized_arm: !inc::weapons/mecanized_arm
+
+  mecanized_arm: !inc::objects/weapons/mecanized_arm
       SELF: weapons.mecanized_arm
+
   mecanized_arm_mods:
-    - !inc::weapon_mods/chasse
+    - !inc::objects/weapons/mods/chasse
         WEAPON: weapons.mecanized_arm
 
 drones:
-  packmule: !inc::drones/packmule
+  packmule: !inc::objects/drones/packmule
       SELF: drones.packmule
+
   packmule_mods:
-    - !inc::drones_mods/monture
+    - !inc::objects/drones/mods/monture
         DRONE: drones.packmule
-    - !inc::drones_mods/monture
+    - !inc::objects/drones/mods/monture
         DRONE: drones.packmule
-    - !inc::drones_mods/rules
+    - !inc::objects/drones/mods/rules
         DRONE: drones.packmule
-  crawler: !inc::drones/crawler
+
+  crawler: !inc::objects/drones/crawler
       SELF: drones.crawler
+
   crawler_mods:
-    - !inc::drones_mods/monture
+    - !inc::objects/drones/mods/monture
         DRONE: drones.crawler
-    - !inc::drones_mods/monture
+    - !inc::objects/drones/mods/monture
         DRONE: drones.crawler
-    - !inc::drones_mods/rules
+    - !inc::objects/drones/mods/rules
         DRONE: drones.crawler
-  kanmushi: !inc::drones/kanmushi
+
+  kanmushi: !inc::objects/drones/kanmushi
       SELF: drones.kanmushi
+
   kanmushi_mods:
-    - !inc::drones_mods/rules
+    - !inc::objects/drones/mods/rules
         DRONE: drones.kanmushi
-    - !inc::drones_mods/quantity
+    - !inc::objects/drones/mods/quantity
         DRONE: drones.kanmushi
         QUANTITY: 2
 
 outfits:
-  bag: !inc::outfits/bag
-  street_kid: !inc::outfits/street_kid
+  bag: !inc::objects/outfits/bag
+
+  street_kid: !inc::objects/outfits/street_kid
       SELF: outfits.street_kid
+
   street_kid_mods:
-    - !inc::outfits_mods/secret_pocket
+    - !inc::objects/outfits/mods/secret_pocket
         OUTFIT: outfits.street_kid
-    - !inc::outfits_mods/secret_pocket
+    - !inc::objects/outfits/mods/secret_pocket
         OUTFIT: outfits.street_kid
-  invisi_shield: !inc::outfits/invisi_shield
+
+  invisi_shield: !inc::objects/outfits/invisi_shield
       SELF: outfits.invisi_shield
 
 tech:
-  commlink: !inc::tech/commlink
+  commlink: !inc::objects/tech/commlink
       SELF: tech.commlink
-  persona: !inc::tech/persona
+
+  persona: !inc::objects/tech/persona
       SELF: tech.persona
+
   micro_camera:
     name: Micro + Caméra
     price: 100
     legal: true
     licenced: false
-    concealment: !inc::concealment/6_cigaret
+    concealment: !inc::objects/concealment/6_cigaret
+
   datajack:
     name: Datajack
     price: 1000
     legal: true
     licenced: false
-    concealment: !inc::concealment/4_retracted_baton
+    concealment: !inc::objects/concealment/4_retracted_baton
   
 
   

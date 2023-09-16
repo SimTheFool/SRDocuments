@@ -5,7 +5,7 @@ description: ""
 price: 500
 legal: true
 licenced: false
-concealment: !inc::concealment/2_standard_weapons
+concealment: !inc::objects/concealment/2_standard_weapons
 ammo: 1
 damage: 0
 damage_type: ""

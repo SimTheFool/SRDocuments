@@ -4,4 +4,4 @@ description: ""
 price: 1000
 legal: true
 licenced: false
-concealment: !inc::concealment/2_standard_weapons
+concealment: !inc::objects/concealment/2_standard_weapons

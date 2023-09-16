@@ -5,7 +5,7 @@ description: ""
 price: 350
 legal: true
 licenced: false
-concealment: !inc::concealment/3_knife_pistols
+concealment: !inc::objects/concealment/3_knife_pistols
 ammo: 4
 damage: 4
 damage_type: Elec

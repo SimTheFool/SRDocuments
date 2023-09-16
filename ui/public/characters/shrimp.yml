@@ -400,6 +400,31 @@ actions:
     minor: 0
     maintained: true
     description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
+skills:
+  perception:
+    base: 1
+  furtivite:
+    base: 1
+  athletisme:
+    base: 3
+  electronique:
+    base: 4
+  combat_rapp:
+    base: 1
+  ingenierie:
+    base: 6
+    specialisations:
+    - Artillerie
+  pilotage:
+    base: 6
+    specialisations:
+    - Appareils au sol
+  technomancie:
+    base: 6
+    specialisations:
+    - Compilation
+    expertises:
+    - Inscription
 sprites:
   machine:
     stats:
@@ -442,28 +467,3 @@ effects:
 - name: Rhinite chronique
   type: Trait
   description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
-skills:
-  perception:
-    base: 1
-  furtivite:
-    base: 1
-  athletisme:
-    base: 3
-  electronique:
-    base: 4
-  combat_rapp:
-    base: 1
-  ingenierie:
-    base: 6
-    specialisations:
-    - Artillerie
-  pilotage:
-    base: 6
-    specialisations:
-    - Appareils au sol
-  technomancie:
-    base: 6
-    specialisations:
-    - Compilation
-    expertises:
-    - Inscription

@@ -11,7 +11,7 @@ tech: !mix
         price: 350
         legal: true
         licenced: true
-        concealment: !inc::concealment/2_standard_weapons
+        concealment: !inc::objects/concealment/2_standard_weapons
         
 _transform.$MODS_LAYER: !mix
     - "$WEAPON.description += \" La guncam permet de calculer la trajectoire des balles.\""

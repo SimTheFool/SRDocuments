@@ -3,7 +3,7 @@ constructor: ARES
 price: 11000
 legal: true
 licenced: false
-concealment: !inc::concealment/0_machine_gun
+concealment: !inc::objects/concealment/0_machine_gun
 description: "Grand arthropode mécanique"
 hit: 0
 stats:

@@ -2,7 +2,7 @@ name: Tenue de gamin des rues
 price: 150
 legal: true
 licenced: false
-concealment: !inc::concealment/0_machine_gun
+concealment: !inc::objects/concealment/0_machine_gun
 description: "Tenue pratique. Vous avez __A1__ pour résister aux entraves."
 slots:
     - name: Pôche

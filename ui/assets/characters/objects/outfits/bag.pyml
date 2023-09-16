@@ -2,7 +2,7 @@ name: Sac
 price: 0
 legal: true
 licenced: false
-concealment: !inc::concealment/0_machine_gun
+concealment: !inc::objects/concealment/0_machine_gun
 slots:
     - name: Sac
       size: XL

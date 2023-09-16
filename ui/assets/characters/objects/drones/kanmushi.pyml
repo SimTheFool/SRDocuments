@@ -3,7 +3,7 @@ constructor: Shiawase
 price: 450
 legal: true
 licenced: false
-concealment: !inc::concealment/6_cigaret
+concealment: !inc::objects/concealment/6_cigaret
 description: "Petit arthropode mécanique"
 hit: 0
 stats:

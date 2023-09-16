@@ -5,7 +5,7 @@ description: ""
 price: 725
 legal: true
 licenced: false
-concealment: !inc::concealment/4_retracted_baton
+concealment: !inc::objects/concealment/4_retracted_baton
 ammo: 4
 actions:
     attaquer:

@@ -3,7 +3,7 @@ constructor: Meta
 price: 100
 legal: true
 licenced: false
-concealment: !inc::concealment/4_retracted_baton
+concealment: !inc::objects/concealment/4_retracted_baton
 stats:
     firewall: 0
     corruption: 1

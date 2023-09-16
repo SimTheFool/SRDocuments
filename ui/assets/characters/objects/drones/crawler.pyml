@@ -3,7 +3,7 @@ constructor: Aztechnology
 price: 9500
 legal: true
 licenced: false
-concealment: !inc::concealment/2_standard_weapons
+concealment: !inc::objects/concealment/2_standard_weapons
 description: "Moyen arthropode mécanique"
 hit: 0
 stats:
