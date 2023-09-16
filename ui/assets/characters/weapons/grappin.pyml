@@ -1,0 +1,22 @@
+type: outil
+name: Grappin
+constructor: ""
+description: ""
+price: 500
+legal: true
+licenced: false
+concealment: !inc::concealment/2_standard_weapons
+ammo: 1
+damage: 0
+damage_type: ""
+ranges:
+    contact: -99
+    near: 0
+    short: -99
+    medium: -99
+    far: -99
+extend_actions:
+    - !inc::actions/shot
+        WEAPON: $SELF
+    - !inc::actions/recharger
+        WEAPON: $SELF

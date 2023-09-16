@@ -1,21 +1,33 @@
 # yaml-language-server: $schema=http://json-schema.org/draft-07/schema#
 type: object
+required: [stats, skills]
 properties:
   name:
     type: string
+
   stats:
     $ref: "#/definitions/stats"
+
   skills:
     $ref: "#/definitions/skills"
+
   identities:
     type: array
     items:
       $ref: "#/definitions/identities"
+
   effects:
     type: array
     items:
       $ref: "#/definitions/effect"
-required: [stats, skills]
+
+  weapons:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/weapon"
+
+#~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
   stats:
@@ -105,6 +117,7 @@ definitions:
         type: integer
       natural_heal:
         type: integer
+
   #~~~ SKILLS ~~~#
   skill:
     type: object
@@ -120,6 +133,7 @@ definitions:
         type: array
         items:
           type: string
+
   #~~~ SKILLS ~~~#
   skills:
     type: "object"
@@ -140,6 +154,7 @@ definitions:
         $ref: "#/definitions/skill"
       technomancie:
         $ref: "#/definitions/skill"
+
   #~~~ IDENTITIES ~~~#
   identities:
     type: object
@@ -162,6 +177,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/contact"
+
   #~~~ CONTACT ~~~#
   contact:
     type: object
@@ -175,6 +191,7 @@ definitions:
         type: integer
       description:
         type: string
+
   #~~~ LIFESTYLE ~~~#
   lifestyle:
     type: object
@@ -184,6 +201,7 @@ definitions:
         type: string
       price:
         type: integer
+
   #~~~ LICENCES ~~~#
   licences:
     type: object
@@ -195,6 +213,7 @@ definitions:
         type: string
       price:
         type: integer
+
   #~~~ EFFECT ~~~#
   effect:
     type: object
@@ -205,3 +224,125 @@ definitions:
         type: string
       description:
         type: string
+
+  #~~~ LOAD_ACTION ~~~#
+  other_action:
+    type: object
+    required: [major, minor]
+    properties:
+      major:
+        type: integer
+      minor:
+        type: integer
+      description:
+        type: string
+
+  contact_action:
+    type: object
+    required: [major, minor, damage, damage_type, ranges]
+    properties:
+      major:
+        type: integer
+      minor:
+        type: integer
+      description:
+        type: string
+      damage:
+        type: integer
+      damage_type:
+        type: string
+      ranges:
+        type: object
+        required: [contact]
+        properties:
+          contact:
+            type: integer
+
+  load_action:
+    type: object
+    required: [major, minor, ammo]
+    properties:
+      major:
+        type: integer
+      minor:
+        type: integer
+      ammo:
+        type: integer
+      description:
+        type: string
+
+  shot_action:
+    type: object
+    required: [major, minor, damage, damage_type, ammo_consumption, ranges]
+    properties:
+      description:
+        type: string
+      major:
+        type: integer
+      minor:
+        type: integer
+      damage:
+        type: integer
+      damage_type:
+        type: string
+      ammo_consumption:
+        type: integer
+      ranges:
+        type: object
+        required: [contact, near, short, medium, far]
+        properties:
+          contact:
+            type: integer
+          near:
+            type: integer
+          short:
+            type: integer
+          medium:
+            type: integer
+          far:
+            type: integer
+
+  #~~~ BASE_ITEM ~~~#
+  base_item:
+    type: object
+    required: ["price", "legal", "licenced", "concealment"]
+    properties:
+      type:
+        type: string
+      name:
+        type: string
+      constructor:
+        type: string
+      description:
+        type: string
+      price:
+        type: integer
+      legal:
+        type: boolean
+      licenced:
+        type: boolean
+      concealment:
+        type: integer
+
+  #~~~ WEAPON ~~~#
+  weapon:
+    type: object
+    allOf:
+      - $ref: "#/definitions/base_item"
+      - properties:
+          actions:
+            type: object
+            properties:
+              attaquer:
+                $ref: "#/definitions/contact_action"
+              tir:
+                $ref: "#/definitions/shot_action"
+              tir_semi_auto:
+                $ref: "#/definitions/shot_action"
+              tir_rafale:
+                $ref: "#/definitions/shot_action"
+              recharger:
+                $ref: "#/definitions/load_action"
+            additionalProperties:
+              type: object
+              $ref: "#/definitions/other_action"

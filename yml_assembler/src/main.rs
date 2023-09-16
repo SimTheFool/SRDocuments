@@ -56,7 +56,19 @@ fn cli() -> Result<(), anyhow::Error> {
         vars,
     } = Cli::parse();
 
-    println!("Using variables: {:#?}", vars);
+    let display_variables = format!(
+        "Using variables:\n{}",
+        &vars
+            .clone()
+            .unwrap_or(vec![])
+            .iter()
+            .fold("".to_string(), |acc, (k, v)| format!(
+                "{}{}={}\n",
+                acc, k, v
+            ))
+    );
+    println!("{}", display_variables);
+
     let variables: HashMap<String, String> =
         HashMap::from_iter(vars.unwrap_or_default().into_iter());
 

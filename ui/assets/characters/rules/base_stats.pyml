@@ -24,7 +24,7 @@ hit_phy: 8
 hit_stun: 8
 hit_over: 0
 natural_heal: 0
-_transform: !mix
+_transform.$FINALSTATS_LAYER: !mix
   - "stats.resist_phy = stats.con"
   - "stats.action_min = stats.action_min + stats.init"
   - "stats.hit_phy = stats.hit_phy + floor(stats.con / 2)"

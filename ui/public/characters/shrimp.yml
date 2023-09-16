@@ -47,22 +47,24 @@ identities:
   quality: 2
   price: 5000
 weapons:
-  cavalier_arms_crockett:
+  crockett:
     type: fusil d'assaut
-    name: Cavalier Arms Crockett
-    description: 'Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles.  Cette arme est adaptée pour la monture. '
-    price: 10250
+    name: Crockett
+    constructor: Cavalier Arms
+    description: Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles. Cette arme est adaptée pour la monture. Le canon a été allongé pour une meilleure précision à distance.
+    price: 11450
     legal: false
-    licenced: false
+    licenced: true
+    concealment: -1
     ammo: 250
     damage: 5
     damage_type: P
     ranges:
-      contact: -1
+      contact: -2
       near: 0
       short: 1
-      medium: 1
-      far: 0
+      medium: 2
+      far: 1
     actions:
       tir:
         major: 1
@@ -71,11 +73,11 @@ weapons:
         damage_type: P
         ammo_consumption: 1
         ranges:
-          contact: -1
+          contact: -2
           near: 0
           short: 1
-          medium: 1
-          far: 0
+          medium: 2
+          far: 1
       tir_semi_auto:
         major: 1
         minor: 0
@@ -83,11 +85,11 @@ weapons:
         damage_type: P
         ammo_consumption: 2
         ranges:
-          contact: -2
+          contact: -3
           near: -1
           short: 1
-          medium: 1
-          far: -1
+          medium: 2
+          far: 1
       tir_rafale:
         description: Vous pouvez répartir votre test d'attaque sur plusieurs cibles
         major: 1
@@ -96,19 +98,145 @@ weapons:
         damage_type: P
         ammo_consumption: 4
         ranges:
-          contact: -2
+          contact: -3
           near: -1
           short: 0
-          medium: 0
-          far: -1
+          medium: 1
+          far: 0
       recharger:
         major: 1
         minor: 0
-        ammo: 30
+        ammo: 250
       ajuster:
         minor: 1
         major: 0
         description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
+      montage/demontage:
+        minor: 0
+        major: 2
+        description: Augmente la dissimulation de 2 une fois démontée.
+  pulsar:
+    type: taser
+    name: Pulsar
+    constructor: Yamaha
+    description: ' Cette arme est adaptée pour la monture.'
+    price: 450
+    legal: true
+    licenced: false
+    concealment: 2
+    ammo: 250
+    damage: 4
+    damage_type: Elec
+    ranges:
+      contact: 0
+      near: 0
+      short: -99
+      medium: -99
+      far: -99
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 4
+        damage_type: Elec
+        ammo_consumption: 1
+        ranges:
+          contact: 0
+          near: 0
+          short: -99
+          medium: -99
+          far: -99
+      tir_semi_auto:
+        major: 1
+        minor: 0
+        damage: 5
+        damage_type: Elec
+        ammo_consumption: 2
+        ranges:
+          contact: -1
+          near: -1
+          short: -100
+          medium: -100
+          far: -100
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 250
+  grappin:
+    type: outil
+    name: Grappin
+    constructor: ''
+    description: ' Cette arme est adaptée pour la monture.'
+    price: 600
+    legal: true
+    licenced: false
+    concealment: 1
+    ammo: 250
+    damage: 0
+    damage_type: ''
+    ranges:
+      contact: -99
+      near: 0
+      short: -99
+      medium: -99
+      far: -99
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: ''
+        ammo_consumption: 1
+        ranges:
+          contact: -99
+          near: 0
+          short: -99
+          medium: -99
+          far: -99
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 250
+  clef_cyber_fictionnelle:
+    type: clef anglaise
+    name: Clef anglaise robotique cyber-fictionnelle
+    constructor: ''
+    description: ''
+    price: 725
+    legal: true
+    licenced: false
+    concealment: 4
+    ammo: 4
+    actions:
+      attaquer:
+        description: Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.
+        major: 1
+        minor: 0
+        damage: 3
+        damage_type: Elec
+        ranges:
+          contact: 0
+      activer:
+        major: 0
+        minor: 1
+        ammo: 4
+        description: +1 charges toutes les 15min.
+effects:
+- name: Reseau vivant
+  type: Echo
+  description: Utlisez votre persona incarné comme noeud PAN.
+- name: Bricoleur prévoyant
+  type: Trait
+  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
+- name: Ami des sprites machine
+  type: Trait
+  description: __A1__ lorsque vous compilez un sprite machine.
+- name: Paralysie du combat
+  type: Trait
+  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
+- name: Rhinite chronique
+  type: Trait
+  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
 skills:
   perception:
     base: 1
@@ -134,19 +262,3 @@ skills:
     - Compilation
     expertises:
     - Inscription
-effects:
-- name: Reseau vivant
-  type: Echo
-  description: Utlisez votre persona incarné comme noeud PAN.
-- name: Bricoleur prévoyant
-  type: Trait
-  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
-- name: Ami des sprites machine
-  type: Trait
-  description: __A1__ lorsque vous compilez un sprite machine.
-- name: Paralysie du combat
-  type: Trait
-  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
-- name: Rhinite chronique
-  type: Trait
-  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.

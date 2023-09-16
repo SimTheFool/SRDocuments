@@ -3,5 +3,10 @@ $WEAPON.actions: !mix
         minor: 1
         major: 0
         description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
-_transform: !mix
-    - "$WEAPON.description += \" La guncam permet de calculer la trajectoire des balles. \""
+        
+_transform.$MODS_LAYER: !mix
+    - "$WEAPON.description += \" La guncam permet de calculer la trajectoire des balles.\""
+    - "$WEAPON.licenced ||= true"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += 350"

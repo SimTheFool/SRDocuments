@@ -85,10 +85,26 @@ traits:
   - !inc::traits/rhinite_chronique
 
 weapons:
-  cavalier_arms_crockett: !inc::weapons/cavalier_arms_crockett
-      SELF: weapons.cavalier_arms_crockett
+  crockett: !inc::weapons/crockett
+      SELF: weapons.crockett
   cavalier_arms_mods:
     - !inc::weapon_mods/guncam
-        WEAPON: weapons.cavalier_arms_crockett
+        WEAPON: weapons.crockett
     - !inc::weapon_mods/monture
-        WEAPON: weapons.cavalier_arms_crockett
+        WEAPON: weapons.crockett
+    - !inc::weapon_mods/canon_long
+        WEAPON: weapons.crockett
+    - !inc::weapon_mods/kit_de_demontage
+        WEAPON: weapons.crockett
+  pulsar: !inc::weapons/pulsar
+      SELF: weapons.pulsar
+  pulsar_mods:
+    - !inc::weapon_mods/monture
+        WEAPON: weapons.pulsar
+  grappin: !inc::weapons/grappin
+      SELF: weapons.grappin
+  grappin_mods:
+    - !inc::weapon_mods/monture
+        WEAPON: weapons.grappin
+  clef_cyber_fictionnelle: !inc::weapons/clef_cyber_fictionnelle
+      SELF: weapons.clef_cyber_fictionnelle

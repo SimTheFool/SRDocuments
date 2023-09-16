@@ -1,0 +1,23 @@
+type: clef anglaise
+name: Clef anglaise robotique cyber-fictionnelle
+constructor: ""
+description: ""
+price: 725
+legal: true
+licenced: false
+concealment: !inc::concealment/4_retracted_baton
+ammo: 4
+actions:
+    attaquer:
+        description: "Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup."
+        major: 1
+        minor: 0
+        damage: 3
+        damage_type: Elec
+        ranges:
+            contact: 0
+    activer:
+        major: 0
+        minor: 1
+        ammo: 4
+        description: "+1 charges toutes les 15min."

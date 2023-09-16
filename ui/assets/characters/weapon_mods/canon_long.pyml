@@ -1,0 +1,10 @@
+_transform.$MODS_LAYER: !mix
+    - "$WEAPON.description += \" Le canon a été allongé pour une meilleure précision à distance.\""
+    - "$WEAPON.ranges.contact -= 1"
+    - "$WEAPON.ranges.medium += 1"
+    - "$WEAPON.ranges.far += 1"
+    - "$WEAPON.concealment -= 1"
+    - "$WEAPON.licenced ||= true"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += 350"

@@ -3,5 +3,5 @@ $WEAPON.actions: !mix
         major: 1
         minor: 0
         ammo: 0
-_transform: !mix
+_transform.$ACTIONS_LAYER: !mix
     - "$WEAPON.actions.recharger.ammo = $WEAPON.ammo"

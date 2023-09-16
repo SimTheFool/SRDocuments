@@ -1,0 +1,24 @@
+type: taser
+name: Pulsar
+constructor: Yamaha
+description: ""
+price: 350
+legal: true
+licenced: false
+concealment: !inc::concealment/3_knife_pistols
+ammo: 4
+damage: 4
+damage_type: Elec
+ranges:
+    contact: 0
+    near: 0
+    short: -99
+    medium: -99
+    far: -99
+extend_actions:
+    - !inc::actions/shot
+        WEAPON: $SELF
+    - !inc::actions/semi_auto
+        WEAPON: $SELF
+    - !inc::actions/recharger
+        WEAPON: $SELF

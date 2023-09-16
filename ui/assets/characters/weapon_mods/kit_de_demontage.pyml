@@ -1,0 +1,11 @@
+$WEAPON.actions: !mix
+    montage/demontage:
+        minor: 0
+        major: 2
+        description: Augmente la dissimulation de 2 une fois démontée.
+
+_transform.$MODS_LAYER: !mix
+    - "$WEAPON.legal &&= false"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += 400"

@@ -1,3 +1,7 @@
-_transform: !mix
-    - "$WEAPON.description += \" Cette arme est adaptée pour la monture. \""
+_transform.$MODS_LAYER: !mix
+    - "$WEAPON.description += \" Cette arme est adaptée pour la monture.\""
     - "$WEAPON.ammo = 250"
+    - "$WEAPON.concealment -= 1"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += 100"

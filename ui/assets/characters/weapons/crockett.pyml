@@ -1,9 +1,11 @@
 type: fusil d'assaut
-name: Cavalier Arms Crockett
+name: Crockett
+constructor: Cavalier Arms
 description: Fusil d assaut polyvalent.
 price: 10250
 legal: false
 licenced: false
+concealment: !inc::concealment/1_big_weapons
 ammo: 30
 damage: 5
 damage_type: P

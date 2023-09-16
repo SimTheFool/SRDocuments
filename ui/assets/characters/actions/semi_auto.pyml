@@ -11,7 +11,7 @@ $WEAPON.actions: !mix
             short: 0
             medium: 0
             far: 0
-_transform: !mix
+_transform.$ACTIONS_LAYER: !mix
     - "$WEAPON.actions.tir_semi_auto.ranges.contact = if($WEAPON.ranges.contact<=0,$WEAPON.ranges.contact-1,$WEAPON.ranges.contact)"
     - "$WEAPON.actions.tir_semi_auto.ranges.near = if($WEAPON.ranges.near<=0,$WEAPON.ranges.near-1,$WEAPON.ranges.near)"
     - "$WEAPON.actions.tir_semi_auto.ranges.short = if($WEAPON.ranges.short<=0,$WEAPON.ranges.short-1,$WEAPON.ranges.short)"
