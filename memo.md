@@ -1,4 +1,2 @@
 - Vérifier si ce sont les logs qui altèrent les performances
 - Ajouter une variable $SELF qui pointe sur l'endroit de l'inclusion
-- Faire pointer le schema de validation en dehors de root
-- Faire des dossiers spécifiques pour les characters, avec les fichiers de données spécifique à chaque character

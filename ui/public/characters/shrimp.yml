@@ -429,19 +429,6 @@ sprites:
       minor: 1
       maintained: true
       description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
-actions:
-  tempête de données:
-    type: technomancy
-    major: 1
-    minor: 0
-    maintained: true
-    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
-  canal de données:
-    type: technomancy
-    major: 1
-    minor: 0
-    maintained: true
-    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
 skills:
   perception:
     base: 1
@@ -467,3 +454,16 @@ skills:
     - Compilation
     expertises:
     - Inscription
+actions:
+  tempête de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
+  canal de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
