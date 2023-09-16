@@ -9,7 +9,7 @@ fn run_cli(
 ) -> (Command, String, String, String, String) {
     let output = "./tests/yml_test_files/output";
     let entry = "simple_book";
-    let schema = "book-schema.json";
+    let schema = "./tests/yml_test_files/book-schema.json";
 
     let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
     cmd.arg("-r").arg(&root);

@@ -387,6 +387,48 @@ tech:
     legal: true
     licenced: true
     concealment: 2
+effects:
+- name: Reseau vivant
+  type: Echo
+  description: Utlisez votre persona incarné comme noeud PAN.
+- name: Bricoleur prévoyant
+  type: Trait
+  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
+- name: Ami des sprites machine
+  type: Trait
+  description: __A1__ lorsque vous compilez un sprite machine.
+- name: Paralysie du combat
+  type: Trait
+  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
+- name: Rhinite chronique
+  type: Trait
+  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
+sprites:
+  machine:
+    stats:
+      firewall_mod: 0
+      corruption_mod: 3
+      traitement: 2
+      attaque: 1
+    skills:
+    - Ingenierie
+    - Electronique
+    actions:
+    - name: Prise de contrôle
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
+    - name: Diagnostique
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
+    - name: Stabilité
+      major: 0
+      minor: 1
+      maintained: true
+      description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
 actions:
   tempête de données:
     type: technomancy
@@ -425,45 +467,3 @@ skills:
     - Compilation
     expertises:
     - Inscription
-sprites:
-  machine:
-    stats:
-      firewall_mod: 0
-      corruption_mod: 3
-      traitement: 2
-      attaque: 1
-    skills:
-    - Ingenierie
-    - Electronique
-    actions:
-    - name: Prise de contrôle
-      major: 1
-      minor: 0
-      maintained: true
-      description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
-    - name: Diagnostique
-      major: 1
-      minor: 0
-      maintained: true
-      description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
-    - name: Stabilité
-      major: 0
-      minor: 1
-      maintained: true
-      description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
-effects:
-- name: Reseau vivant
-  type: Echo
-  description: Utlisez votre persona incarné comme noeud PAN.
-- name: Bricoleur prévoyant
-  type: Trait
-  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
-- name: Ami des sprites machine
-  type: Trait
-  description: __A1__ lorsque vous compilez un sprite machine.
-- name: Paralysie du combat
-  type: Trait
-  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
-- name: Rhinite chronique
-  type: Trait
-  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.

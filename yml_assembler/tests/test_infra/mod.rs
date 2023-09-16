@@ -13,9 +13,7 @@ pub fn get_test_infra(
     let yml_reader = Rc::new(YmlFileSystemReader::new(
         PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/{root}")),
     ));
-    let schema_reader = Rc::new(ValidationSchemaFileSystemReader::new(
-        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/{root}")),
-    ));
+    let schema_reader = Rc::new(ValidationSchemaFileSystemReader::new());
     (yml_reader, schema_reader)
 }
 

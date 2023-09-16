@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "char-gen": "yml_assembler -r ./assets/characters -f shrimp -o ./public/characters -s schema.yml  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v FINALSTATS_LAYER=T8000 -v ACTIONS_LAYER=T8001"
+    "char-gen": "yml_assembler -r ./assets/characters -f shrimp -o ./public/characters -s ./public/characters/schema.yml  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v FINALSTATS_LAYER=T8000 -v ACTIONS_LAYER=T8001"
   },
   "dependencies": {
     "@radix-ui/themes": "^1.0.0",

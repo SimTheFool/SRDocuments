@@ -33,28 +33,26 @@ impl YmlReaderAdapter for YmlFileSystemReader {
     }
 }
 
-pub struct ValidationSchemaFileSystemReader {
-    context: PathBuf,
-}
+pub struct ValidationSchemaFileSystemReader {}
 impl ValidationSchemaFileSystemReader {
-    pub fn new(path: PathBuf) -> Self {
-        ValidationSchemaFileSystemReader { context: path }
+    pub fn new() -> Self {
+        ValidationSchemaFileSystemReader {}
     }
 }
 impl ValidationSchemaReaderAdapter for ValidationSchemaFileSystemReader {
-    fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value> {
-        let path = self.context.join(format!("{identifier}"));
+    fn get_validation_schema(&self, path_str: &str) -> AppResult<serde_json::Value> {
+        let path = PathBuf::from(path_str);
         let extension = path
             .extension()
             .ok_or_else(|| {
                 AppError::FileSystem(format!(
-                    "{identifier} has no extension, load either a json, yml or yaml file"
+                    "{path_str} has no extension, load either a json, yml or yaml file"
                 ))
             })?
             .to_str()
             .ok_or_else(|| {
                 AppError::FileSystem(format!(
-                    "{identifier} filename probably contains invalid characters"
+                    "{path_str} filename probably contains invalid characters"
                 ))
             })?;
 
@@ -64,7 +62,7 @@ impl ValidationSchemaReaderAdapter for ValidationSchemaFileSystemReader {
             "yaml" => self.get_schema_from_yml(&path)?,
             _ => {
                 return Err(AppError::FileSystem(format!(
-                    "{identifier} has an invalid extension, load either a json, yml or yaml file"
+                    "{path_str} has an invalid extension, load either a json, yml or yaml file"
                 )))
             }
         };

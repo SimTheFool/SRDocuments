@@ -80,15 +80,23 @@ async fn it_should_mix_properties() {
 #[tokio::test]
 async fn it_should_validate_from_json() {
     let app = test_infra::get_test_app();
-    app.compile_and_validate_yml(TEST_FILE, Some("book-schema.json"), None)
-        .unwrap();
+    app.compile_and_validate_yml(
+        TEST_FILE,
+        Some("./tests/yml_test_files/book-schema.json"),
+        None,
+    )
+    .unwrap();
 }
 
 #[tokio::test]
 async fn it_should_validate_from_yml() {
     let app = test_infra::get_test_app();
-    app.compile_and_validate_yml(TEST_FILE, Some("book-schema.yml"), None)
-        .unwrap();
+    app.compile_and_validate_yml(
+        TEST_FILE,
+        Some("./tests/yml_test_files/book-schema.yml"),
+        None,
+    )
+    .unwrap();
 }
 
 #[tokio::test]
