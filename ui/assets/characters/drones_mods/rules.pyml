@@ -1,0 +1,2 @@
+_transform.$MODS_LAYER: !mix
+    - "$DRONE.hit = 8 + floor($DRONE.stats.resistance /2)"

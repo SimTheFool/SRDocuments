@@ -1,0 +1,18 @@
+name: Crawler
+constructor: Aztechnology
+price: 9500
+legal: true
+licenced: false
+concealment: !inc::concealment/2_standard_weapons
+description: "Moyen arthropode mécanique"
+hit: 0
+stats:
+    maniability_flat: 3
+    maniability_rough: 4
+    acceleration: 8
+    step: 10
+    max_speed: 30
+    autopilot: 2
+    resistance: 6
+    sensors: 2
+    armor: 2

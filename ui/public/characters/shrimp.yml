@@ -221,6 +221,75 @@ weapons:
         minor: 1
         ammo: 4
         description: +1 charges toutes les 15min.
+drones:
+  packmule:
+    name: Packmule
+    constructor: ARES
+    price: 16000
+    legal: true
+    licenced: true
+    concealment: 0
+    description: Grand arthropode mécanique
+    hit: 12
+    stats:
+      maniability_flat: 3
+      maniability_rough: 4
+      acceleration: 6
+      step: 5
+      max_speed: 30
+      autopilot: 2
+      resistance: 8
+      sensors: 1
+      armor: 10
+    slots:
+    - name: châsse
+      size: M
+    - name: châsse
+      size: M
+  crawler:
+    name: Crawler
+    constructor: Aztechnology
+    price: 14500
+    legal: true
+    licenced: true
+    concealment: 2
+    description: Moyen arthropode mécanique
+    hit: 11
+    stats:
+      maniability_flat: 3
+      maniability_rough: 4
+      acceleration: 8
+      step: 10
+      max_speed: 30
+      autopilot: 2
+      resistance: 6
+      sensors: 2
+      armor: 2
+    slots:
+    - name: châsse
+      size: M
+    - name: châsse
+      size: M
+  kanmushi:
+    name: Kanmushi
+    constructor: Shiawase
+    price: 900
+    legal: true
+    licenced: false
+    concealment: 6
+    description: Petit arthropode mécanique
+    hit: 8
+    stats:
+      maniability_flat: 2
+      maniability_rough: 3
+      acceleration: 4
+      step: 5
+      max_speed: 15
+      autopilot: 3
+      resistance: 0
+      sensors: 2
+      armor: 0
+    quantity: 2
 effects:
 - name: Reseau vivant
   type: Echo

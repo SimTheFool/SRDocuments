@@ -27,6 +27,12 @@ properties:
       type: object
       $ref: "#/definitions/weapon"
 
+  drones:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/drone"
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -324,6 +330,18 @@ definitions:
       concealment:
         type: integer
 
+  #~~~ SLOT ~~~#
+  slot:
+    type: object
+    required: [name, size]
+    properties:
+      name:
+        type: string
+      size:
+        type: string
+      concealment:
+        type: integer
+
   #~~~ WEAPON ~~~#
   weapon:
     type: object
@@ -346,3 +364,50 @@ definitions:
             additionalProperties:
               type: object
               $ref: "#/definitions/other_action"
+
+  #~~~ DRONE ~~~#
+  drone:
+    type: object
+    allOf:
+      - $ref: "#/definitions/base_item"
+      - required: [hit, stats]
+        properties:
+          hit:
+            type: integer
+          stats:
+            type: object
+            required:
+              [
+                maniability_flat,
+                maniability_rough,
+                acceleration,
+                step,
+                max_speed,
+                autopilot,
+                resistance,
+                sensors,
+                armor,
+              ]
+            properties:
+              maniability_flat:
+                type: integer
+              maniability_rough:
+                type: integer
+              acceleration:
+                type: integer
+              step:
+                type: integer
+              max_speed:
+                type: integer
+              autopilot:
+                type: integer
+              resistance:
+                type: integer
+              sensors:
+                type: integer
+              armor:
+                type: integer
+          slots:
+            type: array
+            items:
+              $ref: "#/definitions/slot"

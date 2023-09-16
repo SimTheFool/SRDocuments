@@ -90,7 +90,7 @@ weapons:
   cavalier_arms_mods:
     - !inc::weapon_mods/guncam
         WEAPON: weapons.crockett
-    - !inc::weapon_mods/monture
+    - !inc::weapon_mods/chasse
         WEAPON: weapons.crockett
     - !inc::weapon_mods/canon_long
         WEAPON: weapons.crockett
@@ -99,12 +99,41 @@ weapons:
   pulsar: !inc::weapons/pulsar
       SELF: weapons.pulsar
   pulsar_mods:
-    - !inc::weapon_mods/monture
+    - !inc::weapon_mods/chasse
         WEAPON: weapons.pulsar
   grappin: !inc::weapons/grappin
       SELF: weapons.grappin
   grappin_mods:
-    - !inc::weapon_mods/monture
+    - !inc::weapon_mods/chasse
         WEAPON: weapons.grappin
   clef_cyber_fictionnelle: !inc::weapons/clef_cyber_fictionnelle
       SELF: weapons.clef_cyber_fictionnelle
+
+drones:
+  packmule: !inc::drones/packmule
+      SELF: drones.packmule
+  packmule_mods:
+    - !inc::drones_mods/monture
+        DRONE: drones.packmule
+    - !inc::drones_mods/monture
+        DRONE: drones.packmule
+    - !inc::drones_mods/rules
+        DRONE: drones.packmule
+  crawler: !inc::drones/crawler
+      SELF: drones.crawler
+  crawler_mods:
+    - !inc::drones_mods/monture
+        DRONE: drones.crawler
+    - !inc::drones_mods/monture
+        DRONE: drones.crawler
+    - !inc::drones_mods/rules
+        DRONE: drones.crawler
+  kanmushi: !inc::drones/kanmushi
+      SELF: drones.kanmushi
+  kanmushi_mods:
+    - !inc::drones_mods/rules
+        DRONE: drones.kanmushi
+    - !inc::drones_mods/quantity
+        DRONE: drones.kanmushi
+        QUANTITY: 2
+
