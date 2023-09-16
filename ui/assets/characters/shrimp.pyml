@@ -173,8 +173,6 @@ tech:
     legal: true
     licenced: false
     concealment: !inc::concealment/4_retracted_baton
-
-sprites:
   
   
   
