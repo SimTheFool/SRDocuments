@@ -3,4 +3,5 @@ actions: !mix
         type: technomancy
         major: 1
         minor: 0
+        maintained: true
         description: "Vous réduisez le bruit de votre connexion de 1 par __SN__."

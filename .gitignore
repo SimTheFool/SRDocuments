@@ -13,7 +13,6 @@
 # debug
 yarn-debug.log*
 yarn-error.log*
-memo.md
 
 # env
 */*.env

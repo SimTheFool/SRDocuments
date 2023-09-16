@@ -69,6 +69,12 @@ properties:
                 attaque:
                   type: integer
 
+  sprites:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/companion"
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -272,6 +278,8 @@ definitions:
     type: object
     required: [major, minor]
     properties:
+      maintained:
+        type: boolean
       major:
         type: integer
       minor:
@@ -468,3 +476,23 @@ definitions:
             type: array
             items:
               $ref: "#/definitions/slot"
+
+  #~~~ COMPANION ~~~#
+  companion:
+    type: object
+    properties:
+      stats:
+        firewall_mod: integer
+        corruption_mod: integer
+        traitement: integer
+        attaque: integer
+      skills:
+        type: array
+        items:
+          enum: [Ingenierie, Electronique]
+      actions:
+        type: array
+        items:
+          $ref: "#/definitions/base_action"
+      effects:
+        $ref: "#/definitions/effect"

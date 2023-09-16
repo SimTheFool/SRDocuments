@@ -3,4 +3,5 @@ actions: !mix
         type: technomancy
         major: 1
         minor: 0
+        maintained: true
         description: "Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé."
