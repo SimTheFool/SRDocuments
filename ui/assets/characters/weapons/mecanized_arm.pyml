@@ -1,0 +1,7 @@
+type: outil
+name: Bras mécanique
+description: ""
+price: 1000
+legal: true
+licenced: false
+concealment: !inc::concealment/2_standard_weapons

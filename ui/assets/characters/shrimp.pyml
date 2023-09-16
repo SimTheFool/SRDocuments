@@ -108,6 +108,11 @@ weapons:
         WEAPON: weapons.grappin
   clef_cyber_fictionnelle: !inc::weapons/clef_cyber_fictionnelle
       SELF: weapons.clef_cyber_fictionnelle
+  mecanized_arm: !inc::weapons/mecanized_arm
+      SELF: weapons.mecanized_arm
+  mecanized_arm_mods:
+    - !inc::weapon_mods/chasse
+        WEAPON: weapons.mecanized_arm
 
 drones:
   packmule: !inc::drones/packmule
