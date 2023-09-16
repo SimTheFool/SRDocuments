@@ -45,6 +45,30 @@ properties:
       type: object
       $ref: "#/definitions/outfit"
 
+  tech:
+    type: object
+    additionalProperties:
+      anyOf:
+        - $ref: "#/definitions/base_item"
+        - required: [name, stats]
+          type: object
+          properties:
+            name:
+              type: string
+              enum: [Persona incarné]
+            stats:
+              type: object
+              required: [firewall, corruption, traitement, attaque]
+              properties:
+                firewall:
+                  type: integer
+                corruption:
+                  type: integer
+                traitement:
+                  type: integer
+                attaque:
+                  type: integer
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -333,7 +357,7 @@ definitions:
   #~~~ BASE_ITEM ~~~#
   base_item:
     type: object
-    required: ["price", "legal", "licenced", "concealment"]
+    required: ["name", "price", "legal", "licenced", "concealment"]
     properties:
       type:
         type: string

@@ -82,7 +82,7 @@ identities:
 traits:
   - !inc::traits/bricoleur_prevoyant
   - !inc::traits/ami_des_sprites
-    TYPE: machine
+      TYPE: machine
   - !inc::traits/paralysie_du_combat
   - !inc::traits/rhinite_chronique
 
@@ -155,3 +155,33 @@ outfits:
         OUTFIT: outfits.street_kid
   invisi_shield: !inc::outfits/invisi_shield
       SELF: outfits.invisi_shield
+
+tech:
+  commlink: !inc::tech/commlink
+      SELF: tech.commlink
+  persona: !inc::tech/persona
+      SELF: tech.persona
+  micro_camera:
+    name: Micro + Caméra
+    price: 100
+    legal: true
+    licenced: false
+    concealment: !inc::concealment/6_cigaret
+  datajack:
+    name: Datajack
+    price: 1000
+    legal: true
+    licenced: false
+    concealment: !inc::concealment/4_retracted_baton
+
+sprites:
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

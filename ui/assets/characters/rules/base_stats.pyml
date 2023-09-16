@@ -13,6 +13,7 @@ for_mod: 0
 vol_mod: 0
 log_mod: 0
 int_mod: 0
+cha_mod: 0
 ess: $ESS
 resist_phy: 0
 edge: $EDGE

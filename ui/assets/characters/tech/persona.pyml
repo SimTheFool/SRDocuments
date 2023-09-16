@@ -1,0 +1,12 @@
+name: Persona incarné
+stats:
+    firewall: 0
+    traitement: 0
+    corruption: 0
+    attaque: 0
+
+_transform.$ACTIONS_LAYER: !mix
+    - "$SELF.stats.firewall = stats.vol + stats.vol_mod"
+    - "$SELF.stats.traitement = stats.log + stats.log_mod"
+    - "$SELF.stats.corruption = stats.int + stats.int_mod"
+    - "$SELF.stats.attaque = stats.cha + stats.cha_mod"

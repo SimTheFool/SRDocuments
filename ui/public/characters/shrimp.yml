@@ -15,6 +15,7 @@ stats:
   vol_mod: 0
   log_mod: 0
   int_mod: 0
+  cha_mod: 0
   ess: 6
   resist_phy: 1
   edge: 4
@@ -52,7 +53,7 @@ weapons:
     name: Crockett
     constructor: Cavalier Arms
     description: Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles. Cette arme est adaptée pour la monture. Le canon a été allongé pour une meilleure précision à distance.
-    price: 11450
+    price: 11100
     legal: false
     licenced: true
     concealment: -1
@@ -107,7 +108,7 @@ weapons:
         major: 1
         minor: 0
         ammo: 250
-      ajuster:
+      guncam:
         minor: 1
         major: 0
         description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
@@ -337,6 +338,70 @@ outfits:
     licenced: false
     concealment: 4
     description: Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.
+tech:
+  commlink:
+    name: Link
+    constructor: Meta
+    price: 100
+    legal: true
+    licenced: false
+    concealment: 4
+    stats:
+      firewall: 0
+      corruption: 1
+      traitement: 0
+      attaque: 0
+  persona:
+    name: Persona incarné
+    stats:
+      firewall: 4
+      traitement: 6
+      corruption: 4
+      attaque: 2
+  micro_camera:
+    name: Micro + Caméra
+    price: 100
+    legal: true
+    licenced: false
+    concealment: 6
+  datajack:
+    name: Datajack
+    price: 1000
+    legal: true
+    licenced: false
+    concealment: 4
+  guncam:
+    name: Guncam
+    description: Permet de calculer de rectifier la trajectoire des balles à chaque itération.
+    price: 350
+    legal: true
+    licenced: true
+    concealment: 2
+skills:
+  perception:
+    base: 1
+  furtivite:
+    base: 1
+  athletisme:
+    base: 3
+  electronique:
+    base: 4
+  combat_rapp:
+    base: 1
+  ingenierie:
+    base: 6
+    specialisations:
+    - Artillerie
+  pilotage:
+    base: 6
+    specialisations:
+    - Appareils au sol
+  technomancie:
+    base: 6
+    specialisations:
+    - Compilation
+    expertises:
+    - Inscription
 effects:
 - name: Reseau vivant
   type: Echo
@@ -364,28 +429,3 @@ actions:
     major: 1
     minor: 0
     description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
-skills:
-  perception:
-    base: 1
-  furtivite:
-    base: 1
-  athletisme:
-    base: 3
-  electronique:
-    base: 4
-  combat_rapp:
-    base: 1
-  ingenierie:
-    base: 6
-    specialisations:
-    - Artillerie
-  pilotage:
-    base: 6
-    specialisations:
-    - Appareils au sol
-  technomancie:
-    base: 6
-    specialisations:
-    - Compilation
-    expertises:
-    - Inscription
