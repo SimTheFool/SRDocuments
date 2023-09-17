@@ -33,15 +33,17 @@ impl YmlReaderAdapter for YmlFileSystemReader {
     }
 }
 
-pub struct ValidationSchemaFileSystemReader {}
+pub struct ValidationSchemaFileSystemReader {
+    context: PathBuf,
+}
 impl ValidationSchemaFileSystemReader {
-    pub fn new() -> Self {
-        ValidationSchemaFileSystemReader {}
+    pub fn new(path: PathBuf) -> Self {
+        ValidationSchemaFileSystemReader { context: path }
     }
 }
 impl ValidationSchemaReaderAdapter for ValidationSchemaFileSystemReader {
     fn get_validation_schema(&self, path_str: &str) -> AppResult<serde_json::Value> {
-        let path = PathBuf::from(path_str);
+        let path = self.context.join(format!("{path_str}"));
         let extension = path
             .extension()
             .ok_or_else(|| {

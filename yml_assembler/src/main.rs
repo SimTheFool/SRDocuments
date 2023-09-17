@@ -82,7 +82,7 @@ fn cli() -> Result<(), anyhow::Error> {
     println!("Outputing in: {}", outdir);
 
     let yml_reader = YmlFileSystemReader::new(root.clone());
-    let schema_reader = ValidationSchemaFileSystemReader::new();
+    let schema_reader = ValidationSchemaFileSystemReader::new(root.clone());
 
     let app = yml_assembler::App::new(Rc::new(yml_reader), Rc::new(schema_reader));
     let yml = app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;

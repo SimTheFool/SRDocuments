@@ -387,6 +387,31 @@ tech:
     legal: true
     licenced: true
     concealment: 2
+skills:
+  perception:
+    base: 1
+  furtivite:
+    base: 1
+  athletisme:
+    base: 3
+  electronique:
+    base: 4
+  combat_rapp:
+    base: 1
+  ingenierie:
+    base: 6
+    specialisations:
+    - Artillerie
+  pilotage:
+    base: 6
+    specialisations:
+    - Appareils au sol
+  technomancie:
+    base: 6
+    specialisations:
+    - Compilation
+    expertises:
+    - Inscription
 effects:
 - name: Reseau vivant
   type: Echo
@@ -403,6 +428,19 @@ effects:
 - name: Rhinite chronique
   type: Trait
   description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
+actions:
+  tempête de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
+  canal de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
 sprites:
   machine:
     stats:
@@ -429,41 +467,3 @@ sprites:
       minor: 1
       maintained: true
       description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
-skills:
-  perception:
-    base: 1
-  furtivite:
-    base: 1
-  athletisme:
-    base: 3
-  electronique:
-    base: 4
-  combat_rapp:
-    base: 1
-  ingenierie:
-    base: 6
-    specialisations:
-    - Artillerie
-  pilotage:
-    base: 6
-    specialisations:
-    - Appareils au sol
-  technomancie:
-    base: 6
-    specialisations:
-    - Compilation
-    expertises:
-    - Inscription
-actions:
-  tempête de données:
-    type: technomancy
-    major: 1
-    minor: 0
-    maintained: true
-    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
-  canal de données:
-    type: technomancy
-    major: 1
-    minor: 0
-    maintained: true
-    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
