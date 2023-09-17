@@ -88,19 +88,17 @@ fn cli() -> Result<(), anyhow::Error> {
     let yml = app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
 
     let outdir_path = PathBuf::from(outdir);
-    let file_name = Path::new(&file)
-        .file_name()
-        .ok_or_else(|| anyhow::anyhow!(format!("Could not get file name from path: {}", file)))?;
-    let outfile_path = Path::new(&outdir_path)
-        .join(file_name)
-        .with_extension("yml");
-
-    //create directory if not exists
-    if !outdir_path.exists() {
-        std::fs::create_dir_all(&outdir_path)
+    let outfile_path = Path::new(&outdir_path).join(&file).with_extension("yml");
+    let parent = outfile_path.parent().ok_or_else(|| {
+        anyhow::anyhow!(format!(
+            "Could not get parent directory of {}",
+            outfile_path.display()
+        ))
+    })?;
+    if !parent.exists() {
+        std::fs::create_dir_all(&parent)
             .map_err(|e| anyhow::anyhow!(format!("Could not create output directory: {}", e)))?;
     }
-
     std::fs::write(
         outfile_path,
         serde_yaml::to_string(&yml)

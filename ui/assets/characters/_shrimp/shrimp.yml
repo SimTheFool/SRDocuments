@@ -1,0 +1,469 @@
+name: shrimp
+stats:
+  con: 1
+  agi: 4
+  rea: 2
+  for: 1
+  vol: 4
+  log: 6
+  int: 4
+  cha: 2
+  con_mod: 0
+  agi_mod: 0
+  rea_mod: 0
+  for_mod: 0
+  vol_mod: 0
+  log_mod: 0
+  int_mod: 0
+  cha_mod: 0
+  ess: 6
+  resist_phy: 1
+  edge: 4
+  max_edge: 7
+  init: 1
+  action_maj: 1
+  action_min: 2
+  hit_phy: 8
+  hit_stun: 10
+  hit_over: 1
+  natural_heal: 5
+  res: 7
+  submersion: 0
+  resist_drain: 3
+identities:
+- name: shrimp
+  lifestyle:
+    name: Squatteur
+    price: 100
+  contacts:
+  - name: D-Boss
+    loyalty: 4
+    connection: 4
+    description: Decker fan de complot
+  - name: Terrance
+    loyalty: 3
+    connection: 2
+    description: Ouvrier de casse militaire d'ARES
+- name: Laurence Guinvite
+  quality: i2
+  price: 5000
+  licences:
+  - name: Fausse Licence - Chasse d'arme
+    quality: i4
+    price: 800
+  - name: Fausse Licence - Packmule
+    quality: i4
+    price: 800
+  - name: Fausse Licence - Crawler
+    quality: i4
+    price: 800
+weapons:
+  crockett:
+    type: fusil d'assaut
+    name: Crockett
+    constructor: Cavalier Arms
+    description: Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles. Cette arme est adaptée pour la monture. Le canon a été allongé pour une meilleure précision à distance.
+    price: 11100
+    legal: false
+    licenced: true
+    concealment: -1
+    ammo: 250
+    damage: 5
+    damage_type: P
+    ranges:
+      contact: -2
+      near: 0
+      short: 1
+      medium: 2
+      far: 1
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 5
+        damage_type: P
+        ammo_consumption: 1
+        ranges:
+          contact: -2
+          near: 0
+          short: 1
+          medium: 2
+          far: 1
+      tir_semi_auto:
+        major: 1
+        minor: 0
+        damage: 6
+        damage_type: P
+        ammo_consumption: 2
+        ranges:
+          contact: -3
+          near: -1
+          short: 1
+          medium: 2
+          far: 1
+      tir_rafale:
+        description: Vous pouvez répartir votre test d'attaque sur plusieurs cibles
+        major: 1
+        minor: 0
+        damage: 7
+        damage_type: P
+        ammo_consumption: 4
+        ranges:
+          contact: -3
+          near: -1
+          short: 0
+          medium: 1
+          far: 0
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 250
+      guncam:
+        minor: 1
+        major: 0
+        description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
+      montage/demontage:
+        minor: 0
+        major: 2
+        description: Augmente la dissimulation de 2 une fois démontée.
+  pulsar:
+    type: taser
+    name: Pulsar
+    constructor: Yamaha
+    description: ' Cette arme est adaptée pour la monture.'
+    price: 450
+    legal: true
+    licenced: false
+    concealment: 2
+    ammo: 250
+    damage: 4
+    damage_type: Elec
+    ranges:
+      contact: 0
+      near: 0
+      short: -99
+      medium: -99
+      far: -99
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 4
+        damage_type: Elec
+        ammo_consumption: 1
+        ranges:
+          contact: 0
+          near: 0
+          short: -99
+          medium: -99
+          far: -99
+      tir_semi_auto:
+        major: 1
+        minor: 0
+        damage: 5
+        damage_type: Elec
+        ammo_consumption: 2
+        ranges:
+          contact: -1
+          near: -1
+          short: -100
+          medium: -100
+          far: -100
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 250
+  grappin:
+    type: outil
+    name: Grappin
+    constructor: ''
+    description: ' Cette arme est adaptée pour la monture.'
+    price: 600
+    legal: true
+    licenced: false
+    concealment: 1
+    ammo: 250
+    damage: 0
+    damage_type: ''
+    ranges:
+      contact: -99
+      near: 0
+      short: -99
+      medium: -99
+      far: -99
+    actions:
+      tir:
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: ''
+        ammo_consumption: 1
+        ranges:
+          contact: -99
+          near: 0
+          short: -99
+          medium: -99
+          far: -99
+      recharger:
+        major: 1
+        minor: 0
+        ammo: 250
+  clef_cyber_fictionnelle:
+    type: clef anglaise
+    name: Clef anglaise robotique cyber-fictionnelle
+    constructor: ''
+    description: ''
+    price: 725
+    legal: true
+    licenced: false
+    concealment: 4
+    ammo: 4
+    actions:
+      attaquer:
+        description: Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.
+        major: 1
+        minor: 0
+        damage: 3
+        damage_type: Elec
+        ranges:
+          contact: 0
+      activer:
+        major: 0
+        minor: 1
+        ammo: 4
+        description: +1 charges toutes les 15min.
+  mecanized_arm:
+    type: outil
+    name: Bras mécanique
+    description: ' Cette arme est adaptée pour la monture.'
+    price: 1100
+    legal: true
+    licenced: false
+    concealment: 1
+    ammo: 250
+drones:
+  packmule:
+    name: Packmule
+    constructor: ARES
+    price: 16000
+    legal: true
+    licenced: true
+    concealment: 0
+    description: Grand arthropode mécanique
+    hit: 12
+    stats:
+      maniability_flat: 3
+      maniability_rough: 4
+      acceleration: 6
+      step: 5
+      max_speed: 30
+      autopilot: 2
+      resistance: 8
+      sensors: 1
+      armor: 10
+    slots:
+    - name: châsse
+      size: M
+    - name: châsse
+      size: M
+  crawler:
+    name: Crawler
+    constructor: Aztechnology
+    price: 14500
+    legal: true
+    licenced: true
+    concealment: 2
+    description: Moyen arthropode mécanique
+    hit: 11
+    stats:
+      maniability_flat: 3
+      maniability_rough: 4
+      acceleration: 8
+      step: 10
+      max_speed: 30
+      autopilot: 2
+      resistance: 6
+      sensors: 2
+      armor: 2
+    slots:
+    - name: châsse
+      size: M
+    - name: châsse
+      size: M
+  kanmushi:
+    name: Kanmushi
+    constructor: Shiawase
+    price: 900
+    legal: true
+    licenced: false
+    concealment: 6
+    description: Petit arthropode mécanique
+    hit: 8
+    stats:
+      maniability_flat: 2
+      maniability_rough: 3
+      acceleration: 4
+      step: 5
+      max_speed: 15
+      autopilot: 3
+      resistance: 0
+      sensors: 2
+      armor: 0
+    quantity: 2
+outfits:
+  bag:
+    name: Sac
+    price: 0
+    legal: true
+    licenced: false
+    concealment: 0
+    slots:
+    - name: Sac
+      size: XL
+  street_kid:
+    name: Tenue de gamin des rues
+    price: 550
+    legal: true
+    licenced: false
+    concealment: 0
+    description: Tenue pratique. Vous avez __A1__ pour résister aux entraves.
+    slots:
+    - name: Pôche
+      size: S
+    - name: Pôche secrète
+      size: S
+      concealment: 5
+    - name: Pôche secrète
+      size: S
+      concealment: 5
+    actions:
+      utiliser une pôche secrète:
+        major: 1
+        minor: 0
+  invisi_shield:
+    name: Invisi Shield
+    constructor: Securetech
+    price: 5400
+    legal: true
+    licenced: false
+    concealment: 4
+    description: Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.
+tech:
+  commlink:
+    name: Link
+    constructor: Meta
+    price: 100
+    legal: true
+    licenced: false
+    concealment: 4
+    stats:
+      firewall: 0
+      corruption: 1
+      traitement: 0
+      attaque: 0
+  persona:
+    name: Persona incarné
+    stats:
+      firewall: 4
+      traitement: 6
+      corruption: 4
+      attaque: 2
+  micro_camera:
+    name: Micro + Caméra
+    price: 100
+    legal: true
+    licenced: false
+    concealment: 6
+  datajack:
+    name: Datajack
+    price: 1000
+    legal: true
+    licenced: false
+    concealment: 4
+  guncam:
+    name: Guncam
+    description: Permet de calculer de rectifier la trajectoire des balles à chaque itération.
+    price: 350
+    legal: true
+    licenced: true
+    concealment: 2
+skills:
+  perception:
+    base: 1
+  furtivite:
+    base: 1
+  athletisme:
+    base: 3
+  electronique:
+    base: 4
+  combat_rapp:
+    base: 1
+  ingenierie:
+    base: 6
+    specialisations:
+    - Artillerie
+  pilotage:
+    base: 6
+    specialisations:
+    - Appareils au sol
+  technomancie:
+    base: 6
+    specialisations:
+    - Compilation
+    expertises:
+    - Inscription
+effects:
+- name: Reseau vivant
+  type: Echo
+  description: Utlisez votre persona incarné comme noeud PAN.
+- name: Bricoleur prévoyant
+  type: Trait
+  description: __A1__ lorsque vous utilisez une machine que vous avez bricolé.
+- name: Ami des sprites machine
+  type: Trait
+  description: __A1__ lorsque vous compilez un sprite machine.
+- name: Paralysie du combat
+  type: Trait
+  description: Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier
+- name: Rhinite chronique
+  type: Trait
+  description: Vous éternuez souvent. __D1__ lors des tests de discrétion.
+actions:
+  tempête de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.
+  canal de données:
+    type: technomancy
+    major: 1
+    minor: 0
+    maintained: true
+    description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
+sprites:
+  machine:
+    stats:
+      firewall_mod: 0
+      corruption_mod: 3
+      traitement: 2
+      attaque: 1
+    skills:
+    - Ingenierie
+    - Electronique
+    actions:
+    - name: Prise de contrôle
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
+    - name: Diagnostique
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
+    - name: Stabilité
+      major: 0
+      minor: 1
+      maintained: true
+      description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
