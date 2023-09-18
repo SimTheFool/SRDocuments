@@ -1,3 +1,4 @@
+use adapters::AssemblyOutputFormat;
 use jsonschema::JSONSchema;
 use std::collections::HashMap;
 use std::path::PathBuf;
@@ -42,6 +43,7 @@ impl App {
         yml_id: &str,
         schema_id: Option<&str>,
         variables: Option<HashMap<String, String>>,
+        format: &AssemblyOutputFormat,
     ) -> AppResult<()> {
         let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.part_reader));
 
@@ -52,7 +54,7 @@ impl App {
 
         let mut list = TransformableList::try_from(yml)?;
         list.transform()?;
-        let yml = list.try_into()?;
+        let yml: serde_yaml::Value = list.try_into()?;
 
         let schema_json = match schema_id {
             Some(schema_id) => {
@@ -76,7 +78,9 @@ impl App {
             None => None,
         };
 
-        self.assembly_output.output(&yml, &PathBuf::from(yml_id))?;
+        self.assembly_output
+            .output(yml, &PathBuf::from(yml_id), format)?;
+
         if let Some(schema_json) = schema_json {
             self.schema_output
                 .output(&schema_json, &PathBuf::from(schema_id.unwrap()))?;

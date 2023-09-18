@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use serde_yaml::{self, Value};
+use yml_assembler::adapters::AssemblyOutputFormat;
 
 pub mod test_infra;
 
@@ -12,9 +13,9 @@ async fn it_should_apply_labeled_transform_in_abcd_order() {
     variables.insert("T_LAYER".to_string(), "t30".to_string());
 
     let (app, assembly_output, _) = test_infra::get_test_app();
-    app.compile_and_validate_yml(TEST_FILE, None, Some(variables))
+    app.compile_and_validate_yml(TEST_FILE, None, Some(variables), &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_output().unwrap();
+    let yml = assembly_output.get_yml_output().unwrap();
 
     match yml {
         Value::Mapping(m) => {

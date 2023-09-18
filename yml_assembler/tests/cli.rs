@@ -13,7 +13,7 @@ fn run_cli(
 
     let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
     cmd.arg("-r").arg(&root);
-    cmd.arg("-f").arg(entry);
+    cmd.arg("-e").arg(entry);
     cmd.arg("-s").arg(schema);
     cmd.arg("-o").arg(output);
     vars.unwrap_or_default()

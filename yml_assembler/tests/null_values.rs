@@ -1,4 +1,5 @@
 use serde_yaml::{self, Value};
+use yml_assembler::adapters::AssemblyOutputFormat;
 
 pub mod test_infra;
 
@@ -7,8 +8,9 @@ static TEST_FILE: &str = "null_values";
 #[tokio::test]
 async fn it_should_not_output_yml_null_leaves() {
     let (app, assembly_output, _) = test_infra::get_test_app();
-    app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
-    let yml = assembly_output.get_output().unwrap();
+    app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
+        .unwrap();
+    let yml = assembly_output.get_yml_output().unwrap();
 
     let story = match yml {
         Value::Mapping(m) => {

@@ -1,30 +1,37 @@
 use clap::Parser;
 use std::{collections::HashMap, error::Error, path::PathBuf, rc::Rc};
-use yml_assembler::lib_infras::{
-    assembly_fs_output::AssemblyFSOutput, assembly_part_fs_reader::PartFSReader,
-    schema_fs_output::SchemaFSOutput, schema_fs_reader::SchemaFSReader,
+use yml_assembler::{
+    adapters::AssemblyOutputFormat,
+    lib_infras::{
+        assembly_fs_output::AssemblyFSOutput, assembly_part_fs_reader::PartFSReader,
+        schema_fs_output::SchemaFSOutput, schema_fs_reader::SchemaFSReader,
+    },
 };
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Cli {
-    /// The directory your yml files reside in
+    /// The directory your pyml files reside in
     #[arg(short, long)]
     root: PathBuf,
 
-    /// The path in root to the yml file to assemble
+    /// The path to the pyml file to assemble (relative to root)
     #[arg(short, long)]
-    file: String,
+    entry: String,
 
-    /// The path in root to the schema file to validate against
+    /// The path to the schema file to validate against (relative to root)
     #[arg(short, long)]
     schema: Option<String>,
 
-    /// The path in root to the output folder
+    /// The path to the output folder
     #[arg(short, long)]
     output: Option<PathBuf>,
 
-    /// Variables to insert in the yml file
+    /// The format of the output file (json or yml)
+    #[clap(long, short = 'f', default_value = "yml", value_enum)]
+    format: AssemblyOutputFormat,
+
+    /// Variables to insert in the pyml assembly
     #[arg(short, long, value_parser = parse_key_val::<String, String>)]
     vars: Option<Vec<(String, String)>>,
 }
@@ -48,20 +55,21 @@ where
 fn cli() -> Result<(), anyhow::Error> {
     let Cli {
         output,
-        file,
+        entry,
         root,
         schema,
         vars,
+        format,
     } = Cli::parse();
 
     let display_variables = format!(
-        "Using variables:\n{}",
+        "Using variables:{}",
         &vars
             .clone()
             .unwrap_or(vec![])
             .iter()
             .fold("".to_string(), |acc, (k, v)| format!(
-                "{}{}={}\n",
+                "{}\n{}={}",
                 acc, k, v
             ))
     );
@@ -72,8 +80,9 @@ fn cli() -> Result<(), anyhow::Error> {
     let outdir = output.unwrap_or(outdir);
 
     println!("{}", display_variables);
+    println!("Using format: {:?}", format);
     println!("Working in: {}", root.display());
-    println!("Assembling files: {}", format!("{}", file));
+    println!("Assembling files: {}", format!("{}", entry));
     if let Some(schema) = schema.as_deref() {
         println!("Validating from schema: {}", schema);
     }
@@ -91,8 +100,7 @@ fn cli() -> Result<(), anyhow::Error> {
         Rc::new(schema_fs_output),
     );
 
-    app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
-
+    app.compile_and_validate_yml(&entry, schema.as_deref(), Some(variables), &format)?;
     Ok(())
 }
 
