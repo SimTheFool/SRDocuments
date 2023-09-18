@@ -34,8 +34,9 @@ static TEST_FILE: &str = "simple_book";
 
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {
-    let app = test_infra::get_test_app();
-    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (app, assembly_output, _) = test_infra::get_test_app();
+    app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let yml = assembly_output.get_output().unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -47,8 +48,9 @@ async fn it_should_aggregate_filesystem_yml_files() {
 
 #[tokio::test]
 async fn it_should_mix_properties() {
-    let app = test_infra::get_test_app();
-    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (app, assembly_output, _) = test_infra::get_test_app();
+    app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let yml = assembly_output.get_output().unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -79,22 +81,23 @@ async fn it_should_mix_properties() {
 
 #[tokio::test]
 async fn it_should_validate_from_json() {
-    let app = test_infra::get_test_app();
+    let (app, _, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, Some("book-schema.json"), None)
         .unwrap();
 }
 
 #[tokio::test]
 async fn it_should_validate_from_yml() {
-    let app = test_infra::get_test_app();
+    let (app, _, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, Some("book-schema.yml"), None)
         .unwrap();
 }
 
 #[tokio::test]
 async fn it_should_transform_properties() {
-    let app = test_infra::get_test_app();
-    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (app, assembly_output, _) = test_infra::get_test_app();
+    app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let yml = assembly_output.get_output().unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 

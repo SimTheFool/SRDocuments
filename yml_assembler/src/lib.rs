@@ -1,6 +1,6 @@
 use jsonschema::JSONSchema;
-use serde_yaml::Value;
 use std::collections::HashMap;
+use std::path::PathBuf;
 use std::rc::Rc;
 use transformable::TransformableList;
 use utils::result::AppError;
@@ -9,24 +9,31 @@ use variables::Variables;
 
 pub mod adapters;
 mod aggregator;
+pub mod lib_infras;
 mod mixins;
 mod transformable;
-mod utils;
+pub mod utils;
 mod variables;
 
 pub struct App {
-    yml_reader: Rc<dyn adapters::YmlReaderAdapter>,
-    schema_reader: Rc<dyn adapters::ValidationSchemaReaderAdapter>,
+    part_reader: Rc<dyn adapters::PartReaderPort>,
+    schema_reader: Rc<dyn adapters::SchemaReaderPort>,
+    assembly_output: Rc<dyn adapters::AssemblyOutputPort>,
+    schema_output: Rc<dyn adapters::SchemaOutputPort>,
 }
 
 impl App {
     pub fn new(
-        yml_reader: Rc<dyn adapters::YmlReaderAdapter>,
-        schema_reader: Rc<dyn adapters::ValidationSchemaReaderAdapter>,
+        yml_reader: Rc<dyn adapters::PartReaderPort>,
+        schema_reader: Rc<dyn adapters::SchemaReaderPort>,
+        assembly_output: Rc<dyn adapters::AssemblyOutputPort>,
+        schema_output: Rc<dyn adapters::SchemaOutputPort>,
     ) -> Self {
         Self {
-            yml_reader,
+            part_reader: yml_reader,
             schema_reader,
+            assembly_output,
+            schema_output,
         }
     }
 
@@ -35,8 +42,8 @@ impl App {
         yml_id: &str,
         schema_id: Option<&str>,
         variables: Option<HashMap<String, String>>,
-    ) -> AppResult<(Value, Option<serde_json::Value>)> {
-        let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.yml_reader));
+    ) -> AppResult<()> {
+        let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.part_reader));
 
         let variables: Variables = variables.unwrap_or(HashMap::new()).into();
         let yml = aggregator.load(yml_id, &variables)?;
@@ -69,6 +76,12 @@ impl App {
             None => None,
         };
 
-        Ok((yml, schema_json))
+        self.assembly_output.output(&yml, &PathBuf::from(yml_id))?;
+        if let Some(schema_json) = schema_json {
+            self.schema_output
+                .output(&schema_json, &PathBuf::from(schema_id.unwrap()))?;
+        }
+
+        Ok(())
     }
 }

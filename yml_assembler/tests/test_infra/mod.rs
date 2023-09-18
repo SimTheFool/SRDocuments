@@ -1,25 +1,28 @@
 use std::{path::PathBuf, rc::Rc};
 use yml_assembler::{
-    adapters::{ValidationSchemaFileSystemReader, YmlFileSystemReader},
+    lib_infras::{
+        assembly_in_memory_output::AssemblyIMOutput, assembly_part_fs_reader::PartFSReader,
+        schema_fs_reader::SchemaFSReader, schema_in_memory_output::SchemaIMOutput,
+    },
     App,
 };
 
-pub fn get_test_infra(
-    root: &str,
-) -> (
-    Rc<YmlFileSystemReader>,
-    Rc<ValidationSchemaFileSystemReader>,
-) {
-    let yml_reader = Rc::new(YmlFileSystemReader::new(
-        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/{root}")),
+pub fn get_test_app() -> (App, Rc<AssemblyIMOutput>, Rc<SchemaIMOutput>) {
+    let yml_reader = Rc::new(PartFSReader::new(
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/yml_test_files")),
     ));
-    let schema_reader = Rc::new(ValidationSchemaFileSystemReader::new(
-        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/{root}")),
+    let schema_reader = Rc::new(SchemaFSReader::new(
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/yml_test_files")),
     ));
-    (yml_reader, schema_reader)
-}
+    let in_memory_assembly_output = Rc::new(AssemblyIMOutput::new());
+    let in_memory_schema_output = Rc::new(SchemaIMOutput::new());
 
-pub fn get_test_app() -> App {
-    let (yml_reader, schema_reader) = get_test_infra("yml_test_files");
-    App::new(yml_reader, schema_reader)
+    let app = App::new(
+        yml_reader,
+        schema_reader,
+        in_memory_assembly_output.clone(),
+        in_memory_schema_output.clone(),
+    );
+
+    return (app, in_memory_assembly_output, in_memory_schema_output);
 }

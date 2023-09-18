@@ -8,12 +8,13 @@ static TEST_FILE: &str = "labeled_transform";
 
 #[tokio::test]
 async fn it_should_apply_labeled_transform_in_abcd_order() {
-    let app = test_infra::get_test_app();
     let mut variables = HashMap::new();
     variables.insert("T_LAYER".to_string(), "t30".to_string());
-    let (yml, _) = app
-        .compile_and_validate_yml(TEST_FILE, None, Some(variables))
+
+    let (app, assembly_output, _) = test_infra::get_test_app();
+    app.compile_and_validate_yml(TEST_FILE, None, Some(variables))
         .unwrap();
+    let yml = assembly_output.get_output().unwrap();
 
     match yml {
         Value::Mapping(m) => {

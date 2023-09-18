@@ -7,14 +7,14 @@ use serde_yaml::{
 };
 
 pub struct YmlAggregator {
-    reader: Rc<dyn adapters::YmlReaderAdapter>,
+    reader: Rc<dyn adapters::PartReaderPort>,
     pub mixins: MixIns,
 }
 
 impl YmlAggregator {
     const INCLUDE_TAG_PREFIX: &'static str = "!inc::";
 
-    pub fn new(reader: Rc<dyn adapters::YmlReaderAdapter>) -> Self {
+    pub fn new(reader: Rc<dyn adapters::PartReaderPort>) -> Self {
         YmlAggregator {
             reader,
             mixins: MixIns::new(),

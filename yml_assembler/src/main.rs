@@ -1,6 +1,9 @@
 use clap::Parser;
 use std::{collections::HashMap, error::Error, path::PathBuf, rc::Rc};
-use yml_assembler::adapters::{ValidationSchemaFileSystemReader, YmlFileSystemReader};
+use yml_assembler::lib_infras::{
+    assembly_fs_output::AssemblyFSOutput, assembly_part_fs_reader::PartFSReader,
+    schema_fs_output::SchemaFSOutput, schema_fs_reader::SchemaFSReader,
+};
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -19,7 +22,7 @@ struct Cli {
 
     /// The path in root to the output folder
     #[arg(short, long)]
-    output: Option<String>,
+    output: Option<PathBuf>,
 
     /// Variables to insert in the yml file
     #[arg(short, long, value_parser = parse_key_val::<String, String>)]
@@ -64,7 +67,9 @@ fn cli() -> Result<(), anyhow::Error> {
     );
     let variables: HashMap<String, String> =
         HashMap::from_iter(vars.unwrap_or_default().into_iter());
-    let outdir = output.as_deref().unwrap_or(DEFAULT_OUTPUT);
+
+    let outdir = PathBuf::from(DEFAULT_OUTPUT);
+    let outdir = output.unwrap_or(outdir);
 
     println!("{}", display_variables);
     println!("Working in: {}", root.display());
@@ -72,55 +77,21 @@ fn cli() -> Result<(), anyhow::Error> {
     if let Some(schema) = schema.as_deref() {
         println!("Validating from schema: {}", schema);
     }
-    println!("Outputing in: {}", outdir);
+    println!("Outputing in: {}", outdir.display());
 
-    let yml_reader = YmlFileSystemReader::new(root.clone());
-    let schema_reader = ValidationSchemaFileSystemReader::new(root.clone());
+    let part_fs_reader = PartFSReader::new(root.clone());
+    let schema_fs_reader = SchemaFSReader::new(root.clone());
+    let assembly_fs_output = AssemblyFSOutput::new(outdir.clone());
+    let schema_fs_output = SchemaFSOutput::new(outdir.clone());
 
-    let app = yml_assembler::App::new(Rc::new(yml_reader), Rc::new(schema_reader));
-    let (yml, schema_json) =
-        app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
+    let app = yml_assembler::App::new(
+        Rc::new(part_fs_reader),
+        Rc::new(schema_fs_reader),
+        Rc::new(assembly_fs_output),
+        Rc::new(schema_fs_output),
+    );
 
-    let outfile_path = PathBuf::from(&outdir).join(&file).with_extension("yml");
-    let outfile_parent = outfile_path.parent().ok_or_else(|| {
-        anyhow::anyhow!(format!(
-            "Could not get parent directory of {}",
-            outfile_path.display()
-        ))
-    })?;
-
-    let outschema_path = schema.map(|s| PathBuf::from(&outdir).join(&s));
-    let outschema_parent = outschema_path.as_ref().map(|p| p.parent()).flatten();
-
-    if !outfile_parent.exists() {
-        std::fs::create_dir_all(&outfile_parent)
-            .map_err(|e| anyhow::anyhow!(format!("Could not create output directory: {}", e)))?;
-        std::fs::write(
-            outfile_path,
-            serde_yaml::to_string(&yml)
-                .map_err(|e| anyhow::anyhow!(format!("Could not serialize file: {}", e)))?,
-        )
-        .map_err(|e| anyhow::anyhow!(format!("Could not write file to output directory: {}", e)))?;
-    }
-
-    match (&outschema_path, &outschema_parent, &schema_json) {
-        (Some(path), Some(parent), Some(json)) => {
-            if !parent.exists() {
-                std::fs::create_dir_all(&parent).map_err(|e| {
-                    anyhow::anyhow!(format!("Could not create output directory: {}", e))
-                })?;
-            }
-            std::fs::write(
-                path.with_extension("json"),
-                serde_json::to_string_pretty(&json)
-                    .map_err(|e| anyhow::anyhow!(format!("Could not serialize file: {}", e)))?,
-            )
-            .map_err(|e| {
-                anyhow::anyhow!(format!("Could not write schema to output directory: {}", e))
-            })?;
-        }
-        _ => (),
-    };
+    app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
 
     Ok(())
 }

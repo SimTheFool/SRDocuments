@@ -1,42 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "summary": {
-      "type": "string"
-    },
-    "story": {
-      "type": "object",
-      "required": ["content", "chapter"],
-      "properties": {
-        "content": {
-          "type": "string"
-        },
-        "chapter": {
-          "type": "integer"
-        }
-      }
-    },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "covers": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/cover"
-      }
-    }
-  },
-  "required": ["title", "summary", "story"],
   "definitions": {
     "cover": {
-      "type": "object",
       "properties": {
         "color": {
           "type": "string"
@@ -44,7 +8,52 @@
         "size": {
           "type": "integer"
         }
-      }
+      },
+      "type": "object"
+    },
+    "tag": {
+      "type": "string"
     }
-  }
+  },
+  "properties": {
+    "covers": {
+      "items": {
+        "$ref": "#/definitions/cover"
+      },
+      "type": "array"
+    },
+    "story": {
+      "properties": {
+        "chapter": {
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "content",
+        "chapter"
+      ],
+      "type": "object"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "$ref": "#/definitions/tag"
+      },
+      "type": "array"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "summary",
+    "story"
+  ],
+  "type": "object"
 }

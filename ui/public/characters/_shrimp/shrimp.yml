@@ -387,6 +387,32 @@ tech:
     legal: true
     licenced: true
     concealment: 2
+sprites:
+  machine:
+    stats:
+      firewall_mod: 0
+      corruption_mod: 3
+      traitement: 2
+      attaque: 1
+    skills:
+    - Ingenierie
+    - Electronique
+    actions:
+    - name: Prise de contrôle
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
+    - name: Diagnostique
+      major: 1
+      minor: 0
+      maintained: true
+      description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
+    - name: Stabilité
+      major: 0
+      minor: 1
+      maintained: true
+      description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
 effects:
 - name: Reseau vivant
   type: Echo
@@ -416,32 +442,6 @@ actions:
     minor: 0
     maintained: true
     description: Vous réduisez le bruit de votre connexion de 1 par __SN__.
-sprites:
-  machine:
-    stats:
-      firewall_mod: 0
-      corruption_mod: 3
-      traitement: 2
-      attaque: 1
-    skills:
-    - Ingenierie
-    - Electronique
-    actions:
-    - name: Prise de contrôle
-      major: 1
-      minor: 0
-      maintained: true
-      description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
-    - name: Diagnostique
-      major: 1
-      minor: 0
-      maintained: true
-      description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
-    - name: Stabilité
-      major: 0
-      minor: 1
-      maintained: true
-      description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
 skills:
   perception:
     base: 1
