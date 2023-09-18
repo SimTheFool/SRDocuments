@@ -11,7 +11,7 @@ async fn it_should_apply_labeled_transform_in_abcd_order() {
     let app = test_infra::get_test_app();
     let mut variables = HashMap::new();
     variables.insert("T_LAYER".to_string(), "t30".to_string());
-    let yml = app
+    let (yml, _) = app
         .compile_and_validate_yml(TEST_FILE, None, Some(variables))
         .unwrap();
 

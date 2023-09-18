@@ -1,0 +1,753 @@
+{
+  "definitions": {
+    "base_action": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "maintained": {
+          "type": "boolean"
+        },
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "major",
+        "minor"
+      ],
+      "type": "object"
+    },
+    "base_item": {
+      "properties": {
+        "concealment": {
+          "type": "integer"
+        },
+        "constructor": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "legal": {
+          "type": "boolean"
+        },
+        "licenced": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "price",
+        "legal",
+        "licenced",
+        "concealment"
+      ],
+      "type": "object"
+    },
+    "companion": {
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "#/definitions/base_action"
+          },
+          "type": "array"
+        },
+        "effects": {
+          "$ref": "#/definitions/effect"
+        },
+        "skills": {
+          "items": {
+            "enum": [
+              "Ingenierie",
+              "Electronique"
+            ]
+          },
+          "type": "array"
+        },
+        "stats": {
+          "attaque": "integer",
+          "corruption_mod": "integer",
+          "firewall_mod": "integer",
+          "traitement": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "contact": {
+      "properties": {
+        "connection": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "loyalty": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "loyalty",
+        "connection"
+      ],
+      "type": "object"
+    },
+    "contact_action": {
+      "properties": {
+        "damage": {
+          "type": "integer"
+        },
+        "damage_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        },
+        "ranges": {
+          "properties": {
+            "contact": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "contact"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "major",
+        "minor",
+        "damage",
+        "damage_type",
+        "ranges"
+      ],
+      "type": "object"
+    },
+    "drone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/base_item"
+        },
+        {
+          "properties": {
+            "hit": {
+              "type": "integer"
+            },
+            "slots": {
+              "items": {
+                "$ref": "#/definitions/slot"
+              },
+              "type": "array"
+            },
+            "stats": {
+              "properties": {
+                "acceleration": {
+                  "type": "integer"
+                },
+                "armor": {
+                  "type": "integer"
+                },
+                "autopilot": {
+                  "type": "integer"
+                },
+                "maniability_flat": {
+                  "type": "integer"
+                },
+                "maniability_rough": {
+                  "type": "integer"
+                },
+                "max_speed": {
+                  "type": "integer"
+                },
+                "resistance": {
+                  "type": "integer"
+                },
+                "sensors": {
+                  "type": "integer"
+                },
+                "step": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "maniability_flat",
+                "maniability_rough",
+                "acceleration",
+                "step",
+                "max_speed",
+                "autopilot",
+                "resistance",
+                "sensors",
+                "armor"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "hit",
+            "stats"
+          ]
+        }
+      ],
+      "type": "object"
+    },
+    "effect": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "identities": {
+      "properties": {
+        "contacts": {
+          "items": {
+            "$ref": "#/definitions/contact"
+          },
+          "type": "array"
+        },
+        "licences": {
+          "items": {
+            "$ref": "#/definitions/licences"
+          },
+          "type": "array"
+        },
+        "lifestyle": {
+          "$ref": "#/definitions/lifestyle"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nuyens": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "quality": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "licences": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "quality": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "quality",
+        "price"
+      ],
+      "type": "object"
+    },
+    "lifestyle": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "price"
+      ],
+      "type": "object"
+    },
+    "load_action": {
+      "properties": {
+        "ammo": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "major",
+        "minor",
+        "ammo"
+      ],
+      "type": "object"
+    },
+    "outfit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/base_item"
+        },
+        {
+          "properties": {
+            "slots": {
+              "items": {
+                "$ref": "#/definitions/slot"
+              },
+              "type": "array"
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
+    "shot_action": {
+      "properties": {
+        "ammo_consumption": {
+          "type": "integer"
+        },
+        "damage": {
+          "type": "integer"
+        },
+        "damage_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        },
+        "ranges": {
+          "properties": {
+            "contact": {
+              "type": "integer"
+            },
+            "far": {
+              "type": "integer"
+            },
+            "medium": {
+              "type": "integer"
+            },
+            "near": {
+              "type": "integer"
+            },
+            "short": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "contact",
+            "near",
+            "short",
+            "medium",
+            "far"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "major",
+        "minor",
+        "damage",
+        "damage_type",
+        "ammo_consumption",
+        "ranges"
+      ],
+      "type": "object"
+    },
+    "skill": {
+      "properties": {
+        "base": {
+          "type": "integer"
+        },
+        "expertises": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "specialisations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "base"
+      ],
+      "type": "object"
+    },
+    "skills": {
+      "properties": {
+        "athletisme": {
+          "$ref": "#/definitions/skill"
+        },
+        "combat_rapp": {
+          "$ref": "#/definitions/skill"
+        },
+        "electronique": {
+          "$ref": "#/definitions/skill"
+        },
+        "furtivite": {
+          "$ref": "#/definitions/skill"
+        },
+        "ingenierie": {
+          "$ref": "#/definitions/skill"
+        },
+        "perception": {
+          "$ref": "#/definitions/skill"
+        },
+        "pilotage": {
+          "$ref": "#/definitions/skill"
+        },
+        "technomancie": {
+          "$ref": "#/definitions/skill"
+        }
+      },
+      "type": "object"
+    },
+    "slot": {
+      "properties": {
+        "concealment": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "size"
+      ],
+      "type": "object"
+    },
+    "specific_action": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/base_action"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "technomancy"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      ],
+      "type": "object"
+    },
+    "stats": {
+      "properties": {
+        "action_maj": {
+          "type": "integer"
+        },
+        "action_min": {
+          "type": "integer"
+        },
+        "agi": {
+          "type": "integer"
+        },
+        "agi_mod": {
+          "type": "integer"
+        },
+        "cha": {
+          "type": "integer"
+        },
+        "con": {
+          "type": "integer"
+        },
+        "con_mod": {
+          "type": "integer"
+        },
+        "edge": {
+          "type": "integer"
+        },
+        "ess": {
+          "type": "integer"
+        },
+        "for": {
+          "type": "integer"
+        },
+        "for_mod": {
+          "type": "integer"
+        },
+        "hit_over": {
+          "type": "integer"
+        },
+        "hit_phy": {
+          "type": "integer"
+        },
+        "hit_stun": {
+          "type": "integer"
+        },
+        "init": {
+          "type": "integer"
+        },
+        "initiation": {
+          "type": "integer"
+        },
+        "int": {
+          "type": "integer"
+        },
+        "int_mod": {
+          "type": "integer"
+        },
+        "log": {
+          "type": "integer"
+        },
+        "log_mod": {
+          "type": "integer"
+        },
+        "mag": {
+          "type": "integer"
+        },
+        "max_edge": {
+          "type": "integer"
+        },
+        "natural_heal": {
+          "type": "integer"
+        },
+        "rea": {
+          "type": "integer"
+        },
+        "rea_mod": {
+          "type": "integer"
+        },
+        "res": {
+          "type": "integer"
+        },
+        "resist_drain": {
+          "type": "integer"
+        },
+        "resist_phy": {
+          "type": "integer"
+        },
+        "submersion": {
+          "type": "integer"
+        },
+        "vol": {
+          "type": "integer"
+        },
+        "vol_mod": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "con",
+        "agi",
+        "rea",
+        "for",
+        "vol",
+        "log",
+        "int",
+        "cha",
+        "resist_phy",
+        "ess",
+        "edge",
+        "max_edge",
+        "init",
+        "action_maj",
+        "action_min",
+        "hit_phy",
+        "hit_stun",
+        "hit_over",
+        "natural_heal"
+      ],
+      "type": "object"
+    },
+    "weapon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/base_item"
+        },
+        {
+          "properties": {
+            "actions": {
+              "additionalProperties": {
+                "$ref": "#/definitions/base_action",
+                "type": "object"
+              },
+              "properties": {
+                "attaquer": {
+                  "$ref": "#/definitions/contact_action"
+                },
+                "recharger": {
+                  "$ref": "#/definitions/load_action"
+                },
+                "tir": {
+                  "$ref": "#/definitions/shot_action"
+                },
+                "tir_rafale": {
+                  "$ref": "#/definitions/shot_action"
+                },
+                "tir_semi_auto": {
+                  "$ref": "#/definitions/shot_action"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "actions": {
+      "additionalProperties": {
+        "$ref": "#/definitions/specific_action",
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "drones": {
+      "additionalProperties": {
+        "$ref": "#/definitions/drone",
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "effects": {
+      "items": {
+        "$ref": "#/definitions/effect"
+      },
+      "type": "array"
+    },
+    "identities": {
+      "items": {
+        "$ref": "#/definitions/identities"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "outfits": {
+      "additionalProperties": {
+        "$ref": "#/definitions/outfit",
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "skills": {
+      "$ref": "#/definitions/skills"
+    },
+    "sprites": {
+      "additionalProperties": {
+        "$ref": "#/definitions/companion",
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "stats": {
+      "$ref": "#/definitions/stats"
+    },
+    "tech": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/base_item"
+          },
+          {
+            "properties": {
+              "name": {
+                "enum": [
+                  "Persona incarné"
+                ],
+                "type": "string"
+              },
+              "stats": {
+                "properties": {
+                  "attaque": {
+                    "type": "integer"
+                  },
+                  "corruption": {
+                    "type": "integer"
+                  },
+                  "firewall": {
+                    "type": "integer"
+                  },
+                  "traitement": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "firewall",
+                  "corruption",
+                  "traitement",
+                  "attaque"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "name",
+              "stats"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "type": "object"
+    },
+    "weapons": {
+      "additionalProperties": {
+        "$ref": "#/definitions/weapon",
+        "type": "object"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "stats",
+    "skills"
+  ],
+  "type": "object"
+}

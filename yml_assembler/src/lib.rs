@@ -35,7 +35,7 @@ impl App {
         yml_id: &str,
         schema_id: Option<&str>,
         variables: Option<HashMap<String, String>>,
-    ) -> AppResult<Value> {
+    ) -> AppResult<(Value, Option<serde_json::Value>)> {
         let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.yml_reader));
 
         let variables: Variables = variables.unwrap_or(HashMap::new()).into();
@@ -47,22 +47,28 @@ impl App {
         list.transform()?;
         let yml = list.try_into()?;
 
-        if let Some(schema_id) = schema_id {
-            let yml_json_representation = serde_json::to_value(&yml).map_err(AppError::other)?;
-            let schema = self.schema_reader.get_validation_schema(schema_id)?;
-            let validator = JSONSchema::compile(&schema)
-                .map_err(|e| AppError::ValidateYml(format!("Schema is not valid: {}", e)))?;
-            validator.validate(&yml_json_representation).map_err(|e| {
-                let str_errors = e
-                    .into_iter()
-                    .map(|e| e.to_string())
-                    .collect::<Vec<String>>()
-                    .join("\n");
+        let schema_json = match schema_id {
+            Some(schema_id) => {
+                let yml_json_representation =
+                    serde_json::to_value(&yml).map_err(AppError::other)?;
+                let schema_json = self.schema_reader.get_validation_schema(schema_id)?;
+                let validator = JSONSchema::compile(&schema_json)
+                    .map_err(|e| AppError::ValidateYml(format!("Schema is not valid: {}", e)))?;
+                validator.validate(&yml_json_representation).map_err(|e| {
+                    let str_errors = e
+                        .into_iter()
+                        .map(|e| e.to_string())
+                        .collect::<Vec<String>>()
+                        .join("\n");
 
-                AppError::ValidateYml(format!("Generated yml is not valid: {}", str_errors))
-            })?;
-        }
+                    AppError::ValidateYml(format!("Generated yml is not valid: {}", str_errors))
+                })?;
 
-        Ok(yml)
+                Some(schema_json)
+            }
+            None => None,
+        };
+
+        Ok((yml, schema_json))
     }
 }

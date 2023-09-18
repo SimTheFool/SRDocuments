@@ -35,7 +35,7 @@ static TEST_FILE: &str = "simple_book";
 #[tokio::test]
 async fn it_should_aggregate_filesystem_yml_files() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -48,7 +48,7 @@ async fn it_should_aggregate_filesystem_yml_files() {
 #[tokio::test]
 async fn it_should_mix_properties() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -94,7 +94,7 @@ async fn it_should_validate_from_yml() {
 #[tokio::test]
 async fn it_should_transform_properties() {
     let app = test_infra::get_test_app();
-    let yml = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
+    let (yml, _) = app.compile_and_validate_yml(TEST_FILE, None, None).unwrap();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 

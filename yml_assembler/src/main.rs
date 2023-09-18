@@ -1,10 +1,5 @@
 use clap::Parser;
-use std::{
-    collections::HashMap,
-    error::Error,
-    path::{Path, PathBuf},
-    rc::Rc,
-};
+use std::{collections::HashMap, error::Error, path::PathBuf, rc::Rc};
 use yml_assembler::adapters::{ValidationSchemaFileSystemReader, YmlFileSystemReader};
 
 #[derive(Parser, Debug)]
@@ -67,13 +62,11 @@ fn cli() -> Result<(), anyhow::Error> {
                 acc, k, v
             ))
     );
-    println!("{}", display_variables);
-
     let variables: HashMap<String, String> =
         HashMap::from_iter(vars.unwrap_or_default().into_iter());
-
     let outdir = output.as_deref().unwrap_or(DEFAULT_OUTPUT);
 
+    println!("{}", display_variables);
     println!("Working in: {}", root.display());
     println!("Assembling files: {}", format!("{}", file));
     if let Some(schema) = schema.as_deref() {
@@ -85,26 +78,49 @@ fn cli() -> Result<(), anyhow::Error> {
     let schema_reader = ValidationSchemaFileSystemReader::new(root.clone());
 
     let app = yml_assembler::App::new(Rc::new(yml_reader), Rc::new(schema_reader));
-    let yml = app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
+    let (yml, schema_json) =
+        app.compile_and_validate_yml(&file, schema.as_deref(), Some(variables))?;
 
-    let outdir_path = PathBuf::from(outdir);
-    let outfile_path = Path::new(&outdir_path).join(&file).with_extension("yml");
-    let parent = outfile_path.parent().ok_or_else(|| {
+    let outfile_path = PathBuf::from(&outdir).join(&file).with_extension("yml");
+    let outfile_parent = outfile_path.parent().ok_or_else(|| {
         anyhow::anyhow!(format!(
             "Could not get parent directory of {}",
             outfile_path.display()
         ))
     })?;
-    if !parent.exists() {
-        std::fs::create_dir_all(&parent)
+
+    let outschema_path = schema.map(|s| PathBuf::from(&outdir).join(&s));
+    let outschema_parent = outschema_path.as_ref().map(|p| p.parent()).flatten();
+
+    if !outfile_parent.exists() {
+        std::fs::create_dir_all(&outfile_parent)
             .map_err(|e| anyhow::anyhow!(format!("Could not create output directory: {}", e)))?;
+        std::fs::write(
+            outfile_path,
+            serde_yaml::to_string(&yml)
+                .map_err(|e| anyhow::anyhow!(format!("Could not serialize file: {}", e)))?,
+        )
+        .map_err(|e| anyhow::anyhow!(format!("Could not write file to output directory: {}", e)))?;
     }
-    std::fs::write(
-        outfile_path,
-        serde_yaml::to_string(&yml)
-            .map_err(|e| anyhow::anyhow!(format!("Could not serialize file: {}", e)))?,
-    )
-    .map_err(|e| anyhow::anyhow!(format!("Could not write file to output directory: {}", e)))?;
+
+    match (&outschema_path, &outschema_parent, &schema_json) {
+        (Some(path), Some(parent), Some(json)) => {
+            if !parent.exists() {
+                std::fs::create_dir_all(&parent).map_err(|e| {
+                    anyhow::anyhow!(format!("Could not create output directory: {}", e))
+                })?;
+            }
+            std::fs::write(
+                path.with_extension("json"),
+                serde_json::to_string_pretty(&json)
+                    .map_err(|e| anyhow::anyhow!(format!("Could not serialize file: {}", e)))?,
+            )
+            .map_err(|e| {
+                anyhow::anyhow!(format!("Could not write schema to output directory: {}", e))
+            })?;
+        }
+        _ => (),
+    };
 
     Ok(())
 }

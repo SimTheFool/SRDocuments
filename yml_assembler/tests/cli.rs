@@ -1,4 +1,4 @@
-use assert_cmd::prelude::*;
+use assert_cmd::prelude::{OutputAssertExt, *};
 use predicates::prelude::*;
 use serial_test::serial;
 use std::{collections::HashMap, fs, path::PathBuf, process::Command};
@@ -9,7 +9,7 @@ fn run_cli(
 ) -> (Command, String, String, String, String) {
     let output = "./tests/yml_test_files/output";
     let entry = "simple_book";
-    let schema = "book-schema.json";
+    let schema = "book-schema.yml";
 
     let mut cmd = Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap();
     cmd.arg("-r").arg(&root);
@@ -142,5 +142,55 @@ fn it_should_input_base_variables() {
 
     check_generated_file_ok(&output, &file, Some("meta: I'm a root variable"));
     check_generated_file_ok(&output, &file, Some("meta2: I'm another variable"));
+    delete_output_folder(&output);
+}
+
+#[test]
+#[serial]
+fn it_should_output_json_schema() {
+    let (mut cmd, _, output, _, schema) = run_cli("./tests/yml_test_files", None);
+
+    let std_output = cmd.assert().success().get_output().clone();
+    println!("{}", String::from_utf8_lossy(&std_output.stdout));
+
+    let schema_output = PathBuf::from(&output).join(schema).with_extension("json");
+    let schema_output = fs::read_to_string(schema_output).unwrap();
+    let schema_output = serde_json::from_str::<serde_json::Value>(&schema_output).unwrap();
+
+    let color_is_string = schema_output
+        .get("definitions")
+        .unwrap()
+        .get("cover")
+        .unwrap()
+        .get("properties")
+        .unwrap()
+        .get("color")
+        .unwrap()
+        .get("type")
+        .unwrap()
+        .as_str()
+        .unwrap()
+        .contains("string");
+
+    let size_is_integer = schema_output
+        .get("definitions")
+        .unwrap()
+        .get("cover")
+        .unwrap()
+        .get("properties")
+        .unwrap()
+        .get("size")
+        .unwrap()
+        .get("type")
+        .unwrap()
+        .as_str()
+        .unwrap()
+        .contains("integer");
+
+    assert!(
+        color_is_string && size_is_integer,
+        "Color is not a string or size is not an integer",
+    );
+
     delete_output_folder(&output);
 }
