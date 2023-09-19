@@ -3,5 +3,8 @@
   "workspaces": [
     "ui",
     "resources"
-  ]
+  ],
+  "scripts": {
+    "tb": "npx turbo run"
+  }
 }

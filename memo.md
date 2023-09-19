@@ -1,1 +1,1 @@
-
+- Try to create entry poit through bunjs macro for resources
