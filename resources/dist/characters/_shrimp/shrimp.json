@@ -18,11 +18,11 @@
   "drones": {
     "crawler": {
       "concealment": 2,
-      "constructor": "Aztechnology",
       "description": "Moyen arthropode mécanique",
       "hit": 11,
       "legal": true,
       "licenced": true,
+      "manufacturer": "Aztechnology",
       "name": "Crawler",
       "price": 14500,
       "slots": [
@@ -49,11 +49,11 @@
     },
     "kanmushi": {
       "concealment": 6,
-      "constructor": "Shiawase",
       "description": "Petit arthropode mécanique",
       "hit": 8,
       "legal": true,
       "licenced": false,
+      "manufacturer": "Shiawase",
       "name": "Kanmushi",
       "price": 900,
       "quantity": 2,
@@ -71,11 +71,11 @@
     },
     "packmule": {
       "concealment": 0,
-      "constructor": "ARES",
       "description": "Grand arthropode mécanique",
       "hit": 12,
       "legal": true,
       "licenced": true,
+      "manufacturer": "ARES",
       "name": "Packmule",
       "price": 16000,
       "slots": [
@@ -190,10 +190,10 @@
     },
     "invisi_shield": {
       "concealment": 4,
-      "constructor": "Securetech",
       "description": "Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.",
       "legal": true,
       "licenced": false,
+      "manufacturer": "Securetech",
       "name": "Invisi Shield",
       "price": 5400
     },
@@ -338,9 +338,9 @@
   "tech": {
     "commlink": {
       "concealment": 4,
-      "constructor": "Meta",
       "legal": true,
       "licenced": false,
+      "manufacturer": "Meta",
       "name": "Link",
       "price": 100,
       "stats": {
@@ -404,10 +404,10 @@
       },
       "ammo": 4,
       "concealment": 4,
-      "constructor": "",
       "description": "",
       "legal": true,
       "licenced": false,
+      "manufacturer": "",
       "name": "Clef anglaise robotique cyber-fictionnelle",
       "price": 725,
       "type": "clef anglaise"
@@ -475,12 +475,12 @@
       },
       "ammo": 250,
       "concealment": -1,
-      "constructor": "Cavalier Arms",
       "damage": 5,
       "damage_type": "P",
       "description": "Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles. Cette arme est adaptée pour la monture. Le canon a été allongé pour une meilleure précision à distance.",
       "legal": false,
       "licenced": true,
+      "manufacturer": "Cavalier Arms",
       "name": "Crockett",
       "price": 11100,
       "ranges": {
@@ -516,12 +516,12 @@
       },
       "ammo": 250,
       "concealment": 1,
-      "constructor": "",
       "damage": 0,
       "damage_type": "",
       "description": " Cette arme est adaptée pour la monture.",
       "legal": true,
       "licenced": false,
+      "manufacturer": "",
       "name": "Grappin",
       "price": 600,
       "ranges": {
@@ -581,12 +581,12 @@
       },
       "ammo": 250,
       "concealment": 2,
-      "constructor": "Yamaha",
       "damage": 4,
       "damage_type": "Elec",
       "description": " Cette arme est adaptée pour la monture.",
       "legal": true,
       "licenced": false,
+      "manufacturer": "Yamaha",
       "name": "Pulsar",
       "price": 450,
       "ranges": {

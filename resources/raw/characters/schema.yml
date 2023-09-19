@@ -371,7 +371,7 @@ definitions:
         type: string
       name:
         type: string
-      constructor:
+      manufacturer:
         type: string
       description:
         type: string
@@ -404,20 +404,21 @@ definitions:
       - properties:
           actions:
             type: object
-            properties:
-              attaquer:
-                $ref: "#/definitions/contact_action"
-              tir:
-                $ref: "#/definitions/shot_action"
-              tir_semi_auto:
-                $ref: "#/definitions/shot_action"
-              tir_rafale:
-                $ref: "#/definitions/shot_action"
-              recharger:
-                $ref: "#/definitions/load_action"
-            additionalProperties:
-              type: object
-              $ref: "#/definitions/base_action"
+            allOf:
+              - properties:
+                  attaquer:
+                    $ref: "#/definitions/contact_action"
+                  tir:
+                    $ref: "#/definitions/shot_action"
+                  tir_semi_auto:
+                    $ref: "#/definitions/shot_action"
+                  tir_rafale:
+                    $ref: "#/definitions/shot_action"
+                  recharger:
+                    $ref: "#/definitions/load_action"
+              - additionalProperties:
+                  type: object
+                  $ref: "#/definitions/base_action"
 
   #~~~ DRONE ~~~#
   drone:

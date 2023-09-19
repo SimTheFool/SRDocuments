@@ -26,9 +26,6 @@
         "concealment": {
           "type": "integer"
         },
-        "constructor": {
-          "type": "string"
-        },
         "description": {
           "type": "string"
         },
@@ -37,6 +34,9 @@
         },
         "licenced": {
           "type": "boolean"
+        },
+        "manufacturer": {
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -610,27 +610,33 @@
         {
           "properties": {
             "actions": {
-              "additionalProperties": {
-                "$ref": "#/definitions/base_action",
-                "type": "object"
-              },
-              "properties": {
-                "attaquer": {
-                  "$ref": "#/definitions/contact_action"
+              "allOf": [
+                {
+                  "properties": {
+                    "attaquer": {
+                      "$ref": "#/definitions/contact_action"
+                    },
+                    "recharger": {
+                      "$ref": "#/definitions/load_action"
+                    },
+                    "tir": {
+                      "$ref": "#/definitions/shot_action"
+                    },
+                    "tir_rafale": {
+                      "$ref": "#/definitions/shot_action"
+                    },
+                    "tir_semi_auto": {
+                      "$ref": "#/definitions/shot_action"
+                    }
+                  }
                 },
-                "recharger": {
-                  "$ref": "#/definitions/load_action"
-                },
-                "tir": {
-                  "$ref": "#/definitions/shot_action"
-                },
-                "tir_rafale": {
-                  "$ref": "#/definitions/shot_action"
-                },
-                "tir_semi_auto": {
-                  "$ref": "#/definitions/shot_action"
+                {
+                  "additionalProperties": {
+                    "$ref": "#/definitions/base_action",
+                    "type": "object"
+                  }
                 }
-              },
+              ],
               "type": "object"
             }
           }

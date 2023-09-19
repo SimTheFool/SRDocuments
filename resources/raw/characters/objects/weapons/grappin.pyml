@@ -1,24 +1,22 @@
-type: taser
-name: Pulsar
-constructor: Yamaha
+type: outil
+name: Grappin
+manufacturer: ""
 description: ""
-price: 350
+price: 500
 legal: true
 licenced: false
-concealment: !inc::objects/concealment/3_knife_pistols
-ammo: 4
-damage: 4
-damage_type: Elec
+concealment: !inc::objects/concealment/2_standard_weapons
+ammo: 1
+damage: 0
+damage_type: ""
 ranges:
-    contact: 0
+    contact: -99
     near: 0
     short: -99
     medium: -99
     far: -99
 extend_actions:
     - !inc::actions/shot
-        WEAPON: $SELF
-    - !inc::actions/semi_auto
         WEAPON: $SELF
     - !inc::actions/recharger
         WEAPON: $SELF
