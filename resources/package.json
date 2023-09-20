@@ -1,12 +1,12 @@
 {
   "name": "resources",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
     "build": "yarn char-gen && yarn char-dts",
-    "char-gen": "yml_assembler -r ./raw/characters -e _shrimp/shrimp  -s schema.yml -o ./dist/characters -f json  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v FINALSTATS_LAYER=T8000 -v ACTIONS_LAYER=T8001",
-    "char-dts": "json2ts ./dist/characters/schema.json ./dist/characters/character.d.ts --no-additionalProperties --enableConstEnums"
+    "char-gen": "yml_assembler -r ./raw/characters -e _shrimp/shrimp  -s schema.yml -o ./assets/characters -f json  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v FINALSTATS_LAYER=T8000 -v ACTIONS_LAYER=T8001",
+    "char-dts": "json2ts ./assets/characters/schema.json ./assets/characters/character.d.ts --no-additionalProperties --enableConstEnums"
   },
   "dependencies": {
     "json-schema-to-typescript": "^13.1.1"

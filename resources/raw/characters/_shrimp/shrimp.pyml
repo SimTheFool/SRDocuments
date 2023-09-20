@@ -1,4 +1,9 @@
 name: shrimp
+tags:
+    - 13 ans
+    - technorigger
+
+metatype: !inc::identities/metatype/human
 
 stats: !inc::stats/base_stats
   CON: 1
@@ -15,6 +20,7 @@ stats: !inc::stats/base_stats
 speciality:
   - !inc::technomancy/technomancer
       RES: 7
+      SUBM: 1
   - !inc::technomancy/powers/data_storm
   - !inc::technomancy/powers/data_channel
   - !inc::technomancy/echoes/reseau_vivant

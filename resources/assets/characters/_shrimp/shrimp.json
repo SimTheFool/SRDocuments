@@ -308,6 +308,12 @@
     "action_min": 2,
     "agi": 4,
     "agi_mod": 0,
+    "algo": {
+      "score": 3,
+      "stat": [
+        "log"
+      ]
+    },
     "cha": 2,
     "cha_mod": 0,
     "con": 1,
@@ -325,16 +331,32 @@
     "log": 6,
     "log_mod": 0,
     "max_edge": 7,
-    "natural_heal": 5,
+    "natural_heal": {
+      "score": 5,
+      "stat": [
+        "con",
+        "vol"
+      ]
+    },
     "rea": 2,
     "rea_mod": 0,
     "res": 7,
-    "resist_drain": 3,
-    "resist_phy": 1,
-    "submersion": 0,
+    "resist_drain": 0,
+    "resist_phy": {
+      "score": 1,
+      "stat": [
+        "con"
+      ]
+    },
+    "submersion": 1,
     "vol": 4,
     "vol_mod": 0
   },
+  "tags": [
+    "13 ans",
+    "technorigger",
+    "humain"
+  ],
   "tech": {
     "commlink": {
       "concealment": 4,

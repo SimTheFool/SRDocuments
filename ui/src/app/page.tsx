@@ -7,11 +7,14 @@ import { Resources } from "./_Resources";
 import { Skills } from "./_Skills";
 import { Stats } from "./_Stats";
 import { Section } from "@/components/Section";
+import { characters } from "resources";
+
+const shrimp = characters.shrimp;
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header char={shrimp} />
       <Grid
         columns="2"
         gap="4"
@@ -23,7 +26,7 @@ export default function Home() {
         px={"2"}
       >
         <Container>
-          <Stats />
+          <Stats char={shrimp} />
           <Resources edgeNb={2} minActionNb={3} />
           <Monitors />
         </Container>

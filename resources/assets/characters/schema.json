@@ -334,6 +334,34 @@
       ],
       "type": "object"
     },
+    "refer_stat": {
+      "properties": {
+        "score": {
+          "type": "integer"
+        },
+        "stat": {
+          "items": {
+            "enum": [
+              "con",
+              "agi",
+              "rea",
+              "for",
+              "vol",
+              "log",
+              "int",
+              "cha"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "score",
+        "stat"
+      ],
+      "type": "object"
+    },
     "shot_action": {
       "properties": {
         "ammo_consumption": {
@@ -497,7 +525,13 @@
         "agi_mod": {
           "type": "integer"
         },
+        "algo": {
+          "$ref": "#/definitions/refer_stat"
+        },
         "cha": {
+          "type": "integer"
+        },
+        "cha_mod": {
           "type": "integer"
         },
         "con": {
@@ -552,7 +586,7 @@
           "type": "integer"
         },
         "natural_heal": {
-          "type": "integer"
+          "$ref": "#/definitions/refer_stat"
         },
         "rea": {
           "type": "integer"
@@ -563,14 +597,14 @@
         "res": {
           "type": "integer"
         },
-        "resist_drain": {
-          "type": "integer"
-        },
         "resist_phy": {
-          "type": "integer"
+          "$ref": "#/definitions/refer_stat"
         },
         "submersion": {
           "type": "integer"
+        },
+        "trad": {
+          "$ref": "#/definitions/refer_stat"
         },
         "vol": {
           "type": "integer"
@@ -694,6 +728,12 @@
     },
     "stats": {
       "$ref": "#/definitions/stats"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "tech": {
       "additionalProperties": {

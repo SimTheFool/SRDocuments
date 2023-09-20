@@ -1,9 +1,12 @@
 import { Box, Flex, Heading, Text } from "@radix-ui/themes";
 import { ReactNode } from "react";
+import { Character } from "resources";
 
-type HeaderProps = {};
+type HeaderProps = {
+  char: Character;
+};
 
-export const Header = ({}: HeaderProps) => {
+export const Header = ({ char }: HeaderProps) => {
   return (
     <Flex asChild justify={"center"}>
       <Heading>
@@ -14,7 +17,7 @@ export const Header = ({}: HeaderProps) => {
             }}
             align={"right"}
           >
-            Shrimp
+            {char.name}
           </Text>
         </HeadingBlock>
 
@@ -27,7 +30,7 @@ export const Header = ({}: HeaderProps) => {
               lineHeight: "1.65",
             }}
           >
-            Humain - 13 ans - Technorigger
+            {char.tags?.join(" - ")}
           </Text>
         </HeadingBlock>
       </Heading>

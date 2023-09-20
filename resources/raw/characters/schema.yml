@@ -5,6 +5,11 @@ properties:
   name:
     type: string
 
+  tags:
+    type: array
+    items:
+      type: string
+
   stats:
     $ref: "#/definitions/stats"
 
@@ -78,6 +83,18 @@ properties:
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
+  refer_stat:
+    type: object
+    required: [score, stat]
+    properties:
+      score:
+        type: integer
+      stat:
+        type: array
+        items:
+          type: string
+          enum: [con, agi, rea, for, vol, log, int, cha]
+  #~~~ STATS ~~~#
   stats:
     type: "object"
     required:
@@ -133,10 +150,14 @@ definitions:
         type: integer
       int_mod:
         type: integer
+      cha_mod:
+        type: integer
       resist_phy:
-        type: integer
-      resist_drain:
-        type: integer
+        $ref: "#/definitions/refer_stat"
+      algo:
+        $ref: "#/definitions/refer_stat"
+      trad:
+        $ref: "#/definitions/refer_stat"
       ess:
         type: integer
       mag:
@@ -164,7 +185,7 @@ definitions:
       hit_over:
         type: integer
       natural_heal:
-        type: integer
+        $ref: "#/definitions/refer_stat"
 
   #~~~ SKILLS ~~~#
   skill:

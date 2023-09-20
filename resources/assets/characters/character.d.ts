@@ -56,6 +56,7 @@ export interface Schema {
     [k: string]: Companion;
   };
   stats: Stats;
+  tags?: string[];
   tech?: {
     [k: string]:
       | BaseItem
@@ -151,7 +152,9 @@ export interface Stats {
   action_min: number;
   agi: number;
   agi_mod?: number;
+  algo?: ReferStat;
   cha: number;
+  cha_mod?: number;
   con: number;
   con_mod?: number;
   edge: number;
@@ -169,15 +172,19 @@ export interface Stats {
   log_mod?: number;
   mag?: number;
   max_edge: number;
-  natural_heal: number;
+  natural_heal: ReferStat;
   rea: number;
   rea_mod?: number;
   res?: number;
-  resist_drain?: number;
-  resist_phy: number;
+  resist_phy: ReferStat;
   submersion?: number;
+  trad?: ReferStat;
   vol: number;
   vol_mod?: number;
+}
+export interface ReferStat {
+  score: number;
+  stat: ("con" | "agi" | "rea" | "for" | "vol" | "log" | "int" | "cha")[];
 }
 export interface ContactAction {
   damage: number;

@@ -1,7 +1,11 @@
 stats: !mix
   res: $RES
-  submersion: 0
+  submersion: $SUBM
   resist_drain: 0
+  algo:
+    score: 0
+    stat:
+      - log
 
 _transform.$FINALSTATS_LAYER: !mix
-  - "stats.resist_drain = ceil(stats.log / 2)"
+  - "stats.algo.score = ceil(stats.log / 2)"
