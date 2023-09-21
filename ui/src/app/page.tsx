@@ -17,12 +17,12 @@ export default function Home() {
       <Header char={shrimp} />
       <Grid
         columns="2"
-        gap="4"
+        gap="2"
         style={{
           gridTemplateColumns: "5fr 5fr",
           gridTemplateRows: "1fr",
         }}
-        pt={"4"}
+        pt={"1"}
         px={"2"}
       >
         <Container>
@@ -33,7 +33,7 @@ export default function Home() {
 
         <Container>
           <Box
-            pl={"3"}
+            pl={"2"}
             style={{
               borderLeft: "2px solid var(--gray-10)",
             }}
@@ -41,12 +41,12 @@ export default function Home() {
             <Identities char={shrimp} />
           </Box>
           <Box
-            pl={"3"}
+            pl={"2"}
             style={{
               borderLeft: "2px solid var(--gray-10)",
             }}
           >
-            <Effects />
+            <Effects char={shrimp} />
           </Box>
         </Container>
       </Grid>
@@ -57,48 +57,7 @@ export default function Home() {
           borderTop: "2px solid var(--gray-10)",
         }}
       >
-        <Skills
-          skills={[
-            {
-              name: "Electronique",
-              score: 4,
-              master: [],
-            },
-            {
-              name: "Combat rapproché",
-              score: 1,
-              master: [],
-            },
-            {
-              name: "Furtivité",
-              score: 1,
-              master: [],
-            },
-            {
-              name: "Athlétisme",
-              score: 3,
-              master: [],
-            },
-            {
-              name: "Ingénierie",
-              score: 6,
-              master: [{ name: "Artillerie", bonus: 2 }],
-            },
-            {
-              name: "Pilotage",
-              score: 3,
-              master: [{ name: "Appareils au sol", bonus: 2 }],
-            },
-            {
-              name: "Technomancie",
-              score: 6,
-              master: [
-                { name: "Compilation", bonus: 2 },
-                { name: "Inscription", bonus: 3 },
-              ],
-            },
-          ]}
-        />
+        <Skills char={shrimp} />
       </Box>
       <Box
         pt={"3"}

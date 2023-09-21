@@ -1,5 +1,5 @@
 skills: !mix
-    furtivite:
+    furtivité:
         base: $BASE
         specialisations: $SPEC
         expertises: $EXP

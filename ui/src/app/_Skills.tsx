@@ -1,33 +1,34 @@
 import { Card } from "@/components/Card";
 import { FlexList } from "@/components/FlexList";
 import { Section } from "@/components/Section";
+import { capitalize } from "@/utils/capitalize";
 import { Box, Flex, Text } from "@radix-ui/themes";
+import { Character } from "resources";
 
-type Skill = {
-  name: string;
-  score: number;
-  master: {
-    name: string;
-    bonus: number;
-  }[];
-};
+type Skill = Character["skills"][keyof Character["skills"]];
 
 type SkillsProps = {
-  skills: Skill[];
+  char: Character;
 };
 
-export const Skills = ({ skills }: SkillsProps) => {
+export const Skills = ({ char }: SkillsProps) => {
+  let skills: [string, Skill][] = Object.entries(char.skills) as any;
   return (
     <Section title={"Compétences"}>
       <FlexList>
-        {skills.map(({ name, score, master }) => (
+        {skills.map(([name, value]) => (
           <Container>
-            <Card>
-              <SkillText name={name} score={score} />
-              {master.map(({ name, bonus }) => (
-                <MasterText text={`${name} +${bonus}`} />
-              ))}
-            </Card>
+            {value && (
+              <Card>
+                <SkillText name={capitalize(name)} score={value.base} />
+                {value.specialisations?.map((name) => (
+                  <MasterText text={`${name} +2`} />
+                ))}
+                {value.expertises?.map((name) => (
+                  <MasterText text={`${name} +3`} />
+                ))}
+              </Card>
+            )}
           </Container>
         ))}
       </FlexList>
@@ -37,14 +38,7 @@ export const Skills = ({ skills }: SkillsProps) => {
 
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box
-      pr={"2"}
-      grow={"1"}
-      pb={"2"}
-      style={{
-        width: "130px",
-      }}
-    >
+    <Box pr={"2"} pb={"2"} grow={"1"}>
       {children}
     </Box>
   );
@@ -62,15 +56,17 @@ const SkillText = ({ name, score }: { name: string; score: number }) => {
       >
         {name}
       </Text>
-      <Text
-        weight={"bold"}
-        size={"2"}
-        style={{
-          lineHeight: 1.5,
-        }}
-      >
-        {score}
-      </Text>
+      <Box pl={"2"} asChild>
+        <Text
+          weight={"bold"}
+          size={"2"}
+          style={{
+            lineHeight: 1.5,
+          }}
+        >
+          {score}
+        </Text>
+      </Box>
     </Flex>
   );
 };

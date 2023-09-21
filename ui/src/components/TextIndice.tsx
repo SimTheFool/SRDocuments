@@ -5,9 +5,8 @@ export const TextIndice = ({ children }: TextStandard) => {
   return (
     <Theme asChild>
       <Text
-        size={"1"}
         as="span"
-        style={{ display: "inline", lineHeight: 1 }}
+        style={{ display: "inline", lineHeight: 1, fontSize: "8px" }}
         color="gray"
       >
         {children}

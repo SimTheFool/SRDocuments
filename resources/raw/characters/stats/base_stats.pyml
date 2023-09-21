@@ -20,7 +20,7 @@ resist_phy:
   stat:
     - con
 edge: $EDGE
-max_edge: 7
+max_edge: 0
 init: 1
 action_maj: 1
 action_min: 1

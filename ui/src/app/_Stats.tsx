@@ -129,11 +129,11 @@ type StatBlockProps = {
 const StatBlock = ({ n, mod, stat, dice }: StatBlockProps) => {
   return (
     <>
+      {dice ? `${n}d${dice}` : n}
+      {!!mod ? <>({mod})</> : null}{" "}
       <TextIndice>
         {stat && <>{stat.map((s) => s.toUpperCase()).join("-")} </>}
       </TextIndice>
-      {dice ? `${n}d${dice}` : n}
-      {!!mod ? <>({mod})</> : null}
     </>
   );
 };

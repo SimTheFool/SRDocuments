@@ -209,15 +209,15 @@ definitions:
     properties:
       perception:
         $ref: "#/definitions/skill"
-      furtivite:
+      furtivité:
         $ref: "#/definitions/skill"
-      athletisme:
+      athlétisme:
         $ref: "#/definitions/skill"
       electronique:
         $ref: "#/definitions/skill"
-      combat_rapp:
+      combat.rapp:
         $ref: "#/definitions/skill"
-      ingenierie:
+      ingénierie:
         $ref: "#/definitions/skill"
       pilotage:
         $ref: "#/definitions/skill"

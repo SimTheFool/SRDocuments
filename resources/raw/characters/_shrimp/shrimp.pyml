@@ -68,7 +68,7 @@ identities:
   - !inc::identities/i_leg
       NUYENS: null
       LICENCES: null
-      LIFESTYLE: !inc::identities/squat
+      LIFESTYLE: null
       CONTACTS:
         - name: D-Boss
           loyalty: 4
@@ -81,6 +81,7 @@ identities:
   - !inc::identities/i_fake
       NAME: L. Guinvite
       NUYENS: null
+      LIFESTYLE: !inc::identities/squat
       LICENCES:
         - !inc::identities/licence
             ITEM: Chasse d'arme
@@ -91,7 +92,6 @@ identities:
         - !inc::identities/licence
             ITEM: Crawler
             QUALITY: 4
-      LIFESTYLE: null
       CONTACTS: null
       QUALITY: 2
 

@@ -105,27 +105,27 @@
     {
       "description": "Utlisez votre persona incarné comme noeud PAN.",
       "name": "Reseau vivant",
-      "type": "Echo"
+      "type": "echo"
     },
     {
       "description": "__A1__ lorsque vous utilisez une machine que vous avez bricolé.",
       "name": "Bricoleur prévoyant",
-      "type": "Trait"
+      "type": "trait"
     },
     {
       "description": "__A1__ lorsque vous compilez un sprite machine.",
       "name": "Ami des sprites machine",
-      "type": "Trait"
+      "type": "trait"
     },
     {
       "description": "Au premier round, vous ne pouvez pas vous déplacer et vous jouez en dernier",
       "name": "Paralysie du combat",
-      "type": "Trait"
+      "type": "trait"
     },
     {
       "description": "Vous éternuez souvent. __D1__ lors des tests de discrétion.",
       "name": "Rhinite chronique",
-      "type": "Trait"
+      "type": "trait"
     }
   ],
   "identities": [
@@ -144,10 +144,6 @@
           "name": "Terrance"
         }
       ],
-      "lifestyle": {
-        "name": "Squatteur",
-        "price": 100
-      },
       "name": "shrimp"
     },
     {
@@ -168,6 +164,10 @@
           "quality": "i4"
         }
       ],
+      "lifestyle": {
+        "name": "squatteur",
+        "price": 100
+      },
       "name": "L. Guinvite",
       "price": 5000,
       "quality": "i2"
@@ -229,19 +229,18 @@
     }
   },
   "skills": {
-    "athletisme": {
+    "athlétisme": {
       "base": 3
     },
-    "combat_rapp": {
+    "combat": {
+      "rapp": {
+        "base": 1
+      }
+    },
+    "furtivité": {
       "base": 1
     },
-    "electronique": {
-      "base": 4
-    },
-    "furtivite": {
-      "base": 1
-    },
-    "ingenierie": {
+    "ingénierie": {
       "base": 6,
       "specialisations": [
         "Artillerie"
@@ -264,6 +263,9 @@
       "specialisations": [
         "Compilation"
       ]
+    },
+    "électronique": {
+      "base": 4
     }
   },
   "sprites": {
@@ -330,7 +332,7 @@
     "int_mod": 0,
     "log": 6,
     "log_mod": 0,
-    "max_edge": 7,
+    "max_edge": 0,
     "natural_heal": {
       "score": 5,
       "stat": [

@@ -126,11 +126,11 @@ export interface Lifestyle {
   price: number;
 }
 export interface Skills {
-  athletisme?: Skill;
-  combat_rapp?: Skill;
+  athlétisme?: Skill;
+  "combat.rapp"?: Skill;
   electronique?: Skill;
-  furtivite?: Skill;
-  ingenierie?: Skill;
+  furtivité?: Skill;
+  ingénierie?: Skill;
   perception?: Skill;
   pilotage?: Skill;
   technomancie?: Skill;

@@ -17,7 +17,6 @@ export const Identities = ({ char }: IdentitiesProps) => {
       {char.identities?.map((i) => (
         <>
           <Identity identity={i} />
-          ___
         </>
       ))}
     </Section>
@@ -44,16 +43,19 @@ const Identity = ({
     : null;
 
   return (
-    <FlexList>
-      <Container width={"90%"}>
-        <Card>
-          <TitleMin
-            title={name && capitalize(name)}
-            subtitle={[qualityStr, lifestyleStr].filter((x) => x).join(" - ")}
-          />
-          <TextStandard>{description}</TextStandard>
-        </Card>
-      </Container>
+    <Flex wrap={"wrap"} align={"stretch"}>
+      {(lifestyle || quality) && (
+        <Container width={"90%"}>
+          <Box pl={"3"}>
+            <TitleMin
+              inline
+              title={name && capitalize(name)}
+              subtitle={[qualityStr, lifestyleStr].filter((x) => x).join(" - ")}
+            />
+            <TextStandard>{description}</TextStandard>
+          </Box>
+        </Container>
+      )}
       {quality && (
         <Container width={"50%"}>
           <Card title={"nuyens"}>
@@ -85,7 +87,7 @@ const Identity = ({
           </Container>
         );
       })}
-    </FlexList>
+    </Flex>
   );
 };
 
