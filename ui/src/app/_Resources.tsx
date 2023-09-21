@@ -6,31 +6,37 @@ import {
 import { Edge, EdgeLight } from "@/components/Icons/Edge";
 import { TitleMin } from "@/components/TitleMin";
 import { Flex, Box } from "@radix-ui/themes";
+import { Character } from "resources";
 
 type ResourcesProps = {
-  edgeNb: number;
-  minActionNb: number;
+  char: Character;
 };
 
-export const Resources = ({ edgeNb, minActionNb }: ResourcesProps) => {
+export const Resources = ({ char }: ResourcesProps) => {
+  const minActionNb = Math.max(char.stats.action_min, 5);
+  const edgeNb = Math.max(char.stats.edge, char.stats.max_edge);
+
   return (
     <Flex>
       <Box pr={"4"}>
         <TitleMin title={"Actions"} />
-        <Box pr={"1"} display={"inline-block"}>
-          <MajorAction />
-        </Box>
-        {Array.from({ length: 5 }).map((_, i) => (
+        <Box pr={"1"} display={"inline-block"}></Box>
+        {Array.from({ length: char.stats.action_maj }).map(() => (
           <Box pr={"1"} display={"inline-block"}>
-            {i < minActionNb ? <MinorAction /> : <MinorActionLight />}
+            <MajorAction />
+          </Box>
+        ))}
+        {Array.from({ length: minActionNb }).map((_, i) => (
+          <Box pr={"1"} display={"inline-block"}>
+            {i < char.stats.action_min ? <MinorAction /> : <MinorActionLight />}
           </Box>
         ))}
       </Box>
       <Box>
         <TitleMin title={"Atouts"} />
-        {Array.from({ length: 7 }).map((_, i) => (
+        {Array.from({ length: edgeNb }).map((_, i) => (
           <Box pr={"1"} display={"inline-block"}>
-            {i < edgeNb ? <Edge /> : <EdgeLight />}
+            {i < char.stats.edge ? <Edge /> : <EdgeLight />}
           </Box>
         ))}
       </Box>

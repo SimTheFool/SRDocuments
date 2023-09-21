@@ -153,22 +153,22 @@
     {
       "licences": [
         {
-          "name": "Fausse Licence - Chasse d'arme",
+          "name": "Chasse d'arme",
           "price": 800,
           "quality": "i4"
         },
         {
-          "name": "Fausse Licence - Packmule",
+          "name": "Packmule",
           "price": 800,
           "quality": "i4"
         },
         {
-          "name": "Fausse Licence - Crawler",
+          "name": "Crawler",
           "price": 800,
           "quality": "i4"
         }
       ],
-      "name": "Laurence Guinvite",
+      "name": "L. Guinvite",
       "price": 5000,
       "quality": "i2"
     }

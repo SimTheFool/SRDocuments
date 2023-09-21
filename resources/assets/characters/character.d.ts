@@ -46,7 +46,7 @@ export interface Schema {
     [k: string]: Drone;
   };
   effects?: Effect[];
-  identities?: Identities[];
+  identities?: Identity[];
   name?: string;
   outfits?: {
     [k: string]: Outfit;
@@ -100,8 +100,9 @@ export interface Effect {
   name?: string;
   type?: string;
 }
-export interface Identities {
+export interface Identity {
   contacts?: Contact[];
+  description?: string;
   licences?: Licences[];
   lifestyle?: Lifestyle;
   name?: string;

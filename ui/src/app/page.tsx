@@ -27,8 +27,8 @@ export default function Home() {
       >
         <Container>
           <Stats char={shrimp} />
-          <Resources edgeNb={2} minActionNb={3} />
-          <Monitors />
+          <Resources char={shrimp} />
+          <Monitors char={shrimp} />
         </Container>
 
         <Container>
@@ -38,7 +38,7 @@ export default function Home() {
               borderLeft: "2px solid var(--gray-10)",
             }}
           >
-            <Identities />
+            <Identities char={shrimp} />
           </Box>
           <Box
             pl={"3"}

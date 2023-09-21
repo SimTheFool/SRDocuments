@@ -19,7 +19,7 @@ properties:
   identities:
     type: array
     items:
-      $ref: "#/definitions/identities"
+      $ref: "#/definitions/identity"
 
   effects:
     type: array
@@ -225,10 +225,12 @@ definitions:
         $ref: "#/definitions/skill"
 
   #~~~ IDENTITIES ~~~#
-  identities:
+  identity:
     type: object
     properties:
       name:
+        type: string
+      description:
         type: string
       quality:
         type: string

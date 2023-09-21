@@ -228,13 +228,16 @@
       },
       "type": "object"
     },
-    "identities": {
+    "identity": {
       "properties": {
         "contacts": {
           "items": {
             "$ref": "#/definitions/contact"
           },
           "type": "array"
+        },
+        "description": {
+          "type": "string"
         },
         "licences": {
           "items": {
@@ -702,7 +705,7 @@
     },
     "identities": {
       "items": {
-        "$ref": "#/definitions/identities"
+        "$ref": "#/definitions/identity"
       },
       "type": "array"
     },
