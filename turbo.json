@@ -3,12 +3,16 @@
   "pipeline": {
     "build": {
       "cache": true,
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "assets/**"]
     },
     "dev": {
       "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
+    },
+    "pdf": {
+      "dependsOn": ["^build"],
+      "cache": false
     }
   }
 }

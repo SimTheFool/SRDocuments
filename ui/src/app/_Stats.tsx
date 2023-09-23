@@ -131,6 +131,20 @@ export const Stats = ({ char }: StatsProps) => {
       <Container>
         <StatTable
           items={[
+            ["Gué.Nat"],
+            [
+              <StatBlock
+                n={stats.natural_heal.score}
+                stat={stats.natural_heal.stat}
+                dice={6}
+              />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
+        <StatTable
+          items={[
             ["Def.Phy", "Def.Ment"],
             [
               <StatBlock
@@ -141,20 +155,6 @@ export const Stats = ({ char }: StatsProps) => {
               <StatBlock
                 n={stats.def_ment.score}
                 stat={stats.def_ment.stat}
-                dice={6}
-              />,
-            ],
-          ]}
-        />
-      </Container>
-      <Container>
-        <StatTable
-          items={[
-            ["Gué.Nat"],
-            [
-              <StatBlock
-                n={stats.natural_heal.score}
-                stat={stats.natural_heal.stat}
                 dice={6}
               />,
             ],

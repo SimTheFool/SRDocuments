@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "ui",
-    "resources"
+    "resources",
+    "pdf"
   ],
   "scripts": {
     "tb": "npx turbo run"
