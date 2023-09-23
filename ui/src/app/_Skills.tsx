@@ -1,7 +1,10 @@
 import { Card } from "@/components/Card";
 import { FlexList } from "@/components/FlexList";
 import { Section } from "@/components/Section";
+import { Space } from "@/components/Space";
+import { TitleSection } from "@/components/TitleSection";
 import { capitalize } from "@/utils/capitalize";
+import { uncapitalize } from "@/utils/uncapitalize";
 import { Box, Flex, Text } from "@radix-ui/themes";
 import { Character } from "resources";
 
@@ -14,24 +17,30 @@ type SkillsProps = {
 export const Skills = ({ char }: SkillsProps) => {
   let skills: [string, Skill][] = Object.entries(char.skills) as any;
   return (
-    <Section title={"Compétences"}>
-      <FlexList>
+    <Section title={<TitleSection>Compétences</TitleSection>}>
+      <Box
+        style={{
+          display: "column",
+          columnCount: 2,
+          columnGap: "0",
+        }}
+      >
         {skills.map(([name, value]) => (
           <Container>
             {value && (
               <Card>
                 <SkillText name={capitalize(name)} score={value.base} />
                 {value.specialisations?.map((name) => (
-                  <MasterText text={`${name} +2`} />
+                  <MasterText score={2} label={name} />
                 ))}
                 {value.expertises?.map((name) => (
-                  <MasterText text={`${name} +3`} />
+                  <MasterText score={3} label={name} />
                 ))}
               </Card>
             )}
           </Container>
         ))}
-      </FlexList>
+      </Box>
     </Section>
   );
 };
@@ -46,21 +55,32 @@ const Container = ({ children }: { children: React.ReactNode }) => {
 
 const SkillText = ({ name, score }: { name: string; score: number }) => {
   return (
-    <Flex justify={"between"}>
+    <Flex
+      justify={"between"}
+      style={{
+        width: "100%",
+      }}
+    >
       <Text
         weight={"bold"}
         size={"2"}
         style={{
+          maxWidth: "90%",
+          flexShrink: 1,
           lineHeight: 1.5,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         }}
       >
         {name}
       </Text>
-      <Box pl={"2"} asChild>
+      <Box pl={"1"} asChild>
         <Text
           weight={"bold"}
           size={"2"}
           style={{
+            flexShrink: 0,
             lineHeight: 1.5,
           }}
         >
@@ -71,17 +91,33 @@ const SkillText = ({ name, score }: { name: string; score: number }) => {
   );
 };
 
-const MasterText = ({ text }: { text: string }) => {
+const MasterText = ({ label, score }: { label: string; score: number }) => {
   return (
-    <Flex justify={"between"}>
+    <Flex pl={"2"}>
+      <Box pr={"1"} asChild>
+        <Text
+          weight={"light"}
+          size={"1"}
+          style={{
+            lineHeight: 1,
+          }}
+        >
+          +{score}
+        </Text>
+      </Box>
       <Text
         weight={"light"}
         size={"1"}
         style={{
+          maxWidth: "90%",
+          flexShrink: 1,
           lineHeight: 1,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
         }}
       >
-        <Box pl={"2"}>{text}</Box>
+        {uncapitalize(label)}
       </Text>
     </Flex>
   );

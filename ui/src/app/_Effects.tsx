@@ -1,9 +1,9 @@
 import { Card } from "@/components/Card";
-import { FlexList } from "@/components/FlexList";
 import { Section } from "@/components/Section";
 import { Space } from "@/components/Space";
 import { TextStandard } from "@/components/TextStandard";
 import { TitleMin } from "@/components/TitleMin";
+import { TitleSection } from "@/components/TitleSection";
 import { Box } from "@radix-ui/themes";
 import { Character } from "resources";
 
@@ -13,39 +13,26 @@ type EffectsProps = {
 
 export const Effects = ({ char }: EffectsProps) => {
   return (
-    <Section title="Effets" separator="left">
-      <FlexList>
+    <Section>
+      <Box
+        style={{
+          columnCount: 4,
+          columnGap: "0px",
+        }}
+      >
+        <Box pb={"1"}>
+          <TitleSection>Effects</TitleSection>
+        </Box>
         {char.effects?.map((e) => (
-          <Container width="50%">
+          <Box pr={"2"} pb={"2"}>
             <Card title={e.type}>
               <TitleMin title={e.name} />
               <Space />
               <TextStandard>{e.description}</TextStandard>
             </Card>
-          </Container>
+          </Box>
         ))}
-      </FlexList>
+      </Box>
     </Section>
-  );
-};
-
-const Container = ({
-  children,
-  width,
-}: {
-  children?: React.ReactNode;
-  width?: string;
-}) => {
-  return (
-    <Box
-      pr={"2"}
-      grow={"1"}
-      pb={"2"}
-      style={{
-        width,
-      }}
-    >
-      {children}
-    </Box>
   );
 };

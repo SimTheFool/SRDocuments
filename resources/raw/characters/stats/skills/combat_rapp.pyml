@@ -1,5 +1,5 @@
 skills: !mix
-    combat.rapp:
+    combat:
         base: $BASE
         specialisations: $SPEC
         expertises: $EXP

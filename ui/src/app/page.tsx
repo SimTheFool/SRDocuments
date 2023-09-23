@@ -8,6 +8,7 @@ import { Skills } from "./_Skills";
 import { Stats } from "./_Stats";
 import { Section } from "@/components/Section";
 import { characters } from "resources";
+import { TitleSection } from "@/components/TitleSection";
 
 const shrimp = characters.shrimp;
 
@@ -19,7 +20,7 @@ export default function Home() {
         columns="2"
         gap="2"
         style={{
-          gridTemplateColumns: "5fr 5fr",
+          gridTemplateColumns: "58% 42%",
           gridTemplateRows: "1fr",
         }}
         pt={"1"}
@@ -46,7 +47,7 @@ export default function Home() {
               borderLeft: "2px solid var(--gray-10)",
             }}
           >
-            <Effects char={shrimp} />
+            <Skills char={shrimp} />
           </Box>
         </Container>
       </Grid>
@@ -57,7 +58,7 @@ export default function Home() {
           borderTop: "2px solid var(--gray-10)",
         }}
       >
-        <Skills char={shrimp} />
+        <Effects char={shrimp} />
       </Box>
       <Box
         pt={"3"}
@@ -66,7 +67,7 @@ export default function Home() {
           borderTop: "2px solid var(--gray-10)",
         }}
       >
-        <Section title="notes"></Section>
+        <Section title={<TitleSection>Notes</TitleSection>}></Section>
       </Box>
     </>
   );

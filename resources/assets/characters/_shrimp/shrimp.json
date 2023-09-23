@@ -233,9 +233,7 @@
       "base": 3
     },
     "combat": {
-      "rapp": {
-        "base": 1
-      }
+      "base": 1
     },
     "furtivité": {
       "base": 1

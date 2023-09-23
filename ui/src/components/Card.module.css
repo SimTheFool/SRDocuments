@@ -18,9 +18,14 @@
     top: 0;
     right: 0;
     z-index: 1;
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3px;
 }
 
-.cardTitle::after {
+/* .cardTitle::after {
     content: '';
     z-index: -1;
     display: block;
@@ -32,16 +37,16 @@
     left: 0;
     transform: translateY(-50%);
 }
-
-.cardNote {
+ */
+/* .cardNote {
     transform: translateY(-50%) translateX(10px);
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
-}
+} */
 
-.cardNote::after {
+/* .cardNote::after {
     content: '';
     z-index: -1;
     display: block;
@@ -52,4 +57,4 @@
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-}
+} */

@@ -8,25 +8,17 @@ import {
 
 type SectionProps = {
   children?: React.ReactNode;
-  title: string;
-  separator?: "left";
+  title?: React.ReactNode;
 };
 
-export const Section = ({ children, title, separator }: SectionProps) => {
+export const Section = ({ children, title }: SectionProps) => {
   return (
     <RadSection py={"0"} mb={"3"}>
-      <Box pt={"0"} asChild pb={"1"}>
-        <Heading
-          size={"4"}
-          as={"h2"}
-          style={{
-            display: "block",
-            textTransform: "uppercase",
-          }}
-        >
+      {title && (
+        <Box pt={"0"} pb={"1"}>
           {title}
-        </Heading>
-      </Box>
+        </Box>
+      )}
       {children}
     </RadSection>
   );

@@ -1,14 +1,21 @@
 import { Box, Flex, Grid, Heading } from "@radix-ui/themes";
 import styles from "./Monitor.module.css";
 import { ReactNode } from "react";
+import { ImHeartBroken } from "react-icons/im";
+import { FaSkull } from "react-icons/fa";
 
 type MonitorProps = {
   hit: number;
+  overHit?: number;
   title: ReactNode;
-  inline?: boolean;
 };
 
-export const Monitor = ({ hit, title }: MonitorProps) => {
+export const Monitor = ({ hit, title, overHit = 0 }: MonitorProps) => {
+  const xx = overHit % 4;
+  const yy = (overHit - xx) / 4;
+  const overHitBox = Array.from({ length: yy }).map(() => 4);
+  overHitBox.push(xx);
+
   return (
     <Box>
       <Heading
@@ -16,36 +23,39 @@ export const Monitor = ({ hit, title }: MonitorProps) => {
         as={"h3"}
         style={{
           display: "block",
+          whiteSpace: "nowrap",
         }}
       >
         {title}
       </Heading>
       <Grid columns={"3"} gap="0">
         {Array.from({ length: hit }).map(() => (
-          <Box className={styles.box} />
+          <HitBox />
+        ))}
+        {overHitBox.map((n) => (
+          <OverHitBox n={n} />
         ))}
       </Grid>
     </Box>
   );
 };
 
-export const InlineMonitor = ({ hit, title }: MonitorProps) => {
+const HitBox = ({}: {}) => {
   return (
-    <Box>
-      <Heading
-        size={"1"}
-        as={"h3"}
-        style={{
-          display: "block",
-        }}
-      >
-        {title}
-      </Heading>
-      <Grid columns={"10"} gap="0">
-        {Array.from({ length: hit }).map(() => (
-          <Box className={styles.inlineBox} />
-        ))}
-      </Grid>
+    <Box className={styles.box}>
+      <Box className={styles.incurable}>
+        <FaSkull />
+      </Box>
     </Box>
+  );
+};
+
+const OverHitBox = ({ n }: { n: number }) => {
+  return (
+    <Grid columns={"2"} rows={"2"} gap="0">
+      {Array.from({ length: n }).map(() => (
+        <Box className={styles.overbox}></Box>
+      ))}
+    </Grid>
   );
 };

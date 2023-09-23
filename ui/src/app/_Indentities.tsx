@@ -6,6 +6,7 @@ import { TitleMin } from "@/components/TitleMin";
 import { Box, Flex } from "@radix-ui/themes";
 import { Character, Identity as CharIdentity } from "resources";
 import { capitalize } from "@/utils/capitalize";
+import { TitleSection } from "@/components/TitleSection";
 
 type IdentitiesProps = {
   char: Character;
@@ -13,7 +14,7 @@ type IdentitiesProps = {
 
 export const Identities = ({ char }: IdentitiesProps) => {
   return (
-    <Section title="Identités" separator="left">
+    <Section title={<TitleSection>Identités</TitleSection>}>
       {char.identities?.map((i) => (
         <>
           <Identity identity={i} />
@@ -46,14 +47,17 @@ const Identity = ({
     <Flex wrap={"wrap"} align={"stretch"}>
       {(lifestyle || quality) && (
         <Container width={"90%"}>
-          <Box pl={"3"}>
-            <TitleMin
-              inline
-              title={name && capitalize(name)}
-              subtitle={[qualityStr, lifestyleStr].filter((x) => x).join(" - ")}
-            />
-            <TextStandard>{description}</TextStandard>
-          </Box>
+          <Card>
+            <Box>
+              <TitleMin
+                title={name && capitalize(name)}
+                subtitle={[qualityStr, lifestyleStr]
+                  .filter((x) => x)
+                  .join(" - ")}
+              />
+              <TextStandard>{description}</TextStandard>
+            </Box>
+          </Card>
         </Container>
       )}
       {quality && (
