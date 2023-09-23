@@ -1,7 +1,7 @@
 import { Card } from "@/components/Card";
 import { FlexList } from "@/components/FlexList";
 import { Section } from "@/components/Section";
-import { TextStandard } from "@/components/TextStandard";
+import { ParagraphStandard } from "@/components/ParagraphStandard";
 import { TitleMin } from "@/components/TitleMin";
 import { Box, Flex } from "@radix-ui/themes";
 import { Character, Identity as CharIdentity } from "resources";
@@ -55,7 +55,7 @@ const Identity = ({
                   .filter((x) => x)
                   .join(" - ")}
               />
-              <TextStandard>{description}</TextStandard>
+              <ParagraphStandard>{description}</ParagraphStandard>
             </Box>
           </Card>
         </Container>
@@ -64,8 +64,10 @@ const Identity = ({
         <Container width={"50%"}>
           <Card title={"nuyens"}>
             <Flex justify={"between"} align={"end"} height={"100%"}>
-              <TextStandard>_</TextStandard>
-              <TextStandard>{nuyens ? `/${nuyens}¥` : null}</TextStandard>
+              <ParagraphStandard>_</ParagraphStandard>
+              <ParagraphStandard>
+                {nuyens ? `/${nuyens}¥` : null}
+              </ParagraphStandard>
             </Flex>
           </Card>
         </Container>
@@ -73,7 +75,7 @@ const Identity = ({
       {licences?.map((l) => (
         <Container width={"50%"}>
           <Card title={"licence"}>
-            <TextStandard>{l.name}</TextStandard>
+            <ParagraphStandard>{l.name}</ParagraphStandard>
             <TitleMin subtitle={`${l.quality}-${l.price}¥`} />
           </Card>
         </Container>
@@ -86,7 +88,7 @@ const Identity = ({
                 title={c.name}
                 subtitle={`L${c.loyalty}-R${c.connection}`}
               />
-              <TextStandard>{c.description}</TextStandard>
+              <ParagraphStandard>{c.description}</ParagraphStandard>
             </Card>
           </Container>
         );

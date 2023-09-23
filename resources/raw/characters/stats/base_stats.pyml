@@ -19,9 +19,27 @@ resist_phy:
   score: 0
   stat:
     - con
+resist_ment:
+  score: 0
+  stat:
+    - vol
+def_phy:
+  score: 0
+  stat:
+    - rea
+    - int
+def_ment:
+  score: 0
+  stat:
+    - vol
+    - int
 edge: $EDGE
 max_edge: 0
-init: 1
+init:
+  score: 1
+  stat:
+    - rea
+    - int
 action_maj: 1
 action_min: 1
 hit_phy: 8
@@ -35,8 +53,12 @@ natural_heal:
 
 _transform.$FINALSTATS_LAYER: !mix
   - "stats.resist_phy.score = stats.con"
-  - "stats.action_min = stats.action_min + stats.init"
+  - "stats.resist_ment.score = stats.vol"
+  - "stats.def_phy.score = stats.rea + stats.int"
+  - "stats.def_ment.score = stats.vol + stats.int"
+  - "stats.action_min = stats.action_min + stats.init.score"
   - "stats.hit_phy = stats.hit_phy + floor(stats.con / 2)"
   - "stats.hit_stun = stats.hit_stun + floor(stats.vol / 2)"
   - "stats.hit_over = stats.hit_over + stats.con - stats.con_mod"
   - "stats.natural_heal.score = stats.natural_heal.score + stats.con + stats.vol"
+  - "stats.init.score = stats.init.score + stats.rea + stats.int"

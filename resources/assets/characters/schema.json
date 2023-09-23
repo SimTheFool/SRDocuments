@@ -543,6 +543,12 @@
         "con_mod": {
           "type": "integer"
         },
+        "def_ment": {
+          "$ref": "#/definitions/refer_stat"
+        },
+        "def_phy": {
+          "$ref": "#/definitions/refer_stat"
+        },
         "edge": {
           "type": "integer"
         },
@@ -565,7 +571,7 @@
           "type": "integer"
         },
         "init": {
-          "type": "integer"
+          "$ref": "#/definitions/refer_stat"
         },
         "initiation": {
           "type": "integer"
@@ -600,6 +606,9 @@
         "res": {
           "type": "integer"
         },
+        "resist_ment": {
+          "$ref": "#/definitions/refer_stat"
+        },
         "resist_phy": {
           "$ref": "#/definitions/refer_stat"
         },
@@ -626,6 +635,9 @@
         "int",
         "cha",
         "resist_phy",
+        "resist_ment",
+        "def_phy",
+        "def_ment",
         "ess",
         "edge",
         "max_edge",

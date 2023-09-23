@@ -1,11 +1,12 @@
 import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { Space } from "@/components/Space";
-import { TextStandard } from "@/components/TextStandard";
+import { ParagraphStandard } from "@/components/ParagraphStandard";
 import { TitleMin } from "@/components/TitleMin";
 import { TitleSection } from "@/components/TitleSection";
 import { Box } from "@radix-ui/themes";
 import { Character } from "resources";
+import { TextWithIcons } from "@/components/Text";
 
 type EffectsProps = {
   char: Character;
@@ -28,7 +29,11 @@ export const Effects = ({ char }: EffectsProps) => {
             <Card title={e.type}>
               <TitleMin title={e.name} />
               <Space />
-              <TextStandard>{e.description}</TextStandard>
+              <ParagraphStandard>
+                {e.description && (
+                  <TextWithIcons>{e.description}</TextWithIcons>
+                )}
+              </ParagraphStandard>
             </Card>
           </Box>
         ))}

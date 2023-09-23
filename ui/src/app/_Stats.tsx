@@ -66,6 +66,20 @@ export const Stats = ({ char }: StatsProps) => {
         )}
       </Container>
       <Container>
+        <StatTable
+          items={[
+            ["Ini"],
+            [
+              <StatBlock
+                n={stats.init?.score || 0}
+                stat={stats.init?.stat}
+                dice={6}
+              />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
         {stats.res && (
           <StatTable
             items={[
@@ -98,11 +112,35 @@ export const Stats = ({ char }: StatsProps) => {
       <Container>
         <StatTable
           items={[
-            ["Res.Phy"],
+            ["Res.Phy", "Res.Ment"],
             [
               <StatBlock
                 n={stats.resist_phy.score}
                 stat={stats.resist_phy.stat}
+                dice={6}
+              />,
+              <StatBlock
+                n={stats.resist_ment.score}
+                stat={stats.resist_ment.stat}
+                dice={6}
+              />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
+        <StatTable
+          items={[
+            ["Def.Phy", "Def.Ment"],
+            [
+              <StatBlock
+                n={stats.def_phy.score}
+                stat={stats.def_phy.stat}
+                dice={6}
+              />,
+              <StatBlock
+                n={stats.def_ment.score}
+                stat={stats.def_ment.stat}
                 dice={6}
               />,
             ],
@@ -123,62 +161,6 @@ export const Stats = ({ char }: StatsProps) => {
           ]}
         />
       </Container>
-      {/*<Box pr={"2"}> 
-        {stats.res && (
-          <StatTable
-            items={[
-              ["Algo."],
-              [
-                <StatBlock
-                  n={stats.algo?.score || 0}
-                  stat={stats.algo?.stat}
-                />,
-              ],
-            ]}
-          />
-        )}
-        {stats.mag && (
-          <StatTable
-            items={[
-              ["Trad."],
-              [
-                <StatBlock
-                  n={stats.trad?.score || 0}
-                  stat={stats.trad?.stat}
-                />,
-              ],
-            ]}
-          />
-        )}
-      </Box>
-      <Box pr={"2"}>
-        <StatTable
-          items={[
-            ["Res.Phy"],
-            [
-              <StatBlock
-                n={stats.resist_phy.score}
-                stat={stats.resist_phy.stat}
-                dice={6}
-              />,
-            ],
-          ]}
-        />
-      </Box>
-      <Box pr={"2"}>
-        <StatTable
-          items={[
-            ["Gué.Nat"],
-            [
-              <StatBlock
-                n={stats.natural_heal.score}
-                stat={stats.natural_heal.stat}
-                dice={6}
-              />,
-            ],
-          ]}
-        />
-      </Box> */}
     </Section>
   );
 };
@@ -206,6 +188,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box
       pl={"1"}
+      pb={"1"}
       style={{
         display: "inline-block",
       }}

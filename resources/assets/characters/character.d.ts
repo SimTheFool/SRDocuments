@@ -158,6 +158,8 @@ export interface Stats {
   cha_mod?: number;
   con: number;
   con_mod?: number;
+  def_ment: ReferStat;
+  def_phy: ReferStat;
   edge: number;
   ess: number;
   for: number;
@@ -165,7 +167,7 @@ export interface Stats {
   hit_over: number;
   hit_phy: number;
   hit_stun: number;
-  init: number;
+  init: ReferStat;
   initiation?: number;
   int: number;
   int_mod?: number;
@@ -177,6 +179,7 @@ export interface Stats {
   rea: number;
   rea_mod?: number;
   res?: number;
+  resist_ment: ReferStat;
   resist_phy: ReferStat;
   submersion?: number;
   trad?: ReferStat;

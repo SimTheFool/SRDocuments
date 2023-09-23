@@ -108,6 +108,9 @@ definitions:
         int,
         cha,
         resist_phy,
+        resist_ment,
+        def_phy,
+        def_ment,
         ess,
         edge,
         max_edge,
@@ -154,6 +157,12 @@ definitions:
         type: integer
       resist_phy:
         $ref: "#/definitions/refer_stat"
+      resist_ment:
+        $ref: "#/definitions/refer_stat"
+      def_phy:
+        $ref: "#/definitions/refer_stat"
+      def_ment:
+        $ref: "#/definitions/refer_stat"
       algo:
         $ref: "#/definitions/refer_stat"
       trad:
@@ -173,7 +182,7 @@ definitions:
       max_edge:
         type: integer
       init:
-        type: integer
+        $ref: "#/definitions/refer_stat"
       action_maj:
         type: integer
       action_min:

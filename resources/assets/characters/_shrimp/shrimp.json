@@ -113,7 +113,7 @@
       "type": "trait"
     },
     {
-      "description": "__A1__ lorsque vous compilez un sprite machine.",
+      "description": "__A1__ lorsque vous compilez ou inscrivez un sprite machine.",
       "name": "Ami des sprites machine",
       "type": "trait"
     },
@@ -318,6 +318,20 @@
     "cha_mod": 0,
     "con": 1,
     "con_mod": 0,
+    "def_ment": {
+      "score": 8,
+      "stat": [
+        "vol",
+        "int"
+      ]
+    },
+    "def_phy": {
+      "score": 6,
+      "stat": [
+        "rea",
+        "int"
+      ]
+    },
     "edge": 4,
     "ess": 6,
     "for": 1,
@@ -325,7 +339,13 @@
     "hit_over": 1,
     "hit_phy": 8,
     "hit_stun": 10,
-    "init": 1,
+    "init": {
+      "score": 7,
+      "stat": [
+        "rea",
+        "int"
+      ]
+    },
     "int": 4,
     "int_mod": 0,
     "log": 6,
@@ -342,6 +362,12 @@
     "rea_mod": 0,
     "res": 7,
     "resist_drain": 0,
+    "resist_ment": {
+      "score": 4,
+      "stat": [
+        "vol"
+      ]
+    },
     "resist_phy": {
       "score": 1,
       "stat": [

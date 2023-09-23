@@ -1,7 +1,7 @@
 import { Theme, Text } from "@radix-ui/themes";
 
-type TextStandard = { children?: React.ReactNode };
-export const TextIndice = ({ children }: TextStandard) => {
+type TextIndiceProps = { children?: React.ReactNode };
+export const TextIndice = ({ children }: TextIndiceProps) => {
   return (
     <Theme asChild>
       <Text
