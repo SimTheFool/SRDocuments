@@ -1,4 +1,4 @@
-import { Table, Theme } from "@radix-ui/themes";
+import { Table } from "@radix-ui/themes";
 import { ReactNode } from "react";
 import styles from "./StatTable.module.css";
 

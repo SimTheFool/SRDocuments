@@ -18,11 +18,13 @@ type CardProps = {
 export const Card = ({ title, children, note }: CardProps) => {
   return (
     <RadCard className={styles.card}>
-      <Box className={styles.cardTitle} px={"1"}>
-        <Heading size={"1"} as={"h3"} weight={"light"}>
-          {title}
-        </Heading>
-      </Box>
+      {title && (
+        <Box className={styles.cardTitle} px={"1"}>
+          <Heading size={"1"} as={"h3"} weight={"light"}>
+            {title}
+          </Heading>
+        </Box>
+      )}
 
       <Box className={styles.cardNote} px={"1"} asChild>
         <Heading size={"1"} as={"h3"} weight={"light"}>

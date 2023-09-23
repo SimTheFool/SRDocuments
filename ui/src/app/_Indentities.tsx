@@ -7,6 +7,7 @@ import { Box, Flex } from "@radix-ui/themes";
 import { Character, Identity as CharIdentity } from "resources";
 import { capitalize } from "@/utils/capitalize";
 import { TitleSection } from "@/components/TitleSection";
+import { Space } from "@/components/Space";
 
 type IdentitiesProps = {
   char: Character;
@@ -88,6 +89,7 @@ const Identity = ({
                 title={c.name}
                 subtitle={`L${c.loyalty}-R${c.connection}`}
               />
+              <Space />
               <ParagraphStandard>{c.description}</ParagraphStandard>
             </Card>
           </Container>

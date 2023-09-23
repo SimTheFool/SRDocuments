@@ -1,5 +1,11 @@
 .table {
     width: fit-content;
+    padding-bottom: var(--space-4);
+    
+}
+
+.table table {
+    --table-row-border-bottom: inset 0 -1px var(--gray-10);
 }
 
 .tableInline {
@@ -11,7 +17,7 @@
     padding-left: 0;
     padding-bottom: 0;
     padding-top: 0;
-    padding-right: var(--space-2);
+    padding-right: var(--space-1);
     height: unset;
     text-align: center;
 }

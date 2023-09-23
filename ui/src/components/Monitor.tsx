@@ -1,8 +1,7 @@
-import { Box, Flex, Grid, Heading } from "@radix-ui/themes";
-import styles from "./Monitor.module.css";
+import { Box, Grid, Heading } from "@radix-ui/themes";
 import { ReactNode } from "react";
-import { ImHeartBroken } from "react-icons/im";
 import { FaSkull } from "react-icons/fa";
+import styles from "./Monitor.module.css";
 
 type MonitorProps = {
   hit: number;

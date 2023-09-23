@@ -112,25 +112,6 @@ export const Stats = ({ char }: StatsProps) => {
       <Container>
         <StatTable
           items={[
-            ["Res.Phy", "Res.Ment"],
-            [
-              <StatBlock
-                n={stats.resist_phy.score}
-                stat={stats.resist_phy.stat}
-                dice={6}
-              />,
-              <StatBlock
-                n={stats.resist_ment.score}
-                stat={stats.resist_ment.stat}
-                dice={6}
-              />,
-            ],
-          ]}
-        />
-      </Container>
-      <Container>
-        <StatTable
-          items={[
             ["Gué.Nat"],
             [
               <StatBlock
@@ -155,6 +136,25 @@ export const Stats = ({ char }: StatsProps) => {
               <StatBlock
                 n={stats.def_ment.score}
                 stat={stats.def_ment.stat}
+                dice={6}
+              />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
+        <StatTable
+          items={[
+            ["Res.Phy", "Res.Ment"],
+            [
+              <StatBlock
+                n={stats.resist_phy.score}
+                stat={stats.resist_phy.stat}
+                dice={6}
+              />,
+              <StatBlock
+                n={stats.resist_ment.score}
+                stat={stats.resist_ment.stat}
                 dice={6}
               />,
             ],
@@ -187,8 +187,7 @@ const StatBlock = ({ n, mod, stat, dice }: StatBlockProps) => {
 const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box
-      pl={"1"}
-      pb={"1"}
+      pr={"2"}
       style={{
         display: "inline-block",
       }}

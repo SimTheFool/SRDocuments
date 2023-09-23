@@ -1,20 +1,21 @@
+import { Effects } from "@/app/_Effects";
+import { Identities } from "@/app/_Indentities";
+import { Monitors } from "@/app/_Monitors";
+import { Resources } from "@/app/_Resources";
+import { Skills } from "@/app/_Skills";
+import { Stats } from "@/app/_Stats";
 import { Header } from "@/components/Header";
-import { Box, Container, Grid } from "@radix-ui/themes";
-import { Effects } from "./_Effects";
-import { Identities } from "./_Indentities";
-import { Monitors } from "./_Monitors";
-import { Resources } from "./_Resources";
-import { Skills } from "./_Skills";
-import { Stats } from "./_Stats";
 import { Section } from "@/components/Section";
-import { characters } from "resources";
 import { TitleSection } from "@/components/TitleSection";
+import { Box, Container, Grid } from "@radix-ui/themes";
+import { characters } from "resources";
+import { A4Format } from "../A4Format";
 
 const shrimp = characters.shrimp;
 
 export default function Home() {
   return (
-    <>
+    <A4Format>
       <Header char={shrimp} />
       <Grid
         columns="2"
@@ -26,13 +27,13 @@ export default function Home() {
         pt={"1"}
         px={"2"}
       >
-        <Container>
+        <Box>
           <Stats char={shrimp} />
           <Resources char={shrimp} />
           <Monitors char={shrimp} />
-        </Container>
+        </Box>
 
-        <Container>
+        <Box>
           <Box
             pl={"2"}
             style={{
@@ -49,7 +50,7 @@ export default function Home() {
           >
             <Skills char={shrimp} />
           </Box>
-        </Container>
+        </Box>
       </Grid>
       <Box
         pt={"3"}
@@ -69,6 +70,6 @@ export default function Home() {
       >
         <Section title={<TitleSection>Notes</TitleSection>}></Section>
       </Box>
-    </>
+    </A4Format>
   );
 }

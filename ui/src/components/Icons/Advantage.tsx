@@ -1,13 +1,12 @@
 import { Box } from "@radix-ui/themes";
-import { RxTriangleUp, RxTriangleDown } from "react-icons/rx";
+import { BsFillDiamondFill } from "react-icons/bs";
+import { BaseIcon } from "./BaseIcon";
 
 type AdvantageProps = {
   n: number;
 };
 
 export const Advantage = ({ n }: AdvantageProps) => {
-  let negative = n < 0;
-  let nAbs = Math.abs(n);
   return (
     <Box
       style={{
@@ -15,24 +14,19 @@ export const Advantage = ({ n }: AdvantageProps) => {
         position: "relative",
       }}
     >
+      <BaseIcon size={18}>
+        <BsFillDiamondFill />
+      </BaseIcon>
       <Box
         style={{
-          visibility: "hidden",
+          position: "absolute",
+          color: "white",
+          top: "13%",
+          left: "20%",
         }}
       >
-        <RxTriangleUp />
+        {n}
       </Box>
-      {Array.from({ length: nAbs }).map((_, i) => (
-        <Box
-          style={{
-            position: "absolute",
-            top: `${40 - i * 20}%`,
-            transform: `translateY(${negative ? "-3px" : "0px"})`,
-          }}
-        >
-          {negative ? <RxTriangleDown /> : <RxTriangleUp />}
-        </Box>
-      ))}
     </Box>
   );
 };

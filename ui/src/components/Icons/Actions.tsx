@@ -1,37 +1,41 @@
 import { FaSquare } from "react-icons/fa";
 import { BsTriangleFill } from "react-icons/bs";
+import { BaseIcon } from "./BaseIcon";
 
 type ActionProps = {};
 
 export const MajorAction = ({}: ActionProps) => {
   return (
-    <FaSquare
-      size="18"
-      style={{
-        color: "var(--gray-9)",
-      }}
-    />
+    <BaseIcon size={22}>
+      <FaSquare
+        style={{
+          color: "var(--gray-9)",
+        }}
+      />
+    </BaseIcon>
   );
 };
 
 export const MinorAction = ({}: ActionProps) => {
   return (
-    <BsTriangleFill
-      size="14"
-      style={{
-        color: "var(--gray-9)",
-      }}
-    />
+    <BaseIcon>
+      <BsTriangleFill
+        style={{
+          color: "var(--gray-9)",
+        }}
+      />
+    </BaseIcon>
   );
 };
 
 export const MinorActionLight = ({}: ActionProps) => {
   return (
-    <BsTriangleFill
-      size="14"
-      style={{
-        color: "var(--gray-6)",
-      }}
-    />
+    <BaseIcon>
+      <BsTriangleFill
+        style={{
+          color: "var(--gray-6)",
+        }}
+      />
+    </BaseIcon>
   );
 };

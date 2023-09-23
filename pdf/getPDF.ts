@@ -36,23 +36,15 @@ const main = async () => {
   };
 
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: false,
     defaultViewport: {
       ...a4FromWidth(2500),
     },
   });
   const page = await browser.newPage();
-  await page.goto("http://localhost:3002/");
+  await page.goto("http://localhost:3002/pdfs/summary");
   await page.waitForSelector("h1");
-  const bodyHandle = await page.$("body");
-  await page.evaluate((body) => {
-    body?.setAttribute("style", "zoom: 4");
-  }, bodyHandle);
 
-  /* const radixTheme = await page.$(".radix-themes");
-  await page.evaluate((theme) => {
-    (theme as any)?.setAttribute("style", "--scaling: 4");
-  }, radixTheme); */
   await page.screenshot({
     fullPage: true,
     quality: 100,

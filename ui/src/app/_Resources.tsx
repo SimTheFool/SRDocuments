@@ -20,14 +20,14 @@ export const Resources = ({ char }: ResourcesProps) => {
     <Flex>
       <Box pr={"4"}>
         <TitleMin title={"Actions"} />
-        <Box pr={"1"} display={"inline-block"}></Box>
+        <Box pr={"2"} display={"inline-block"}></Box>
         {Array.from({ length: char.stats.action_maj }).map(() => (
           <Box pr={"1"} display={"inline-block"}>
             <MajorAction />
           </Box>
         ))}
         {Array.from({ length: minActionNb }).map((_, i) => (
-          <Box pr={"1"} display={"inline-block"}>
+          <Box pr={"2"} display={"inline-block"}>
             {i < char.stats.action_min ? <MinorAction /> : <MinorActionLight />}
           </Box>
         ))}
@@ -35,7 +35,7 @@ export const Resources = ({ char }: ResourcesProps) => {
       <Box>
         <TitleMin title={"Atouts"} />
         {Array.from({ length: edgeNb }).map((_, i) => (
-          <Box pr={"1"} display={"inline-block"}>
+          <Box pr={"2"} display={"inline-block"}>
             {i < char.stats.edge ? <Edge /> : <EdgeLight />}
           </Box>
         ))}
