@@ -173,6 +173,11 @@
       "quality": "i2"
     }
   ],
+  "knowledges": [
+    "drônes",
+    "séries tridéos",
+    "jeux tridéos"
+  ],
   "name": "shrimp",
   "outfits": {
     "bag": {

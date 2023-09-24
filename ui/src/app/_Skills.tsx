@@ -41,6 +41,14 @@ export const Skills = ({ char }: SkillsProps) => {
             )}
           </Container>
         ))}
+        <Container>
+          <Card>
+            <SkillText name={capitalize("connaissances")} />
+            {char.knowledges?.map((name) => (
+              <MasterText label={name} />
+            ))}
+          </Card>
+        </Container>
       </Box>
     </Section>
   );
@@ -54,7 +62,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const SkillText = ({ name, score }: { name: string; score: number }) => {
+const SkillText = ({ name, score }: { name: string; score?: number }) => {
   return (
     <Flex
       justify={"between"}
@@ -76,36 +84,40 @@ const SkillText = ({ name, score }: { name: string; score: number }) => {
       >
         {name}
       </Text>
-      <Box pl={"1"} asChild>
-        <Text
-          weight={"bold"}
-          size={"2"}
-          style={{
-            flexShrink: 0,
-            lineHeight: 1.5,
-          }}
-        >
-          {score}
-        </Text>
-      </Box>
+      {score && (
+        <Box pl={"1"} asChild>
+          <Text
+            weight={"bold"}
+            size={"2"}
+            style={{
+              flexShrink: 0,
+              lineHeight: 1.5,
+            }}
+          >
+            {score}
+          </Text>
+        </Box>
+      )}
     </Flex>
   );
 };
 
-const MasterText = ({ label, score }: { label: string; score: number }) => {
+const MasterText = ({ label, score }: { label: string; score?: number }) => {
   return (
     <Flex pl={"2"}>
-      <Box pr={"1"} asChild>
-        <Text
-          weight={"light"}
-          size={"1"}
-          style={{
-            lineHeight: 1,
-          }}
-        >
-          +{score}
-        </Text>
-      </Box>
+      {score && (
+        <Box pr={"1"} asChild>
+          <Text
+            weight={"light"}
+            size={"1"}
+            style={{
+              lineHeight: 1,
+            }}
+          >
+            +{score}
+          </Text>
+        </Box>
+      )}
       <Text
         weight={"light"}
         size={"1"}

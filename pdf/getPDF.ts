@@ -36,7 +36,7 @@ const main = async () => {
   };
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: "new",
     defaultViewport: {
       ...a4FromWidth(668),
     },

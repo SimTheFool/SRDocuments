@@ -10,6 +10,11 @@ properties:
     items:
       type: string
 
+  knowledges:
+    type: array
+    items:
+      type: string
+
   stats:
     $ref: "#/definitions/stats"
 

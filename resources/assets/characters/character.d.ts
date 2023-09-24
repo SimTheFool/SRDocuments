@@ -47,6 +47,7 @@ export interface Schema {
   };
   effects?: Effect[];
   identities?: Identity[];
+  knowledges?: string[];
   name?: string;
   outfits?: {
     [k: string]: Outfit;

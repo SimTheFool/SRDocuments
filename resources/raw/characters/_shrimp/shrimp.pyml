@@ -64,6 +64,11 @@ skills:
       EXP:
         - Inscription
 
+knowledges:
+    - drônes
+    - séries tridéos
+    - jeux tridéos
+
 identities:
   - !inc::identities/i_leg
       NUYENS: null
@@ -81,7 +86,7 @@ identities:
   - !inc::identities/i_fake
       NAME: L. Guinvite
       NUYENS: null
-      LIFESTYLE: !inc::identities/squat
+      LIFESTYLE: !inc::identities/lifestyle/squat
       LICENCES:
         - !inc::identities/licence
             ITEM: Chasse d'arme

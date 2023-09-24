@@ -30,8 +30,12 @@ export const MasonryGrid = ({ children, columns }: MasonryGridProps) => {
     <Box ref={gridRef}>
       <Container width={columnWidth} sizer />
 
-      {React.Children.map(children, (child) => {
-        return <Container width={columnWidth}>{child}</Container>;
+      {React.Children.map(children, (child, i) => {
+        return (
+          <Container key={i} width={columnWidth}>
+            {child}
+          </Container>
+        );
       })}
     </Box>
   );

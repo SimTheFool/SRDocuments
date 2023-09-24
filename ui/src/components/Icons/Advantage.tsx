@@ -20,6 +20,7 @@ export const Advantage = ({ n }: AdvantageProps) => {
       <Box
         style={{
           position: "absolute",
+          fontWeight: "bold",
           color: "white",
           top: "13%",
           left: "20%",

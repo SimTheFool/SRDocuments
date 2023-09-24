@@ -721,6 +721,12 @@
       },
       "type": "array"
     },
+    "knowledges": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
     "name": {
       "type": "string"
     },
