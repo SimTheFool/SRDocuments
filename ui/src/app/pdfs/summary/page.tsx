@@ -15,7 +15,7 @@ const shrimp = characters.shrimp;
 
 export default function Home() {
   return (
-    <A4Format>
+    <A4Format border>
       <Header char={shrimp} />
       <Grid
         columns="2"

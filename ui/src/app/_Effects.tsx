@@ -7,6 +7,7 @@ import { TitleSection } from "@/components/TitleSection";
 import { Box } from "@radix-ui/themes";
 import { Character } from "resources";
 import { TextWithIcons } from "@/components/Text";
+import { MasonryGrid } from "@/components/MasonryGrid";
 
 type EffectsProps = {
   char: Character;
@@ -15,12 +16,7 @@ type EffectsProps = {
 export const Effects = ({ char }: EffectsProps) => {
   return (
     <Section>
-      <Box
-        style={{
-          columnCount: 4,
-          columnGap: "0px",
-        }}
-      >
+      <MasonryGrid columns={4}>
         <Box pb={"1"}>
           <TitleSection>Effects</TitleSection>
         </Box>
@@ -37,7 +33,7 @@ export const Effects = ({ char }: EffectsProps) => {
             </Card>
           </Box>
         ))}
-      </Box>
+      </MasonryGrid>
     </Section>
   );
 };

@@ -17,7 +17,7 @@ type SkillsProps = {
 export const Skills = ({ char }: SkillsProps) => {
   let skills: [string, Skill][] = Object.entries(char.skills) as any;
   return (
-    <Section title={<TitleSection>Compétences</TitleSection>}>
+    <Section>
       <Box
         style={{
           display: "column",
@@ -25,6 +25,7 @@ export const Skills = ({ char }: SkillsProps) => {
           columnGap: "0",
         }}
       >
+        <TitleSection>Compétences</TitleSection>
         {skills.map(([name, value]) => (
           <Container>
             {value && (

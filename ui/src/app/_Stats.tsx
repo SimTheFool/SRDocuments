@@ -126,13 +126,22 @@ export const Stats = ({ char }: StatsProps) => {
       <Container>
         <StatTable
           items={[
-            ["Def.Phy", "Def.Ment"],
+            ["Def.Phy"],
             [
               <StatBlock
                 n={stats.def_phy.score}
                 stat={stats.def_phy.stat}
                 dice={6}
               />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
+        <StatTable
+          items={[
+            ["Def.Ment"],
+            [
               <StatBlock
                 n={stats.def_ment.score}
                 stat={stats.def_ment.stat}
@@ -145,13 +154,22 @@ export const Stats = ({ char }: StatsProps) => {
       <Container>
         <StatTable
           items={[
-            ["Res.Phy", "Res.Ment"],
+            ["Res.Phy"],
             [
               <StatBlock
                 n={stats.resist_phy.score}
                 stat={stats.resist_phy.stat}
                 dice={6}
               />,
+            ],
+          ]}
+        />
+      </Container>
+      <Container>
+        <StatTable
+          items={[
+            ["Res.Ment"],
+            [
               <StatBlock
                 n={stats.resist_ment.score}
                 stat={stats.resist_ment.stat}

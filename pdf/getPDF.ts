@@ -38,18 +38,16 @@ const main = async () => {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: {
-      ...a4FromWidth(2500),
+      ...a4FromWidth(668),
     },
   });
   const page = await browser.newPage();
   await page.goto("http://localhost:3002/pdfs/summary");
   await page.waitForSelector("h1");
 
-  await page.screenshot({
-    fullPage: true,
-    quality: 100,
-    type: "jpeg",
-    path: `${__dirname}/my-fance-invoice.jpeg`,
+  await page.pdf({
+    ...a4FromWidth(668),
+    path: `${__dirname}/my-fance-invoice.pdf`,
   });
   await browser.close();
   process.exit(0);

@@ -58,7 +58,7 @@ export default function Home() {
                 width: "20%",
               }}
             >
-              <Monitor hit={12} alwaysCurable />
+              <Monitor columns={3} hit={12} alwaysCurable />
             </Box>
           </Flex>
           <Slot size="S">Châsse</Slot>

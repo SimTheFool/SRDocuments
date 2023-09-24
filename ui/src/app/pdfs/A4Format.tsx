@@ -8,7 +8,7 @@ type A4FormatProps = {
 };
 
 export const A4Format = ({ children, border = false }: A4FormatProps) => {
-  const a4 = getA4FormatFromWidth(2500);
+  const a4 = getA4FormatFromWidth(665);
 
   return (
     <Theme
