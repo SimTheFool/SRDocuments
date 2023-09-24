@@ -26,11 +26,13 @@ export const Card = ({ title, children, note }: CardProps) => {
         </Box>
       )}
 
-      <Box className={styles.cardNote} px={"1"} asChild>
-        <Heading size={"1"} as={"h3"} weight={"light"}>
-          {note}
-        </Heading>
-      </Box>
+      {note && (
+        <Box className={styles.cardNote} px={"1"} asChild>
+          <Heading size={"1"} as={"h3"} weight={"light"}>
+            {note}
+          </Heading>
+        </Box>
+      )}
       {children}
     </RadCard>
   );

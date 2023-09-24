@@ -6,10 +6,16 @@ import styles from "./Monitor.module.css";
 type MonitorProps = {
   hit: number;
   overHit?: number;
-  title: ReactNode;
+  title?: ReactNode;
+  alwaysCurable?: boolean;
 };
 
-export const Monitor = ({ hit, title, overHit = 0 }: MonitorProps) => {
+export const Monitor = ({
+  hit,
+  title,
+  overHit = 0,
+  alwaysCurable = false,
+}: MonitorProps) => {
   const xx = overHit % 4;
   const yy = (overHit - xx) / 4;
   const overHitBox = Array.from({ length: yy }).map(() => 4);
@@ -29,7 +35,7 @@ export const Monitor = ({ hit, title, overHit = 0 }: MonitorProps) => {
       </Heading>
       <Grid columns={"3"} gap="0">
         {Array.from({ length: hit }).map(() => (
-          <HitBox />
+          <HitBox hideIcon={alwaysCurable} />
         ))}
         {overHitBox.map((n) => (
           <OverHitBox n={n} />
@@ -39,12 +45,10 @@ export const Monitor = ({ hit, title, overHit = 0 }: MonitorProps) => {
   );
 };
 
-const HitBox = ({}: {}) => {
+const HitBox = ({ hideIcon = false }: { hideIcon?: boolean }) => {
   return (
     <Box className={styles.box}>
-      <Box className={styles.incurable}>
-        <FaSkull />
-      </Box>
+      <Box className={styles.incurable}>{!hideIcon && <FaSkull />}</Box>
     </Box>
   );
 };

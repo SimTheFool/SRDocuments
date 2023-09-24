@@ -7,16 +7,25 @@ type Items = [ReactNode[], ...ReactNode[][]];
 type StateTableProps = {
   items: Items;
   inline?: boolean;
+  compact?: boolean;
 };
 
-export const StatTable = ({ items, inline = false }: StateTableProps) => {
+export const StatTable = ({
+  items,
+  inline = false,
+  compact = false,
+}: StateTableProps) => {
   const headers = items?.[0];
   const [_, ...rows] = items;
 
   return (
     <Table.Root
       size="1"
-      className={[styles.table, inline && styles.tableInline].join(" ")}
+      className={[
+        styles.table,
+        inline && styles.tableInline,
+        compact && styles.tableCompact,
+      ].join(" ")}
     >
       <Table.Header>
         <Table.Row>

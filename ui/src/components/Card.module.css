@@ -1,7 +1,7 @@
 .card {
     overflow-y: visible;
     position: relative;
-    height: 100%;
+    height: auto;
     border: 1px solid var(--gray-10);
     border-radius: 0px !important;
 }
