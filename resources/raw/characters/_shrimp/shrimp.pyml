@@ -154,6 +154,8 @@ drones:
         DRONE: drones.packmule
     - !inc::objects/drones/mods/monture
         DRONE: drones.packmule
+    - !inc::objects/drones/mods/compartiment
+        DRONE: drones.packmule
     - !inc::objects/drones/mods/rules
         DRONE: drones.packmule
 

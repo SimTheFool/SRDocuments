@@ -44,6 +44,9 @@
         "price": {
           "type": "integer"
         },
+        "quantity": {
+          "type": "integer"
+        },
         "slots": {
           "items": {
             "$ref": "#/definitions/slot"

@@ -25,7 +25,9 @@ const Drone = ({ drone, name }: { drone: Drone; name: string }) => {
         <Card title={drone.type} note={`d${drone.concealment}`}>
           <TitleMin
             inline
-            title={capitalize(name)}
+            title={`${capitalize(name)} ${
+              drone.quantity ? `x ${drone.quantity}` : ""
+            }`}
             subtitle={drone.manufacturer}
           />
           <TitleMin
@@ -87,18 +89,17 @@ const Drone = ({ drone, name }: { drone: Drone; name: string }) => {
 export default function Home() {
   return (
     <A4Format border>
-      <Space />
-      <Space />
-      <MasonryGrid columns={3}>
-        <Box>
-          <TitleSection>Inventory</TitleSection>
-          <Space />
-        </Box>
-        {Object.entries(drones || {}).map(([name, drone]) => {
-          return <Drone drone={drone} name={name} />;
-        })}
-      </MasonryGrid>
-
+      <Box pt={"2"}>
+        <MasonryGrid columns={3}>
+          <Box>
+            <TitleSection>Inventory</TitleSection>
+            <Space />
+          </Box>
+          {Object.entries(drones || {}).map(([name, drone]) => {
+            return <Drone drone={drone} name={name} />;
+          })}
+        </MasonryGrid>
+      </Box>
       {/* <Grid
         columns="2"
         gap="2"

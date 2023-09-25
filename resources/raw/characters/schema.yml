@@ -414,6 +414,8 @@ definitions:
         type: string
       price:
         type: integer
+      quantity:
+        type: integer
       legal:
         type: boolean
       licenced:

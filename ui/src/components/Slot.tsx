@@ -1,5 +1,6 @@
 import { Box, Text } from "@radix-ui/themes";
 import { Space } from "./Space";
+import { TextIndice } from "./TextIndice";
 
 type SlotProps = {
   children?: React.ReactNode;
@@ -8,10 +9,10 @@ type SlotProps = {
 };
 
 const sizes = {
-  S: "100px",
-  M: "200px",
-  L: "400px",
-  XL: "800px",
+  S: "30px",
+  M: "45px",
+  L: "60px",
+  XL: "80px",
 } satisfies Record<SlotProps["size"], string>;
 
 export const Slot = ({ children, size, concealment }: SlotProps) => {
@@ -26,10 +27,13 @@ export const Slot = ({ children, size, concealment }: SlotProps) => {
       <Text
         size={"1"}
         style={{
+          zIndex: 1,
           position: "absolute",
           bottom: "0",
           right: "0",
           lineHeight: "0.5",
+          transform: "translate(0%, 2px)",
+          backgroundColor: "white",
         }}
       >
         {children}
@@ -37,7 +41,7 @@ export const Slot = ({ children, size, concealment }: SlotProps) => {
         {concealment && (
           <>
             <Space inline />
-            `(d${concealment})`
+            <TextIndice>{concealment && `(d${concealment})`}</TextIndice>
           </>
         )}
       </Text>

@@ -88,6 +88,11 @@
         {
           "name": "châsse",
           "size": "S"
+        },
+        {
+          "concealment": 3,
+          "name": "cache",
+          "size": "M"
         }
       ],
       "stats": {

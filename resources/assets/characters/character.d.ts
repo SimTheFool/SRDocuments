@@ -86,6 +86,7 @@ export interface BaseItem {
   manufacturer?: string;
   name: string;
   price: number;
+  quantity?: number;
   slots?: Slot[];
   type?: string;
 }

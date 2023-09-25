@@ -1,4 +1,4 @@
 $DRONE.slots: !mix
-    - name: châsse
+    - name: cache
       size: M
       concealment: 3
