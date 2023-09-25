@@ -1,5 +1,4 @@
 import { Card } from "@/components/Card";
-import { FlexList } from "@/components/FlexList";
 import { Section } from "@/components/Section";
 import { ParagraphStandard } from "@/components/ParagraphStandard";
 import { TitleMin } from "@/components/TitleMin";
@@ -8,6 +7,7 @@ import { Character, Identity as CharIdentity } from "resources";
 import { capitalize } from "@/utils/capitalize";
 import { TitleSection } from "@/components/TitleSection";
 import { Space } from "@/components/Space";
+import { MasonryGrid } from "@/components/MasonryGrid";
 
 type IdentitiesProps = {
   char: Character;
@@ -45,9 +45,9 @@ const Identity = ({
     : null;
 
   return (
-    <Flex wrap={"wrap"} align={"stretch"}>
+    <>
       {(lifestyle || quality) && (
-        <Container width={"90%"}>
+        <Container>
           <Card>
             <Box>
               <TitleMin
@@ -61,41 +61,43 @@ const Identity = ({
           </Card>
         </Container>
       )}
-      {quality && (
-        <Container width={"50%"}>
-          <Card title={"nuyens"}>
-            <Flex justify={"between"} align={"end"} height={"100%"}>
-              <ParagraphStandard>_</ParagraphStandard>
-              <ParagraphStandard>
-                {nuyens ? `/${nuyens}¥` : null}
-              </ParagraphStandard>
-            </Flex>
-          </Card>
-        </Container>
-      )}
-      {licences?.map((l) => (
-        <Container width={"50%"}>
-          <Card title={"licence"}>
-            <ParagraphStandard>{l.name}</ParagraphStandard>
-            <TitleMin subtitle={`${l.quality}-${l.price}¥`} />
-          </Card>
-        </Container>
-      ))}
-      {contacts?.map((c) => {
-        return (
-          <Container width={"50%"}>
-            <Card title={"contact"}>
-              <TitleMin
-                title={c.name}
-                subtitle={`L${c.loyalty}-R${c.connection}`}
-              />
-              <Space />
-              <ParagraphStandard>{c.description}</ParagraphStandard>
+      <MasonryGrid compact columns={2}>
+        {quality && (
+          <Container>
+            <Card title={"nuyens"}>
+              <Flex justify={"between"} align={"end"} height={"100%"}>
+                <ParagraphStandard>_</ParagraphStandard>
+                <ParagraphStandard>
+                  {nuyens ? `/${nuyens}¥` : null}
+                </ParagraphStandard>
+              </Flex>
             </Card>
           </Container>
-        );
-      })}
-    </Flex>
+        )}
+        {licences?.map((l) => (
+          <Container>
+            <Card title={"licence"}>
+              <ParagraphStandard>{l.name}</ParagraphStandard>
+              <TitleMin subtitle={`${l.quality}-${l.price}¥`} />
+            </Card>
+          </Container>
+        ))}
+        {contacts?.map((c) => {
+          return (
+            <Container>
+              <Card title={"contact"}>
+                <TitleMin
+                  title={c.name}
+                  subtitle={`L${c.loyalty}-R${c.connection}`}
+                />
+                <Space />
+                <ParagraphStandard>{c.description}</ParagraphStandard>
+              </Card>
+            </Container>
+          );
+        })}
+      </MasonryGrid>
+    </>
   );
 };
 

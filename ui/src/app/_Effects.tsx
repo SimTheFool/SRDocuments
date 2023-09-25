@@ -16,10 +16,8 @@ type EffectsProps = {
 export const Effects = ({ char }: EffectsProps) => {
   return (
     <Section>
-      <MasonryGrid columns={4}>
-        <Box pb={"1"}>
-          <TitleSection>Effects</TitleSection>
-        </Box>
+      <MasonryGrid compact columns={4}>
+        <TitleSection>Effects</TitleSection>
         {char.effects?.map((e) => (
           <Box pr={"2"} pb={"2"}>
             <Card title={e.type}>
