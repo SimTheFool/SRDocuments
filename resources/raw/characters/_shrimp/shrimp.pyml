@@ -138,12 +138,12 @@ weapons:
   clef_cyber_fictionnelle: !inc::objects/weapons/clef_cyber_fictionnelle
       SELF: weapons.clef_cyber_fictionnelle
 
-  mecanized_arm: !inc::objects/weapons/mecanized_arm
-      SELF: weapons.mecanized_arm
+  bras_mécanique: !inc::objects/weapons/mecanized_arm
+      SELF: weapons.bras_mécanique
 
   mecanized_arm_mods:
     - !inc::objects/weapons/mods/chasse
-        WEAPON: weapons.mecanized_arm
+        WEAPON: weapons.bras_mécanique
 
 drones:
   packmule: !inc::objects/drones/packmule

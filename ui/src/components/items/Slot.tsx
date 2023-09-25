@@ -1,6 +1,6 @@
 import { Box, Text } from "@radix-ui/themes";
-import { Space } from "./Space";
-import { TextIndice } from "./TextIndice";
+import { Space } from "../Space";
+import { TextIndice } from "../TextIndice";
 
 type SlotProps = {
   children?: React.ReactNode;
@@ -9,10 +9,10 @@ type SlotProps = {
 };
 
 const sizes = {
-  S: "30px",
-  M: "45px",
-  L: "60px",
-  XL: "80px",
+  S: "25px",
+  M: "35px",
+  L: "50px",
+  XL: "65px",
 } satisfies Record<SlotProps["size"], string>;
 
 export const Slot = ({ children, size, concealment }: SlotProps) => {

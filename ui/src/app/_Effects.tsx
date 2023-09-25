@@ -6,7 +6,7 @@ import { TitleMin } from "@/components/TitleMin";
 import { TitleSection } from "@/components/TitleSection";
 import { Box } from "@radix-ui/themes";
 import { Character } from "resources";
-import { TextWithIcons } from "@/components/Text";
+import { TextReplaced } from "@/components/Text";
 import { MasonryGrid } from "@/components/MasonryGrid";
 
 type EffectsProps = {
@@ -24,9 +24,7 @@ export const Effects = ({ char }: EffectsProps) => {
               <TitleMin title={e.name} />
               <Space />
               <ParagraphStandard>
-                {e.description && (
-                  <TextWithIcons>{e.description}</TextWithIcons>
-                )}
+                {e.description && <TextReplaced>{e.description}</TextReplaced>}
               </ParagraphStandard>
             </Card>
           </Box>

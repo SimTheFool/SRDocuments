@@ -1,90 +1,18 @@
-import { Card } from "@/components/Card";
 import { MasonryGrid } from "@/components/MasonryGrid";
-import { Monitor } from "@/components/Monitor";
-import { ParagraphStandard } from "@/components/ParagraphStandard";
-import { Price } from "@/components/Price";
-import { Slot } from "@/components/Slot";
 import { Space } from "@/components/Space";
-import { StatTable } from "@/components/StatTable";
-import { TitleMin } from "@/components/TitleMin";
 import { TitleSection } from "@/components/TitleSection";
-import { capitalize } from "@/utils/capitalize";
-import { Box, Flex } from "@radix-ui/themes";
+import { Drone } from "@/components/items/Drone";
+import { Box } from "@radix-ui/themes";
 import { Character, characters } from "resources";
 import { A4Format } from "../A4Format";
+import { ItemCard } from "@/components/items/ItemCard";
 
 const shrimp = characters.shrimp;
-const drones = shrimp.drones;
 
-type Drone = Exclude<Character["drones"], undefined>[string];
-const Drone = ({ drone, name }: { drone: Drone; name: string }) => {
-  const stats = drone.stats;
-  return (
-    <Box>
-      <Flex align={"stretch"}>
-        <Card title={drone.type} note={`d${drone.concealment}`}>
-          <TitleMin
-            inline
-            title={`${capitalize(name)} ${
-              drone.quantity ? `x ${drone.quantity}` : ""
-            }`}
-            subtitle={drone.manufacturer}
-          />
-          <TitleMin
-            subtitle={
-              <>
-                <Price price={drone.price} />
-                <Space inline />
-                {!drone.legal ? "Illgégal" : drone.licenced ? "Licencié" : ""}
-              </>
-            }
-          />
-          <ParagraphStandard>
-            <Space />
-            {drone.description}
-            <Space />
-            <StatTable
-              compact
-              items={[
-                ["Mani", "Acc.", "Interv.", "Vit.Max"],
-                [
-                  `${stats.maniability_flat}/${stats.maniability_rough}`,
-                  stats.acceleration,
-                  stats.step,
-                  stats.max_speed,
-                ],
-              ]}
-            />
-            <StatTable
-              compact
-              items={[
-                ["Auto.", "Res.", "Sens.", "Blin."],
-                [stats.autopilot, stats.resistance, stats.sensors, stats.armor],
-              ]}
-            />
-          </ParagraphStandard>
-        </Card>
-        <Box
-          style={{
-            maxWidth: "20%",
-            width: "20%",
-          }}
-        >
-          <Monitor columns={3} hit={drone.hit} alwaysCurable />
-        </Box>
-      </Flex>
-      <MasonryGrid compact columns={2}>
-        {drone.slots?.map((slot) => {
-          return (
-            <Slot size={slot.size} concealment={slot.concealment}>
-              {slot.name}
-            </Slot>
-          );
-        })}
-      </MasonryGrid>
-    </Box>
-  );
-};
+const drones = shrimp.drones;
+const weapons = shrimp.weapons;
+
+type Weapon = Exclude<Character["weapons"], undefined>[string];
 
 export default function Home() {
   return (
@@ -96,7 +24,19 @@ export default function Home() {
             <Space />
           </Box>
           {Object.entries(drones || {}).map(([name, drone]) => {
-            return <Drone drone={drone} name={name} />;
+            return (
+              <Box pb={"4"} pr={"2"}>
+                <Drone item={drone} name={name} />
+              </Box>
+            );
+          })}
+          {Object.entries(weapons || {}).map(([name, weapon]) => {
+            return (
+              <Box pb={"4"} pr={"2"}>
+                {" "}
+                <ItemCard item={weapon} name={name} />
+              </Box>
+            );
           })}
         </MasonryGrid>
       </Box>

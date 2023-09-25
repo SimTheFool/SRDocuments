@@ -444,6 +444,16 @@
     }
   },
   "weapons": {
+    "bras_mécanique": {
+      "ammo": 250,
+      "concealment": 2,
+      "description": " Cette arme est adaptée pour la monture.",
+      "legal": true,
+      "licenced": false,
+      "name": "Bras mécanique",
+      "price": 1000,
+      "type": "outil"
+    },
     "clef_cyber_fictionnelle": {
       "actions": {
         "activer": {
@@ -535,7 +545,7 @@
         }
       },
       "ammo": 250,
-      "concealment": -1,
+      "concealment": 0,
       "damage": 5,
       "damage_type": "P",
       "description": "Fusil d assaut polyvalent. La guncam permet de calculer la trajectoire des balles. Cette arme est adaptée pour la monture. Le canon a été allongé pour une meilleure précision à distance.",
@@ -543,7 +553,7 @@
       "licenced": true,
       "manufacturer": "Cavalier Arms",
       "name": "Crockett",
-      "price": 11100,
+      "price": 11000,
       "ranges": {
         "contact": -2,
         "far": 1,
@@ -576,7 +586,7 @@
         }
       },
       "ammo": 250,
-      "concealment": 1,
+      "concealment": 2,
       "damage": 0,
       "damage_type": "",
       "description": " Cette arme est adaptée pour la monture.",
@@ -584,7 +594,7 @@
       "licenced": false,
       "manufacturer": "",
       "name": "Grappin",
-      "price": 600,
+      "price": 500,
       "ranges": {
         "contact": -99,
         "far": -99,
@@ -592,16 +602,6 @@
         "near": 0,
         "short": -99
       },
-      "type": "outil"
-    },
-    "mecanized_arm": {
-      "ammo": 250,
-      "concealment": 1,
-      "description": " Cette arme est adaptée pour la monture.",
-      "legal": true,
-      "licenced": false,
-      "name": "Bras mécanique",
-      "price": 1100,
       "type": "outil"
     },
     "pulsar": {
@@ -641,7 +641,7 @@
         }
       },
       "ammo": 250,
-      "concealment": 2,
+      "concealment": 3,
       "damage": 4,
       "damage_type": "Elec",
       "description": " Cette arme est adaptée pour la monture.",
@@ -649,7 +649,7 @@
       "licenced": false,
       "manufacturer": "Yamaha",
       "name": "Pulsar",
-      "price": 450,
+      "price": 350,
       "ranges": {
         "contact": 0,
         "far": -99,
