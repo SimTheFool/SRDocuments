@@ -1,21 +1,24 @@
 import { Box, Text } from "@radix-ui/themes";
+import { Space } from "./Space";
 
 type SlotProps = {
   children?: React.ReactNode;
-  size: "S" | "M" | "L";
+  size: "S" | "M" | "L" | "XL";
+  concealment?: number;
 };
 
 const sizes = {
   S: "100px",
   M: "200px",
   L: "400px",
+  XL: "800px",
 } satisfies Record<SlotProps["size"], string>;
 
-export const Slot = ({ children, size }: SlotProps) => {
+export const Slot = ({ children, size, concealment }: SlotProps) => {
   return (
     <Box
       style={{
-        border: "2px dashed var(--gray-10)",
+        border: "1px dashed var(--gray-10)",
         height: sizes[size],
         position: "relative",
       }}
@@ -30,6 +33,13 @@ export const Slot = ({ children, size }: SlotProps) => {
         }}
       >
         {children}
+
+        {concealment && (
+          <>
+            <Space inline />
+            `(d${concealment})`
+          </>
+        )}
       </Text>
     </Box>
   );

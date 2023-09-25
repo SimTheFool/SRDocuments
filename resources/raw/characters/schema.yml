@@ -420,6 +420,10 @@ definitions:
         type: boolean
       concealment:
         type: integer
+      slots:
+        type: array
+        items:
+          $ref: "#/definitions/slot"
 
   #~~~ SLOT ~~~#
   slot:
@@ -430,6 +434,7 @@ definitions:
         type: string
       size:
         type: string
+        enum: [S, M, L, XL]
       concealment:
         type: integer
 
@@ -499,21 +504,12 @@ definitions:
                 type: integer
               armor:
                 type: integer
-          slots:
-            type: array
-            items:
-              $ref: "#/definitions/slot"
 
   #~~~ OUTFIT ~~~#
   outfit:
     type: object
     allOf:
       - $ref: "#/definitions/base_item"
-      - properties:
-          slots:
-            type: array
-            items:
-              $ref: "#/definitions/slot"
 
   #~~~ COMPANION ~~~#
   companion:

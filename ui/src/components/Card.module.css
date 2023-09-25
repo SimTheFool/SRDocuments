@@ -40,13 +40,18 @@
     transform: translateY(-50%);
 }
  */
-/* .cardNote {
+.cardNote {
     transform: translateY(-50%) translateX(10px);
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
-} */
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(3px * var(--scaling));
+}
 
 /* .cardNote::after {
     content: '';

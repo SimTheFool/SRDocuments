@@ -10,7 +10,6 @@ export type SpecificAction = BaseAction & {
 };
 export type Drone = BaseItem & {
   hit: number;
-  slots?: Slot[];
   stats: {
     acceleration: number;
     armor: number;
@@ -23,9 +22,7 @@ export type Drone = BaseItem & {
     step: number;
   };
 };
-export type Outfit = BaseItem & {
-  slots?: Slot[];
-};
+export type Outfit = BaseItem;
 export type Weapon = BaseItem & {
   actions?: {
     attaquer?: ContactAction;
@@ -89,12 +86,13 @@ export interface BaseItem {
   manufacturer?: string;
   name: string;
   price: number;
+  slots?: Slot[];
   type?: string;
 }
 export interface Slot {
   concealment?: number;
   name: string;
-  size: string;
+  size: "S" | "M" | "L" | "XL";
 }
 export interface Effect {
   description?: string;

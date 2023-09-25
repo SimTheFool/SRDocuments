@@ -1,5 +1,6 @@
 name: Packmule
 manufacturer: ARES
+type: drône
 price: 11000
 legal: true
 licenced: false

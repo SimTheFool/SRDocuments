@@ -44,6 +44,12 @@
         "price": {
           "type": "integer"
         },
+        "slots": {
+          "items": {
+            "$ref": "#/definitions/slot"
+          },
+          "type": "array"
+        },
         "type": {
           "type": "string"
         }
@@ -155,12 +161,6 @@
           "properties": {
             "hit": {
               "type": "integer"
-            },
-            "slots": {
-              "items": {
-                "$ref": "#/definitions/slot"
-              },
-              "type": "array"
             },
             "stats": {
               "properties": {
@@ -323,16 +323,6 @@
       "allOf": [
         {
           "$ref": "#/definitions/base_item"
-        },
-        {
-          "properties": {
-            "slots": {
-              "items": {
-                "$ref": "#/definitions/slot"
-              },
-              "type": "array"
-            }
-          }
         }
       ],
       "type": "object"
@@ -484,6 +474,12 @@
           "type": "string"
         },
         "size": {
+          "enum": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
           "type": "string"
         }
       },

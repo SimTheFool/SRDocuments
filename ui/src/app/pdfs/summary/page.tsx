@@ -7,7 +7,7 @@ import { Stats } from "@/app/_Stats";
 import { Header } from "@/components/Header";
 import { Section } from "@/components/Section";
 import { TitleSection } from "@/components/TitleSection";
-import { Box, Container, Grid } from "@radix-ui/themes";
+import { Box, Grid } from "@radix-ui/themes";
 import { characters } from "resources";
 import { A4Format } from "../A4Format";
 

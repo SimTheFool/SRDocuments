@@ -1,6 +1,6 @@
 $DRONE.slots: !mix
     - name: châsse
-      size: M
+      size: S
 
 _transform.$PRICES_LAYER: !mix
     - "$DRONE.price += 2500"
