@@ -125,14 +125,14 @@ weapons:
       SELF: weapons.pulsar
 
   pulsar_mods:
-    - !inc::objects/weapons/mods/chasse
+    - !inc::objects/weapons/mods/chasse_light
         WEAPON: weapons.pulsar
 
   grappin: !inc::objects/weapons/grappin
       SELF: weapons.grappin
 
   grappin_mods:
-    - !inc::objects/weapons/mods/chasse
+    - !inc::objects/weapons/mods/chasse_light
         WEAPON: weapons.grappin
 
   clef_cyber_fictionnelle: !inc::objects/weapons/clef_cyber_fictionnelle

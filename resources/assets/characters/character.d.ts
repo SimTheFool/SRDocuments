@@ -33,6 +33,9 @@ export type Weapon = BaseItem & {
   } & {
     [k: string]: BaseAction1;
   };
+  ammo?: number;
+  damage?: number;
+  damage_type?: string;
 };
 
 export interface Schema {

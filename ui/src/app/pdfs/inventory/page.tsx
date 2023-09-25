@@ -2,17 +2,112 @@ import { MasonryGrid } from "@/components/MasonryGrid";
 import { Space } from "@/components/Space";
 import { TitleSection } from "@/components/TitleSection";
 import { Drone } from "@/components/items/Drone";
-import { Box } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
 import { Character, characters } from "resources";
 import { A4Format } from "../A4Format";
 import { ItemCard } from "@/components/items/ItemCard";
+import { Card } from "@/components/Card";
+import { TitleMin } from "@/components/TitleMin";
+import { ParagraphStandard } from "@/components/ParagraphStandard";
+import { MajorAction, MinorAction } from "@/components/Icons/Actions";
 
 const shrimp = characters.shrimp;
-
-const drones = shrimp.drones;
 const weapons = shrimp.weapons;
 
+type LoadAction = Exclude<
+  Exclude<Weapon["actions"], undefined>["recharger"],
+  undefined
+>;
+const LoadAction = ({ action }: { action: LoadAction }) => {
+  return (
+    <Card>
+      <Flex justify={"between"}>
+        <Box>
+          <TitleMin title={"Recharger"} />
+          <Space />
+          {action.description && (
+            <ParagraphStandard>{action.description}</ParagraphStandard>
+          )}
+          <ParagraphStandard>_____/{action.ammo}</ParagraphStandard>
+        </Box>
+        <Box>
+          <MajorAction />
+        </Box>
+      </Flex>
+    </Card>
+  );
+};
+
+type ShootAction = Exclude<
+  Exclude<Weapon["actions"], undefined>["tir"],
+  undefined
+>;
+const ShootAction = ({
+  action: {
+    damage,
+    damage_type,
+    major,
+    minor,
+    description,
+    ranges,
+    ammo_consumption,
+  },
+}: {
+  action: ShootAction;
+}) => {
+  return (
+    <Card>
+      <Flex justify={"between"}>
+        <Box>
+          <TitleMin title={"Tir"} />
+          <Space />
+          <TitleMin
+            subtitle={`${ranges.contact}/${ranges.near}/${ranges.short}/${ranges.medium}/${ranges.far}`}
+          />
+          <Space />
+          {!!damage && (
+            <TitleMin subtitle={<>VD: {`${damage} ${damage_type}`}</>} />
+          )}
+          <Space />
+          {description && <ParagraphStandard>{description}</ParagraphStandard>}
+        </Box>
+        <Box>
+          {Array.from({ length: major }).map((_, i) => (
+            <MajorAction key={i} />
+          ))}
+          {Array.from({ length: minor }).map((_, i) => (
+            <MinorAction key={i} />
+          ))}
+        </Box>
+      </Flex>
+    </Card>
+  );
+};
+
 type Weapon = Exclude<Character["weapons"], undefined>[string];
+const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
+  const {
+    recharger,
+    attaquer,
+    tir,
+    tir_rafale,
+    tir_semi_auto,
+    ...otherActions
+  } = weapon.actions || {};
+
+  return (
+    <ItemCard item={weapon} name={name}>
+      {{
+        bottom: (
+          <>
+            {recharger && <LoadAction action={recharger} />}
+            {tir && <ShootAction action={tir} />}
+          </>
+        ),
+      }}
+    </ItemCard>
+  );
+};
 
 export default function Home() {
   return (
@@ -23,7 +118,7 @@ export default function Home() {
             <TitleSection>Inventory</TitleSection>
             <Space />
           </Box>
-          {Object.entries(drones || {}).map(([name, drone]) => {
+          {Object.entries(shrimp.drones || {}).map(([name, drone]) => {
             return (
               <Box pb={"4"} pr={"2"}>
                 <Drone item={drone} name={name} />
@@ -33,8 +128,7 @@ export default function Home() {
           {Object.entries(weapons || {}).map(([name, weapon]) => {
             return (
               <Box pb={"4"} pr={"2"}>
-                {" "}
-                <ItemCard item={weapon} name={name} />
+                <Weapon weapon={weapon} name={name} />
               </Box>
             );
           })}

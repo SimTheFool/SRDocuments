@@ -686,6 +686,15 @@
                 }
               ],
               "type": "object"
+            },
+            "ammo": {
+              "type": "integer"
+            },
+            "damage": {
+              "type": "integer"
+            },
+            "damage_type": {
+              "type": "string"
             }
           }
         }
