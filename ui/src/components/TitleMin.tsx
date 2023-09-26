@@ -1,4 +1,4 @@
-import { Heading, Text } from "@radix-ui/themes";
+import { Box, Heading, Text } from "@radix-ui/themes";
 
 type MinTitleProps = {
   title?: React.ReactNode;
@@ -12,7 +12,11 @@ export const TitleMin = ({
   inline = false,
 }: MinTitleProps) => {
   return (
-    <>
+    <Box
+      style={{
+        lineHeight: 1,
+      }}
+    >
       <Heading
         size={"2"}
         as={"h4"}
@@ -35,6 +39,6 @@ export const TitleMin = ({
       >
         {subtitle}
       </Text>
-    </>
+    </Box>
   );
 };

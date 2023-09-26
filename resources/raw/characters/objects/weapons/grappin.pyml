@@ -10,13 +10,14 @@ ammo: 1
 damage: 0
 damage_type: ""
 ranges:
-    contact: -99
+    contact: -2
     near: 0
     short: -99
     medium: -99
     far: -99
 range_labels:
-    "inf20": "near"
+    "r0": "contact"
+    "r20": "near"
     
 extend_actions:
     - !inc::actions/shot

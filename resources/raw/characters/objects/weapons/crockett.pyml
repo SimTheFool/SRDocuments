@@ -16,10 +16,10 @@ ranges:
     medium: 1
     far: 0
 range_labels:
-    "sup0": "contact"
-    "inf50": "near"
-    "inf500": "medium"
-    "inf750": "far"
+    "r0": "contact"
+    "r50": "near"
+    "r500": "medium"
+    "r750": "far"
 
 extend_actions:
     - !inc::actions/shot

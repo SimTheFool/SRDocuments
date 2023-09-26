@@ -342,7 +342,7 @@
     },
     "range_labels": {
       "patternProperties": {
-        "(inf|sup)[0-9]*": {
+        "r[0-9]*": {
           "$ref": "#/definitions/range_enum"
         }
       },

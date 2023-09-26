@@ -1,39 +1,12 @@
 import { Flex, Box } from "@radix-ui/themes";
-import { Weapon } from "resources";
+import { RangeScores, Weapon, getSortedNumberScoresPair } from "resources";
 import { MajorAction, MinorAction } from "../Icons/Actions";
 import { ParagraphStandard } from "../ParagraphStandard";
 import { Space } from "../Space";
 import { TitleMin } from "../TitleMin";
 import { Card } from "../Card";
 import { ShotAction as ShotActionType, RangeLabels } from "resources";
-import { StatTable } from "../StatTable";
-
-/* const RangeTable = ({}: {}) => {
-  return (
-    <Flex wrap={"wrap"}>
-      <Box px={"2"}>
-        {"0"}
-        <Space />
-        :0
-      </Box>
-      <Box px={"2"}>
-        {"100"}
-        <Space />
-        :1
-      </Box>
-      <Box px={"2"}>
-        {"500"}
-        <Space />
-        :-2
-      </Box>
-      <Box px={"2"}>
-        {"520"}
-        <Space />
-        :4
-      </Box>
-    </Flex>
-  );
-}; */
+import { Ruler } from "../Ruler";
 
 type ShotActionProps = {
   action: ShotActionType;
@@ -51,21 +24,21 @@ export const ShotAction = ({
   },
   rangeLabels,
 }: ShotActionProps) => {
-  const rangeLabelScore = Object.entries(rangeLabels || {}).map(
-    ([key, value]) => [key, ranges[value]] as const
-  );
-
   return (
     <Card>
       <Flex justify={"between"}>
         <Box>
-          <TitleMin title={"Tir"} />
-          <Space />
-          {!!damage && (
-            <TitleMin subtitle={<>VD: {`${damage} ${damage_type}`}</>} />
-          )}
+          <TitleMin title={"Tir"} subtitle={`${damage}${damage_type}`} inline />
           <Space />
           {description && <ParagraphStandard>{description}</ParagraphStandard>}
+          {rangeLabels && (
+            <ParagraphStandard>
+              <ScoresRuler
+                distanceByNb={rangeLabels}
+                scoresByDistance={ranges}
+              />
+            </ParagraphStandard>
+          )}
         </Box>
         <Box>
           {Array.from({ length: major }).map((_, i) => (
@@ -78,4 +51,23 @@ export const ShotAction = ({
       </Flex>
     </Card>
   );
+};
+
+const ScoresRuler = ({
+  distanceByNb,
+  scoresByDistance,
+}: {
+  distanceByNb: RangeLabels;
+  scoresByDistance: RangeScores;
+}) => {
+  const { numbers, scores } = getSortedNumberScoresPair(
+    distanceByNb,
+    scoresByDistance
+  );
+
+  const formattedScores = scores.map((score) =>
+    score > 0 ? `+${score}` : score
+  );
+
+  return <Ruler items={formattedScores} placeholders={numbers} />;
 };

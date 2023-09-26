@@ -41,7 +41,7 @@ export type Weapon = BaseItem & {
 };
 /**
  * This interface was referenced by `RangeLabels`'s JSON-Schema definition
- * via the `patternProperty` "(inf|sup)[0-9]*".
+ * via the `patternProperty` "r[0-9]*".
  */
 export type RangeEnum = "contact" | "near" | "short" | "medium" | "far";
 

@@ -404,7 +404,7 @@ definitions:
   range_labels:
     type: object
     patternProperties:
-      "(inf|sup)[0-9]*":
+      "r[0-9]*":
         $ref: "#/definitions/range_enum"
 
   #~~~ BASE_ITEM ~~~#

@@ -51,16 +51,9 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
             {children?.inner}
           </ParagraphStandard>
         </Card>
-        <Box
-          style={{
-            maxWidth: "20%",
-            width: "20%",
-          }}
-        >
-          {children?.aside}
-        </Box>
       </Flex>
-      <MasonryGrid compact columns={2}>
+
+      <MasonryGrid compact columns={1}>
         {children?.bottom}
       </MasonryGrid>
     </Box>

@@ -555,10 +555,10 @@
       "name": "Crockett",
       "price": 11000,
       "range_labels": {
-        "inf50": "near",
-        "inf500": "medium",
-        "inf750": "far",
-        "sup0": "contact"
+        "r0": "contact",
+        "r50": "near",
+        "r500": "medium",
+        "r750": "far"
       },
       "ranges": {
         "contact": -2,
@@ -583,7 +583,7 @@
           "major": 1,
           "minor": 0,
           "ranges": {
-            "contact": -99,
+            "contact": -2,
             "far": -99,
             "medium": -99,
             "near": 0,
@@ -602,10 +602,11 @@
       "name": "Grappin",
       "price": 500,
       "range_labels": {
-        "inf20": "near"
+        "r0": "contact",
+        "r20": "near"
       },
       "ranges": {
-        "contact": -99,
+        "contact": -2,
         "far": -99,
         "medium": -99,
         "near": 0,
@@ -660,8 +661,8 @@
       "name": "Pulsar",
       "price": 350,
       "range_labels": {
-        "inf20": "near",
-        "sup0": "contact"
+        "r0": "contact",
+        "r20": "near"
       },
       "ranges": {
         "contact": 0,

@@ -35,9 +35,9 @@ export const Drone = ({ item, name }: DroneProps) => {
                 [stats.autopilot, stats.resistance, stats.sensors, stats.armor],
               ]}
             />
+            <Monitor columns={12} hit={item.hit} alwaysCurable />
           </>
         ),
-        aside: <Monitor columns={3} hit={item.hit} alwaysCurable />,
         bottom: (
           <>
             {item.slots?.map((slot) => {

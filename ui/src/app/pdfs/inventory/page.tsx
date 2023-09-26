@@ -6,10 +6,22 @@ import { ShotAction } from "@/components/actions/ShotAction";
 import { Drone } from "@/components/items/Drone";
 import { ItemCard } from "@/components/items/ItemCard";
 import { Box } from "@radix-ui/themes";
-import { Weapon, characters } from "resources";
+import { Weapon, characters, RangeLabels } from "resources";
 import { A4Format } from "../A4Format";
+import { Ruler } from "@/components/Ruler";
 
 const shrimp = characters.shrimp;
+
+const DistanceNbRuler = ({ distanceByNb }: { distanceByNb: RangeLabels }) => {
+  const nbs = Object.entries(distanceByNb).map(([key]) => {
+    const k = key.replace("r", "");
+    const nb = parseInt(k);
+    return nb;
+  });
+  const sortedNbs = nbs.sort();
+
+  return <Ruler items={sortedNbs} />;
+};
 
 const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
   const {
@@ -24,6 +36,13 @@ const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
   return (
     <ItemCard item={weapon} name={name}>
       {{
+        inner: (
+          <>
+            {weapon.range_labels && (
+              <DistanceNbRuler distanceByNb={weapon.range_labels} />
+            )}
+          </>
+        ),
         bottom: (
           <>
             {recharger && <LoadAction action={recharger} />}
@@ -41,7 +60,7 @@ export default function Home() {
   return (
     <A4Format border>
       <Box pt={"2"}>
-        <MasonryGrid columns={3}>
+        <MasonryGrid columns={4}>
           <Box>
             <TitleSection>Inventory</TitleSection>
             <Space />

@@ -16,8 +16,8 @@ ranges:
     medium: -99
     far: -99
 range_labels:
-    "sup0": "contact"
-    "inf20": "near"
+    "r0": "contact"
+    "r20": "near"
 
 extend_actions:
     - !inc::actions/shot
