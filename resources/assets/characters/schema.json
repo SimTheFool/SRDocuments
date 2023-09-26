@@ -330,6 +330,42 @@
       ],
       "type": "object"
     },
+    "range_enum": {
+      "enum": [
+        "contact",
+        "near",
+        "short",
+        "medium",
+        "far"
+      ],
+      "type": "string"
+    },
+    "range_labels": {
+      "patternProperties": {
+        "(inf|sup)[0-9]*": {
+          "$ref": "#/definitions/range_enum"
+        }
+      },
+      "type": "object"
+    },
+    "range_scores": {
+      "patternProperties": {
+        ".*": {
+          "type": "integer"
+        }
+      },
+      "propertyNames": {
+        "$ref": "#/definitions/range_enum"
+      },
+      "required": [
+        "contact",
+        "near",
+        "short",
+        "medium",
+        "far"
+      ],
+      "type": "object"
+    },
     "refer_stat": {
       "properties": {
         "score": {
@@ -379,31 +415,7 @@
           "type": "integer"
         },
         "ranges": {
-          "properties": {
-            "contact": {
-              "type": "integer"
-            },
-            "far": {
-              "type": "integer"
-            },
-            "medium": {
-              "type": "integer"
-            },
-            "near": {
-              "type": "integer"
-            },
-            "short": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "contact",
-            "near",
-            "short",
-            "medium",
-            "far"
-          ],
-          "type": "object"
+          "$ref": "#/definitions/range_scores"
         }
       },
       "required": [
@@ -695,6 +707,12 @@
             },
             "damage_type": {
               "type": "string"
+            },
+            "range_labels": {
+              "$ref": "#/definitions/range_labels"
+            },
+            "ranges": {
+              "$ref": "#/definitions/range_scores"
             }
           }
         }

@@ -1,0 +1,30 @@
+import { Flex, Box } from "@radix-ui/themes";
+import { MajorAction } from "../Icons/Actions";
+import { ParagraphStandard } from "../ParagraphStandard";
+import { Space } from "../Space";
+import { TitleMin } from "../TitleMin";
+import { LoadAction as LoadActionType } from "resources";
+import { Card } from "../Card";
+
+type LoadActionProps = {
+  action: LoadActionType;
+};
+export const LoadAction = ({ action }: LoadActionProps) => {
+  return (
+    <Card>
+      <Flex justify={"between"}>
+        <Box>
+          <TitleMin title={"Recharger"} />
+          <Space />
+          {action.description && (
+            <ParagraphStandard>{action.description}</ParagraphStandard>
+          )}
+          <ParagraphStandard>_____/{action.ammo}</ParagraphStandard>
+        </Box>
+        <Box>
+          <MajorAction />
+        </Box>
+      </Flex>
+    </Card>
+  );
+};

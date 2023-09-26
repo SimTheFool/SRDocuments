@@ -15,6 +15,9 @@ ranges:
     short: -99
     medium: -99
     far: -99
+range_labels:
+    "inf20": "near"
+    
 extend_actions:
     - !inc::actions/shot
         WEAPON: $SELF

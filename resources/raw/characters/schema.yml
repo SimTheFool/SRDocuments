@@ -385,19 +385,27 @@ definitions:
       ammo_consumption:
         type: integer
       ranges:
-        type: object
-        required: [contact, near, short, medium, far]
-        properties:
-          contact:
-            type: integer
-          near:
-            type: integer
-          short:
-            type: integer
-          medium:
-            type: integer
-          far:
-            type: integer
+        $ref: "#/definitions/range_scores"
+
+  #~~~ RANGES ~~~#
+  range_enum:
+    type: string
+    enum: [contact, near, short, medium, far]
+
+  range_scores:
+    type: object
+    required: [contact, near, short, medium, far]
+    propertyNames:
+      $ref: "#/definitions/range_enum"
+    patternProperties:
+      ".*":
+        type: integer
+
+  range_labels:
+    type: object
+    patternProperties:
+      "(inf|sup)[0-9]*":
+        $ref: "#/definitions/range_enum"
 
   #~~~ BASE_ITEM ~~~#
   base_item:
@@ -446,6 +454,10 @@ definitions:
     allOf:
       - $ref: "#/definitions/base_item"
       - properties:
+          ranges:
+            $ref: "#/definitions/range_scores"
+          range_labels:
+            $ref: "#/definitions/range_labels"
           ammo:
             type: integer
           damage:

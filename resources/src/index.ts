@@ -1,9 +1,8 @@
 import shrimp from "../assets/characters/_shrimp/shrimp.json";
-import * as CharacterSchema from "../assets/characters/character";
+import type { Schema as Character } from "../assets/characters/character";
 
-export type Character = CharacterSchema.Schema;
-export type Identity = CharacterSchema.Identity;
-export type BaseItem = CharacterSchema.BaseItem;
+export type * from "../assets/characters/character";
+export type { Schema as Character } from "../assets/characters/character";
 
 export const characters = {
   shrimp: shrimp as Character,

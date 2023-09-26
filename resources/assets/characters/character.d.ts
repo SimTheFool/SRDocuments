@@ -36,7 +36,14 @@ export type Weapon = BaseItem & {
   ammo?: number;
   damage?: number;
   damage_type?: string;
+  range_labels?: RangeLabels;
+  ranges?: RangeScores;
 };
+/**
+ * This interface was referenced by `RangeLabels`'s JSON-Schema definition
+ * via the `patternProperty` "(inf|sup)[0-9]*".
+ */
+export type RangeEnum = "contact" | "near" | "short" | "medium" | "far";
 
 export interface Schema {
   actions?: {
@@ -216,17 +223,21 @@ export interface ShotAction {
   description?: string;
   major: number;
   minor: number;
-  ranges: {
-    contact: number;
-    far: number;
-    medium: number;
-    near: number;
-    short: number;
-  };
+  ranges: RangeScores;
+}
+export interface RangeScores {
+  /**
+   * This interface was referenced by `RangeScores`'s JSON-Schema definition
+   * via the `patternProperty` ".*".
+   */
+  [k: string]: number;
 }
 export interface BaseAction1 {
   description?: string;
   maintained?: boolean;
   major: number;
   minor: number;
+}
+export interface RangeLabels {
+  [k: string]: RangeEnum;
 }
