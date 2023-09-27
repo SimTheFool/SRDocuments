@@ -19,5 +19,5 @@ actions:
     activer:
         major: 0
         minor: 1
-        ammo: 4
+        gauge: 4
         description: "+1 charges toutes les 15min."

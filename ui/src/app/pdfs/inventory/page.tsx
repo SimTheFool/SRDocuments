@@ -9,6 +9,7 @@ import { Box } from "@radix-ui/themes";
 import { Weapon, characters, RangeLabels } from "resources";
 import { A4Format } from "../A4Format";
 import { Ruler } from "@/components/Ruler";
+import { BaseAction } from "@/components/actions/BaseAction";
 
 const shrimp = characters.shrimp;
 
@@ -45,9 +46,30 @@ const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
         ),
         bottom: (
           <>
+            {Object.entries(otherActions).map(([name, action]) => (
+              <BaseAction name={name} action={action} />
+            ))}
             {recharger && <LoadAction action={recharger} />}
             {tir && (
-              <ShotAction action={tir} rangeLabels={weapon.range_labels} />
+              <ShotAction
+                name={"Tir"}
+                action={tir}
+                rangeLabels={weapon.range_labels}
+              />
+            )}
+            {tir_semi_auto && (
+              <ShotAction
+                name={"Tir semi"}
+                action={tir_semi_auto}
+                rangeLabels={weapon.range_labels}
+              />
+            )}
+            {tir_rafale && (
+              <ShotAction
+                name={"Tir rafale"}
+                action={tir_rafale}
+                rangeLabels={weapon.range_labels}
+              />
             )}
           </>
         ),

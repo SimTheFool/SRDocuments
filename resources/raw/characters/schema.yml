@@ -321,6 +321,8 @@ definitions:
         type: integer
       minor:
         type: integer
+      gauge:
+        type: integer
       description:
         type: string
 

@@ -84,6 +84,7 @@ export interface Schema {
 }
 export interface BaseAction {
   description?: string;
+  gauge?: number;
   maintained?: boolean;
   major: number;
   minor: number;
@@ -234,6 +235,7 @@ export interface RangeScores {
 }
 export interface BaseAction1 {
   description?: string;
+  gauge?: number;
   maintained?: boolean;
   major: number;
   minor: number;

@@ -457,8 +457,8 @@
     "clef_cyber_fictionnelle": {
       "actions": {
         "activer": {
-          "ammo": 4,
           "description": "+1 charges toutes les 15min.",
+          "gauge": 4,
           "major": 0,
           "minor": 1
         },
@@ -485,15 +485,15 @@
     },
     "crockett": {
       "actions": {
+        "désassembler": {
+          "description": "Augmente la dissimulation de 2 une fois démontée.",
+          "major": 2,
+          "minor": 0
+        },
         "guncam": {
           "description": "Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.",
           "major": 0,
           "minor": 1
-        },
-        "montage/demontage": {
-          "description": "Augmente la dissimulation de 2 une fois démontée.",
-          "major": 2,
-          "minor": 0
         },
         "recharger": {
           "ammo": 250,

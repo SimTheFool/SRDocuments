@@ -1,5 +1,5 @@
 $WEAPON.actions: !mix
-    montage/demontage:
+    désassembler:
         minor: 0
         major: 2
         description: Augmente la dissimulation de 2 une fois démontée.

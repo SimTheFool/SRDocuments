@@ -7,12 +7,15 @@ import { TitleMin } from "../TitleMin";
 import { Card } from "../Card";
 import { ShotAction as ShotActionType, RangeLabels } from "resources";
 import { Ruler } from "../Ruler";
+import { Bullet } from "../Icons/Bullet";
 
 type ShotActionProps = {
+  name: string;
   action: ShotActionType;
   rangeLabels?: RangeLabels;
 };
 export const ShotAction = ({
+  name,
   action: {
     damage,
     damage_type,
@@ -28,7 +31,17 @@ export const ShotAction = ({
     <Card>
       <Flex justify={"between"}>
         <Box>
-          <TitleMin title={"Tir"} subtitle={`${damage}${damage_type}`} inline />
+          <TitleMin
+            title={name}
+            subtitle={
+              <>
+                {ammo_consumption}
+                <Bullet />
+                {` ${damage}${damage_type}`}
+              </>
+            }
+            inline
+          />
           <Space />
           {description && <ParagraphStandard>{description}</ParagraphStandard>}
           {rangeLabels && (

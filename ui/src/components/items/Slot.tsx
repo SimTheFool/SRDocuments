@@ -34,10 +34,11 @@ export const Slot = ({ children, size, concealment }: SlotProps) => {
           lineHeight: "0.5",
           transform: "translate(0%, 2px)",
           backgroundColor: "white",
+          paddingLeft: "var(--space-1)",
+          paddingRight: "var(--space-1)",
         }}
       >
         {children}
-
         {concealment && (
           <>
             <Space inline />
