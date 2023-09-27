@@ -25,14 +25,8 @@ const DistanceNbRuler = ({ distanceByNb }: { distanceByNb: RangeLabels }) => {
 };
 
 const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
-  const {
-    recharger,
-    attaquer,
-    tir,
-    tir_rafale,
-    tir_semi_auto,
-    ...otherActions
-  } = weapon.actions || {};
+  const { recharger, tir, tir_rafale, tir_semi_auto, ...otherActions } =
+    weapon.actions || {};
 
   return (
     <ItemCard item={weapon} name={name}>
@@ -46,10 +40,10 @@ const Weapon = ({ weapon, name }: { weapon: Weapon; name: string }) => {
         ),
         bottom: (
           <>
+            {recharger && <LoadAction action={recharger} />}
             {Object.entries(otherActions).map(([name, action]) => (
               <BaseAction name={name} action={action} />
             ))}
-            {recharger && <LoadAction action={recharger} />}
             {tir && (
               <ShotAction
                 name={"Tir"}
@@ -82,7 +76,7 @@ export default function Home() {
   return (
     <A4Format border>
       <Box pt={"2"}>
-        <MasonryGrid columns={4}>
+        <MasonryGrid columns={3}>
           <Box>
             <TitleSection>Inventory</TitleSection>
             <Space />

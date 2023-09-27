@@ -1,0 +1,7 @@
+.bottom > * {
+    border-top: none !important;
+}
+
+.noBorderBottom > * {
+    border-bottom: none !important;
+}

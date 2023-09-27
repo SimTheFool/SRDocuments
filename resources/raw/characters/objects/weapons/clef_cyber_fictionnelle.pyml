@@ -14,8 +14,8 @@ actions:
         minor: 0
         damage: 3
         damage_type: Elec
-        ranges:
-            contact: 0
+        score: 0
+
     activer:
         major: 0
         minor: 1

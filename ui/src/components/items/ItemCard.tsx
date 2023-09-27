@@ -8,11 +8,13 @@ import { TitleMin } from "../TitleMin";
 import { TextReplaced } from "../Text";
 import { Box, Flex } from "@radix-ui/themes";
 import { MasonryGrid } from "../MasonryGrid";
+import styles from "./ItemCard.module.css";
+import React from "react";
 
 type ItemCardProps = {
   children?: {
     aside?: React.ReactNode;
-    bottom?: React.ReactNode;
+    bottom?: React.ReactElement;
     inner?: React.ReactNode;
   };
   item: BaseItem;
@@ -20,9 +22,13 @@ type ItemCardProps = {
 };
 
 export const ItemCard = ({ item, name, children }: ItemCardProps) => {
+  const bottomItemNb = React.Children.toArray(
+    children?.bottom?.props.children
+  ).filter((x) => x).length;
+
   return (
     <Box>
-      <Flex>
+      <Flex className={bottomItemNb > 0 ? styles.noBorderBottom : ""}>
         <Card title={item.type} note={`d${item.concealment}`}>
           <TitleMin
             inline
@@ -54,7 +60,11 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
       </Flex>
 
       <MasonryGrid compact columns={1}>
-        {children?.bottom}
+        {React.Children.toArray(children?.bottom?.props.children).map(
+          (child, i) => (
+            <Box className={i == 0 ? "" : styles.bottom}>{child}</Box>
+          )
+        )}
       </MasonryGrid>
     </Box>
   );

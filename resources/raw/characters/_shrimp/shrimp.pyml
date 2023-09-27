@@ -125,7 +125,7 @@ weapons:
       SELF: weapons.pulsar
 
   pulsar_mods:
-    - !inc::objects/weapons/mods/chasse_light
+    - !inc::objects/weapons/mods/chasse_medium
         WEAPON: weapons.pulsar
 
   grappin: !inc::objects/weapons/grappin

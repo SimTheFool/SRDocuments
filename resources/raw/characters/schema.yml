@@ -325,6 +325,12 @@ definitions:
         type: integer
       description:
         type: string
+      damage:
+        type: integer
+      damage_type:
+        type: string
+      score:
+        type: integer
 
   specific_action:
     type: object
@@ -335,27 +341,6 @@ definitions:
           type:
             type: string
             enum: ["technomancy"]
-
-  contact_action:
-    type: object
-    required: [major, minor, damage, damage_type, ranges]
-    properties:
-      major:
-        type: integer
-      minor:
-        type: integer
-      description:
-        type: string
-      damage:
-        type: integer
-      damage_type:
-        type: string
-      ranges:
-        type: object
-        required: [contact]
-        properties:
-          contact:
-            type: integer
 
   load_action:
     type: object
@@ -470,8 +455,6 @@ definitions:
             type: object
             allOf:
               - properties:
-                  attaquer:
-                    $ref: "#/definitions/contact_action"
                   tir:
                     $ref: "#/definitions/shot_action"
                   tir_semi_auto:

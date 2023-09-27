@@ -2,6 +2,12 @@
   "definitions": {
     "base_action": {
       "properties": {
+        "damage": {
+          "type": "integer"
+        },
+        "damage_type": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
@@ -15,6 +21,9 @@
           "type": "integer"
         },
         "minor": {
+          "type": "integer"
+        },
+        "score": {
           "type": "integer"
         }
       },
@@ -117,44 +126,6 @@
         "name",
         "loyalty",
         "connection"
-      ],
-      "type": "object"
-    },
-    "contact_action": {
-      "properties": {
-        "damage": {
-          "type": "integer"
-        },
-        "damage_type": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "major": {
-          "type": "integer"
-        },
-        "minor": {
-          "type": "integer"
-        },
-        "ranges": {
-          "properties": {
-            "contact": {
-              "type": "integer"
-            }
-          },
-          "required": [
-            "contact"
-          ],
-          "type": "object"
-        }
-      },
-      "required": [
-        "major",
-        "minor",
-        "damage",
-        "damage_type",
-        "ranges"
       ],
       "type": "object"
     },
@@ -676,9 +647,6 @@
               "allOf": [
                 {
                   "properties": {
-                    "attaquer": {
-                      "$ref": "#/definitions/contact_action"
-                    },
                     "recharger": {
                       "$ref": "#/definitions/load_action"
                     },

@@ -25,7 +25,6 @@ export type Drone = BaseItem & {
 export type Outfit = BaseItem;
 export type Weapon = BaseItem & {
   actions?: {
-    attaquer?: ContactAction;
     recharger?: LoadAction;
     tir?: ShotAction;
     tir_rafale?: ShotAction;
@@ -83,11 +82,14 @@ export interface Schema {
   };
 }
 export interface BaseAction {
+  damage?: number;
+  damage_type?: string;
   description?: string;
   gauge?: number;
   maintained?: boolean;
   major: number;
   minor: number;
+  score?: number;
 }
 export interface BaseItem {
   concealment: number;
@@ -201,16 +203,6 @@ export interface ReferStat {
   score: number;
   stat: ("con" | "agi" | "rea" | "for" | "vol" | "log" | "int" | "cha")[];
 }
-export interface ContactAction {
-  damage: number;
-  damage_type: string;
-  description?: string;
-  major: number;
-  minor: number;
-  ranges: {
-    contact: number;
-  };
-}
 export interface LoadAction {
   ammo: number;
   description?: string;
@@ -234,11 +226,14 @@ export interface RangeScores {
   [k: string]: number;
 }
 export interface BaseAction1 {
+  damage?: number;
+  damage_type?: string;
   description?: string;
   gauge?: number;
   maintained?: boolean;
   major: number;
   minor: number;
+  score?: number;
 }
 export interface RangeLabels {
   [k: string]: RangeEnum;

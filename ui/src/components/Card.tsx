@@ -1,13 +1,6 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Inset,
-  Card as RadCard,
-  Text,
-} from "@radix-ui/themes";
-import styles from "./Card.module.css";
+import { Box, Heading, Card as RadCard } from "@radix-ui/themes";
 import React from "react";
+import styles from "./Card.module.css";
 
 type CardProps = {
   children?: React.ReactNode;

@@ -468,9 +468,7 @@
           "description": "Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.",
           "major": 1,
           "minor": 0,
-          "ranges": {
-            "contact": 0
-          }
+          "score": 0
         }
       },
       "ammo": 4,
@@ -617,7 +615,7 @@
     "pulsar": {
       "actions": {
         "recharger": {
-          "ammo": 20,
+          "ammo": 30,
           "major": 1,
           "minor": 0
         },
@@ -650,7 +648,7 @@
           }
         }
       },
-      "ammo": 20,
+      "ammo": 30,
       "concealment": 3,
       "damage": 4,
       "damage_type": "Elec",
