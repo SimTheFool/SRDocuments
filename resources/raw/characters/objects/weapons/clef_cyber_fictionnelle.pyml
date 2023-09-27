@@ -1,7 +1,7 @@
 type: clef anglaise
 name: Clef anglaise robotique cyber-fictionnelle
 manufacturer: ""
-description: ""
+description: Une réplique maison de l'arme emblématique de la série Technotronix. Le revêtement électrique rechareable permet d'électrifier la cible.Le gyroscope à poids dynamique facilite le maniement. Le nanogénérateur à électricité statique permet occasionnellement de toucher la cible même si on rate son coup.
 price: 725
 legal: true
 licenced: false
@@ -9,7 +9,7 @@ concealment: !inc::objects/concealment/4_retracted_baton
 ammo: 4
 actions:
     attaquer:
-        description: "Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup."
+        description: ""
         major: 1
         minor: 0
         damage: 3
@@ -20,4 +20,4 @@ actions:
         major: 0
         minor: 1
         gauge: 4
-        description: "+1 charges toutes les 15min."
+        description: "+1 charges toutes les 15min. "Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.""
