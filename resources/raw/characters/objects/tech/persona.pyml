@@ -1,4 +1,7 @@
 name: Persona incarné
+price: 0
+legal: true
+licenced: false
 stats:
     firewall: 0
     traitement: 0

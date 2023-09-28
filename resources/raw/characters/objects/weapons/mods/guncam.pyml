@@ -4,14 +4,15 @@ $WEAPON.actions: !mix
         major: 0
         description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
 
-tech: !mix
-    guncam:
-        name: Guncam
-        description: Permet de calculer de rectifier la trajectoire des balles à chaque itération.
-        price: 350
-        legal: true
-        licenced: true
-        concealment: !inc::objects/concealment/2_standard_weapons
+#tech: !mix
+#    guncam:
+#        name: Guncam
+#        type: module
+#        description: Permet de calculer de rectifier la trajectoire des balles à chaque itération.
+#        price: 350
+#        legal: true
+#        licenced: true
+#        concealment: !inc::objects/concealment/2_standard_weapons
         
 _transform.$MODS_LAYER: !mix
     - "$WEAPON.description += \" La guncam permet de calculer la trajectoire des balles.\""

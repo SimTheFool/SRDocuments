@@ -1,6 +1,6 @@
 $WEAPON.actions: !mix
     tir_rafale:
-        description: "Vous pouvez répartir votre test d'attaque sur plusieurs cibles"
+        description: "Vous pouvez viser plusieurs cibles proches."
         major: 1
         minor: 0
         damage: 0

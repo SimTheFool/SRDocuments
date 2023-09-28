@@ -12,7 +12,7 @@ const sizes = {
   S: "25px",
   M: "35px",
   L: "50px",
-  XL: "65px",
+  XL: "250px",
 } satisfies Record<SlotProps["size"], string>;
 
 export const Slot = ({ children, size, concealment }: SlotProps) => {

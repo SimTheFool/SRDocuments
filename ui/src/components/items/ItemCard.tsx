@@ -10,6 +10,7 @@ import { Box, Flex } from "@radix-ui/themes";
 import { MasonryGrid } from "../MasonryGrid";
 import styles from "./ItemCard.module.css";
 import React from "react";
+import { Slot } from "./Slot";
 
 type ItemCardProps = {
   children?: {
@@ -22,14 +23,30 @@ type ItemCardProps = {
 };
 
 export const ItemCard = ({ item, name, children }: ItemCardProps) => {
-  const bottomItemNb = React.Children.toArray(
+  const bottomChildren = React.Children.toArray(
     children?.bottom?.props.children
-  ).filter((x) => x).length;
+  ).filter((x) => x);
+
+  const bottomChildrenWithSlots = [
+    ...bottomChildren,
+    ...(item.slots || []).map((slot) => {
+      return (
+        <Slot size={slot.size} concealment={slot.concealment}>
+          {slot.name}
+        </Slot>
+      );
+    }),
+  ];
+
+  const bottomItemNb = bottomChildrenWithSlots.length;
 
   return (
     <Box>
       <Flex className={bottomItemNb > 0 ? styles.noBorderBottom : ""}>
-        <Card title={item.type} note={`d${item.concealment}`}>
+        <Card
+          title={item.type}
+          note={item.concealment != undefined && `d${item.concealment}`}
+        >
           <TitleMin
             inline
             title={
@@ -51,8 +68,12 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
             }
           />
           <ParagraphStandard>
-            <Space />
-            {item.description}
+            {item.description && (
+              <>
+                <Space />
+                <TextReplaced>{item.description}</TextReplaced>
+              </>
+            )}
             <Space />
             {children?.inner}
           </ParagraphStandard>
@@ -60,11 +81,9 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
       </Flex>
 
       <MasonryGrid compact columns={1}>
-        {React.Children.toArray(children?.bottom?.props.children).map(
-          (child, i) => (
-            <Box className={i == 0 ? "" : styles.bottom}>{child}</Box>
-          )
-        )}
+        {bottomChildrenWithSlots.map((child, i) => (
+          <Box className={i == 0 ? "" : styles.bottom}>{child}</Box>
+        ))}
       </MasonryGrid>
     </Box>
   );

@@ -15,7 +15,7 @@ export const Ruler = ({ items, placeholders }: RulerProps) => {
     >
       {items.map((nb, i) => (
         <Box
-          pr={i == items.length - 1 ? "0" : "4"}
+          pr={i == items.length - 1 ? "0" : "2"}
           style={{
             display: "inline-block",
           }}

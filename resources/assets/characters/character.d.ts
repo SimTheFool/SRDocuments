@@ -23,6 +23,14 @@ export type Drone = BaseItem & {
   };
 };
 export type Outfit = BaseItem;
+export type Tech = BaseItem & {
+  stats?: {
+    attaque: number;
+    corruption: number;
+    firewall: number;
+    traitement: number;
+  };
+};
 export type Weapon = BaseItem & {
   actions?: {
     recharger?: LoadAction;
@@ -65,17 +73,7 @@ export interface Schema {
   stats: Stats;
   tags?: string[];
   tech?: {
-    [k: string]:
-      | BaseItem
-      | {
-          name: "Persona incarné";
-          stats: {
-            attaque: number;
-            corruption: number;
-            firewall: number;
-            traitement: number;
-          };
-        };
+    [k: string]: Tech;
   };
   weapons?: {
     [k: string]: Weapon;
@@ -92,7 +90,7 @@ export interface BaseAction {
   score?: number;
 }
 export interface BaseItem {
-  concealment: number;
+  concealment?: number;
   description?: string;
   legal: boolean;
   licenced: boolean;

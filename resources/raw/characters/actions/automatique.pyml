@@ -1,0 +1,22 @@
+$WEAPON.actions: !mix
+    tir_rafale:
+        description: "Deluge de balle sur une cible unique ou balayage sur plusieurs cibles. Cible unique: perd une action mineure. Plusieurs cibles: se déplacer demande une action mineure suplémentaire."
+        major: 1
+        minor: 0
+        damage: 0
+        damage_type: P
+        ammo_consumption: 10
+        ranges:
+            contact: 0
+            near: 0
+            short: 0
+            medium: 0
+            far: 0
+_transform.$ACTIONS_LAYER: !mix
+    - "$WEAPON.actions.tir_rafale.ranges.contact = $WEAPON.ranges.contact-2"
+    - "$WEAPON.actions.tir_rafale.ranges.near = $WEAPON.ranges.near-2"
+    - "$WEAPON.actions.tir_rafale.ranges.short = $WEAPON.ranges.short-2"
+    - "$WEAPON.actions.tir_rafale.ranges.medium = $WEAPON.ranges.medium-2"    
+    - "$WEAPON.actions.tir_rafale.ranges.far = $WEAPON.ranges.far-2"
+    - "$WEAPON.actions.tir_rafale.damage = $WEAPON.damage + 3"
+    - "$WEAPON.actions.tir_rafale.damage_type = $WEAPON.damage_type"

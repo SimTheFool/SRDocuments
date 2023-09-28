@@ -1,10 +1,7 @@
-import { Box, Flex } from "@radix-ui/themes";
 import { Character } from "resources";
-import { MasonryGrid } from "../MasonryGrid";
 import { Monitor } from "../Monitor";
 import { StatTable } from "../StatTable";
 import { ItemCard } from "./ItemCard";
-import { Slot } from "./Slot";
 
 type Drone = Exclude<Character["drones"], undefined>[string];
 type DroneProps = { item: Drone; name: string };
@@ -36,17 +33,6 @@ export const Drone = ({ item, name }: DroneProps) => {
               ]}
             />
             <Monitor columns={12} hit={item.hit} alwaysCurable />
-          </>
-        ),
-        bottom: (
-          <>
-            {item.slots?.map((slot) => {
-              return (
-                <Slot size={slot.size} concealment={slot.concealment}>
-                  {slot.name}
-                </Slot>
-              );
-            })}
           </>
         ),
       }}

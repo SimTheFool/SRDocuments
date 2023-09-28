@@ -73,8 +73,7 @@
         "name",
         "price",
         "legal",
-        "licenced",
-        "concealment"
+        "licenced"
       ],
       "type": "object"
     },
@@ -636,6 +635,42 @@
       ],
       "type": "object"
     },
+    "tech": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/base_item"
+        },
+        {
+          "properties": {
+            "stats": {
+              "properties": {
+                "attaque": {
+                  "type": "integer"
+                },
+                "corruption": {
+                  "type": "integer"
+                },
+                "firewall": {
+                  "type": "integer"
+                },
+                "traitement": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "firewall",
+                "corruption",
+                "traitement",
+                "attaque"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
     "weapon": {
       "allOf": [
         {
@@ -755,49 +790,8 @@
     },
     "tech": {
       "additionalProperties": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/base_item"
-          },
-          {
-            "properties": {
-              "name": {
-                "enum": [
-                  "Persona incarné"
-                ],
-                "type": "string"
-              },
-              "stats": {
-                "properties": {
-                  "attaque": {
-                    "type": "integer"
-                  },
-                  "corruption": {
-                    "type": "integer"
-                  },
-                  "firewall": {
-                    "type": "integer"
-                  },
-                  "traitement": {
-                    "type": "integer"
-                  }
-                },
-                "required": [
-                  "firewall",
-                  "corruption",
-                  "traitement",
-                  "attaque"
-                ],
-                "type": "object"
-              }
-            },
-            "required": [
-              "name",
-              "stats"
-            ],
-            "type": "object"
-          }
-        ]
+        "$ref": "#/definitions/tech",
+        "type": "object"
       },
       "type": "object"
     },

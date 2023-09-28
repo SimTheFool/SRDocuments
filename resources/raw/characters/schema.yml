@@ -58,26 +58,8 @@ properties:
   tech:
     type: object
     additionalProperties:
-      anyOf:
-        - $ref: "#/definitions/base_item"
-        - required: [name, stats]
-          type: object
-          properties:
-            name:
-              type: string
-              enum: [Persona incarné]
-            stats:
-              type: object
-              required: [firewall, corruption, traitement, attaque]
-              properties:
-                firewall:
-                  type: integer
-                corruption:
-                  type: integer
-                traitement:
-                  type: integer
-                attaque:
-                  type: integer
+      type: object
+      $ref: "#/definitions/tech"
 
   sprites:
     type: object
@@ -397,7 +379,7 @@ definitions:
   #~~~ BASE_ITEM ~~~#
   base_item:
     type: object
-    required: ["name", "price", "legal", "licenced", "concealment"]
+    required: ["name", "price", "legal", "licenced"]
     properties:
       type:
         type: string
@@ -515,6 +497,26 @@ definitions:
     type: object
     allOf:
       - $ref: "#/definitions/base_item"
+
+  #~~~ TECH ~~~#
+  tech:
+    type: object
+    allOf:
+      - $ref: "#/definitions/base_item"
+      - type: object
+        properties:
+          stats:
+            type: object
+            required: [firewall, corruption, traitement, attaque]
+            properties:
+              firewall:
+                type: integer
+              corruption:
+                type: integer
+              traitement:
+                type: integer
+              attaque:
+                type: integer
 
   #~~~ COMPANION ~~~#
   companion:

@@ -181,40 +181,30 @@ drones:
         QUANTITY: 2
 
 outfits:
-  bag: !inc::objects/outfits/bag
+  sac: !inc::objects/outfits/bag
 
-  street_kid: !inc::objects/outfits/street_kid
-      SELF: outfits.street_kid
+  tenue_de_gamin_des_rues: !inc::objects/outfits/street_kid
+      SELF: outfits.tenue_de_gamin_des_rues
 
   street_kid_mods:
     - !inc::objects/outfits/mods/secret_pocket
-        OUTFIT: outfits.street_kid
+        OUTFIT: outfits.tenue_de_gamin_des_rues
     - !inc::objects/outfits/mods/secret_pocket
-        OUTFIT: outfits.street_kid
+        OUTFIT: outfits.tenue_de_gamin_des_rues
 
   invisi_shield: !inc::objects/outfits/invisi_shield
       SELF: outfits.invisi_shield
 
 tech:
-  commlink: !inc::objects/tech/commlink
-      SELF: tech.commlink
+  persona_incarné: !inc::objects/tech/persona
+      SELF: tech.persona_incarné
 
-  persona: !inc::objects/tech/persona
-      SELF: tech.persona
-
-  micro_camera:
+  micro_et_camera:
     name: Micro + Caméra
     price: 100
     legal: true
     licenced: false
     concealment: !inc::objects/concealment/6_cigaret
-
-  datajack:
-    name: Datajack
-    price: 1000
-    legal: true
-    licenced: false
-    concealment: !inc::objects/concealment/4_retracted_baton
   
 
   

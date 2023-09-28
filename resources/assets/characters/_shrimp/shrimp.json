@@ -188,7 +188,16 @@
   ],
   "name": "shrimp",
   "outfits": {
-    "bag": {
+    "invisi_shield": {
+      "concealment": 4,
+      "description": "Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.",
+      "legal": true,
+      "licenced": false,
+      "manufacturer": "Securetech",
+      "name": "Invisi Shield",
+      "price": 5400
+    },
+    "sac": {
       "concealment": 0,
       "legal": true,
       "licenced": false,
@@ -201,16 +210,7 @@
         }
       ]
     },
-    "invisi_shield": {
-      "concealment": 4,
-      "description": "Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout.",
-      "legal": true,
-      "licenced": false,
-      "manufacturer": "Securetech",
-      "name": "Invisi Shield",
-      "price": 5400
-    },
-    "street_kid": {
+    "tenue_de_gamin_des_rues": {
       "actions": {
         "utiliser une pôche secrète": {
           "major": 1,
@@ -397,44 +397,18 @@
     "humain"
   ],
   "tech": {
-    "commlink": {
-      "concealment": 4,
-      "legal": true,
-      "licenced": false,
-      "manufacturer": "Meta",
-      "name": "Link",
-      "price": 100,
-      "stats": {
-        "attaque": 0,
-        "corruption": 1,
-        "firewall": 0,
-        "traitement": 0
-      }
-    },
-    "datajack": {
-      "concealment": 4,
-      "legal": true,
-      "licenced": false,
-      "name": "Datajack",
-      "price": 1000
-    },
-    "guncam": {
-      "concealment": 2,
-      "description": "Permet de calculer de rectifier la trajectoire des balles à chaque itération.",
-      "legal": true,
-      "licenced": true,
-      "name": "Guncam",
-      "price": 350
-    },
-    "micro_camera": {
+    "micro_et_camera": {
       "concealment": 6,
       "legal": true,
       "licenced": false,
       "name": "Micro + Caméra",
       "price": 100
     },
-    "persona": {
+    "persona_incarné": {
+      "legal": true,
+      "licenced": false,
       "name": "Persona incarné",
+      "price": 0,
       "stats": {
         "attaque": 2,
         "corruption": 4,
@@ -457,7 +431,7 @@
     "clef_cyber_fictionnelle": {
       "actions": {
         "activer": {
-          "description": "+1 charges toutes les 15min.",
+          "description": "+1 charges toutes les 15min. Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.",
           "gauge": 4,
           "major": 0,
           "minor": 1
@@ -465,7 +439,7 @@
         "attaquer": {
           "damage": 3,
           "damage_type": "Elec",
-          "description": "Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup.",
+          "description": "",
           "major": 1,
           "minor": 0,
           "score": 0
@@ -516,7 +490,7 @@
           "ammo_consumption": 4,
           "damage": 7,
           "damage_type": "P",
-          "description": "Vous pouvez répartir votre test d'attaque sur plusieurs cibles",
+          "description": "Vous pouvez viser plusieurs cibles proches.",
           "major": 1,
           "minor": 0,
           "ranges": {

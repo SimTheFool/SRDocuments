@@ -29,8 +29,8 @@ export const Monitor = ({
         {title}
       </Heading>
       <Grid columns={`${columns}`} gap="0" className={styles.monitor}>
-        {Array.from({ length: hit }).map(() => (
-          <HitBox hideIcon={alwaysCurable} />
+        {Array.from({ length: hit }).map((_, i) => (
+          <HitBox key={i} hideIcon={alwaysCurable} />
         ))}
       </Grid>
     </Box>
