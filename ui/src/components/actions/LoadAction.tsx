@@ -6,6 +6,7 @@ import { TitleMin } from "../TitleMin";
 import { LoadAction as LoadActionType } from "resources";
 import { Card } from "../Card";
 import { Bullet } from "../Icons/Bullet";
+import { Gauge } from "../Gauge";
 
 type LoadActionProps = {
   action: LoadActionType;
@@ -21,16 +22,7 @@ export const LoadAction = ({ action }: LoadActionProps) => {
             <ParagraphStandard>{action.description}</ParagraphStandard>
           )}
           <ParagraphStandard>
-            _____/{action.ammo}
-            <Text
-              size={"1"}
-              weight={"light"}
-              style={{
-                display: "inline-block",
-              }}
-            >
-              <Bullet />
-            </Text>
+            <Gauge length={action.ammo} icon={<Bullet />} />
           </ParagraphStandard>
         </Box>
         <Box>

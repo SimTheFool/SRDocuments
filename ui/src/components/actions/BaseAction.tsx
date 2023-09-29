@@ -10,6 +10,7 @@ import { Space } from "../Space";
 import { TitleMin } from "../TitleMin";
 import { BsHourglass } from "react-icons/bs";
 import { TextReplaced } from "../Text";
+import { Gauge } from "../Gauge";
 
 type BaseActionProps = {
   name: string;
@@ -45,10 +46,7 @@ export const BaseAction = ({
             inline
           />
           <Space />
-          {gauge &&
-            Array.from({ length: gauge }).map((_, i) => (
-              <PiDiamondLight key={i} />
-            ))}
+          {gauge && <Gauge length={gauge} icon={<PiDiamondLight />} />}
           {description && (
             <ParagraphStandard>
               <TextReplaced>{description}</TextReplaced>

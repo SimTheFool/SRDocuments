@@ -24,10 +24,6 @@ export const Weapon = ({ weapon, name }: WeaponProps) => {
         ),
         bottom: (
           <>
-            {recharger && <LoadAction action={recharger} />}
-            {Object.entries(otherActions).map(([name, action]) => (
-              <BaseAction name={name} action={action} />
-            ))}
             {tir && (
               <ShotAction
                 name={"Tir"}
@@ -49,6 +45,10 @@ export const Weapon = ({ weapon, name }: WeaponProps) => {
                 rangeLabels={weapon.range_labels}
               />
             )}
+            {recharger && <LoadAction action={recharger} />}
+            {Object.entries(otherActions).map(([name, action]) => (
+              <BaseAction name={name} action={action} />
+            ))}
           </>
         ),
       }}

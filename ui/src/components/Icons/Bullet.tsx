@@ -1,4 +1,4 @@
-import { Box } from "@radix-ui/themes";
+import { Box, Text } from "@radix-ui/themes";
 import { GiShotgun } from "react-icons/gi";
 
 type BulletProps = {};
@@ -10,7 +10,15 @@ export const Bullet = ({}: BulletProps) => {
         transform: "translateY(1px)",
       }}
     >
-      <GiShotgun />
+      <Text
+        size={"1"}
+        weight={"light"}
+        style={{
+          display: "inline-block",
+        }}
+      >
+        <GiShotgun />
+      </Text>
     </Box>
   );
 };
