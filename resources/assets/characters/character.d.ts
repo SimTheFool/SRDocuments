@@ -6,7 +6,7 @@
  */
 
 export type SpecificAction = BaseAction & {
-  type: "technomancy";
+  type: "techno";
 };
 export type Drone = BaseItem & {
   hit: number;

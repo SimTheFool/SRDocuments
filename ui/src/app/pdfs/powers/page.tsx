@@ -16,6 +16,8 @@ import { Sprite } from "@/components/items/Sprite";
 
 const shrimp = characters.shrimp;
 
+const xxx = shrimp.actions;
+
 export default function Home() {
   return (
     <A4Format border>
@@ -27,6 +29,11 @@ export default function Home() {
           </Box>
           {Object.entries(shrimp.sprites || {}).map(([name, sprite]) => {
             return <Sprite name={name} sprite={sprite} />;
+          })}
+          {Object.entries(shrimp.actions || {}).map(([name, action]) => {
+            return (
+              <BaseAction name={name} action={action} type={action.type} />
+            );
           })}
         </MasonryGrid>
       </Box>

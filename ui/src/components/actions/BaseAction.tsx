@@ -14,11 +14,11 @@ import { TextReplaced } from "../Text";
 type BaseActionProps = {
   name: string;
   action: BaseAction1;
-  topBorder?: boolean;
+  type?: string;
 };
 export const BaseAction = ({
   name,
-  topBorder = false,
+  type,
   action: {
     major,
     minor,
@@ -31,7 +31,7 @@ export const BaseAction = ({
   },
 }: BaseActionProps) => {
   return (
-    <Card>
+    <Card title={type || null}>
       <Flex justify={"between"}>
         <Box>
           <TitleMin

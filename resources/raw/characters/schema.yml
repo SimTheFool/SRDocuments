@@ -322,7 +322,7 @@ definitions:
         properties:
           type:
             type: string
-            enum: ["technomancy"]
+            enum: ["techno"]
 
   load_action:
     type: object

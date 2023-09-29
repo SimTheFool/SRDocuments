@@ -5,14 +5,14 @@
       "maintained": true,
       "major": 1,
       "minor": 0,
-      "type": "technomancy"
+      "type": "techno"
     },
     "tempête de données": {
       "description": "Vous ajoutez 1 niveau de bruit par __SN__ au persona ciblé.",
       "maintained": true,
       "major": 1,
       "minor": 0,
-      "type": "technomancy"
+      "type": "techno"
     }
   },
   "drones": {
@@ -306,7 +306,6 @@
       },
       "skills": [
         "Ingenierie",
-        "Pilotage",
         "Electronique"
       ],
       "stats": {

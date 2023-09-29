@@ -1,6 +1,6 @@
 actions: !mix
     tempête de données:
-        type: technomancy
+        type: techno
         major: 1
         minor: 0
         maintained: true
