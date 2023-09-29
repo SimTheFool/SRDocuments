@@ -1,26 +1,34 @@
 sprites: !mix
     machine:
         stats:
-            firewall_mod: 0
-            corruption_mod: 3
+            firewall: 0
+            corruption: 3
             traitement: 2
             attaque: 1
+            res: 0
+            hit:
+              base: 8
+              factor: 2
         skills:
             - Ingenierie
+            - Pilotage
             - Electronique
         actions:
-            - name: Prise de contrôle
+            investir_un_appareil:
+              name: Investir un appareil
+              major: 1
+              minor: 0
+              maintained: false
+              description: Le sprite occupe un appareil quelque soit le niveau d'accréditation.
+            diagnostique:
+              name: Diagnostique
               major: 1
               minor: 0
               maintained: true
-              description: Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.
-            - name: Diagnostique
-              major: 1
-              minor: 0
-              maintained: true
-              description: Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.
-            - name: Stabilité
+              description: Opère un monitoring de l'appareil. Vous avez __A1__ lorsque vous utilisez l'appareil.
+            stabilité:
+              name: Stabilité
               major: 0
               minor: 1
               maintained: true
-              description: Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.
+              description: Surveille les dysfonctionnments de l'appareil. Vous pouvez retirez des echecs à vos tests avec cet appareil.

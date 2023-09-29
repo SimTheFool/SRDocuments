@@ -65,7 +65,7 @@ properties:
     type: object
     additionalProperties:
       type: object
-      $ref: "#/definitions/companion"
+      $ref: "#/definitions/sprite"
 
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
@@ -522,18 +522,46 @@ definitions:
   companion:
     type: object
     properties:
-      stats:
-        firewall_mod: integer
-        corruption_mod: integer
-        traitement: integer
-        attaque: integer
+      description:
+        type: string
       skills:
         type: array
         items:
-          enum: [Ingenierie, Electronique]
+          type: string
       actions:
-        type: array
-        items:
+        type: object
+        additionalProperties:
+          type: object
           $ref: "#/definitions/base_action"
       effects:
-        $ref: "#/definitions/effect"
+        type: array
+        items:
+          $ref: "#/definitions/effect"
+
+  sprite:
+    type: object
+    allOf:
+      - $ref: "#/definitions/companion"
+      - properties:
+          stats:
+            type: object
+            required: [firewall, corruption, traitement, attaque]
+            properties:
+              firewall:
+                type: integer
+              corruption:
+                type: integer
+              traitement:
+                type: integer
+              attaque:
+                type: integer
+              res:
+                type: integer
+              hit:
+                type: object
+                required: [base, factor]
+                properties:
+                  base:
+                    type: integer
+                  factor:
+                    type: integer

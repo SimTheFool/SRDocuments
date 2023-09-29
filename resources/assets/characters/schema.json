@@ -80,28 +80,26 @@
     "companion": {
       "properties": {
         "actions": {
-          "items": {
-            "$ref": "#/definitions/base_action"
+          "additionalProperties": {
+            "$ref": "#/definitions/base_action",
+            "type": "object"
           },
-          "type": "array"
+          "type": "object"
+        },
+        "description": {
+          "type": "string"
         },
         "effects": {
-          "$ref": "#/definitions/effect"
+          "items": {
+            "$ref": "#/definitions/effect"
+          },
+          "type": "array"
         },
         "skills": {
           "items": {
-            "enum": [
-              "Ingenierie",
-              "Electronique"
-            ]
+            "type": "string"
           },
           "type": "array"
-        },
-        "stats": {
-          "attaque": "integer",
-          "corruption_mod": "integer",
-          "firewall_mod": "integer",
-          "traitement": "integer"
         }
       },
       "type": "object"
@@ -498,6 +496,59 @@
       ],
       "type": "object"
     },
+    "sprite": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/companion"
+        },
+        {
+          "properties": {
+            "stats": {
+              "properties": {
+                "attaque": {
+                  "type": "integer"
+                },
+                "corruption": {
+                  "type": "integer"
+                },
+                "firewall": {
+                  "type": "integer"
+                },
+                "hit": {
+                  "properties": {
+                    "base": {
+                      "type": "integer"
+                    },
+                    "factor": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "base",
+                    "factor"
+                  ],
+                  "type": "object"
+                },
+                "res": {
+                  "type": "integer"
+                },
+                "traitement": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "firewall",
+                "corruption",
+                "traitement",
+                "attaque"
+              ],
+              "type": "object"
+            }
+          }
+        }
+      ],
+      "type": "object"
+    },
     "stats": {
       "properties": {
         "action_maj": {
@@ -774,7 +825,7 @@
     },
     "sprites": {
       "additionalProperties": {
-        "$ref": "#/definitions/companion",
+        "$ref": "#/definitions/sprite",
         "type": "object"
       },
       "type": "object"

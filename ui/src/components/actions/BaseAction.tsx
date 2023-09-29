@@ -8,7 +8,8 @@ import { ParagraphStandard } from "../ParagraphStandard";
 import { Ruler } from "../Ruler";
 import { Space } from "../Space";
 import { TitleMin } from "../TitleMin";
-import styles from "./BaseAction.module.css";
+import { BsHourglass } from "react-icons/bs";
+import { TextReplaced } from "../Text";
 
 type BaseActionProps = {
   name: string;
@@ -34,8 +35,13 @@ export const BaseAction = ({
       <Flex justify={"between"}>
         <Box>
           <TitleMin
-            title={capitalize(name)}
-            subtitle={` ${damage || ""}${damage_type || ""}`}
+            title={<TextReplaced>{capitalize(name)}</TextReplaced>}
+            subtitle={
+              <>
+                {` ${damage || ""}${damage_type || ""}`}
+                {maintained && <BsHourglass />}
+              </>
+            }
             inline
           />
           <Space />
@@ -43,7 +49,11 @@ export const BaseAction = ({
             Array.from({ length: gauge }).map((_, i) => (
               <PiDiamondLight key={i} />
             ))}
-          {description && <ParagraphStandard>{description}</ParagraphStandard>}
+          {description && (
+            <ParagraphStandard>
+              <TextReplaced>{description}</TextReplaced>
+            </ParagraphStandard>
+          )}
           {score != undefined && (
             <ParagraphStandard>
               <Ruler items={[score]} />

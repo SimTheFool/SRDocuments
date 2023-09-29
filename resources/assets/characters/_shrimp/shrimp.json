@@ -281,37 +281,43 @@
   },
   "sprites": {
     "machine": {
-      "actions": [
-        {
-          "description": "Le sprite prend le contrôle d'un appareil quelque soit votre accréditation.",
-          "maintained": true,
-          "major": 1,
-          "minor": 0,
-          "name": "Prise de contrôle"
-        },
-        {
-          "description": "Le sprite opère un monitoring de l'appareil en continu. Vous gagner __1A__ sur l'appareil.",
+      "actions": {
+        "diagnostique": {
+          "description": "Opère un monitoring de l'appareil. Vous avez __A1__ lorsque vous utilisez l'appareil.",
           "maintained": true,
           "major": 1,
           "minor": 0,
           "name": "Diagnostique"
         },
-        {
-          "description": "Le sprite surveille les dysfonctionnment de l'appareil. Annule les complications et réduit les échecs critiques en complications.",
+        "investir_un_appareil": {
+          "description": "Le sprite occupe un appareil quelque soit le niveau d'accréditation.",
+          "maintained": false,
+          "major": 1,
+          "minor": 0,
+          "name": "Investir un appareil"
+        },
+        "stabilité": {
+          "description": "Surveille les dysfonctionnments de l'appareil. Vous pouvez retirez des echecs à vos tests avec cet appareil.",
           "maintained": true,
           "major": 0,
           "minor": 1,
           "name": "Stabilité"
         }
-      ],
+      },
       "skills": [
         "Ingenierie",
+        "Pilotage",
         "Electronique"
       ],
       "stats": {
         "attaque": 1,
-        "corruption_mod": 3,
-        "firewall_mod": 0,
+        "corruption": 3,
+        "firewall": 0,
+        "hit": {
+          "base": 8,
+          "factor": 2
+        },
+        "res": 0,
         "traitement": 2
       }
     }

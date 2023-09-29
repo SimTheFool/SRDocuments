@@ -23,6 +23,19 @@ export type Drone = BaseItem & {
   };
 };
 export type Outfit = BaseItem;
+export type Sprite = Companion & {
+  stats?: {
+    attaque: number;
+    corruption: number;
+    firewall: number;
+    hit?: {
+      base: number;
+      factor: number;
+    };
+    res?: number;
+    traitement: number;
+  };
+};
 export type Tech = BaseItem & {
   stats?: {
     attaque: number;
@@ -38,7 +51,7 @@ export type Weapon = BaseItem & {
     tir_rafale?: ShotAction;
     tir_semi_auto?: ShotAction;
   } & {
-    [k: string]: BaseAction1;
+    [k: string]: BaseAction2;
   };
   ammo?: number;
   damage?: number;
@@ -68,7 +81,7 @@ export interface Schema {
   };
   skills: Skills;
   sprites?: {
-    [k: string]: Companion;
+    [k: string]: Sprite;
   };
   stats: Stats;
   tags?: string[];
@@ -152,12 +165,22 @@ export interface Skill {
   specialisations?: string[];
 }
 export interface Companion {
-  actions?: BaseAction[];
-  effects?: Effect;
-  skills?: ("Ingenierie" | "Electronique")[];
-  stats?: {
-    [k: string]: unknown;
+  actions?: {
+    [k: string]: BaseAction1;
   };
+  description?: string;
+  effects?: Effect[];
+  skills?: string[];
+}
+export interface BaseAction1 {
+  damage?: number;
+  damage_type?: string;
+  description?: string;
+  gauge?: number;
+  maintained?: boolean;
+  major: number;
+  minor: number;
+  score?: number;
 }
 export interface Stats {
   action_maj: number;
@@ -223,7 +246,7 @@ export interface RangeScores {
    */
   [k: string]: number;
 }
-export interface BaseAction1 {
+export interface BaseAction2 {
   damage?: number;
   damage_type?: string;
   description?: string;
