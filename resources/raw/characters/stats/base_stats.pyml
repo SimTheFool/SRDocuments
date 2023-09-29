@@ -35,6 +35,7 @@ def_ment:
     - int
 edge: $EDGE
 max_edge: 0
+init_dice: 1
 init:
   score: 1
   stat:

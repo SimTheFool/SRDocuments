@@ -82,5 +82,5 @@ const ScoresRuler = ({
     score > 0 ? `+${score}` : score
   );
 
-  return <Ruler items={formattedScores} placeholders={numbers} />;
+  return <Ruler grade={numbers} inter={formattedScores} />;
 };

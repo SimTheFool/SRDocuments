@@ -64,5 +64,5 @@ const DistanceNbRuler = ({ distanceByNb }: { distanceByNb: RangeLabels }) => {
   });
   const sortedNbs = nbs.sort();
 
-  return <Ruler items={sortedNbs} />;
+  return <Ruler grade={sortedNbs} />;
 };

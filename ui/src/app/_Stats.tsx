@@ -70,11 +70,11 @@ export const Stats = ({ char }: StatsProps) => {
           items={[
             ["Ini"],
             [
-              <StatBlock
-                n={stats.init?.score || 0}
-                stat={stats.init?.stat}
-                dice={6}
-              />,
+              <>
+                <StatBlock n={stats.init_dice} dice={6} />
+                {"+"}
+                <StatBlock n={stats.init.score} stat={stats.init?.stat} />
+              </>,
             ],
           ]}
         />

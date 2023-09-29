@@ -8,6 +8,7 @@ import { Weapon } from "@/components/items/Weapon";
 import { Box } from "@radix-ui/themes";
 import { characters } from "resources";
 import { A4Format } from "../A4Format";
+import { BaseAction } from "@/components/actions/BaseAction";
 
 const shrimp = characters.shrimp;
 
@@ -37,7 +38,19 @@ export default function Home() {
           {Object.entries(shrimp.outfits || {}).map(([name, outfit]) => {
             return (
               <Box pb={"4"} pr={"2"}>
-                <ItemCard item={outfit} name={name} />
+                <ItemCard item={outfit} name={name}>
+                  {{
+                    bottom: (
+                      <>
+                        {Object.entries(outfit.actions || {}).map(
+                          ([name, action]) => (
+                            <BaseAction name={name} action={action} />
+                          )
+                        )}
+                      </>
+                    ),
+                  }}
+                </ItemCard>
               </Box>
             );
           })}

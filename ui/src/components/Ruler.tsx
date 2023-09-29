@@ -1,11 +1,11 @@
 import { Box } from "@radix-ui/themes";
 
 type RulerProps = {
-  items: (string | number)[];
-  placeholders?: (string | number)[];
+  grade: (string | number)[];
+  inter?: (string | number)[];
 };
 
-export const Ruler = ({ items, placeholders }: RulerProps) => {
+export const Ruler = ({ grade, inter }: RulerProps) => {
   return (
     <Box
       style={{
@@ -13,41 +13,37 @@ export const Ruler = ({ items, placeholders }: RulerProps) => {
         display: "inline-block",
       }}
     >
-      {items.map((nb, i) => (
+      {grade.map((nb, i) => (
         <Box
-          pr={i == items.length - 1 ? "0" : "2"}
+          pl={i == 0 ? "2" : "3"}
           style={{
             display: "inline-block",
+            position: "relative",
           }}
         >
           <Box
             style={{
-              position: "relative",
+              visibility: inter ? "hidden" : "visible",
             }}
           >
-            <Box
-              style={{
-                visibility: "hidden",
-              }}
-            >
-              {placeholders ? placeholders?.[i] : nb}
-            </Box>
+            {nb}m
+          </Box>
+          {inter && (
             <Box
               style={{
                 position: "absolute",
-                top: 0,
-                right: 0,
+                bottom: 0,
+                left: "20%",
               }}
             >
-              {nb}
+              {inter?.[i]}
             </Box>
-          </Box>
+          )}
 
           <Box
             pb={"1"}
             style={{
-              borderLeft: i == 0 ? "1px solid black" : "none",
-              borderRight: i != 0 ? "1px solid black" : "none",
+              borderRight: "1px solid black",
             }}
           />
         </Box>

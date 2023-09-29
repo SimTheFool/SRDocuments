@@ -22,7 +22,11 @@ export type Drone = BaseItem & {
     step: number;
   };
 };
-export type Outfit = BaseItem;
+export type Outfit = BaseItem & {
+  actions?: {
+    [k: string]: BaseAction1;
+  };
+};
 export type Sprite = Companion & {
   stats?: {
     attaque: number;
@@ -51,7 +55,7 @@ export type Weapon = BaseItem & {
     tir_rafale?: ShotAction;
     tir_semi_auto?: ShotAction;
   } & {
-    [k: string]: BaseAction2;
+    [k: string]: BaseAction3;
   };
   ammo?: number;
   damage?: number;
@@ -149,6 +153,16 @@ export interface Lifestyle {
   name: string;
   price: number;
 }
+export interface BaseAction1 {
+  damage?: number;
+  damage_type?: string;
+  description?: string;
+  gauge?: number;
+  maintained?: boolean;
+  major: number;
+  minor: number;
+  score?: number;
+}
 export interface Skills {
   athlétisme?: Skill;
   "combat.rapp"?: Skill;
@@ -166,13 +180,13 @@ export interface Skill {
 }
 export interface Companion {
   actions?: {
-    [k: string]: BaseAction1;
+    [k: string]: BaseAction2;
   };
   description?: string;
   effects?: Effect[];
   skills?: string[];
 }
-export interface BaseAction1 {
+export interface BaseAction2 {
   damage?: number;
   damage_type?: string;
   description?: string;
@@ -202,6 +216,7 @@ export interface Stats {
   hit_phy: number;
   hit_stun: number;
   init: ReferStat;
+  init_dice: number;
   initiation?: number;
   int: number;
   int_mod?: number;
@@ -246,7 +261,7 @@ export interface RangeScores {
    */
   [k: string]: number;
 }
-export interface BaseAction2 {
+export interface BaseAction3 {
   damage?: number;
   damage_type?: string;
   description?: string;

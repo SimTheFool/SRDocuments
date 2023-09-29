@@ -56,7 +56,7 @@ export const BaseAction = ({
           )}
           {score != undefined && (
             <ParagraphStandard>
-              <Ruler items={[score]} />
+              <Ruler grade={[score]} inter={[score]} />
             </ParagraphStandard>
           )}
         </Box>

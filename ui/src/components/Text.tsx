@@ -1,4 +1,5 @@
 import { Advantage } from "./Icons/Advantage";
+import { Success } from "./Icons/Success";
 
 const ICON_ID_REGEX = /__([A-Z0-9]+)__/;
 
@@ -24,4 +25,5 @@ export const Icon = ({ type }: IconProps) => {
 const iconTextsList = {
   A1: <Advantage n={1} />,
   D1: <Advantage n={-1} />,
+  SN: <Success />,
 } as const;

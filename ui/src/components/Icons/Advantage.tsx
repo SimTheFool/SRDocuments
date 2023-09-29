@@ -12,6 +12,7 @@ export const Advantage = ({ n }: AdvantageProps) => {
       style={{
         display: "inline-block",
         position: "relative",
+        fontStyle: "normal",
       }}
     >
       <BaseIcon size={18}>
@@ -24,9 +25,10 @@ export const Advantage = ({ n }: AdvantageProps) => {
           color: "white",
           top: "13%",
           left: "20%",
+          transform: "translate(-20%, 0%)",
         }}
       >
-        {n}
+        {n >= 0 ? `+${n}` : n}
       </Box>
     </Box>
   );

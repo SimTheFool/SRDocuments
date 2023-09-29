@@ -297,6 +297,17 @@
       "allOf": [
         {
           "$ref": "#/definitions/base_item"
+        },
+        {
+          "properties": {
+            "actions": {
+              "additionalProperties": {
+                "$ref": "#/definitions/base_action",
+                "type": "object"
+              },
+              "type": "object"
+            }
+          }
         }
       ],
       "type": "object"
@@ -608,6 +619,9 @@
         "init": {
           "$ref": "#/definitions/refer_stat"
         },
+        "init_dice": {
+          "type": "integer"
+        },
         "initiation": {
           "type": "integer"
         },
@@ -676,6 +690,7 @@
         "ess",
         "edge",
         "max_edge",
+        "init_dice",
         "init",
         "action_maj",
         "action_min",

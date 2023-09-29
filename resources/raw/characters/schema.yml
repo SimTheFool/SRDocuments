@@ -101,6 +101,7 @@ definitions:
         ess,
         edge,
         max_edge,
+        init_dice,
         init,
         action_maj,
         action_min,
@@ -167,6 +168,8 @@ definitions:
       edge:
         type: integer
       max_edge:
+        type: integer
+      init_dice:
         type: integer
       init:
         $ref: "#/definitions/refer_stat"
@@ -497,6 +500,12 @@ definitions:
     type: object
     allOf:
       - $ref: "#/definitions/base_item"
+      - properties:
+          actions:
+            type: object
+            additionalProperties:
+              type: object
+              $ref: "#/definitions/base_action"
 
   #~~~ TECH ~~~#
   tech:

@@ -212,7 +212,7 @@
     },
     "tenue_de_gamin_des_rues": {
       "actions": {
-        "utiliser une pôche secrète": {
+        "utiliser une poche secrète": {
           "major": 1,
           "minor": 0
         }
@@ -225,17 +225,17 @@
       "price": 550,
       "slots": [
         {
-          "name": "Pôche",
+          "name": "Poche",
           "size": "S"
         },
         {
           "concealment": 5,
-          "name": "Pôche secrète",
+          "name": "Poche secrète",
           "size": "S"
         },
         {
           "concealment": 5,
-          "name": "Pôche secrète",
+          "name": "Poche secrète",
           "size": "S"
         }
       ]
@@ -364,6 +364,7 @@
         "int"
       ]
     },
+    "init_dice": 1,
     "int": 4,
     "int_mod": 0,
     "log": 6,

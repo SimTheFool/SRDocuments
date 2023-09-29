@@ -11,10 +11,11 @@ import { MasonryGrid } from "../MasonryGrid";
 import styles from "./ItemCard.module.css";
 import React from "react";
 import { Slot } from "./Slot";
+import { PiHandThin } from "react-icons/pi";
+import { Hand } from "../Icons/Hand";
 
 type ItemCardProps = {
   children?: {
-    aside?: React.ReactNode;
     bottom?: React.ReactElement;
     inner?: React.ReactNode;
   };
@@ -42,16 +43,16 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
 
   return (
     <Box>
-      <Flex className={bottomItemNb > 0 ? styles.noBorderBottom : ""}>
-        <Card
-          title={item.type}
-          note={item.concealment != undefined && `d${item.concealment}`}
-        >
+      <Flex
+        className={bottomItemNb > 0 ? styles.noBorderBottom : ""}
+        align={"start"}
+      >
+        <Card>
           <TitleMin
             inline
             title={
               <TextReplaced>
-                {`${capitalize(name)} ${
+                {`${name.toUpperCase()} ${
                   item.quantity ? `x ${item.quantity}` : ""
                 }`}
               </TextReplaced>
@@ -63,7 +64,7 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
               <>
                 <Price price={item.price} />
                 <Space inline />
-                {!item.legal ? "Illégal" : item.licenced ? "Licencié" : ""}
+                {!item.legal ? "illégal" : item.licenced ? "licencié" : ""}
               </>
             }
           />
@@ -78,6 +79,9 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
             {children?.inner}
           </ParagraphStandard>
         </Card>
+        <Box pl={"1"}>
+          <Hand />
+        </Box>
       </Flex>
 
       <MasonryGrid compact columns={1}>

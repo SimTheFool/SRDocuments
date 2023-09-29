@@ -24,7 +24,7 @@ export default function Home() {
       <Box pt={"2"}>
         <MasonryGrid columns={3}>
           <Box>
-            <TitleSection>Pouvoirs et companions</TitleSection>
+            <TitleSection>Pouvoirs et compagnons</TitleSection>
             <Space />
           </Box>
           {Object.entries(shrimp.sprites || {}).map(([name, sprite]) => {

@@ -2,8 +2,9 @@
     overflow-y: visible;
     position: relative;
     height: auto;
-    border: 1px solid var(--gray-10);
+    border: 1.5px solid black;
     border-radius: 0px !important;
+    box-shadow: 3px 3px 4px -2px #878787;
 }
 
 .card > div {
@@ -21,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(3px * var(--scaling));
+    height: calc(4px * var(--scaling));
 }
 
 

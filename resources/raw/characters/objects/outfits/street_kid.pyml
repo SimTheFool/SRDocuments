@@ -5,5 +5,5 @@ licenced: false
 concealment: !inc::objects/concealment/0_machine_gun
 description: "Tenue pratique. Vous avez __A1__ pour résister aux entraves."
 slots:
-    - name: Pôche
+    - name: Poche
       size: S
