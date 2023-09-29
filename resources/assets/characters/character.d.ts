@@ -202,14 +202,17 @@ export interface Stats {
   agi: number;
   agi_mod?: number;
   algo?: ReferStat;
+  attaque?: number;
   cha: number;
   cha_mod?: number;
   con: number;
   con_mod?: number;
+  corruption?: number;
   def_ment: ReferStat;
   def_phy: ReferStat;
   edge: number;
   ess: number;
+  firewall?: number;
   for: number;
   for_mod?: number;
   hit_over: number;
@@ -232,6 +235,7 @@ export interface Stats {
   resist_phy: ReferStat;
   submersion?: number;
   trad?: ReferStat;
+  traitement?: number;
   vol: number;
   vol_mod?: number;
 }

@@ -2,6 +2,10 @@ stats: !mix
   res: $RES
   submersion: $SUBM
   resist_drain: 0
+  firewall: 0
+  traitement: 0
+  corruption: 0
+  attaque: 0
   algo:
     score: 0
     stat:
@@ -9,3 +13,8 @@ stats: !mix
 
 _transform.$FINALSTATS_LAYER: !mix
   - "stats.algo.score = ceil(stats.log / 2)"
+_transform.$FINALSTATS_LAYER_2: !mix
+  - "stats.firewall = stats.vol"
+  - "stats.traitement = stats.log"
+  - "stats.corruption = stats.int"
+  - "stats.attaque = stats.cha"

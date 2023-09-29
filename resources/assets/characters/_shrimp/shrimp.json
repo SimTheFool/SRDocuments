@@ -332,10 +332,12 @@
         "log"
       ]
     },
+    "attaque": 2,
     "cha": 2,
     "cha_mod": 0,
     "con": 1,
     "con_mod": 0,
+    "corruption": 4,
     "def_ment": {
       "score": 8,
       "stat": [
@@ -352,6 +354,7 @@
     },
     "edge": 4,
     "ess": 6,
+    "firewall": 4,
     "for": 1,
     "for_mod": 0,
     "hit_over": 1,
@@ -394,6 +397,7 @@
       ]
     },
     "submersion": 1,
+    "traitement": 6,
     "vol": 4,
     "vol_mod": 0
   },
@@ -409,18 +413,6 @@
       "licenced": false,
       "name": "Micro + Caméra",
       "price": 100
-    },
-    "persona_incarné": {
-      "legal": true,
-      "licenced": false,
-      "name": "Persona incarné",
-      "price": 0,
-      "stats": {
-        "attaque": 2,
-        "corruption": 4,
-        "firewall": 4,
-        "traitement": 6
-      }
     }
   },
   "weapons": {

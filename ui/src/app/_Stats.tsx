@@ -43,6 +43,19 @@ export const Stats = ({ char }: StatsProps) => {
             ],
           ]}
         />
+        {stats.res && (
+          <StatTable
+            items={[
+              ["Firew.", "Trait.", "Corr.", "Att."],
+              [
+                <StatBlock n={stats.firewall || 0} />,
+                <StatBlock n={stats.traitement || 0} />,
+                <StatBlock n={stats.corruption || 0} />,
+                <StatBlock n={stats.attaque || 0} />,
+              ],
+            ]}
+          />
+        )}
       </Box>
       <Container>
         {stats.res && (

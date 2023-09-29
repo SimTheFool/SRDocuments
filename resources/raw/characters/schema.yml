@@ -127,6 +127,14 @@ definitions:
         type: integer
       cha:
         type: integer
+      firewall:
+        type: integer
+      traitement:
+        type: integer
+      corruption:
+        type: integer
+      attaque:
+        type: integer
       con_mod:
         type: integer
       agi_mod:

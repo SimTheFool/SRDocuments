@@ -577,6 +577,9 @@
         "algo": {
           "$ref": "#/definitions/refer_stat"
         },
+        "attaque": {
+          "type": "integer"
+        },
         "cha": {
           "type": "integer"
         },
@@ -589,6 +592,9 @@
         "con_mod": {
           "type": "integer"
         },
+        "corruption": {
+          "type": "integer"
+        },
         "def_ment": {
           "$ref": "#/definitions/refer_stat"
         },
@@ -599,6 +605,9 @@
           "type": "integer"
         },
         "ess": {
+          "type": "integer"
+        },
+        "firewall": {
           "type": "integer"
         },
         "for": {
@@ -666,6 +675,9 @@
         },
         "trad": {
           "$ref": "#/definitions/refer_stat"
+        },
+        "traitement": {
+          "type": "integer"
         },
         "vol": {
           "type": "integer"

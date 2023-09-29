@@ -196,9 +196,6 @@ outfits:
       SELF: outfits.invisi_shield
 
 tech:
-  persona_incarné: !inc::objects/tech/persona
-      SELF: tech.persona_incarné
-
   micro_et_camera:
     name: Micro + Caméra
     price: 100
