@@ -1,4 +1,4 @@
-use std::{cell::RefCell, path::PathBuf, rc::Rc};
+use std::{cell::RefCell, collections::HashMap, path::PathBuf, rc::Rc};
 
 use crate::{
     adapters::{AssemblyOutputFormat, AssemblyOutputPort},
@@ -6,21 +6,21 @@ use crate::{
 };
 
 pub struct AssemblyIMOutput {
-    pub value_yml: Rc<RefCell<Option<serde_yaml::Value>>>,
-    pub value_json: Rc<RefCell<Option<serde_json::Value>>>,
+    pub value_yml: Rc<RefCell<HashMap<String, serde_yaml::Value>>>,
+    pub value_json: Rc<RefCell<HashMap<String, serde_json::Value>>>,
 }
 impl AssemblyIMOutput {
     pub fn new() -> Self {
         AssemblyIMOutput {
-            value_yml: Rc::new(RefCell::new(None)),
-            value_json: Rc::new(RefCell::new(None)),
+            value_yml: Rc::new(RefCell::new(HashMap::new())),
+            value_json: Rc::new(RefCell::new(HashMap::new())),
         }
     }
-    pub fn get_yml_output(&self) -> Option<serde_yaml::Value> {
+    pub fn get_yml_output(&self) -> HashMap<String, serde_yaml::Value> {
         let in_memory_ref = self.value_yml.borrow();
         in_memory_ref.clone()
     }
-    pub fn get_json_output(&self) -> Option<serde_json::Value> {
+    pub fn get_json_output(&self) -> HashMap<String, serde_json::Value> {
         let in_memory_ref = self.value_json.borrow();
         in_memory_ref.clone()
     }
@@ -29,23 +29,76 @@ impl AssemblyOutputPort for AssemblyIMOutput {
     fn output(
         &self,
         value: serde_yaml::Value,
-        _: &PathBuf,
+        key: &PathBuf,
         format: &AssemblyOutputFormat,
     ) -> AppResult<()> {
         match format {
             AssemblyOutputFormat::Yml => {
                 let mut in_memory_ref = self.value_yml.borrow_mut();
-                *in_memory_ref = Some(value.clone());
+                in_memory_ref.insert(key.to_str().unwrap().to_string(), value.clone());
             }
             AssemblyOutputFormat::Json => {
                 let mut in_memory_ref = self.value_json.borrow_mut();
                 let json = serde_json::to_value(value).map_err(|e| {
                     anyhow::anyhow!(format!("Could not transform yml to json: {}", e))
                 })?;
-                *in_memory_ref = Some(json);
+                in_memory_ref.insert(key.to_str().unwrap().to_string(), json);
             }
         }
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use std::path::PathBuf;
+
+    #[test]
+    fn it_should_set_out_in_hashmap_entry() {
+        use crate::adapters::AssemblyOutputPort;
+        let assembly_output = super::AssemblyIMOutput::new();
+
+        let value_1 = serde_yaml::Value::String(
+            r#"
+            key1: value1
+            key2: value2
+        "#
+            .to_string(),
+        );
+        let key_1 = PathBuf::from("folder1/file1".to_string());
+
+        let value_2 = serde_yaml::Value::String(
+            r#"
+            - a1
+            - a2
+        "#
+            .to_string(),
+        );
+
+        let key_2 = PathBuf::from("folder2/file2".to_string());
+
+        assembly_output
+            .output(
+                value_1.clone(),
+                &key_1,
+                &crate::adapters::AssemblyOutputFormat::Yml,
+            )
+            .unwrap();
+        assembly_output
+            .output(
+                value_2.clone(),
+                &key_2,
+                &crate::adapters::AssemblyOutputFormat::Yml,
+            )
+            .unwrap();
+
+        let output = assembly_output.get_yml_output();
+
+        let entry1 = output.get(key_1.to_str().unwrap()).unwrap();
+        let entry2 = output.get(key_2.to_str().unwrap()).unwrap();
+
+        assert_eq!(entry1, &value_1);
+        assert_eq!(entry2, &value_2);
     }
 }

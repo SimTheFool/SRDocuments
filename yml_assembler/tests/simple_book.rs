@@ -38,7 +38,11 @@ async fn it_should_aggregate_filesystem_yml_files() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -53,7 +57,11 @@ async fn it_should_mix_properties() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -111,7 +119,11 @@ async fn it_should_transform_properties() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: BookFromYml = serde_yaml::from_value(yml).unwrap();
 

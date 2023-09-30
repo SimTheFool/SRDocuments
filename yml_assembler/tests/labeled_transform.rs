@@ -15,7 +15,11 @@ async fn it_should_apply_labeled_transform_in_abcd_order() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, Some(variables), &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     match yml {
         Value::Mapping(m) => {

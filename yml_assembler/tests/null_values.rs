@@ -10,7 +10,11 @@ async fn it_should_not_output_yml_null_leaves() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let story = match yml {
         Value::Mapping(m) => {

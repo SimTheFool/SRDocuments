@@ -29,7 +29,11 @@ async fn it_should_mix_on_exisiting_property() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -49,7 +53,11 @@ async fn it_should_mix_on_compound_property() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
@@ -63,7 +71,11 @@ async fn it_should_mix_on_map_key() {
     let (app, assembly_output, _) = test_infra::get_test_app();
     app.compile_and_validate_yml(TEST_FILE, None, None, &AssemblyOutputFormat::Yml)
         .unwrap();
-    let yml = assembly_output.get_yml_output().unwrap();
+    let yml = assembly_output
+        .get_yml_output()
+        .get(TEST_FILE)
+        .unwrap()
+        .clone();
 
     let book: DataFromYml = serde_yaml::from_value(yml).unwrap();
 
