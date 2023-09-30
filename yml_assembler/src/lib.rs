@@ -2,7 +2,7 @@ use adapters::AssemblyOutputFormat;
 use jsonschema::JSONSchema;
 use std::collections::HashMap;
 use std::path::PathBuf;
-use std::rc::Rc;
+use std::sync::Arc;
 use transformable::TransformableList;
 use utils::result::AppError;
 use utils::result::AppResult;
@@ -16,19 +16,20 @@ mod transformable;
 pub mod utils;
 mod variables;
 
+#[derive(Clone)]
 pub struct App {
-    part_reader: Rc<dyn adapters::PartReaderPort>,
-    schema_reader: Rc<dyn adapters::SchemaReaderPort>,
-    assembly_output: Rc<dyn adapters::AssemblyOutputPort>,
-    schema_output: Rc<dyn adapters::SchemaOutputPort>,
+    part_reader: Arc<dyn adapters::PartReaderPort>,
+    schema_reader: Arc<dyn adapters::SchemaReaderPort>,
+    assembly_output: Arc<dyn adapters::AssemblyOutputPort>,
+    schema_output: Arc<dyn adapters::SchemaOutputPort>,
 }
 
 impl App {
     pub fn new(
-        yml_reader: Rc<dyn adapters::PartReaderPort>,
-        schema_reader: Rc<dyn adapters::SchemaReaderPort>,
-        assembly_output: Rc<dyn adapters::AssemblyOutputPort>,
-        schema_output: Rc<dyn adapters::SchemaOutputPort>,
+        yml_reader: Arc<dyn adapters::PartReaderPort>,
+        schema_reader: Arc<dyn adapters::SchemaReaderPort>,
+        assembly_output: Arc<dyn adapters::AssemblyOutputPort>,
+        schema_output: Arc<dyn adapters::SchemaOutputPort>,
     ) -> Self {
         Self {
             part_reader: yml_reader,
@@ -45,7 +46,7 @@ impl App {
         variables: Option<HashMap<String, String>>,
         format: &AssemblyOutputFormat,
     ) -> AppResult<()> {
-        let mut aggregator = aggregator::YmlAggregator::new(Rc::clone(&self.part_reader));
+        let mut aggregator = aggregator::YmlAggregator::new(Arc::clone(&self.part_reader));
 
         let variables: Variables = variables.unwrap_or(HashMap::new()).into();
         let yml = aggregator.load(yml_id, &variables)?;

@@ -31,6 +31,7 @@ async fn it_should_mix_on_exisiting_property() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
@@ -55,6 +56,7 @@ async fn it_should_mix_on_compound_property() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
@@ -73,6 +75,7 @@ async fn it_should_mix_on_map_key() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();

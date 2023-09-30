@@ -1,4 +1,4 @@
-use std::{path::PathBuf, rc::Rc};
+use std::{path::PathBuf, sync::Arc};
 use yml_assembler::{
     lib_infras::{
         assembly_in_memory_output::AssemblyIMOutput, assembly_part_fs_reader::PartFSReader,
@@ -7,15 +7,15 @@ use yml_assembler::{
     App,
 };
 
-pub fn get_test_app() -> (App, Rc<AssemblyIMOutput>, Rc<SchemaIMOutput>) {
-    let yml_reader = Rc::new(PartFSReader::new(
+pub fn get_test_app() -> (App, Arc<AssemblyIMOutput>, Arc<SchemaIMOutput>) {
+    let yml_reader = Arc::new(PartFSReader::new(
         PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/yml_test_files")),
     ));
-    let schema_reader = Rc::new(SchemaFSReader::new(
+    let schema_reader = Arc::new(SchemaFSReader::new(
         PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("tests/yml_test_files")),
     ));
-    let in_memory_assembly_output = Rc::new(AssemblyIMOutput::new());
-    let in_memory_schema_output = Rc::new(SchemaIMOutput::new());
+    let in_memory_assembly_output = Arc::new(AssemblyIMOutput::new());
+    let in_memory_schema_output = Arc::new(SchemaIMOutput::new());
 
     let app = App::new(
         yml_reader,

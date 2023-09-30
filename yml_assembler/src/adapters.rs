@@ -3,11 +3,13 @@ use clap::ValueEnum;
 use crate::utils::result::AppResult;
 use std::path::PathBuf;
 
-pub trait PartReaderPort {
+pub trait PartReaderPort: Send + Sync {
     fn get_value(&self, identifier: &str) -> AppResult<serde_yaml::Value>;
+
+    fn get_filepathes_from_glob(&self, glob: &str) -> AppResult<Vec<String>>;
 }
 
-pub trait SchemaReaderPort {
+pub trait SchemaReaderPort: Send + Sync {
     fn get_validation_schema(&self, identifier: &str) -> AppResult<serde_json::Value>;
 
     fn get_schema_from_yml(&self, path: &PathBuf) -> AppResult<serde_json::Value>;
@@ -41,7 +43,7 @@ impl ValueEnum for AssemblyOutputFormat {
     }
 }
 
-pub trait AssemblyOutputPort {
+pub trait AssemblyOutputPort: Send + Sync {
     fn output(
         &self,
         value: serde_yaml::Value,
@@ -50,6 +52,6 @@ pub trait AssemblyOutputPort {
     ) -> AppResult<()>;
 }
 
-pub trait SchemaOutputPort {
+pub trait SchemaOutputPort: Send + Sync {
     fn output(&self, value: &serde_json::Value, schema_path: &PathBuf) -> AppResult<()>;
 }

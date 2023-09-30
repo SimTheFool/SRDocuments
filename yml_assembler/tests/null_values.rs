@@ -12,6 +12,7 @@ async fn it_should_not_output_yml_null_leaves() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();

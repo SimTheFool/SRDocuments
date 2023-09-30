@@ -1,4 +1,4 @@
-use std::rc::Rc;
+use std::sync::Arc;
 
 use crate::{adapters, mixins::MixIns, utils::result::AppResult, variables::Variables};
 use serde_yaml::{
@@ -7,14 +7,14 @@ use serde_yaml::{
 };
 
 pub struct YmlAggregator {
-    reader: Rc<dyn adapters::PartReaderPort>,
+    reader: Arc<dyn adapters::PartReaderPort>,
     pub mixins: MixIns,
 }
 
 impl YmlAggregator {
     const INCLUDE_TAG_PREFIX: &'static str = "!inc::";
 
-    pub fn new(reader: Rc<dyn adapters::PartReaderPort>) -> Self {
+    pub fn new(reader: Arc<dyn adapters::PartReaderPort>) -> Self {
         YmlAggregator {
             reader,
             mixins: MixIns::new(),
@@ -31,7 +31,7 @@ impl YmlAggregator {
                 let sub_mixins = values
                     .iter()
                     .map(|value| {
-                        let mut aggregator = YmlAggregator::new(Rc::clone(&self.reader));
+                        let mut aggregator = YmlAggregator::new(Arc::clone(&self.reader));
                         let value = aggregator.visit(value, &variables)?;
                         let mut mixins = aggregator.mixins;
                         mixins.add(key.clone(), vec![value]);

@@ -40,6 +40,7 @@ async fn it_should_aggregate_filesystem_yml_files() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
@@ -59,6 +60,7 @@ async fn it_should_mix_properties() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
@@ -121,6 +123,7 @@ async fn it_should_transform_properties() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();

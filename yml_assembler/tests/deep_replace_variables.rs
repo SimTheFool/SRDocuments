@@ -19,6 +19,7 @@ async fn it_should_deep_replace_variables() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
@@ -36,6 +37,7 @@ async fn it_should_work_well_with_mixin() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();

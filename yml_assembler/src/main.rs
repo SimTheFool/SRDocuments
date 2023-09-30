@@ -1,7 +1,7 @@
 use clap::Parser;
-use std::{collections::HashMap, error::Error, path::PathBuf, rc::Rc};
+use std::{collections::HashMap, error::Error, path::PathBuf, sync::Arc, thread::JoinHandle};
 use yml_assembler::{
-    adapters::AssemblyOutputFormat,
+    adapters::{AssemblyOutputFormat, PartReaderPort},
     lib_infras::{
         assembly_fs_output::AssemblyFSOutput, assembly_part_fs_reader::PartFSReader,
         schema_fs_output::SchemaFSOutput, schema_fs_reader::SchemaFSReader,
@@ -82,25 +82,61 @@ fn cli() -> Result<(), anyhow::Error> {
     println!("{}", display_variables);
     println!("Using format: {:?}", format);
     println!("Working in: {}", root.display());
-    println!("Assembling files: {}", format!("{}", entry));
     if let Some(schema) = schema.as_deref() {
         println!("Validating from schema: {}", schema);
     }
     println!("Outputing in: {}", outdir.display());
 
     let part_fs_reader = PartFSReader::new(root.clone());
+    let entries = part_fs_reader.get_filepathes_from_glob(&entry)?;
+    println!("Assembling files: {}", entries.clone().join(" "));
+
     let schema_fs_reader = SchemaFSReader::new(root.clone());
     let assembly_fs_output = AssemblyFSOutput::new(outdir.clone());
     let schema_fs_output = SchemaFSOutput::new(outdir.clone());
 
     let app = yml_assembler::App::new(
-        Rc::new(part_fs_reader),
-        Rc::new(schema_fs_reader),
-        Rc::new(assembly_fs_output),
-        Rc::new(schema_fs_output),
+        Arc::new(part_fs_reader),
+        Arc::new(schema_fs_reader),
+        Arc::new(assembly_fs_output),
+        Arc::new(schema_fs_output),
     );
 
-    app.compile_and_validate_yml(&entry, schema.as_deref(), Some(variables), &format)?;
+    let wait_for_assemble = entries
+        .iter()
+        .map(|entry| {
+            let entry = entry.clone();
+            let app = app.clone();
+            let schema = schema.clone();
+            let variables = variables.clone();
+            let format = format.clone();
+
+            std::thread::spawn(move || {
+                app.clone().compile_and_validate_yml(
+                    &entry,
+                    schema.as_deref(),
+                    Some(variables.clone()),
+                    &format,
+                )
+            })
+        })
+        .collect::<Vec<JoinHandle<_>>>();
+
+    let join_handle_result: Result<(), anyhow::Error> = wait_for_assemble
+        .into_iter()
+        .map(|handle| handle.join())
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|e| anyhow::anyhow!(format!("Could not join thread: {:?}", e)))?
+        .iter()
+        .try_fold((), |acc, x| {
+            if let Err(e) = x {
+                Err(anyhow::anyhow!(format!("Could not assemble: {:?}", e)))?;
+            }
+            Ok(acc)
+        });
+
+    join_handle_result?;
+
     Ok(())
 }
 

@@ -1,28 +1,38 @@
-use std::{cell::RefCell, collections::HashMap, path::PathBuf, rc::Rc};
+use std::{
+    collections::HashMap,
+    path::PathBuf,
+    sync::{Arc, RwLock},
+};
 
 use crate::{
     adapters::{AssemblyOutputFormat, AssemblyOutputPort},
-    utils::result::AppResult,
+    utils::result::{AppError, AppResult},
 };
 
 pub struct AssemblyIMOutput {
-    pub value_yml: Rc<RefCell<HashMap<String, serde_yaml::Value>>>,
-    pub value_json: Rc<RefCell<HashMap<String, serde_json::Value>>>,
+    pub value_yml: Arc<RwLock<HashMap<String, serde_yaml::Value>>>,
+    pub value_json: Arc<RwLock<HashMap<String, serde_json::Value>>>,
 }
 impl AssemblyIMOutput {
     pub fn new() -> Self {
         AssemblyIMOutput {
-            value_yml: Rc::new(RefCell::new(HashMap::new())),
-            value_json: Rc::new(RefCell::new(HashMap::new())),
+            value_yml: Arc::new(RwLock::new(HashMap::new())),
+            value_json: Arc::new(RwLock::new(HashMap::new())),
         }
     }
-    pub fn get_yml_output(&self) -> HashMap<String, serde_yaml::Value> {
-        let in_memory_ref = self.value_yml.borrow();
-        in_memory_ref.clone()
+    pub fn get_yml_output(&self) -> AppResult<HashMap<String, serde_yaml::Value>> {
+        let in_memory_ref = self
+            .value_yml
+            .read()
+            .map_err(|_| AppError::FileSystem("Cannot real yml output".to_string()))?;
+        Ok(in_memory_ref.clone())
     }
-    pub fn get_json_output(&self) -> HashMap<String, serde_json::Value> {
-        let in_memory_ref = self.value_json.borrow();
-        in_memory_ref.clone()
+    pub fn get_json_output(&self) -> AppResult<HashMap<String, serde_json::Value>> {
+        let in_memory_ref = self
+            .value_json
+            .read()
+            .map_err(|_| AppError::FileSystem("Cannot real json output".to_string()))?;
+        Ok(in_memory_ref.clone())
     }
 }
 impl AssemblyOutputPort for AssemblyIMOutput {
@@ -34,11 +44,17 @@ impl AssemblyOutputPort for AssemblyIMOutput {
     ) -> AppResult<()> {
         match format {
             AssemblyOutputFormat::Yml => {
-                let mut in_memory_ref = self.value_yml.borrow_mut();
+                let mut in_memory_ref = self
+                    .value_yml
+                    .write()
+                    .map_err(|_| AppError::FileSystem("Cannot write yml output".to_string()))?;
                 in_memory_ref.insert(key.to_str().unwrap().to_string(), value.clone());
             }
             AssemblyOutputFormat::Json => {
-                let mut in_memory_ref = self.value_json.borrow_mut();
+                let mut in_memory_ref = self
+                    .value_json
+                    .write()
+                    .map_err(|_| AppError::FileSystem("Cannot write json output".to_string()))?;
                 let json = serde_json::to_value(value).map_err(|e| {
                     anyhow::anyhow!(format!("Could not transform yml to json: {}", e))
                 })?;
@@ -93,7 +109,7 @@ mod test {
             )
             .unwrap();
 
-        let output = assembly_output.get_yml_output();
+        let output = assembly_output.get_yml_output().unwrap();
 
         let entry1 = output.get(key_1.to_str().unwrap()).unwrap();
         let entry2 = output.get(key_2.to_str().unwrap()).unwrap();

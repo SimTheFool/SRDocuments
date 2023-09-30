@@ -17,6 +17,7 @@ async fn it_should_apply_labeled_transform_in_abcd_order() {
         .unwrap();
     let yml = assembly_output
         .get_yml_output()
+        .unwrap()
         .get(TEST_FILE)
         .unwrap()
         .clone();
