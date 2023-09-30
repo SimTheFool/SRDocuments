@@ -1,9 +1,7 @@
-- yml assembler
+- yml assembler performace
 
-  - in memory output as Hashmap
-  - mettre un cache au yml reader
-  - mettre les tâches de lecture de fichiers du queue
-  - utiliser un glob pattern
+  - visiter les branches en concurrence
+  - ne pas copier le yml à chaque fois
 
 - ui
   - route metadata qui référence les pdfs disponibles
