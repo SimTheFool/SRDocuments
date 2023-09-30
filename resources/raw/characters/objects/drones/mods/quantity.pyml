@@ -1,4 +1,0 @@
-$DRONE.quantity: !mix $QUANTITY
-
-_transform.$PRICES_LAYER: !mix
-    - "$DRONE.price *= $QUANTITY"

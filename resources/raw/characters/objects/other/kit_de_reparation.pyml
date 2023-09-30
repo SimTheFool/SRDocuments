@@ -1,0 +1,5 @@
+name: Kit de réparation
+price: 500
+legal: true
+licenced: false
+concealment: !inc::objects/concealment/3_knife_pistols

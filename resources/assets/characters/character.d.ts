@@ -80,6 +80,9 @@ export interface Schema {
   identities?: Identity[];
   knowledges?: string[];
   name?: string;
+  other?: {
+    [k: string]: BaseItem1;
+  };
   outfits?: {
     [k: string]: Outfit;
   };
@@ -114,6 +117,7 @@ export interface BaseItem {
   manufacturer?: string;
   name: string;
   price: number;
+  quality?: number;
   quantity?: number;
   slots?: Slot[];
   type?: string;
@@ -152,6 +156,19 @@ export interface Licences {
 export interface Lifestyle {
   name: string;
   price: number;
+}
+export interface BaseItem1 {
+  concealment?: number;
+  description?: string;
+  legal: boolean;
+  licenced: boolean;
+  manufacturer?: string;
+  name: string;
+  price: number;
+  quality?: number;
+  quantity?: number;
+  slots?: Slot[];
+  type?: string;
 }
 export interface BaseAction1 {
   damage?: number;

@@ -1,0 +1,7 @@
+name: Medikit
+description: "Soigne les blessures récentes (<1h). Utilise la compétence Biotech ou l'indice de l'appareil. Chaque case soignée prend une minute."
+price: $QUALITY * 250
+quality: $QUALITY
+legal: true
+licenced: false
+concealment: !inc::objects/concealment/3_knife_pistols

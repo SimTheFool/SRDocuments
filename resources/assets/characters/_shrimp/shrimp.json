@@ -56,7 +56,7 @@
       "licenced": false,
       "manufacturer": "Shiawase",
       "name": "Kanmushi",
-      "price": 900,
+      "price": 450,
       "quantity": 2,
       "stats": {
         "acceleration": 4,
@@ -187,6 +187,81 @@
     "jeux tridéos"
   ],
   "name": "shrimp",
+  "other": {
+    "charge_medikit": {
+      "concealment": 5,
+      "legal": true,
+      "licenced": false,
+      "name": "Charge medikit",
+      "price": 20,
+      "quantity": 9
+    },
+    "chargeur_250_b": {
+      "legal": true,
+      "licenced": false,
+      "name": "Recharges",
+      "price": 250,
+      "quantity": 2
+    },
+    "chargeur_30_taser": {
+      "legal": true,
+      "licenced": false,
+      "name": "Recharges",
+      "price": 30,
+      "quantity": 2
+    },
+    "cordes_standard": {
+      "description": "Corde de 60m qui peut soutenir 400 Kg.",
+      "legal": true,
+      "licenced": false,
+      "name": "Corde",
+      "price": 1,
+      "quantity": 25
+    },
+    "dérivateur_de_données": {
+      "concealment": 4,
+      "description": "Copie les données transitant sur n'importe quel cable de données et de fournir une lecture sans fil à un système filaire.",
+      "legal": true,
+      "licenced": false,
+      "name": "Dérivateur de données",
+      "price": 300
+    },
+    "kit_de_réparation": {
+      "concealment": 3,
+      "legal": true,
+      "licenced": false,
+      "name": "Kit de réparation",
+      "price": 500,
+      "quantity": 3
+    },
+    "medikit": {
+      "concealment": 3,
+      "description": "Soigne les blessures récentes (<1h). Utilise la compétence Biotech ou l'indice de l'appareil. Chaque case soignée prend une minute.",
+      "legal": true,
+      "licenced": false,
+      "name": "Medikit",
+      "price": 1000,
+      "quality": 4
+    },
+    "patch_stim": {
+      "concealment": 6,
+      "description": "Soigne 4 dégat étourdissants, pendant 4 x 10min. La cible subit 4 + 1 dégat étourdissants lorsque le patch expire.",
+      "legal": true,
+      "licenced": false,
+      "name": "Patch stim",
+      "price": 400,
+      "quality": 4,
+      "quantity": 6
+    },
+    "scanner_de_proximité": {
+      "concealment": 4,
+      "description": "Scanne les appareils sans fil dans un rayon de 20m.",
+      "legal": true,
+      "licenced": false,
+      "name": "Scanner de proximité",
+      "price": 200
+    }
+  },
   "outfits": {
     "invisi_shield": {
       "concealment": 4,

@@ -61,6 +61,12 @@ properties:
       type: object
       $ref: "#/definitions/tech"
 
+  other:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/base_item"
+
   sprites:
     type: object
     additionalProperties:
@@ -403,6 +409,8 @@ definitions:
       price:
         type: integer
       quantity:
+        type: integer
+      quality:
         type: integer
       legal:
         type: boolean

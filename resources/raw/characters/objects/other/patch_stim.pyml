@@ -1,0 +1,7 @@
+name: Patch stim
+price: $QUALITY * 100
+description: Soigne $QUALITY dégat étourdissants, pendant $QUALITY x 10min. La cible subit $QUALITY + 1 dégat étourdissants lorsque le patch expire.
+legal: true
+licenced: false
+quality: $QUALITY
+concealment: !inc::objects/concealment/6_cigaret

@@ -21,9 +21,15 @@ type ItemCardProps = {
   };
   item: BaseItem;
   name: string;
+  noHand?: boolean;
 };
 
-export const ItemCard = ({ item, name, children }: ItemCardProps) => {
+export const ItemCard = ({
+  item,
+  name,
+  children,
+  noHand = false,
+}: ItemCardProps) => {
   const bottomChildren = React.Children.toArray(
     children?.bottom?.props.children
   ).filter((x) => x);
@@ -62,7 +68,14 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
           <TitleMin
             subtitle={
               <>
-                <Price price={item.price} />
+                <Price
+                  price={item.price}
+                  unit={
+                    item.quantity != undefined && item.quantity > 1
+                      ? true
+                      : false
+                  }
+                />
                 <Space inline />
                 {!item.legal ? "illégal" : item.licenced ? "licencié" : ""}
               </>
@@ -79,9 +92,11 @@ export const ItemCard = ({ item, name, children }: ItemCardProps) => {
             {children?.inner}
           </ParagraphStandard>
         </Card>
-        <Box pl={"1"}>
-          <Hand />
-        </Box>
+        {!noHand && (
+          <Box pl={"1"}>
+            <Hand />
+          </Box>
+        )}
       </Flex>
 
       <MasonryGrid compact columns={1}>

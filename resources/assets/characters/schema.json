@@ -56,6 +56,9 @@
         "price": {
           "type": "integer"
         },
+        "quality": {
+          "type": "integer"
+        },
         "quantity": {
           "type": "integer"
         },
@@ -839,6 +842,13 @@
     },
     "name": {
       "type": "string"
+    },
+    "other": {
+      "additionalProperties": {
+        "$ref": "#/definitions/base_item",
+        "type": "object"
+      },
+      "type": "object"
     },
     "outfits": {
       "additionalProperties": {
