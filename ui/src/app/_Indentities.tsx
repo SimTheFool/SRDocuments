@@ -65,10 +65,10 @@ const Identity = ({
         {quality && (
           <Container>
             <Card title={"nuyens"}>
-              <Flex justify={"between"} align={"end"} height={"100%"}>
+              <Flex justify={"between"} align={"end"} height={"9"}>
                 <ParagraphStandard>_</ParagraphStandard>
                 <ParagraphStandard>
-                  {nuyens ? `/${nuyens}¥` : null}
+                  {nuyens ? `${nuyens}¥` : null}
                 </ParagraphStandard>
               </Flex>
             </Card>

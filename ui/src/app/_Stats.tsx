@@ -1,4 +1,5 @@
 import { FlexList } from "@/components/FlexList";
+import { DiceSix } from "@/components/Icons/DiceSix";
 import { Section } from "@/components/Section";
 import { StatTable } from "@/components/StatTable";
 import { TextIndice } from "@/components/TextIndice";
@@ -79,20 +80,6 @@ export const Stats = ({ char }: StatsProps) => {
         )}
       </Container>
       <Container>
-        <StatTable
-          items={[
-            ["Ini"],
-            [
-              <>
-                <StatBlock n={stats.init_dice} dice={6} />
-                {"+"}
-                <StatBlock n={stats.init.score} stat={stats.init?.stat} />
-              </>,
-            ],
-          ]}
-        />
-      </Container>
-      <Container>
         {stats.res && (
           <StatTable
             items={[
@@ -106,6 +93,20 @@ export const Stats = ({ char }: StatsProps) => {
             ]}
           />
         )}
+      </Container>
+      <Container>
+        <StatTable
+          items={[
+            ["Ini"],
+            [
+              <>
+                <StatBlock n={stats.init_dice} dice={6} />
+                {"+"}
+                <StatBlock n={stats.init.score} stat={stats.init?.stat} />
+              </>,
+            ],
+          ]}
+        />
       </Container>
       <Container>
         {stats.mag && (
@@ -206,7 +207,14 @@ type StatBlockProps = {
 const StatBlock = ({ n, mod, stat, dice }: StatBlockProps) => {
   return (
     <>
-      {dice ? `${n}d${dice}` : n}
+      {dice ? (
+        <>
+          {n}
+          <DiceSix />
+        </>
+      ) : (
+        n
+      )}
       {!!mod ? <>({mod})</> : null}{" "}
       <TextIndice>
         {stat && <>{stat.map((s) => s.toUpperCase()).join("-")} </>}

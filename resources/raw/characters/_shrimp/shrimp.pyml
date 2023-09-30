@@ -85,7 +85,7 @@ identities:
           description: Ouvrier de casse militaire d'ARES
   - !inc::identities/i_fake
       NAME: L. Guinvite
-      NUYENS: null
+      NUYENS: 40000
       LIFESTYLE: !inc::identities/lifestyle/squat
       LICENCES:
         - !inc::identities/licence
