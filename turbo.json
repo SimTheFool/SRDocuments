@@ -12,7 +12,8 @@
     },
     "pdf": {
       "dependsOn": ["^build"],
-      "cache": false
+      "cache": true,
+      "outputs": ["dist/**"]
     }
   }
 }

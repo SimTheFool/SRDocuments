@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "pdf": "ts-node ./getPDF.ts"
+    "pdf": "ts-node ./src/index.ts"
   },
   "dependencies": {
     "@types/node": "20.4.9",

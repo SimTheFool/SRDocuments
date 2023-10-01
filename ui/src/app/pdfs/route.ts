@@ -17,10 +17,10 @@ export async function GET() {
   ]);
 
   return Response.json({
-    characterSheets: {
+    characters: {
       sheets: Object.fromEntries(charSheetsKV),
       metadata: {
-        pdfsConfig,
+        ...pdfsConfig,
       },
     },
   });
