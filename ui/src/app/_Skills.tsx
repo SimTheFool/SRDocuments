@@ -22,15 +22,15 @@ export const Skills = ({ char }: SkillsProps) => {
       <MasonryGrid compact columns={2}>
         <TitleSection>Compétences</TitleSection>
         {skills.map(([name, value]) => (
-          <Container>
+          <Container key={name}>
             {value && (
               <Card>
                 <SkillText name={capitalize(name)} score={value.base} />
                 {value.specialisations?.map((name) => (
-                  <MasterText score={2} label={name} />
+                  <MasterText score={2} label={name} key={name} />
                 ))}
                 {value.expertises?.map((name) => (
-                  <MasterText score={3} label={name} />
+                  <MasterText score={3} label={name} key={name} />
                 ))}
               </Card>
             )}

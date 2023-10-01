@@ -1,20 +1,18 @@
-import { getA4FormatFromWidth } from "@/utils/a4format";
+import { pdfsConfig } from "@/utils/config";
 import { Theme } from "@radix-ui/themes";
-import "./A4Format.css";
+import "./PdfContainer.css";
 
 type A4FormatProps = {
   children: React.ReactNode;
   border?: boolean;
 };
 
-export const A4Format = ({ children, border = false }: A4FormatProps) => {
-  const a4 = getA4FormatFromWidth(665);
-
+export const PdfContainer = ({ children, border = false }: A4FormatProps) => {
   return (
     <Theme
       style={{
-        width: `${a4.width}px`,
-        height: `${a4.height}px`,
+        width: `${pdfsConfig.size.width}px`,
+        height: `${pdfsConfig.size.height}px`,
         border: border ? "2px solid var(--gray-10)" : "unset",
         boxSizing: border ? "content-box" : "border-box",
       }}

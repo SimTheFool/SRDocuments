@@ -1,0 +1,270 @@
+name: shrimp
+tags:
+    - 13 ans
+    - technorigger
+
+metatype: !inc::identities/metatype/human
+
+stats: !inc::stats/base_stats
+  CON: 1
+  AGI: 4
+  REA: 2
+  FOR: 1
+  VOL: 4
+  LOG: 6
+  INT: 4
+  CHA: 2
+  ESS: 6
+  EDGE: 4
+
+speciality:
+  - !inc::technomancy/technomancer
+      RES: 7
+      SUBM: 1
+  - !inc::technomancy/powers/data_storm
+  - !inc::technomancy/powers/data_channel
+  - !inc::technomancy/echoes/reseau_vivant
+  - !inc::technomancy/sprites/machine
+
+skills:
+  - !inc::stats/skills/perception
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/furtivite
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/athletisme
+      BASE: 3
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/electronique
+      BASE: 4
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/combat_rapp
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/ingenierie
+      BASE: 6
+      SPEC:
+        - Artillerie
+      EXP: null
+  - !inc::stats/skills/pilotage
+      BASE: 6
+      SPEC:
+        - Appareils au sol
+      EXP: null
+  - !inc::stats/skills/technomancie
+      BASE: 6
+      SPEC:
+        - Compilation
+      EXP:
+        - Inscription
+
+knowledges:
+    - drônes
+    - séries tridéos
+    - jeux tridéos
+
+identities:
+  - !inc::identities/i_leg
+      NUYENS: null
+      LICENCES: null
+      LIFESTYLE: null
+      CONTACTS:
+        - name: D-Boss
+          loyalty: 4
+          connection: 4
+          description: Decker fan de complot
+        - name: Terrance
+          loyalty: 3
+          connection: 2
+          description: Ouvrier de casse militaire d'ARES
+  - !inc::identities/i_fake
+      NAME: L. Guinvite
+      NUYENS: 40000
+      LIFESTYLE: !inc::identities/lifestyle/squat
+      LICENCES:
+        - !inc::identities/licence
+            ITEM: Chasse d'arme
+            QUALITY: 4
+        - !inc::identities/licence
+            ITEM: Packmule
+            QUALITY: 4
+        - !inc::identities/licence
+            ITEM: Crawler
+            QUALITY: 4
+      CONTACTS: null
+      QUALITY: 2
+
+traits:
+  - !inc::identities/traits/bricoleur_prevoyant
+  - !inc::identities/traits/ami_des_sprites
+      TYPE: machine
+  - !inc::identities/traits/paralysie_du_combat
+  - !inc::identities/traits/rhinite_chronique
+
+weapons:
+  crockett: !inc::objects/weapons/crockett
+      SELF: weapons.crockett
+
+  cavalier_arms_mods:
+    - !inc::objects/weapons/mods/guncam
+        WEAPON: weapons.crockett
+    - !inc::objects/weapons/mods/chasse
+        WEAPON: weapons.crockett
+    - !inc::objects/weapons/mods/canon_long
+        WEAPON: weapons.crockett
+    - !inc::objects/weapons/mods/kit_de_demontage
+        WEAPON: weapons.crockett
+
+  pulsar: !inc::objects/weapons/pulsar
+      SELF: weapons.pulsar
+
+  pulsar_mods:
+    - !inc::objects/weapons/mods/chasse_medium
+        WEAPON: weapons.pulsar
+
+  grappin: !inc::objects/weapons/grappin
+      SELF: weapons.grappin
+
+  grappin_mods:
+    - !inc::objects/weapons/mods/chasse_light
+        WEAPON: weapons.grappin
+
+  clef_cyber_fictionnelle: !inc::objects/weapons/clef_cyber_fictionnelle
+      SELF: weapons.clef_cyber_fictionnelle
+
+  bras_mécanique: !inc::objects/weapons/mecanized_arm
+      SELF: weapons.bras_mécanique
+
+  mecanized_arm_mods:
+    - !inc::objects/weapons/mods/chasse
+        WEAPON: weapons.bras_mécanique
+
+drones:
+  packmule: !inc::objects/drones/packmule
+      SELF: drones.packmule
+
+  packmule_mods:
+    - !inc::objects/drones/mods/monture
+        DRONE: drones.packmule
+    - !inc::objects/drones/mods/monture
+        DRONE: drones.packmule
+    - !inc::objects/drones/mods/compartiment
+        DRONE: drones.packmule
+    - !inc::objects/drones/mods/rules
+        DRONE: drones.packmule
+
+  crawler: !inc::objects/drones/crawler
+      SELF: drones.crawler
+
+  crawler_mods:
+    - !inc::objects/drones/mods/monture
+        DRONE: drones.crawler
+    - !inc::objects/drones/mods/monture
+        DRONE: drones.crawler
+    - !inc::objects/drones/mods/rules
+        DRONE: drones.crawler
+
+  kanmushi: !inc::objects/drones/kanmushi
+      SELF: drones.kanmushi
+
+  kanmushi_mods:
+    - !inc::objects/drones/mods/rules
+        DRONE: drones.kanmushi
+    - !inc::objects/quantity
+        ON: drones.kanmushi
+        QUANTITY: 2
+
+outfits:
+  sac: !inc::objects/outfits/bag
+
+  tenue_de_gamin_des_rues: !inc::objects/outfits/street_kid
+      SELF: outfits.tenue_de_gamin_des_rues
+
+  street_kid_mods:
+    - !inc::objects/outfits/mods/secret_pocket
+        OUTFIT: outfits.tenue_de_gamin_des_rues
+    - !inc::objects/outfits/mods/secret_pocket
+        OUTFIT: outfits.tenue_de_gamin_des_rues
+
+  invisi_shield: !inc::objects/outfits/invisi_shield
+      SELF: outfits.invisi_shield
+
+tech:
+  micro_et_camera:
+    name: Micro + Caméra
+    price: 100
+    legal: true
+    licenced: false
+    concealment: !inc::objects/concealment/6_cigaret
+  
+other:
+    dérivateur_de_données:
+        name: Dérivateur de données
+        description: "Copie les données transitant sur n'importe quel cable de données et de fournir une lecture sans fil à un système filaire."
+        price: 300
+        legal: true
+        licenced: false
+        concealment: !inc::objects/concealment/4_retracted_baton
+
+    scanner_de_proximité:
+        name: Scanner de proximité
+        description: "Scanne les appareils sans fil dans un rayon de 20m."
+        price: 200
+        legal: true
+        licenced: false
+        concealment: !inc::objects/concealment/4_retracted_baton
+
+    medikit: !inc::objects/other/medikit
+        QUALITY: 4
+
+    charge_medikit: !inc::objects/other/charge_medikit
+    
+    medikit_mods: !inc::objects/quantity
+            ON: other.charge_medikit
+            QUANTITY: 9
+
+    kit_de_réparation: !inc::objects/other/kit_de_reparation
+
+    kit_de_réparation_mods: !inc::objects/quantity
+        ON: other.kit_de_réparation
+        QUANTITY: 3
+
+    patch_stim: !inc::objects/other/patch_stim
+        QUALITY: 4
+
+    patch_stim_mods: !inc::objects/quantity
+        ON: other.patch_stim
+        QUANTITY: 6
+
+    chargeur_250_b: !inc::objects/other/recharge_balles
+        LOAD: 250
+
+    recharge_250_mods: !inc::objects/quantity
+        ON: other.chargeur_250_b
+        QUANTITY: 2
+
+    chargeur_30_taser: !inc::objects/other/recharge_taser
+        LOAD: 30
+
+    chargeur_30_taser_mods: !inc::objects/quantity
+        ON: other.chargeur_30_taser
+        QUANTITY: 2
+
+    cordes_standard: !inc::objects/other/corde_standard
+
+    cordes_standard_mods: !inc::objects/quantity
+        ON: other.cordes_standard
+        QUANTITY: 25
+
+    
+  
+  
+  
+  
+  

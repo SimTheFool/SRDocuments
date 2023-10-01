@@ -47,7 +47,7 @@ export const Weapon = ({ weapon, name }: WeaponProps) => {
             )}
             {recharger && <LoadAction action={recharger} />}
             {Object.entries(otherActions).map(([name, action]) => (
-              <BaseAction name={name} action={action} />
+              <BaseAction key={name} name={name} action={action} />
             ))}
           </>
         ),

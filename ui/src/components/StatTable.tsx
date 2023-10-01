@@ -29,16 +29,16 @@ export const StatTable = ({
     >
       <Table.Header>
         <Table.Row>
-          {headers.map((title) => (
-            <Table.ColumnHeaderCell>{title}</Table.ColumnHeaderCell>
+          {headers.map((title, i) => (
+            <Table.ColumnHeaderCell key={i}>{title}</Table.ColumnHeaderCell>
           ))}
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {rows.map((row) => (
-          <Table.Row>
-            {row.map((cell) => (
-              <Table.Cell>{cell}</Table.Cell>
+        {rows.map((row, i) => (
+          <Table.Row key={i}>
+            {row.map((cell, i) => (
+              <Table.Cell key={i}>{cell}</Table.Cell>
             ))}
           </Table.Row>
         ))}

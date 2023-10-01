@@ -18,7 +18,7 @@ export const Identities = ({ char }: IdentitiesProps) => {
     <Section title={<TitleSection>Identités</TitleSection>}>
       {char.identities?.map((i) => (
         <>
-          <Identity identity={i} />
+          <Identity key={i.name} identity={i} />
         </>
       ))}
     </Section>
@@ -75,7 +75,7 @@ const Identity = ({
           </Container>
         )}
         {licences?.map((l) => (
-          <Container>
+          <Container key={l.name}>
             <Card title={"licence"}>
               <ParagraphStandard>{l.name}</ParagraphStandard>
               <TitleMin subtitle={`${l.quality}-${l.price}¥`} />
@@ -84,7 +84,7 @@ const Identity = ({
         ))}
         {contacts?.map((c) => {
           return (
-            <Container>
+            <Container key={c.name}>
               <Card title={"contact"}>
                 <TitleMin
                   title={c.name}

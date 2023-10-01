@@ -8,15 +8,21 @@ import { Header } from "@/components/Header";
 import { Section } from "@/components/Section";
 import { TitleSection } from "@/components/TitleSection";
 import { Box, Grid } from "@radix-ui/themes";
+import { PdfContainer } from "../../PdfContainer";
 import { characters } from "resources";
-import { A4Format } from "../A4Format";
 
-const shrimp = characters.shrimp;
+type Props = {
+  params: {
+    name: string;
+  };
+};
 
-export default function Home() {
+export default function Home({ params: { name } }: Props) {
+  const char = characters[name];
+
   return (
-    <A4Format border>
-      <Header char={shrimp} />
+    <PdfContainer>
+      <Header char={char} />
       <Grid
         columns="2"
         gap="2"
@@ -28,9 +34,9 @@ export default function Home() {
         px={"2"}
       >
         <Box>
-          <Stats char={shrimp} />
-          <Resources char={shrimp} />
-          <Monitors char={shrimp} />
+          <Stats char={char} />
+          <Resources char={char} />
+          <Monitors char={char} />
         </Box>
 
         <Box>
@@ -40,7 +46,7 @@ export default function Home() {
               borderLeft: "2px solid var(--gray-10)",
             }}
           >
-            <Identities char={shrimp} />
+            <Identities char={char} />
           </Box>
           <Box
             pl={"2"}
@@ -48,7 +54,7 @@ export default function Home() {
               borderLeft: "2px solid var(--gray-10)",
             }}
           >
-            <Skills char={shrimp} />
+            <Skills char={char} />
           </Box>
         </Box>
       </Grid>
@@ -59,7 +65,7 @@ export default function Home() {
           borderTop: "2px solid var(--gray-10)",
         }}
       >
-        <Effects char={shrimp} />
+        <Effects char={char} />
       </Box>
       <Box
         pt={"3"}
@@ -70,6 +76,6 @@ export default function Home() {
       >
         <Section title={<TitleSection>Notes</TitleSection>}></Section>
       </Box>
-    </A4Format>
+    </PdfContainer>
   );
 }

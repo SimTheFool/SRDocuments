@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(4px * var(--scaling));
+    height: calc(5px * var(--scaling));
 }
 
 

@@ -50,6 +50,7 @@ export const MasonryGrid = ({
       {React.Children.map(children, (child, i) => {
         return (
           <Box
+            key={i}
             className={itemId}
             style={{
               width: `${columnWidth}%`,

@@ -13,8 +13,8 @@ export const Effects = ({ char }: EffectsProps) => {
     <Section>
       <MasonryGrid compact columns={4}>
         <TitleSection>Effects</TitleSection>
-        {char.effects?.map((e) => (
-          <Effect effect={e} />
+        {char.effects?.map((e, i) => (
+          <Effect key={i} effect={e} />
         ))}
       </MasonryGrid>
     </Section>

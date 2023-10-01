@@ -1,50 +1,60 @@
 import { MasonryGrid } from "@/components/MasonryGrid";
 import { Space } from "@/components/Space";
 import { TitleSection } from "@/components/TitleSection";
+import { BaseAction } from "@/components/actions/BaseAction";
 import { Drone } from "@/components/items/Drone";
 import { ItemCard } from "@/components/items/ItemCard";
 import { Tech } from "@/components/items/Tech";
 import { Weapon } from "@/components/items/Weapon";
 import { Box } from "@radix-ui/themes";
 import { characters } from "resources";
-import { A4Format } from "../A4Format";
-import { BaseAction } from "@/components/actions/BaseAction";
+import { PdfContainer } from "../../PdfContainer";
 
-const shrimp = characters.shrimp;
+type Props = {
+  params: {
+    name: string;
+  };
+};
 
-export default function Home() {
+export default async function Page({ params: { name } }: Props) {
+  const char = characters[name];
+
   return (
-    <A4Format border>
+    <PdfContainer>
       <Box pt={"2"}>
         <MasonryGrid columns={3}>
           <Box>
-            <TitleSection>Inventory</TitleSection>
+            <TitleSection>Inventaire</TitleSection>
             <Space />
           </Box>
-          {Object.entries(shrimp.drones || {}).map(([name, drone]) => {
+          {Object.entries(char.drones || {}).map(([name, drone]) => {
             return (
-              <Box pb={"4"} pr={"2"}>
+              <Box pb={"4"} pr={"2"} key={name}>
                 <Drone item={drone} name={name} />
               </Box>
             );
           })}
-          {Object.entries(shrimp.weapons || {}).map(([name, weapon]) => {
+          {Object.entries(char.weapons || {}).map(([name, weapon]) => {
             return (
-              <Box pb={"4"} pr={"2"}>
+              <Box pb={"4"} pr={"2"} key={name}>
                 <Weapon weapon={weapon} name={name} />
               </Box>
             );
           })}
-          {Object.entries(shrimp.outfits || {}).map(([name, outfit]) => {
+          {Object.entries(char.outfits || {}).map(([name, outfit]) => {
             return (
-              <Box pb={"4"} pr={"2"}>
+              <Box pb={"4"} pr={"2"} key={name}>
                 <ItemCard item={outfit} name={name}>
                   {{
                     bottom: (
                       <>
                         {Object.entries(outfit.actions || {}).map(
                           ([name, action]) => (
-                            <BaseAction name={name} action={action} />
+                            <BaseAction
+                              name={name}
+                              action={action}
+                              key={name}
+                            />
                           )
                         )}
                       </>
@@ -54,15 +64,15 @@ export default function Home() {
               </Box>
             );
           })}
-          {Object.entries(shrimp.tech || {}).map(([name, tech]) => {
+          {Object.entries(char.tech || {}).map(([name, tech]) => {
             return (
-              <Box pb={"4"} pr={"2"}>
+              <Box pb={"4"} pr={"2"} key={name}>
                 <Tech tech={tech} name={name} />
               </Box>
             );
           })}
         </MasonryGrid>
       </Box>
-    </A4Format>
+    </PdfContainer>
   );
 }

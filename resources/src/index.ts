@@ -1,16 +1,15 @@
-import shrimp from "../assets/characters/_shrimp/shrimp.json";
-import type {
+import {
   Schema as Character,
   RangeLabels,
   RangeScores,
 } from "../assets/characters/character";
-
-export type * from "../assets/characters/character";
-export type { Schema as Character } from "../assets/characters/character";
+import shrimp from "../assets/characters/shrimp.json";
+import shrimpB from "../assets/characters/shrimpB.json";
 
 export const characters = {
-  shrimp: shrimp as Character,
-};
+  shrimp,
+  shrimpB,
+} as Record<string, Character>;
 
 export const getSortedNumberScoresPair = (
   distanceByNb: RangeLabels,
@@ -34,3 +33,6 @@ export const getSortedNumberScoresPair = (
     numbers,
   };
 };
+
+export type * from "../assets/characters/character";
+export type { Schema as Character } from "../assets/characters/character";

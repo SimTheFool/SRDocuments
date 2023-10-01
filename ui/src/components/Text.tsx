@@ -7,9 +7,13 @@ type TextProps = { children: string };
 export const TextReplaced = ({ children }: TextProps) => {
   const parts = children.split(/(__[A-Z0-9]+__)/);
 
-  const partsWithIcons = parts.map((part) => {
+  const partsWithIcons = parts.map((part, i) => {
     let iconId = part.match(ICON_ID_REGEX)?.[1];
-    return iconId ? <Icon type={iconId as any} /> : part.replace(/_/g, " ");
+    return iconId ? (
+      <Icon type={iconId as any} key={i} />
+    ) : (
+      part.replace(/_/g, " ")
+    );
   });
 
   return <>{partsWithIcons}</>;

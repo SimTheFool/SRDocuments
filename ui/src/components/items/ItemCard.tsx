@@ -38,7 +38,7 @@ export const ItemCard = ({
     ...bottomChildren,
     ...(item.slots || []).map((slot) => {
       return (
-        <Slot size={slot.size} concealment={slot.concealment}>
+        <Slot size={slot.size} key={slot.name} concealment={slot.concealment}>
           {slot.name}
         </Slot>
       );
@@ -101,7 +101,9 @@ export const ItemCard = ({
 
       <MasonryGrid compact columns={1}>
         {bottomChildrenWithSlots.map((child, i) => (
-          <Box className={i == 0 ? "" : styles.bottom}>{child}</Box>
+          <Box key={i} className={i == 0 ? "" : styles.bottom}>
+            {child}
+          </Box>
         ))}
       </MasonryGrid>
     </Box>

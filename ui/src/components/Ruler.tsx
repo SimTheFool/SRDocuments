@@ -15,6 +15,7 @@ export const Ruler = ({ grade, inter }: RulerProps) => {
     >
       {grade.map((nb, i) => (
         <Box
+          key={i}
           pl={i == 0 ? "2" : "3"}
           style={{
             display: "inline-block",

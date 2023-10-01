@@ -9,6 +9,8 @@
 */build
 */target
 **/output
+dist
+resources/assets
 
 # debug
 yarn-debug.log*

@@ -20,10 +20,10 @@ type SpriteProps = {
 
 export const Sprite = ({ name, sprite }: SpriteProps) => {
   const actions = Object.entries(sprite.actions || {}).map(([name, action]) => (
-    <BaseAction name={name} action={action} />
+    <BaseAction name={name} action={action} key={name} />
   ));
   const effects = (sprite.effects || []).map((effect) => (
-    <Effect effect={effect} />
+    <Effect effect={effect} key={effect.name} />
   ));
   const invokSlot = (
     <Slot size="M">puissance - services - vie - maintient</Slot>
@@ -81,7 +81,9 @@ export const Sprite = ({ name, sprite }: SpriteProps) => {
 
       <MasonryGrid compact columns={1}>
         {children.map((child, i) => (
-          <Box className={i == 0 ? "" : styles.bottom}>{child}</Box>
+          <Box key={i} className={i == 0 ? "" : styles.bottom}>
+            {child}
+          </Box>
         ))}
       </MasonryGrid>
     </Box>
