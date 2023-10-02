@@ -17,3 +17,6 @@ stats:
     resistance: 6
     sensors: 2
     armor: 2
+
+cost: !inc::identities/cost
+    COST: 9500

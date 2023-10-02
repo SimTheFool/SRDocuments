@@ -6,13 +6,13 @@
       "outputs": [".next/**", "!.next/cache/**", "assets/**"]
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["resources#build"],
       "cache": false,
       "persistent": true
     },
     "pdf": {
-      "dependsOn": ["^build"],
-      "cache": true,
+      "dependsOn": ["resources#build"],
+      "cache": false,
       "outputs": ["dist/**"]
     }
   }

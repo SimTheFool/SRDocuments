@@ -1,3 +1,6 @@
 name: $ITEM
 quality: i$QUALITY
 price: $QUALITY * 200
+
+cost: !inc::identities/cost
+    COST: $QUALITY * 200

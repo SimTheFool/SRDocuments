@@ -1,1 +1,4 @@
 $ON.quantity: !mix $QUANTITY
+
+cost: !inc::identities/cost
+    COST: $ON.price * ($QUANTITY - 1)

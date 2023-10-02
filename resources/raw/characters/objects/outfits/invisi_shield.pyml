@@ -5,3 +5,7 @@ legal: true
 licenced: false
 concealment: !inc::objects/concealment/4_retracted_baton
 description: "Revêtement protecteur camouflé. Couvre la totalité du corps sauf la tête. Lorsque vous subissez moins de un dommage, vous n'en subissez pas du tout."
+
+
+cost: !inc::identities/cost
+    COST: 5400

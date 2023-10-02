@@ -5,3 +5,7 @@ quality: $QUALITY
 legal: true
 licenced: false
 concealment: !inc::objects/concealment/3_knife_pistols
+
+
+cost: !inc::identities/cost
+    COST: $QUALITY * 250

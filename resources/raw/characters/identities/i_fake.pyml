@@ -5,3 +5,6 @@ nuyens: $NUYENS
 lifestyle: $LIFESTYLE
 contacts: $CONTACTS
 licences: $LICENCES
+
+cost: !inc::identities/cost
+    COST: $QUALITY * 2500

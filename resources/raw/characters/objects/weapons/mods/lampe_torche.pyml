@@ -2,8 +2,11 @@ $WEAPON.actions: !mix
     allumer lampe:
         major: 0
         minor: 1
-_transform.$MODS_LAYER: !mix
+_transform.$OBJECT_MODS_LAYER: !mix
     - "$WEAPON.description += \" Muni d'une lampe torche.\""
 
 _transform.$PRICES_LAYER: !mix
     - "$WEAPON.price += 100"
+
+cost: !inc::identities/cost
+    COST: 100

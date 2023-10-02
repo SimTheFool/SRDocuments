@@ -5,3 +5,6 @@ price: 1000
 legal: true
 licenced: false
 concealment: !inc::objects/concealment/2_standard_weapons
+
+cost: !inc::identities/cost
+    COST: 1000

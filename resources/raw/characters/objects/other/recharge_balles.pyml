@@ -2,3 +2,6 @@ name: Recharges
 price: $LOAD * 1
 legal: true
 licenced: false
+
+cost: !inc::identities/cost
+    COST: $LOAD * 1

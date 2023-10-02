@@ -1,0 +1,2 @@
+_transform.$PRICES_LAYER: !mix
+    - "global_nuyens -= $COST"

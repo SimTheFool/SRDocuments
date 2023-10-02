@@ -1,2 +1,5 @@
 name: squatteur
 price: 100
+
+cost: !inc::identities/cost
+    COST: 100

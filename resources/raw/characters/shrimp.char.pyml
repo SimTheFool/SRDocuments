@@ -3,6 +3,8 @@ tags:
     - 13 ans
     - technorigger
 
+global_nuyens: 70000
+
 metatype: !inc::identities/metatype/human
 
 stats: !inc::stats/base_stats
@@ -85,7 +87,8 @@ identities:
           description: Ouvrier de casse militaire d'ARES
   - !inc::identities/i_fake
       NAME: L. Guinvite
-      NUYENS: 40000
+      NUYENS: !inc::identities/transfer_all
+        IDENTITY: identities.1
       LIFESTYLE: !inc::identities/lifestyle/squat
       LICENCES:
         - !inc::identities/licence

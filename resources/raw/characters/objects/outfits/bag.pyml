@@ -6,3 +6,7 @@ concealment: !inc::objects/concealment/0_machine_gun
 slots:
     - name: Sac
       size: XL
+
+
+cost: !inc::identities/cost
+    COST: 0

@@ -7,3 +7,7 @@ description: "Tenue pratique. Vous avez __A1__ pour résister aux entraves."
 slots:
     - name: Poche
       size: S
+
+
+cost: !inc::identities/cost
+    COST: 150

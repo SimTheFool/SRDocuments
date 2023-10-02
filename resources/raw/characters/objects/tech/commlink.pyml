@@ -9,3 +9,6 @@ stats:
     corruption: 1
     traitement: 0
     attaque: 0
+
+cost: !inc::identities/cost
+    COST: 100

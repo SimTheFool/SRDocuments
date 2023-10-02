@@ -3,3 +3,6 @@ price: 20
 legal: true
 licenced: false
 concealment: !inc::objects/concealment/5_card
+
+cost: !inc::identities/cost
+    COST: 20

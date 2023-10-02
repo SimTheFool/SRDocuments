@@ -30,3 +30,6 @@ extend_actions:
         WEAPON: $SELF
     - !inc::actions/recharger
         WEAPON: $SELF
+
+cost: !inc::identities/cost
+    COST: 10250

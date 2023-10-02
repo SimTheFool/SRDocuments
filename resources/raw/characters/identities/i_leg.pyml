@@ -3,5 +3,3 @@ nuyens: $NUYENS
 lifestyle: $LIFESTYLE
 contacts: $CONTACTS
 licences: $LICENCES
-_transform.$MODS_LAYER: !mix
-    - "identities.0.name = name"

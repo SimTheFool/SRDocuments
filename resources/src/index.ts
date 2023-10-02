@@ -4,11 +4,9 @@ import {
   RangeScores,
 } from "../assets/characters/character";
 import shrimp from "../assets/characters/shrimp.json";
-import shrimpB from "../assets/characters/shrimpB.json";
 
 export const characters = {
   shrimp,
-  shrimpB,
 } as Record<string, Character>;
 
 export const getSortedNumberScoresPair = (

@@ -21,3 +21,6 @@ actions:
         minor: 1
         gauge: 4
         description: "+1 charges toutes les 15min. Si activé, vous infligez un dommage supplémentaire, même si vous ratez votre coup."
+
+cost: !inc::identities/cost
+    COST: 725

@@ -13,3 +13,6 @@ _transform.$ACTIONS_LAYER: !mix
     - "$SELF.stats.traitement = stats.log + stats.log_mod"
     - "$SELF.stats.corruption = stats.int + stats.int_mod"
     - "$SELF.stats.attaque = stats.cha + stats.cha_mod"
+
+cost: !inc::identities/cost
+    COST: 0

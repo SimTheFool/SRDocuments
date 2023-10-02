@@ -1,4 +1,4 @@
-_transform.$MODS_LAYER: !mix
+_transform.$OBJECT_MODS_LAYER: !mix
     - "$WEAPON.description += \" Le canon a été allongé pour une meilleure précision à distance.\""
     - "$WEAPON.ranges.contact -= 1"
     - "$WEAPON.ranges.medium += 1"
@@ -8,3 +8,6 @@ _transform.$MODS_LAYER: !mix
 
 _transform.$PRICES_LAYER: !mix
     - "$WEAPON.price += 350"
+
+cost: !inc::identities/cost
+    COST: 350

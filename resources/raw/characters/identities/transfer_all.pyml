@@ -1,0 +1,5 @@
+$IDENTITY.nuyens: !mix 0
+
+_transform.$BANK_LAYER: !mix
+    - "$IDENTITY.nuyens += global_nuyens"
+    - "global_nuyens = 0"

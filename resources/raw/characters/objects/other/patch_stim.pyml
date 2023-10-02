@@ -5,3 +5,7 @@ legal: true
 licenced: false
 quality: $QUALITY
 concealment: !inc::objects/concealment/6_cigaret
+
+
+cost: !inc::identities/cost
+    COST: $QUALITY * 100
