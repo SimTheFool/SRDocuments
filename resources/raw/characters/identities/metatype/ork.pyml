@@ -1,0 +1,7 @@
+tags: !mix
+    - ork
+
+include:
+    - !inc::identities/traits/peau_dure
+        LV: 1
+    - !inc::identities/traits/vision_nocturne

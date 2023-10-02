@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Tradition de possession
+      type: trait
+      description: Vos invocations doivent posséder un réceptacle physique pour pouvoir intéragir avec le plan matériel.

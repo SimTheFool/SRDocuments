@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Stress de la foule
+      type: trait
+      description: Dans les endroits peuplés, vous avez __D1__ sur tous vos tests.

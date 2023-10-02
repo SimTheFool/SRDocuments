@@ -1,73 +1,33 @@
-name: shrimp
+name: brigthorn
 tags:
-    - 13 ans
-    - technorigger
+    - 20 ans
+    - prêtress wicca
 
-metatype: !inc::identities/metatype/human
+metatype: !inc::identities/metatype/ork
 
 stats: !inc::stats/base_stats
-  CON: 1
-  AGI: 4
-  REA: 2
-  FOR: 1
-  VOL: 4
-  LOG: 6
-  INT: 4
-  CHA: 2
+  CON: 4
+  AGI: 2
+  REA: 1
+  FOR: 2
+  VOL: 3
+  LOG: 1
+  INT: 6
+  CHA: 1
   ESS: 6
   EDGE: 4
 
 speciality:
-  - !inc::technomancy/technomancer
-      RES: 7
+  - !inc::magic/magician
+      MAG: 5
       SUBM: 1
-  - !inc::technomancy/powers/data_storm
-  - !inc::technomancy/powers/data_channel
-  - !inc::technomancy/echoes/reseau_vivant
-  - !inc::technomancy/sprites/machine
+      TRAD: int
+  - !inc::magic/traits/tradition_de_possession
+  - !inc::magic/traits/tradition_wicca
+  - !inc::magic/metamagics/canalisation
 
-skills:
-  - !inc::stats/skills/perception
-      BASE: 1
-      SPEC: null
-      EXP: null
-  - !inc::stats/skills/furtivite
-      BASE: 1
-      SPEC: null
-      EXP: null
-  - !inc::stats/skills/athletisme
-      BASE: 3
-      SPEC: null
-      EXP: null
-  - !inc::stats/skills/electronique
-      BASE: 4
-      SPEC: null
-      EXP: null
-  - !inc::stats/skills/combat_rapp
-      BASE: 1
-      SPEC: null
-      EXP: null
-  - !inc::stats/skills/ingenierie
-      BASE: 6
-      SPEC:
-        - Artillerie
-      EXP: null
-  - !inc::stats/skills/pilotage
-      BASE: 6
-      SPEC:
-        - Appareils au sol
-      EXP: null
-  - !inc::stats/skills/technomancie
-      BASE: 6
-      SPEC:
-        - Compilation
-      EXP:
-        - Inscription
-
-knowledges:
-    - drônes
-    - séries tridéos
-    - jeux tridéos
+traits:
+  - !inc::identities/traits/stress_de_la_foule
 
 identities:
   - !inc::identities/i_leg
@@ -75,37 +35,64 @@ identities:
       LICENCES: null
       LIFESTYLE: null
       CONTACTS:
-        - name: D-Boss
-          loyalty: 4
-          connection: 4
-          description: Decker fan de complot
-        - name: Terrance
+        - name: Elton Fraser
           loyalty: 3
-          connection: 2
-          description: Ouvrier de casse militaire d'ARES
+          connection: 5
+          description: Chef de clan écossais
   - !inc::identities/i_fake
-      NAME: L. Guinvite
-      NUYENS: 40000
+      NAME: Elisa Warol
+      NUYENS: 2000
       LIFESTYLE: !inc::identities/lifestyle/squat
-      LICENCES:
-        - !inc::identities/licence
-            ITEM: Chasse d'arme
-            QUALITY: 4
-        - !inc::identities/licence
-            ITEM: Packmule
-            QUALITY: 4
-        - !inc::identities/licence
-            ITEM: Crawler
-            QUALITY: 4
+      LICENCES: null
       CONTACTS: null
       QUALITY: 2
 
-traits:
-  - !inc::identities/traits/bricoleur_prevoyant
-  - !inc::identities/traits/ami_des_sprites
-      TYPE: machine
-  - !inc::identities/traits/paralysie_du_combat
-  - !inc::identities/traits/rhinite_chronique
+skills:
+  - !inc::stats/skills/astral
+      BASE: 5
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/conjuration
+      BASE: 5
+      SPEC: null
+      EXP:
+        - invocation
+  - !inc::stats/skills/sorcellerie
+      BASE: 6
+      SPEC:
+        - lancement de sort
+      EXP:
+        - rituels
+  - !inc::stats/skills/plein_air
+      BASE: 2
+      SPEC:
+        - forêts
+      EXP: null
+  - !inc::stats/skills/perception
+      BASE: 2
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/furtivite
+      BASE: 4
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/guns
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/athletisme
+      BASE: 1
+      SPEC: null
+      EXP: null
+
+knowledges:
+    - faune sauvage
+    - flore sauvage
+    - esprits (général)
+
+
+
+
 
 weapons:
   crockett: !inc::objects/weapons/crockett

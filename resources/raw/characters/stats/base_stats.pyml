@@ -52,7 +52,7 @@ natural_heal:
     - con
     - vol
 
-_transform.$FINALSTATS_LAYER: !mix
+_transform.$APPLY_MOD_LAYER: !mix
   - "stats.resist_phy.score = stats.con"
   - "stats.resist_ment.score = stats.vol"
   - "stats.def_phy.score = stats.rea + stats.int"

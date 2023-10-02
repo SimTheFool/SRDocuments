@@ -1,0 +1,4 @@
+effects: !mix
+    - name: Vision nocturne
+      type: naturel
+      description: Vous voyez correctement dans la pénombre.

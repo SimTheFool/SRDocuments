@@ -1,0 +1,4 @@
+effects: !mix
+  - name: Tradition wicca
+    type: trait
+    description: < An'ye harm none no what ye wilt > Fais ce qu'il te plaît tant que ça ne nuit à personne..

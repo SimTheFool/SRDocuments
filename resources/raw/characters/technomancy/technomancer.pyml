@@ -11,9 +11,8 @@ stats: !mix
     stat:
       - log
 
-_transform.$FINALSTATS_LAYER: !mix
+_transform.$AFTER_MOD_LAYER: !mix
   - "stats.algo.score = ceil(stats.log / 2)"
-_transform.$FINALSTATS_LAYER_2: !mix
   - "stats.firewall = stats.vol"
   - "stats.traitement = stats.log"
   - "stats.corruption = stats.int"

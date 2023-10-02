@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn char-gen && yarn char-dts",
-    "char-gen": "yml_assembler -r ./raw/characters -e *.character  -s schema.yml -o ./assets/characters -f json  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v FINALSTATS_LAYER=T8000 -v ACTIONS_LAYER=T8001 -v FINALSTATS_LAYER_2=T8002",
+    "char-gen": "yml_assembler -r ./raw/characters -e *.character  -s schema.yml -o ./assets/characters -f json  -v MODS_LAYER=T3000 -v PRICES_LAYER=T3001 -v BEFORE_MOD_LAYER=T8000 -v APPLY_MOD_LAYER=T8002 -v AFTER_MOD_LAYER=T8003 -v ACTIONS_LAYER=T8004",
     "char-dts": "json2ts ./assets/characters/schema.json ./assets/characters/character.d.ts --no-additionalProperties --enableConstEnums"
   },
   "dependencies": {

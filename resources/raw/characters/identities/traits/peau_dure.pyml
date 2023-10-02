@@ -1,0 +1,7 @@
+effects: !mix
+    - name: Peau dure
+      type: naturel
+      description: Vous avez $LV cases supplémentaire à votre moniteur physique.
+
+_transform.$BEFORE_MOD_LAYER: !mix
+  - "stats.hit_phy = stats.hit_phy + $LV"
