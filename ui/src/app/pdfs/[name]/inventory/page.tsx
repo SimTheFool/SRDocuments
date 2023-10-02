@@ -29,21 +29,21 @@ export default async function Page({ params: { name } }: Props) {
           </Box>
           {Object.entries(char.drones || {}).map(([name, drone]) => {
             return (
-              <Box pb={"4"} pr={"2"} key={name}>
+              <Box pb={"2"} pr={"2"} key={name}>
                 <Drone item={drone} name={name} />
               </Box>
             );
           })}
           {Object.entries(char.weapons || {}).map(([name, weapon]) => {
             return (
-              <Box pb={"4"} pr={"2"} key={name}>
+              <Box pb={"2"} pr={"2"} key={name}>
                 <Weapon weapon={weapon} name={name} />
               </Box>
             );
           })}
           {Object.entries(char.outfits || {}).map(([name, outfit]) => {
             return (
-              <Box pb={"4"} pr={"2"} key={name}>
+              <Box pb={"2"} pr={"2"} key={name}>
                 <ItemCard item={outfit} name={name}>
                   {{
                     bottom: (
@@ -66,7 +66,7 @@ export default async function Page({ params: { name } }: Props) {
           })}
           {Object.entries(char.tech || {}).map(([name, tech]) => {
             return (
-              <Box pb={"4"} pr={"2"} key={name}>
+              <Box pb={"2"} pr={"2"} key={name}>
                 <Tech tech={tech} name={name} />
               </Box>
             );

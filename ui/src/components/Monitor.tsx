@@ -2,6 +2,7 @@ import { Box, Grid, Heading } from "@radix-ui/themes";
 import { CSSProperties, ReactNode } from "react";
 import { FaSkull } from "react-icons/fa";
 import styles from "./Monitor.module.css";
+import { BaseIcon } from "./Icons/BaseIcon";
 
 type MonitorProps = {
   hit: number;
@@ -40,7 +41,17 @@ export const Monitor = ({
 const HitBox = ({ hideIcon = false }: { hideIcon?: boolean }) => {
   return (
     <Box className={styles.box}>
-      <Box className={styles.incurable}>{!hideIcon && <FaSkull />}</Box>
+      <Box className={styles.incurable}>
+        {!hideIcon && (
+          <BaseIcon>
+            <FaSkull
+              style={{
+                color: "var(--gray-11)",
+              }}
+            />
+          </BaseIcon>
+        )}
+      </Box>
     </Box>
   );
 };

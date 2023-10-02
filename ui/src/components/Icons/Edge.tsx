@@ -9,7 +9,7 @@ export const Edge = ({}: EdgeProps) => {
       <BiSolidStar
         size="18"
         style={{
-          color: "var(--gray-9)",
+          color: "var(--gray-11)",
         }}
       />
     </BaseIcon>

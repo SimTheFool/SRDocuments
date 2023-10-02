@@ -1,16 +1,16 @@
 import { capitalize } from "@/utils/capitalize";
 import { Box, Flex } from "@radix-ui/themes";
-import { PiDiamondLight } from "react-icons/pi";
+import { PiDiamondLight, PiHourglassSimpleLowFill } from "react-icons/pi";
 import { BaseAction1 } from "resources";
 import { Card } from "../Card";
+import { Gauge } from "../Gauge";
 import { MajorAction, MinorAction } from "../Icons/Actions";
+import { BaseIcon } from "../Icons/BaseIcon";
 import { ParagraphStandard } from "../ParagraphStandard";
 import { Ruler } from "../Ruler";
 import { Space } from "../Space";
-import { TitleMin } from "../TitleMin";
-import { BsHourglass } from "react-icons/bs";
 import { TextReplaced } from "../Text";
-import { Gauge } from "../Gauge";
+import { TitleMin } from "../TitleMin";
 
 type BaseActionProps = {
   name: string;
@@ -40,7 +40,11 @@ export const BaseAction = ({
             subtitle={
               <>
                 {` ${damage || ""}${damage_type || ""}`}
-                {maintained && <BsHourglass />}
+                {maintained && (
+                  <BaseIcon inline>
+                    <PiHourglassSimpleLowFill />
+                  </BaseIcon>
+                )}
               </>
             }
             inline

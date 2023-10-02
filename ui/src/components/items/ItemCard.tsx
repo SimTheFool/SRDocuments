@@ -49,22 +49,26 @@ export const ItemCard = ({
 
   return (
     <Box>
-      <Flex
-        className={bottomItemNb > 0 ? styles.noBorderBottom : ""}
-        align={"start"}
-      >
+      <Flex className={bottomItemNb > 0 ? styles.noBorderBottom : ""}>
         <Card>
-          <TitleMin
-            inline
-            title={
-              <TextReplaced>
-                {`${name.toUpperCase()} ${
-                  item.quantity ? `x ${item.quantity}` : ""
-                }`}
-              </TextReplaced>
-            }
-            subtitle={item.manufacturer}
-          />
+          <Flex justify={"between"}>
+            <TitleMin
+              inline
+              title={
+                <TextReplaced>
+                  {`${name.toUpperCase()} ${
+                    item.quantity ? `x ${item.quantity}` : ""
+                  }`}
+                </TextReplaced>
+              }
+              subtitle={item.manufacturer}
+            />
+            {!noHand && (
+              <Box pl={"1"}>
+                <Hand />
+              </Box>
+            )}
+          </Flex>
           <TitleMin
             subtitle={
               <>
@@ -92,13 +96,7 @@ export const ItemCard = ({
             {children?.inner}
           </ParagraphStandard>
         </Card>
-        {!noHand && (
-          <Box pl={"1"}>
-            <Hand />
-          </Box>
-        )}
       </Flex>
-
       <MasonryGrid compact columns={1}>
         {bottomChildrenWithSlots.map((child, i) => (
           <Box key={i} className={i == 0 ? "" : styles.bottom}>

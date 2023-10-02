@@ -1,5 +1,5 @@
 import { Box } from "@radix-ui/themes";
-import { ImDice } from "react-icons/im";
+import { AiOutlineCheckSquare } from "react-icons/ai";
 import { BaseIcon } from "./BaseIcon";
 
 type SuccessProps = {};
@@ -11,8 +11,12 @@ export const Success = ({}: SuccessProps) => {
         transform: "translateY(1px)",
       }}
     >
-      <BaseIcon size={16}>
-        <ImDice />
+      <BaseIcon size={18}>
+        <AiOutlineCheckSquare
+          style={{
+            color: "black",
+          }}
+        />
       </BaseIcon>
     </Box>
   );

@@ -9,3 +9,8 @@ main {
 .rt-Card.rt-variant-surface::after {
     display: none;
 }
+
+html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}

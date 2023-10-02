@@ -3,10 +3,12 @@ import {
   RangeLabels,
   RangeScores,
 } from "../assets/characters/character";
-import shrimp from "../assets/characters/shrimp.json";
+import shrimp from "../assets/characters/_shrimp/index.json";
+import alusia from "../assets/characters/_alusia/index.json";
 
 export const characters = {
   shrimp,
+  alusia,
 } as Record<string, Character>;
 
 export const getSortedNumberScoresPair = (

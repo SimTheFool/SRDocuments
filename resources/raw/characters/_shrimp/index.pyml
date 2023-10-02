@@ -86,7 +86,7 @@ identities:
           connection: 2
           description: Ouvrier de casse militaire d'ARES
   - !inc::identities/i_fake
-      NAME: L. Guinvite
+      NAME: Laurence Guinvite
       NUYENS: !inc::identities/transfer_all
         IDENTITY: identities.1
       LIFESTYLE: !inc::identities/lifestyle/squat

@@ -25,8 +25,8 @@ export const Advantage = ({ n }: AdvantageProps) => {
           color: "white",
           top: "13%",
           left: "20%",
-          transform: "translate(-20%, 0%)",
-          fontSize: "calc(13px * var(--scaling))",
+          transform: "translate(-25%, 10%)",
+          fontSize: "calc(10px * var(--scaling))",
         }}
       >
         {n >= 0 ? `+${n}` : n}

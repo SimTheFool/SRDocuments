@@ -7,18 +7,15 @@ type GaugeProps = {
 };
 
 const STEP = 5;
+const SWITCH = 15;
 
 export const Gauge = ({ length, icon }: GaugeProps) => {
   const group = Math.floor(length / STEP);
   const remainder = length % STEP;
 
-  if (length == 4) {
-    console.log("Gauge", length, group, remainder);
-  }
-
   return (
     <>
-      {length <= 30 && (
+      {length <= SWITCH && (
         <Flex wrap={"wrap"}>
           {Array.from({ length: group }, (_, i) => (
             <Box pr={"2"} key={i}>
@@ -47,7 +44,7 @@ export const Gauge = ({ length, icon }: GaugeProps) => {
             ))}
         </Flex>
       )}
-      {length > 30 && (
+      {length > SWITCH && (
         <Flex>
           <Box>________________</Box>
           <Box>

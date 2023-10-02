@@ -11,7 +11,7 @@ stats: !mix
       - log
 
 _transform.$AFTER_MOD_LAYER: !mix
-  - "stats.resist_drain.score = ceil(stats.log / 2)"
+  - "stats.resist_drain.score = floor(stats.log / 2)"
   - "stats.firewall = stats.vol"
   - "stats.traitement = stats.log"
   - "stats.corruption = stats.int"
