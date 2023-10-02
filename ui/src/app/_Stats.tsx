@@ -80,14 +80,14 @@ export const Stats = ({ char }: StatsProps) => {
         )}
       </Container>
       <Container>
-        {stats.res && (
+        {stats.resist_drain && (
           <StatTable
             items={[
-              ["Algo."],
+              ["Res.Drain"],
               [
                 <StatBlock
-                  n={stats.algo?.score || 0}
-                  stat={stats.algo?.stat}
+                  n={stats.resist_drain?.score || 0}
+                  stat={stats.resist_drain?.stat}
                 />,
               ],
             ]}

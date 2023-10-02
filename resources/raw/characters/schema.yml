@@ -165,7 +165,7 @@ definitions:
         $ref: "#/definitions/refer_stat"
       def_ment:
         $ref: "#/definitions/refer_stat"
-      algo:
+      resist_drain:
         $ref: "#/definitions/refer_stat"
       trad:
         $ref: "#/definitions/refer_stat"

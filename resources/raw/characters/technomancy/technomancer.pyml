@@ -1,18 +1,17 @@
 stats: !mix
   res: $RES
   submersion: $SUBM
-  resist_drain: 0
   firewall: 0
   traitement: 0
   corruption: 0
   attaque: 0
-  algo:
+  resist_drain:
     score: 0
     stat:
       - log
 
 _transform.$AFTER_MOD_LAYER: !mix
-  - "stats.algo.score = ceil(stats.log / 2)"
+  - "stats.resist_drain.score = ceil(stats.log / 2)"
   - "stats.firewall = stats.vol"
   - "stats.traitement = stats.log"
   - "stats.corruption = stats.int"
