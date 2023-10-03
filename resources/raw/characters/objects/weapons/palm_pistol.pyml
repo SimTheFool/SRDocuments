@@ -1,0 +1,31 @@
+type: pistolet de poche
+name: Palm Pistol
+description: ""
+manufacturer: Walther
+price: 345
+legal: true
+licenced: false
+concealment: !inc::objects/concealment/4_retracted_baton
+ammo: 6
+damage: 2
+damage_type: P
+ranges:
+    contact: 1
+    near: 0
+    short: 0
+    medium: 0
+    far: 0
+range_labels:
+    "r0": "contact"
+    "r50": "near"
+
+extend_actions:
+    - !inc::actions/shot
+        WEAPON: $SELF
+    - !inc::actions/rafale
+        WEAPON: $SELF
+    - !inc::actions/recharger
+        WEAPON: $SELF
+
+cost: !inc::identities/cost
+    COST: 345

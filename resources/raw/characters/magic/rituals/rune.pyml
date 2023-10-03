@@ -1,0 +1,8 @@
+rituals: !mix
+    cercle_de_soin:
+        type: rituel
+        duration: 4h
+        treshold: 6
+        descriptions:
+            base: "Vous créez une barrière de nature duale qui dure __SN__ semaines, d'un volume de 50m3 par MAG des participants. Son sa puissance est de MAG + __SN__."
+        nature: duale

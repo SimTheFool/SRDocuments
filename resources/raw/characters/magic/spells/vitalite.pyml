@@ -1,6 +1,11 @@
-actions: !mix
+spells: !mix
     vitalité:
+        type: sort - soin
         major: 1
         minor: 0
         maintained: true
-        description: "Faites un test de conjuration avec un seuil égal à la puissance de l'esprit. Chaque __SN__ ajoute un service à l'esprit. Vous canalisez un esprit dans votre propre corps et augmentez vos stats physique de Puiss./2. Vous pouvez utiliser tout ses pouvoirs contre un service."
+        descriptions:
+            base: "La cible réduit tous les dégats subis de 1 point. Dure __SN__ tours."
+            vitalité_rayonnante: "Les alliés à proximités bénéficient également de l'effet"
+        nature: physique
+        range: contact

@@ -1,0 +1,5 @@
+skills: !mix
+    armes_à_feu:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP

@@ -1,0 +1,11 @@
+_transform.$OBJECT_MODS_LAYER: !mix
+    - "$WEAPON.description += \"Muni d'un chargeur grande capacité.\""
+    - "$WEAPON.concealment -= $QUALITY * 1"
+    - "$WEAPON.ammo += $QUALITY * 5"
+    - "$WEAPON.licenced ||= true"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += $QUALITY * 25"
+
+cost: !inc::identities/cost
+    COST: $QUALITY * 25

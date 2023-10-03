@@ -1,0 +1,10 @@
+_transform.$OBJECT_MODS_LAYER: !mix
+    - "$WEAPON.description += \" La poignée ajoutée sous le canon améliore la visée proche.\""
+    - "$WEAPON.ranges.near += 1"
+    - "$WEAPON.licenced ||= true"
+
+_transform.$PRICES_LAYER: !mix
+    - "$WEAPON.price += 140"
+
+cost: !inc::identities/cost
+    COST: 140

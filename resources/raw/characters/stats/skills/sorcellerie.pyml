@@ -1,0 +1,5 @@
+skills: !mix
+    sorcellerie:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP

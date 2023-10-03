@@ -1,0 +1,5 @@
+skills: !mix
+    conjuration:
+        base: $BASE
+        specialisations: $SPEC
+        expertises: $EXP

@@ -2,7 +2,7 @@ $WEAPON.actions: !mix
     guncam:
         minor: 1
         major: 0
-        description: Si vous avez loupé votre dernier tir, vous pouvez ignorer les malus de portée pour votre prochain tir à distance.
+        description: Vous ignorez les désavantages pour votre prochain tir à distance.
 
 #tech: !mix
 #    guncam:

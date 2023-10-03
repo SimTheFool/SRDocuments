@@ -1,0 +1,175 @@
+name: brigthorn
+tags:
+    - 20 ans
+    - prêtress wicca
+
+companions: !inc::_brigthorn/ceol
+
+metatype: !inc::identities/metatype/ork
+
+global_nuyens: 0
+
+stats: !inc::stats/base_stats
+  CON: 4
+  AGI: 2
+  REA: 1
+  FOR: 2
+  VOL: 3
+  LOG: 1
+  INT: 6
+  CHA: 1
+  ESS: 6
+  EDGE: 4
+
+speciality:
+  - !inc::magic/magician
+      MAG: 5
+      INIT: 1
+      TRAD: int
+  - !inc::magic/traits/tradition_de_possession
+  - !inc::magic/traits/tradition_wicca
+  - !inc::magic/metamagics/canalisation
+  - !inc::magic/spells/vitalite
+  - !inc::magic/spells/guerison
+  - !inc::magic/spells/rafale_de_pierre
+  - !inc::magic/spells/attraction_tellurique
+  - !inc::magic/rituals/cercle_de_soin
+  - !inc::magic/rituals/rune
+
+spirits:
+    esprit_guide: !inc::magic/spirits/guide
+    
+
+traits:
+  - !inc::identities/traits/stress_de_la_foule
+
+identities:
+  - !inc::identities/i_leg
+      NUYENS: null
+      LICENCES: null
+      LIFESTYLE: null
+      CONTACTS:
+        - name: Elton Fraser
+          loyalty: 3
+          connection: 5
+          description: Chef de clan écossais
+  - !inc::identities/i_fake
+      NAME: Elisa Warol
+      NUYENS: 2000
+      LIFESTYLE: !inc::identities/lifestyle/squat
+      LICENCES: null
+      CONTACTS: null
+      QUALITY: 2
+
+skills:
+  - !inc::stats/skills/astral
+      BASE: 5
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/conjuration
+      BASE: 5
+      SPEC: null
+      EXP:
+        - invocation
+  - !inc::stats/skills/sorcellerie
+      BASE: 6
+      SPEC:
+        - lancement de sort
+      EXP:
+        - rituels
+  - !inc::stats/skills/plein_air
+      BASE: 2
+      SPEC:
+        - forêts
+      EXP: null
+  - !inc::stats/skills/perception
+      BASE: 2
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/furtivite
+      BASE: 4
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/armes_a_feu
+      BASE: 1
+      SPEC: null
+      EXP: null
+  - !inc::stats/skills/athletisme
+      BASE: 1
+      SPEC: null
+      EXP: null
+
+knowledges:
+    - faune sauvage
+    - flore sauvage
+    - esprits (général)
+
+
+weapons:
+  palm_pistol: !inc::objects/weapons/palm_pistol
+      SELF: weapons.palm_pistol
+
+  palm_pistol_mods:
+    - !inc::objects/weapons/mods/grand_chargeur
+        WEAPON: weapons.palm_pistol
+        QUALITY: 2
+    - !inc::objects/weapons/mods/poignee
+        WEAPON: weapons.palm_pistol
+
+
+outfits:
+  sac: !inc::objects/outfits/bag
+
+  tenue_d_éclaireur: !inc::objects/outfits/street_kid
+      SELF: outfits.tenue_d_éclaireur
+
+  tenue_d_éclaireur_mods:
+    - !inc::objects/outfits/mods/secret_pocket
+        OUTFIT: outfits.tenue_d_éclaireur
+
+  invisi_shield: !inc::objects/outfits/invisi_shield
+      SELF: outfits.invisi_shield
+
+  holster_pour_palm_pistol: !inc::objects/outfits/holster_dissimulable
+      SELF: outfits.holster_pour_palm_pistol
+      WEAPON: weapons.palm_pistol
+      NAME: Palm Pistol
+
+  étui_à_munition: !inc::objects/outfits/etui_a_munition
+      QUANTITY: 2
+
+tech:
+    micro_et_camera:
+        name: Micro + Caméra
+        price: 100
+        legal: true
+        licenced: false
+        concealment: !inc::objects/concealment/6_cigaret
+
+    elite_commlink: !inc::objects/tech/erika_elite
+  
+other:
+    patch_stim: !inc::objects/other/patch_stim
+        QUALITY: 4
+
+    patch_stim_mods: !inc::objects/quantity
+        ON: other.patch_stim
+        QUANTITY: 5
+
+    chargeur_16_b: !inc::objects/other/recharge_balles
+        LOAD: 16
+
+    recharge_16_mods: !inc::objects/quantity
+        ON: other.chargeur_16_b
+        QUANTITY: 5
+    
+    drachmes: !inc::objects/other/drachme
+
+    drachmes_mods: !inc::objects/quantity
+        ON: other.drachmes
+        QUANTITY: 100
+  
+  
+  
+  
+  

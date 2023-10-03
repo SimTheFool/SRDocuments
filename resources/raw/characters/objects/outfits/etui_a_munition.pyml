@@ -1,0 +1,16 @@
+name: Etui à munition
+price: $QUANTITY * 25
+legal: true
+licenced: true
+concealment: !inc::objects/concealment/3_knife_pistols
+description: ""
+slots:
+    - name: chargeur (max.$QUANTITY)
+      size: S
+actions:
+    recharger:
+      major: 0
+      minor: 1
+
+cost: !inc::identities/cost
+    COST: $QUANTITY * 25

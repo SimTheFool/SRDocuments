@@ -236,6 +236,16 @@ definitions:
         $ref: "#/definitions/skill"
       technomancie:
         $ref: "#/definitions/skill"
+      astral:
+        $ref: "#/definitions/skill"
+      conjuration:
+        $ref: "#/definitions/skill"
+      sorcellerie:
+        $ref: "#/definitions/skill"
+      plein_air:
+        $ref: "#/definitions/skill"
+      armes_à_feu:
+        $ref: "#/definitions/skill"
 
   #~~~ IDENTITIES ~~~#
   identity:

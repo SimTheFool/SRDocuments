@@ -1,0 +1,5 @@
+name: Déviation du drain
+major: 0
+minor: 1
+maintained: false
+description: "Vous encaissez le driain à la place de votre invocateur. En cas de drain physique, prenez le double."

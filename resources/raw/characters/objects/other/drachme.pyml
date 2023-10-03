@@ -1,0 +1,10 @@
+name: Drachme
+price: 50
+description: ""
+legal: true
+licenced: false
+concealment: !inc::objects/concealment/6_cigaret
+
+
+cost: !inc::identities/cost
+    COST: 50

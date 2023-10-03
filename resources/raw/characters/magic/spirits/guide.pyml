@@ -1,0 +1,36 @@
+stats:
+    con: 3
+    agi: -1
+    rea: 2
+    for: 1
+    action_maj: 1
+    action_min: 3
+    hit:
+      base: 8
+      factor: 2
+skills:
+    - Astral
+    - Perception
+    - Combat rapproché
+    - Sorcellerie
+effects:
+  - !inc::magic/effects/immunite
+    $TYPE: armes normales
+    $LVL: Puiss/2
+  - !inc::magic/effects/allergie_grave
+    TYPE: psychotropes
+actions:
+    attaque_à_mains_nues:
+      name: Attaque à mains nues
+      major: 1
+      minor: 0
+      maintained: false
+      damage: 2
+      damage_type: P
+    chape_d_ombre: !inc::magic/powers/chape_d_ombre
+    confusion: !inc::magic/powers/confusion
+    divination: !inc::magic/powers/divination
+    garde_magique: !inc::magic/powers/garde_magique
+    garde: !inc::magic/powers/garde
+    recherche: !inc::magic/powers/recherche
+            

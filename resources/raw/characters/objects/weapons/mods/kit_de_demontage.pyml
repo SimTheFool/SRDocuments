@@ -2,7 +2,7 @@ $WEAPON.actions: !mix
     désassembler:
         minor: 0
         major: 2
-        description: Augmente la dissimulation de 2 une fois démontée.
+        description: Dissimulation +2 lorsque démontée.
 
 _transform.$OBJECT_MODS_LAYER: !mix
     - "$WEAPON.legal &&= false"

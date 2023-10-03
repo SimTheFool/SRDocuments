@@ -1,5 +1,9 @@
-actions: !mix
+spells: !mix
     canalisation:
+        type: métamagie
         major: 1
         minor: 0
-        description: "Faites un test de conjuration avec un seuil égal à la puissance de l'esprit. Chaque __SN__ ajoute un service à l'esprit. Vous canalisez un esprit dans votre propre corps et augmentez vos stats physique de Puiss./2. Vous pouvez utiliser tout ses pouvoirs contre un service."
+        maintained: false
+        descriptions:
+            base: "Faites un test de conjuration avec un seuil égal à la puissance de l'esprit. Chaque __SN__ ajoute un service à l'esprit, et vous le canalisez dans votre propre corps. Vous gagnez ses effets, hormis <Immunité aux armes normales>, et augmentez vos stats physiques de Puiss./2. Vous pouvez utiliser ses compétences contre un service."
+            canalisation_intuitive: Vous gagnez également les actions mineures de l'esprit, et l'entière maitrise de ses compétences que vous pouvez utiliser avec vos propres statistiques.

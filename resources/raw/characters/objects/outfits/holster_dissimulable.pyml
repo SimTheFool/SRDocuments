@@ -1,0 +1,20 @@
+name: Holster dissimulable pour $NAME
+price: 70
+legal: true
+licenced: true
+concealment: 0
+description: "Ce holster personalisé augmente la dissimulation de l'arme de 2."
+slots:
+    - name: $NAME
+      size: S
+actions:
+    dégainer_$NAME:
+      major: 0
+      minor: 1
+      description: "Vous pouvez dégainer gratuitement une fois par round."
+
+_transform.$OBJECT_MODS_LAYER_2: !mix
+    - "$SELF.concealment = $WEAPON.concealment + 2"
+
+cost: !inc::identities/cost
+    COST: 70

@@ -1,0 +1,51 @@
+companions: !mix
+    ceol:
+        stats:
+            con: 4
+            agi: 4
+            rea: 4
+            for: 4
+            vol: 6
+            log: 6
+            int: 6
+            cha: 3
+            mag: 6
+            hit: 13
+        skills:
+            - Perception
+            - Plein air
+            - Astral (+5 lignes de ley, +5 corruption)
+            - Sorcellerie
+        actions:
+            attaque:
+              name: Attaque
+              major: 1
+              minor: 0
+              damage: 1
+              damage_type: P
+              maintained: false
+            déviation_du_drain: !inc::magic/actions/deviation_du_drain
+            assistance_sorcière: !inc::magic/actions/assistance_sorciere
+            transparence:
+              name: Transparence
+              major: 1
+              minor: 0
+              maintained: true
+              description: "Obtenez <Invisible supérieur nv.3>."
+            symbiose_astrale:
+              name: Symbiose astrale
+              major: 1
+              minor: 0
+              maintained: true
+              description: "Donnez Transparence ou Régénération à votre invocateur."
+        effects:
+            - !inc::magic/effects/immunite
+              $TYPE: armes normales
+              $LVL: 3
+            - !inc::magic/effects/regeneration
+            - name: Condensation mana
+              type: esprit majeur
+              description: Une fois par cycle lunaire, vous renouvelez vos piquant et régurgitez un bezoar. Faites MAG et pour chaque __SN__, vous gagnez 50 drachmes.
+            - name: Toucher toxique
+              type: animal éveillé
+              description: Quand vous attaquez ou vous défendez, chaque __SN__ inglige un niveau de poison.

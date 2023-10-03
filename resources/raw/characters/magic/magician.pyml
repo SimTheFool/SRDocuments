@@ -1,11 +1,10 @@
 stats: !mix
   mag: $MAG
   initiation: $INIT
-  resist_drain: 0
-  trad:
+  resist_drain:
     score: 0
     stat:
       - $TRAD
 
 _transform.$AFTER_MOD_LAYER: !mix
-  - "stats.trad.score = ceil(stats.$TRAD / 2)"
+  - "stats.resist_drain.score = floor(stats.log / 2)"
