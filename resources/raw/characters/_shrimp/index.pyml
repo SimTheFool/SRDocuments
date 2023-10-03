@@ -101,7 +101,7 @@ identities:
             ITEM: Crawler
             QUALITY: 4
       CONTACTS: null
-      QUALITY: 2
+      QUALITY: 4
 
 traits:
   - !inc::identities/traits/bricoleur_prevoyant

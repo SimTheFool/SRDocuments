@@ -4,11 +4,11 @@ import {
   RangeScores,
 } from "../assets/characters/character";
 import shrimp from "../assets/characters/_shrimp/index.json";
-import alusia from "../assets/characters/_alusia/index.json";
+import brigthorn from "../assets/characters/_brigthorn/index.json";
 
 export const characters = {
   shrimp,
-  alusia,
+  brigthorn,
 } as Record<string, Character>;
 
 export const getSortedNumberScoresPair = (

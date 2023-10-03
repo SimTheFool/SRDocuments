@@ -7,4 +7,4 @@ stats: !mix
       - $TRAD
 
 _transform.$AFTER_MOD_LAYER: !mix
-  - "stats.resist_drain.score = floor(stats.log / 2)"
+  - "stats.resist_drain.score = floor(stats.$TRAD / 2)"

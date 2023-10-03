@@ -3,10 +3,12 @@ import { FlexList } from "@/components/FlexList";
 import { MasonryGrid } from "@/components/MasonryGrid";
 import { Section } from "@/components/Section";
 import { Space } from "@/components/Space";
+import { TextReplaced } from "@/components/Text";
 import { TitleSection } from "@/components/TitleSection";
 import { capitalize } from "@/utils/capitalize";
 import { uncapitalize } from "@/utils/uncapitalize";
 import { Box, Flex, Text } from "@radix-ui/themes";
+import { ReactNode } from "react";
 import { Character } from "resources";
 
 type Skill = Character["skills"][keyof Character["skills"]];
@@ -25,7 +27,10 @@ export const Skills = ({ char }: SkillsProps) => {
           <Container key={name}>
             {value && (
               <Card>
-                <SkillText name={capitalize(name)} score={value.base} />
+                <SkillText
+                  name={<TextReplaced>{capitalize(name)}</TextReplaced>}
+                  score={value.base}
+                />
                 {value.specialisations?.map((name) => (
                   <MasterText score={2} label={name} key={name} />
                 ))}
@@ -57,7 +62,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const SkillText = ({ name, score }: { name: string; score?: number }) => {
+const SkillText = ({ name, score }: { name: ReactNode; score?: number }) => {
   return (
     <Flex
       justify={"between"}

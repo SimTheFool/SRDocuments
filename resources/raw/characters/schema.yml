@@ -167,8 +167,6 @@ definitions:
         $ref: "#/definitions/refer_stat"
       resist_drain:
         $ref: "#/definitions/refer_stat"
-      trad:
-        $ref: "#/definitions/refer_stat"
       ess:
         type: integer
       mag:
@@ -302,6 +300,8 @@ definitions:
     required: [name, quality, price]
     properties:
       name:
+        type: string
+      description:
         type: string
       quality:
         type: string

@@ -77,8 +77,9 @@ const Identity = ({
         {licences?.map((l) => (
           <Container key={l.name}>
             <Card title={"licence"}>
-              <ParagraphStandard>{l.name}</ParagraphStandard>
-              <TitleMin subtitle={`${l.quality}-${l.price}¥`} />
+              <TitleMin title={l.name} subtitle={`${l.quality}-${l.price}¥`} />
+              <Space />
+              <ParagraphStandard>{l.description}</ParagraphStandard>
             </Card>
           </Container>
         ))}

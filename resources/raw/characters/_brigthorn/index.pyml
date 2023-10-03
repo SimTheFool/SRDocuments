@@ -1,13 +1,13 @@
 name: brigthorn
 tags:
     - 20 ans
-    - prêtress wicca
+    - prêtresse wicca
 
 companions: !inc::_brigthorn/ceol
 
 metatype: !inc::identities/metatype/ork
 
-global_nuyens: 0
+global_nuyens: 20000
 
 stats: !inc::stats/base_stats
   CON: 4
@@ -55,11 +55,16 @@ identities:
           description: Chef de clan écossais
   - !inc::identities/i_fake
       NAME: Elisa Warol
-      NUYENS: 2000
+      NUYENS: !inc::identities/transfer_all
+        IDENTITY: identities.1
       LIFESTYLE: !inc::identities/lifestyle/squat
-      LICENCES: null
+      LICENCES:
+        - !inc::identities/licence
+            ITEM: Certif. intervention urbaine régulière
+            DESC: Couvre le petit équipement de maintien de l'ordre
+            QUALITY: 4
       CONTACTS: null
-      QUALITY: 2
+      QUALITY: 4
 
 skills:
   - !inc::stats/skills/astral

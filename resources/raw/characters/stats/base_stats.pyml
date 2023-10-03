@@ -37,7 +37,7 @@ edge: $EDGE
 max_edge: 0
 init_dice: 1
 init:
-  score: 1
+  score: 0
   stat:
     - rea
     - int
@@ -57,7 +57,7 @@ _transform.$APPLY_MOD_LAYER: !mix
   - "stats.resist_ment.score = stats.vol"
   - "stats.def_phy.score = stats.rea + stats.int"
   - "stats.def_ment.score = stats.vol + stats.int"
-  - "stats.action_min = stats.action_min + stats.init.score"
+  - "stats.action_min = stats.action_min + stats.init_dice"
   - "stats.hit_phy = stats.hit_phy + floor(stats.con / 2)"
   - "stats.hit_stun = stats.hit_stun + floor(stats.vol / 2)"
   - "stats.hit_over = stats.hit_over + stats.con - stats.con_mod"

@@ -1,4 +1,5 @@
 name: $ITEM
+description: $DESC
 quality: i$QUALITY
 price: $QUALITY * 200
 

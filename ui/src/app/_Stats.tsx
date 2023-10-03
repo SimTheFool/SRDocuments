@@ -109,21 +109,6 @@ export const Stats = ({ char }: StatsProps) => {
         />
       </Container>
       <Container>
-        {stats.mag && (
-          <StatTable
-            items={[
-              ["Trad."],
-              [
-                <StatBlock
-                  n={stats.trad?.score || 0}
-                  stat={stats.trad?.stat}
-                />,
-              ],
-            ]}
-          />
-        )}
-      </Container>
-      <Container>
         <StatTable
           items={[
             ["Gué.Nat"],
