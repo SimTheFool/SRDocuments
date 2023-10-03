@@ -8,4 +8,4 @@ spells: !mix
             base: "Vous attirez des morceaux de pierres autour d'un point distant, percutant toutes les cibles dans la zone."
             choc_sismique: "Les cibles subissant davantage de dommage que leur CON sont projetées au sol."
         nature: physique
-        range: LDV
+        range: LDV(Z)

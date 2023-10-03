@@ -6,6 +6,8 @@ import { Sprite } from "@/components/items/Sprite";
 import { Box } from "@radix-ui/themes";
 import { characters } from "resources";
 import { PdfContainer } from "../../PdfContainer";
+import { SpellAction } from "@/components/actions/SpellAction";
+import { ReactNode } from "react";
 
 type Props = {
   params: {
@@ -25,16 +27,24 @@ export default function Home({ params: { name } }: Props) {
             <Space />
           </Box>
           {Object.entries(char.sprites || {}).map(([name, sprite]) => {
-            return <Sprite name={name} sprite={sprite} key={name} />;
+            return (
+              <Container key={name}>
+                <Sprite name={name} sprite={sprite} key={name} />
+              </Container>
+            );
           })}
           {Object.entries(char.actions || {}).map(([name, action]) => {
             return (
-              <BaseAction
-                name={name}
-                action={action}
-                type={action.type}
-                key={name}
-              />
+              <Container key={name}>
+                <BaseAction name={name} action={action} type={action.type} />
+              </Container>
+            );
+          })}
+          {Object.entries(char.spells || {}).map(([name, spell]) => {
+            return (
+              <Container key={name}>
+                <SpellAction name={name} action={spell} />
+              </Container>
             );
           })}
         </MasonryGrid>
@@ -42,3 +52,7 @@ export default function Home({ params: { name } }: Props) {
     </PdfContainer>
   );
 }
+
+const Container = ({ children }: { children: ReactNode }) => {
+  return <Box pb={"2"}>{children}</Box>;
+};
