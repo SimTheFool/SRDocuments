@@ -1,19 +1,18 @@
 import { Box } from "@radix-ui/themes";
-import { AiOutlineCheckSquare } from "react-icons/ai";
+import { PiHourglassSimpleLowFill } from "react-icons/pi";
 import { BaseIcon } from "./BaseIcon";
-import { CgDice5 } from "react-icons/cg";
 
-type SuccessProps = {};
-export const Success = ({}: SuccessProps) => {
+type MaintainedProps = {};
+export const Maintained = ({}: MaintainedProps) => {
   return (
     <Box
       style={{
         display: "inline",
-        verticalAlign: "middle",
+        verticalAlign: "text-top",
       }}
     >
       <BaseIcon size={14} inline>
-        <CgDice5
+        <PiHourglassSimpleLowFill
           style={{
             color: "black",
           }}

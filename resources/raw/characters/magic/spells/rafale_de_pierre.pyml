@@ -1,11 +1,11 @@
 spells: !mix
     rafale_de_pierre:
-        type: sort - combat direct
+        type: sort
         major: 1
         minor: 0
         maintained: false
         descriptions:
-            base: "Vous projetez un déluge de pierre. Vous pouvez attaquer plusieurs cibles en répartissant votre test d'attaque."
-            pierre_instable: "Les pierres explosent en zone, infligeant 1 dommage irréductible aux cibles à moins d'1m."
+            base: "Vous projetez un déluge de pierre sur une ou plusieurs cibles."
+            pierre_instable: "Les pierres explosent, infligeant 1 __DOM__ irréductible aux cibles à proximité."
         nature: physique
         range: LDV

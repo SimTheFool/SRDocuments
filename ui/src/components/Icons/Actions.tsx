@@ -3,11 +3,11 @@ import { IoTriangleSharp } from "react-icons/io5";
 import { BaseIcon } from "./BaseIcon";
 import { FaSquareFull } from "react-icons/fa";
 
-type ActionProps = {};
+type ActionProps = { size?: number };
 
-export const MajorAction = ({}: ActionProps) => {
+export const MajorAction = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={22}>
+    <BaseIcon size={size || 22}>
       <FaSquareFull
         style={{
           color: "var(--gray-11)",
@@ -17,9 +17,9 @@ export const MajorAction = ({}: ActionProps) => {
   );
 };
 
-export const MinorAction = ({}: ActionProps) => {
+export const MinorAction = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={20}>
+    <BaseIcon size={size || 20}>
       <IoTriangleSharp
         style={{
           color: "var(--gray-11)",
@@ -29,9 +29,9 @@ export const MinorAction = ({}: ActionProps) => {
   );
 };
 
-export const MinorActionLight = ({}: ActionProps) => {
+export const MinorActionLight = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={20}>
+    <BaseIcon size={size || 20}>
       <IoTriangleSharp
         style={{
           color: "var(--gray-6)",

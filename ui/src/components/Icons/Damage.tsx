@@ -1,19 +1,20 @@
 import { Box } from "@radix-ui/themes";
-import { AiOutlineCheckSquare } from "react-icons/ai";
+import { GiGooeyImpact } from "react-icons/gi";
+import { Spell } from "resources";
 import { BaseIcon } from "./BaseIcon";
-import { CgDice5 } from "react-icons/cg";
 
-type SuccessProps = {};
-export const Success = ({}: SuccessProps) => {
+type DamageProps = {};
+export const Damage = ({}: DamageProps) => {
   return (
     <Box
       style={{
         display: "inline",
         verticalAlign: "middle",
+        paddingLeft: "1px",
       }}
     >
-      <BaseIcon size={14} inline>
-        <CgDice5
+      <BaseIcon size={12} inline>
+        <GiGooeyImpact
           style={{
             color: "black",
           }}

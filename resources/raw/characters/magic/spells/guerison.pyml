@@ -1,11 +1,11 @@
 spells: !mix
     guérison:
-        type: sort - soin
+        type: sort
         major: 1
         minor: 0
         maintained: false
         descriptions:
-            base: "Chaque __SN__ réduit la charge des toxines. Ensuite chaque __SN__ soigne les dommages physiques de la cible."
-            guérison_profonde: "Peut soigner les dommages incurables."
+            base: "Chaque __SN__ réduit les toxines, puis soigne les __DOM__ physiques de la cible."
+            guérison_profonde: "Soigne également les dommages incurables."
         nature: physique
         range: contact

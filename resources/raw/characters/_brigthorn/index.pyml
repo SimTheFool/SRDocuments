@@ -32,7 +32,7 @@ speciality:
   - !inc::magic/spells/vitalite
   - !inc::magic/spells/guerison
   - !inc::magic/spells/rafale_de_pierre
-  - !inc::magic/spells/attraction_tellurique
+  - !inc::magic/spells/soulevement_tellurique
   - !inc::magic/rituals/cercle_de_soin
   - !inc::magic/rituals/rune
 

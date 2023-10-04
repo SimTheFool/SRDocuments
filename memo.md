@@ -5,6 +5,8 @@
 
 - ui:
 
+  - mettre des lignes sur la partie note
+  - tenter un background creme
   - ajouter un slot sur les sorts
   - ajouter rafale ciblée et rafale multiple
   - ajouter tir auto multiples

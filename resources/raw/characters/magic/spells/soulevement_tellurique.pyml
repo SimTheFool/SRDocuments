@@ -1,0 +1,11 @@
+spells: !mix
+    soulèvement_tellurique:
+        type: sort
+        major: 1
+        minor: 0
+        maintained: false
+        descriptions:
+            base: "Toutes les cibles dans la zone sont percutées par des débris."
+            choc_sismique: "Si __DOM__ > --CON--, la cible tombe au sol."
+        nature: physique
+        range: LDV(Z)

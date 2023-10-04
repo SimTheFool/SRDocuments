@@ -9,6 +9,9 @@ import { ParagraphStandard } from "../ParagraphStandard";
 import { Space } from "../Space";
 import { TextReplaced } from "../Text";
 import { TitleMin } from "../TitleMin";
+import { Maintained } from "../Icons/Maintained";
+import { SpellNature } from "../Icons/SpellNature";
+import { SpellDistance } from "../Icons/SpellDistance";
 
 type SpellActionProps = {
   name: string;
@@ -19,54 +22,49 @@ export const SpellAction = ({
   action: { major, minor, descriptions, maintained, nature, range, type },
 }: SpellActionProps) => {
   const spellSubtitle = [
-    ...(maintained
-      ? [
-          <BaseIcon inline>
-            <PiHourglassSimpleLowFill />
-          </BaseIcon>,
-        ]
-      : []),
-    nature,
-    range,
+    range && <SpellDistance range={range} />,
+    nature && <SpellNature nature={nature} />,
+    maintained && <Maintained />,
   ];
 
   return (
-    <Card title={type || null}>
+    <Card title={type}>
       <Flex justify={"between"}>
         <Box>
           <TitleMin
             title={<TextReplaced>{capitalize(name)}</TextReplaced>}
-            subtitle={spellSubtitle.map((c, i) => (
-              <>
-                {i !== 0 && " - "}
-                {c}
-              </>
-            ))}
+            subtitle={spellSubtitle}
+            inline
           />
+          <Space />
           <Space />
           {Object.entries(descriptions || {}).map(([key, description]) => (
             <ParagraphStandard>
-              {key !== "base" && (
+              {key === "base" ? (
+                <TextReplaced>{description}</TextReplaced>
+              ) : (
                 <>
+                  <Space />
                   <Space />
                   <TitleMin
                     title={
-                      <TextReplaced>{`${capitalize(key)} :`}</TextReplaced>
+                      <TextReplaced>{`${capitalize(key)}: `}</TextReplaced>
                     }
                     inline
                   />
+                  <Space />
+                  <TextReplaced>{description}</TextReplaced>
                 </>
               )}
-              <TextReplaced>{description}</TextReplaced>
             </ParagraphStandard>
           ))}
         </Box>
-        <Box>
+        <Box pt={"1"}>
           {Array.from({ length: major }).map((_, i) => (
-            <MajorAction key={i} />
+            <MajorAction key={i} size={18} />
           ))}
           {Array.from({ length: minor }).map((_, i) => (
-            <MinorAction key={i} />
+            <MinorAction key={i} size={18} />
           ))}
         </Box>
       </Flex>
