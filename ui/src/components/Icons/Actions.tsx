@@ -7,7 +7,7 @@ type ActionProps = { size?: number };
 
 export const MajorAction = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={size || 22}>
+    <BaseIcon size={size || 18}>
       <FaSquareFull
         style={{
           color: "var(--gray-11)",
@@ -19,7 +19,7 @@ export const MajorAction = ({ size }: ActionProps) => {
 
 export const MinorAction = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={size || 20}>
+    <BaseIcon size={size || 18}>
       <IoTriangleSharp
         style={{
           color: "var(--gray-11)",
@@ -31,7 +31,7 @@ export const MinorAction = ({ size }: ActionProps) => {
 
 export const MinorActionLight = ({ size }: ActionProps) => {
   return (
-    <BaseIcon size={size || 20}>
+    <BaseIcon size={size || 18}>
       <IoTriangleSharp
         style={{
           color: "var(--gray-6)",

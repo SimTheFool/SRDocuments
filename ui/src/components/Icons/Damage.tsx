@@ -10,7 +10,6 @@ export const Damage = ({}: DamageProps) => {
       style={{
         display: "inline",
         verticalAlign: "middle",
-        paddingLeft: "1px",
       }}
     >
       <BaseIcon size={12} inline>

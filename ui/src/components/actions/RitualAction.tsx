@@ -1,38 +1,25 @@
 import { capitalize } from "@/utils/capitalize";
-import { Spell as SpellType } from "resources";
-import { MajorAction, MinorAction } from "../Icons/Actions";
-import { Maintained } from "../Icons/Maintained";
-import { SpellDistance } from "../Icons/SpellDistance";
+import { Box } from "@radix-ui/themes";
+import { Ritual } from "resources";
 import { SpellNature } from "../Icons/SpellNature";
 import { ParagraphStandard } from "../ParagraphStandard";
 import { Space } from "../Space";
 import { TextReplaced } from "../Text";
 import { TitleMin } from "../TitleMin";
 import { ActionBox } from "./ActionBox";
-import { interleave } from "@/utils/interleave";
-import { SpellZone } from "../Icons/SpellZone";
 
-type SpellActionProps = {
+type RitualActionProps = {
   name: string;
-  action: SpellType;
+  action: Ritual;
 };
-export const SpellAction = ({
+export const RitualAction = ({
   name,
-  action: { major, minor, descriptions, maintained, nature, range, type, zone },
-}: SpellActionProps) => {
-  const spellSubtitle = [
-    range && <SpellDistance range={range} />,
-    zone && <SpellZone zone={zone} />,
-    nature && <SpellNature nature={nature} />,
-    maintained && <Maintained />,
-  ].filter((x) => x);
+  action: { descriptions, nature, type, duration, threshold },
+}: RitualActionProps) => {
+  const spellSubtitle = [nature && <SpellNature nature={nature} />];
 
   return (
-    <ActionBox
-      title={name}
-      subtitle={interleave(spellSubtitle, <Space inline />)}
-      type={type}
-    >
+    <ActionBox title={name} subtitle={spellSubtitle} type={type}>
       {{
         content: Object.entries(descriptions || {}).map(
           ([key, description]) => (
@@ -57,14 +44,10 @@ export const SpellAction = ({
           )
         ),
         resources: (
-          <>
-            {Array.from({ length: major }).map((_, i) => (
-              <MajorAction key={i} />
-            ))}
-            {Array.from({ length: minor }).map((_, i) => (
-              <MinorAction key={i} />
-            ))}
-          </>
+          <Box px={"1"}>
+            <ParagraphStandard>{`${duration}`}</ParagraphStandard>
+            <ParagraphStandard>{`|${threshold}|`}</ParagraphStandard>
+          </Box>
         ),
       }}
     </ActionBox>

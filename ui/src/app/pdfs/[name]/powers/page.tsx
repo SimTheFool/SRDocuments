@@ -8,6 +8,8 @@ import { characters } from "resources";
 import { PdfContainer } from "../../PdfContainer";
 import { SpellAction } from "@/components/actions/SpellAction";
 import { ReactNode } from "react";
+import { RitualAction } from "@/components/actions/RitualAction";
+import { Spirit } from "@/components/items/Spirit";
 
 type Props = {
   params: {
@@ -33,6 +35,13 @@ export default function Home({ params: { name } }: Props) {
               </Container>
             );
           })}
+          {Object.entries(char.spirits || {}).map(([name, spirit]) => {
+            return (
+              <Container key={name}>
+                <Spirit name={name} spirit={spirit} key={name} />
+              </Container>
+            );
+          })}
           {Object.entries(char.actions || {}).map(([name, action]) => {
             return (
               <Container key={name}>
@@ -44,6 +53,13 @@ export default function Home({ params: { name } }: Props) {
             return (
               <Container key={name}>
                 <SpellAction name={name} action={spell} />
+              </Container>
+            );
+          })}
+          {Object.entries(char.rituals || {}).map(([name, ritual]) => {
+            return (
+              <Container key={name}>
+                <RitualAction name={name} action={ritual} />
               </Container>
             );
           })}

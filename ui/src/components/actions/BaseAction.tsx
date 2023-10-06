@@ -1,8 +1,6 @@
-import { capitalize } from "@/utils/capitalize";
-import { Box, Flex } from "@radix-ui/themes";
+import { interleave } from "@/utils/interleave";
 import { PiDiamondLight, PiHourglassSimpleLowFill } from "react-icons/pi";
 import { BaseAction1 } from "resources";
-import { Card } from "../Card";
 import { Gauge } from "../Gauge";
 import { MajorAction, MinorAction } from "../Icons/Actions";
 import { BaseIcon } from "../Icons/BaseIcon";
@@ -10,7 +8,8 @@ import { ParagraphStandard } from "../ParagraphStandard";
 import { Ruler } from "../Ruler";
 import { Space } from "../Space";
 import { TextReplaced } from "../Text";
-import { TitleMin } from "../TitleMin";
+import { ActionBox } from "./ActionBox";
+import { Maintained } from "../Icons/Maintained";
 
 type BaseActionProps = {
   name: string;
@@ -31,46 +30,46 @@ export const BaseAction = ({
     score,
   },
 }: BaseActionProps) => {
+  const subtitle = [
+    maintained && <Maintained />,
+    damage && damage_type && (
+      <TextReplaced>{`${damage}${damage_type}`}</TextReplaced>
+    ),
+  ].filter((x) => x);
+
   return (
-    <Card title={type || null}>
-      <Flex justify={"between"}>
-        <Box>
-          <TitleMin
-            title={<TextReplaced>{capitalize(name)}</TextReplaced>}
-            subtitle={
-              <>
-                {` ${damage || ""}${damage_type || ""}`}
-                {maintained && (
-                  <BaseIcon inline>
-                    <PiHourglassSimpleLowFill />
-                  </BaseIcon>
-                )}
-              </>
-            }
-            inline
-          />
-          <Space />
-          {gauge && <Gauge length={gauge} icon={<PiDiamondLight />} />}
-          {description && (
-            <ParagraphStandard>
-              <TextReplaced>{description}</TextReplaced>
-            </ParagraphStandard>
-          )}
-          {score != undefined && (
-            <ParagraphStandard>
-              <Ruler grade={[score]} inter={[score]} />
-            </ParagraphStandard>
-          )}
-        </Box>
-        <Box>
-          {Array.from({ length: major }).map((_, i) => (
-            <MajorAction key={i} />
-          ))}
-          {Array.from({ length: minor }).map((_, i) => (
-            <MinorAction key={i} />
-          ))}
-        </Box>
-      </Flex>
-    </Card>
+    <ActionBox
+      title={name}
+      subtitle={interleave(subtitle, <Space inline />)}
+      type={type}
+    >
+      {{
+        content: (
+          <>
+            {gauge && <Gauge length={gauge} icon={<PiDiamondLight />} />}
+            {description && (
+              <ParagraphStandard>
+                <TextReplaced>{description}</TextReplaced>
+              </ParagraphStandard>
+            )}
+            {score != undefined && (
+              <ParagraphStandard>
+                <Ruler grade={[score]} inter={[score]} />
+              </ParagraphStandard>
+            )}
+          </>
+        ),
+        resources: (
+          <>
+            {Array.from({ length: major }).map((_, i) => (
+              <MajorAction key={i} />
+            ))}
+            {Array.from({ length: minor }).map((_, i) => (
+              <MinorAction key={i} />
+            ))}
+          </>
+        ),
+      }}
+    </ActionBox>
   );
 };

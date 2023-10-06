@@ -12,10 +12,10 @@ export const Advantage = ({ n }: AdvantageProps) => {
       style={{
         display: "inline-block",
         position: "relative",
-        fontStyle: "normal",
+        verticalAlign: "middle",
       }}
     >
-      <BaseIcon size={18}>
+      <BaseIcon size={17}>
         <BsFillDiamondFill />
       </BaseIcon>
       <Box
@@ -23,9 +23,9 @@ export const Advantage = ({ n }: AdvantageProps) => {
           position: "absolute",
           fontWeight: "bold",
           color: "white",
-          top: "13%",
-          left: "20%",
-          transform: "translate(-25%, 10%)",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           fontSize: "calc(10px * var(--scaling))",
         }}
       >

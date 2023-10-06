@@ -23,12 +23,16 @@ export const Resources = ({ char }: ResourcesProps) => {
         <Box pr={"2"} display={"inline-block"}></Box>
         {Array.from({ length: char.stats.action_maj }).map((_, i) => (
           <Box pr={"1"} display={"inline-block"} key={i}>
-            <MajorAction />
+            <MajorAction size={22} />
           </Box>
         ))}
         {Array.from({ length: minActionNb }).map((_, i) => (
           <Box pr={"2"} display={"inline-block"} key={i}>
-            {i < char.stats.action_min ? <MinorAction /> : <MinorActionLight />}
+            {i < char.stats.action_min ? (
+              <MinorAction size={18} />
+            ) : (
+              <MinorActionLight size={18} />
+            )}
           </Box>
         ))}
       </Box>

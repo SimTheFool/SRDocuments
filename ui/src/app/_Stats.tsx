@@ -194,7 +194,7 @@ const StatBlock = ({ n, mod, stat, dice }: StatBlockProps) => {
     <>
       {dice ? (
         <>
-          {n}
+          <span>{n}</span>
           <DiceSix />
         </>
       ) : (

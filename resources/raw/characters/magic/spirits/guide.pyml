@@ -15,8 +15,8 @@ skills:
     - Sorcellerie
 effects:
   - !inc::magic/effects/immunite
-    $TYPE: armes normales
-    $LVL: Puiss/2
+    TYPE: armes normales
+    LVL: "--Puiss/2--"
   - !inc::magic/effects/allergie_grave
     TYPE: psychotropes
 actions:

@@ -8,6 +8,7 @@ export const DiceSix = ({}: DiceSixProps) => {
     <Box
       style={{
         display: "inline-block",
+        verticalAlign: "text-top",
       }}
     >
       <BaseIcon size={14}>

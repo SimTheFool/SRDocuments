@@ -85,6 +85,12 @@ properties:
       type: object
       $ref: "#/definitions/sprite"
 
+  spirits:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/spirit"
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -362,7 +368,7 @@ definitions:
         type: string
       duration:
         type: string
-      treshold:
+      threshold:
         type: integer
       nature:
         type: string
@@ -399,7 +405,9 @@ definitions:
         enum: [physique, mana, duale]
       range:
         type: string
-        enum: [contact, LDV, LDV(Z)]
+        enum: [contact, LDV]
+      zone:
+        type: boolean
 
   specific_action:
     type: object
@@ -651,6 +659,36 @@ definitions:
               attaque:
                 type: integer
               res:
+                type: integer
+              hit:
+                type: object
+                required: [base, factor]
+                properties:
+                  base:
+                    type: integer
+                  factor:
+                    type: integer
+
+  spirit:
+    type: object
+    allOf:
+      - $ref: "#/definitions/companion"
+      - properties:
+          stats:
+            type: object
+            required: [con, agi, rea, for, action_min, action_maj, hit]
+            properties:
+              con:
+                type: integer
+              agi:
+                type: integer
+              rea:
+                type: integer
+              for:
+                type: integer
+              action_min:
+                type: integer
+              action_maj:
                 type: integer
               hit:
                 type: object

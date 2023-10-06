@@ -1,13 +1,12 @@
 import { Box } from "@radix-ui/themes";
-import { PiEyeLight, PiHandWaving } from "react-icons/pi";
 import { TfiArrowsHorizontal } from "react-icons/tfi";
 import { Spell } from "resources";
 import { BaseIcon } from "./BaseIcon";
 
-type SpellDistanceProps = {
-  range: Spell["range"];
+type SpellZoneProps = {
+  zone: Spell["zone"];
 };
-export const SpellDistance = ({ range }: SpellDistanceProps) => {
+export const SpellZone = ({ zone }: SpellZoneProps) => {
   return (
     <Box
       style={{
@@ -15,19 +14,9 @@ export const SpellDistance = ({ range }: SpellDistanceProps) => {
         verticalAlign: "text-top",
       }}
     >
-      {range == "contact" && (
+      {zone && (
         <BaseIcon size={12} inline>
-          <PiHandWaving
-            style={{
-              color: "black",
-            }}
-          />
-        </BaseIcon>
-      )}
-
-      {range == "LDV" && (
-        <BaseIcon size={12} inline>
-          <PiEyeLight
+          <TfiArrowsHorizontal
             style={{
               color: "black",
             }}

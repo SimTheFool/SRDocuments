@@ -5,6 +5,7 @@
 
 - ui:
 
+  - 404 on non existing character
   - mettre des lignes sur la partie note
   - tenter un background creme
   - ajouter un slot sur les sorts

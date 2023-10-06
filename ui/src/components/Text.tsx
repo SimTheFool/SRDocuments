@@ -1,5 +1,6 @@
 import { Advantage } from "./Icons/Advantage";
 import { Damage } from "./Icons/Damage";
+import { DiceSix } from "./Icons/DiceSix";
 import { Formula } from "./Icons/Formula";
 import { Success } from "./Icons/Success";
 
@@ -14,8 +15,6 @@ export const TextReplaced = ({ children }: TextProps) => {
   const partsWithIcons = parts2.map((part, i) => {
     const iconId = part.match(ICON_ID_REGEX)?.[1];
     const formula = part.match(FORMULA_REGEX)?.[1];
-
-    console.log("!!!", { part, iconId, formula });
 
     const rendered = iconId ? (
       <Icon type={iconId as any} key={i} />
@@ -43,4 +42,5 @@ const iconTextsList = {
   D1: <Advantage n={-1} />,
   SN: <Success />,
   DOM: <Damage />,
+  RD: <DiceSix />,
 } as const;
