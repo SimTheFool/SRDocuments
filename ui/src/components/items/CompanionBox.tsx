@@ -11,12 +11,14 @@ import { TitleMin } from "../TitleMin";
 import { SimpleAction } from "../actions/SimpleAction";
 import styles from "./ItemCard.module.css";
 import { Slot } from "./Slot";
+import { Effect } from "../actions/Effect";
 
 type CompanionBoxProps = {
   name: string;
   type?: string;
   companion: CompanionType;
   children?: ReactNode;
+  ergo?: boolean;
 };
 
 export const CompanionBox = ({
@@ -24,18 +26,41 @@ export const CompanionBox = ({
   type,
   companion,
   children,
+  ergo = false,
 }: CompanionBoxProps) => {
   const actions = Object.entries(companion.actions || {}).map(
     ([name, action]) => <SimpleAction name={name} action={action} key={name} />
   );
+
+  const effects = Object.entries(companion.effects || {}).map(
+    ([name, effect]) => <Effect effect={effect} key={name} simple />
+  );
+
+  const skills = companion.skills && (
+    <Card style={{ backgroundColor: "var(--gray-6)" }}>
+      <TitleMin title={<TextReplaced>{"Compétences"}</TextReplaced>} />
+      <ParagraphStandard>{companion.skills.join(" - ")}</ParagraphStandard>
+    </Card>
+  );
+
   const invokSlot = (
     <Slot size="M">puissance - services - vie - maintient</Slot>
   );
-  const bottomChildren = [...actions, invokSlot];
+
+  const bottomChildren = [
+    ...effects,
+    skills,
+    ...actions,
+    ...(ergo ? [] : [invokSlot]),
+  ];
 
   return (
     <Box>
-      <Flex className={bottomChildren.length > 0 ? styles.noBorderBottom : ""}>
+      <Flex
+        className={
+          bottomChildren.length > 0 && !ergo ? styles.noBorderBottom : ""
+        }
+      >
         <Card title={type}>
           <TitleMin title={<TextReplaced>{capitalize(name)}</TextReplaced>} />
           <ParagraphStandard>
@@ -48,43 +73,21 @@ export const CompanionBox = ({
             <Space />
             {children}
             <Space />
-            {companion.skills && (
-              <>
-                <TitleMin
-                  title={<TextReplaced>{"Compétences"}</TextReplaced>}
-                />
-                <Space />
-                <Flex>{companion.skills.join(" - ")}</Flex>
-                <Space />
-              </>
-            )}
-            {(companion.effects || []).map((effect) => (
-              <>
-                <Space />
-                <Space />
-                <Space />
-                <TitleMin
-                  title={
-                    <TextReplaced>{`${capitalize(
-                      effect.name || ""
-                    )}: `}</TextReplaced>
-                  }
-                />
-                <Space />
-                <TextReplaced>{effect.description || ""}</TextReplaced>
-              </>
-            ))}
           </ParagraphStandard>
         </Card>
       </Flex>
-
-      <MasonryGrid compact columns={1}>
+      <MasonryGrid compact columns={ergo ? 2 : 1}>
         {bottomChildren.map((child, i) => (
-          <Box key={i} className={i == 0 ? "" : styles.bottom}>
+          <Box
+            key={i}
+            className={i == 0 || ergo ? "" : styles.bottom}
+            p={ergo ? "1" : "0"}
+          >
             {child}
           </Box>
         ))}
       </MasonryGrid>
+      {invokSlot}
       <Space />
     </Box>
   );

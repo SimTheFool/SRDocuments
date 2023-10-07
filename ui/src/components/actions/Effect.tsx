@@ -7,11 +7,17 @@ import { TitleMin } from "../TitleMin";
 
 type EffectProps = {
   effect: EffectType;
+  simple?: boolean;
 };
 
-export const Effect = ({ effect }: EffectProps) => {
+export const Effect = ({ effect, simple = false }: EffectProps) => {
   return (
-    <Card title={effect.type}>
+    <Card
+      title={!simple && effect.type}
+      style={{
+        backgroundColor: "var(--gray-6)",
+      }}
+    >
       <TitleMin title={effect.name} />
       <Space />
       <ParagraphStandard>

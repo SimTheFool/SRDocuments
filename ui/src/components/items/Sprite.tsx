@@ -6,13 +6,14 @@ import { CompanionBox } from "./CompanionBox";
 type SpriteProps = {
   name: string;
   sprite: SpriteType;
+  ergo?: boolean;
 };
 
-export const Sprite = ({ name, sprite }: SpriteProps) => {
+export const Sprite = ({ name, sprite, ergo = false }: SpriteProps) => {
   const stats = sprite.stats;
 
   return (
-    <CompanionBox companion={sprite} name={name} type={"sprite"}>
+    <CompanionBox companion={sprite} name={name} type={"sprite"} ergo={ergo}>
       {stats && (
         <>
           <StatTable

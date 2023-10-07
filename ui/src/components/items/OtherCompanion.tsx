@@ -7,29 +7,36 @@ import { Monitor } from "../Monitor";
 type OtherCompanionProps = {
   name: string;
   otherCompanion: OtherCompanionType;
+  ergo?: boolean;
 };
 
 export const OtherCompanion = ({
   name,
   otherCompanion,
+  ergo = false,
 }: OtherCompanionProps) => {
   const stats = otherCompanion.stats;
 
   return (
-    <CompanionBox companion={otherCompanion} name={name} type={"esprit"}>
+    <CompanionBox
+      companion={otherCompanion}
+      name={name}
+      type={"esprit"}
+      ergo={ergo}
+    >
       {stats && (
         <>
           <StatTable
             compact
             items={[
-              ["CON", "AGI", "REA", "FOR"],
+              ["con", "agi", "rea", "for"],
               [stats.con, stats.agi, stats.rea, stats.for],
             ]}
           />
           <StatTable
             compact
             items={[
-              ["VOL", "LOG", "INT", "CHA"],
+              ["vol", "log", "int", "cha"],
               [stats.vol, stats.log, stats.int, stats.cha],
             ]}
           />

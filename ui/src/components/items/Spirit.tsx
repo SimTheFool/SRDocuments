@@ -6,19 +6,20 @@ import { InlineMajorAction, InlineMinorAction } from "../Icons/Actions";
 type SpiritProps = {
   name: string;
   spirit: SpiritType;
+  ergo?: boolean;
 };
 
-export const Spirit = ({ name, spirit }: SpiritProps) => {
+export const Spirit = ({ name, spirit, ergo = false }: SpiritProps) => {
   const stats = spirit.stats;
 
   return (
-    <CompanionBox companion={spirit} name={name} type={"esprit"}>
+    <CompanionBox companion={spirit} name={name} type={"esprit"} ergo={ergo}>
       {stats && (
         <>
           <StatTable
             compact
             items={[
-              ["CON", "AGI", "REA", "FOR"],
+              ["con", "agi", "rea", "for"],
               [
                 `P${getStatString(stats.con)}`,
                 `P${getStatString(stats.agi)}`,
@@ -31,7 +32,7 @@ export const Spirit = ({ name, spirit }: SpiritProps) => {
             compact
             items={[
               [
-                "Vie",
+                "vie",
                 <InlineMajorAction size={10} />,
                 <InlineMinorAction size={12} />,
               ],

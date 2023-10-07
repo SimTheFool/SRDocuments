@@ -37,12 +37,14 @@ export const SimpleAction = ({
         ),
         resources: (
           <>
-            {Array.from({ length: major }).map((_, i) => (
-              <MajorAction key={i} />
-            ))}
-            {Array.from({ length: minor }).map((_, i) => (
-              <MinorAction key={i} />
-            ))}
+            {major &&
+              Array.from({ length: major }).map((_, i) => (
+                <MajorAction key={i} />
+              ))}
+            {minor &&
+              Array.from({ length: minor }).map((_, i) => (
+                <MinorAction key={i} />
+              ))}
           </>
         ),
       }}

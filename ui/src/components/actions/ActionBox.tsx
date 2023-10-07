@@ -66,7 +66,6 @@ export const ActionBox = ({
           <TitleMin
             title={<TextReplaced>{capitalize(title || "")}</TextReplaced>}
             subtitle={interleave(infosIcons, <Space inline />)}
-            inline
           />
           <Space />
           {content}

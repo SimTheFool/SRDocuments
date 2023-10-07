@@ -5,6 +5,8 @@
 
 - ui:
 
+  - symbole maintenu comme la main
+  - mettre un légende
   - 404 on non existing character
   - mettre des lignes sur la partie note
   - tenter un background creme
