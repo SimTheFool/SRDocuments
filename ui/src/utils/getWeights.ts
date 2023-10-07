@@ -1,4 +1,12 @@
-import { Character, Companion } from "resources";
+import {
+  BaseItem,
+  Character,
+  Companion,
+  Drone,
+  Outfit,
+  Tech,
+  Weapon,
+} from "resources";
 
 export const getCharWeights = (char: Character) => {
   const powers =
@@ -20,9 +28,39 @@ export const getCharWeights = (char: Character) => {
       0
     );
 
+  const weapons = Object.values(char.weapons || {}).reduce(
+    (acc, c) => getWeaponWeight(c) + acc,
+    0
+  );
+
+  const outfits = Object.values(char.outfits || {}).reduce(
+    (acc, c) => getOutfitWeight(c) + acc,
+    0
+  );
+
+  const tech = Object.values(char.tech || {}).reduce(
+    (acc, c) => getTechWeight(c) + acc,
+    0
+  );
+
+  const other = Object.values(char.other || {}).reduce(
+    (acc, c) => getOtherItemWeight(c) + acc,
+    0
+  );
+
+  const drones = Object.values(char.drones || {}).reduce(
+    (acc, c) => getDroneWeight(c) + acc,
+    0
+  );
+
   return {
     powers,
     companions,
+    weapons,
+    outfits,
+    tech,
+    other,
+    drones,
   };
 };
 
@@ -33,4 +71,34 @@ const getCompanionWeight = (companion: Companion) => {
     (companion.description ? 1 : 0) +
     1
   );
+};
+
+const getWeaponWeight = (weapon: Weapon) => {
+  return (
+    (weapon.slots || []).length +
+    Object.values(weapon.actions || {}).length +
+    (weapon.description ? 1 : 0) +
+    1
+  );
+};
+
+const getOutfitWeight = (outfit: Outfit) => {
+  return (
+    (outfit.slots || []).length +
+    Object.values(outfit.actions || {}).length +
+    (outfit.description ? 1 : 0) +
+    1
+  );
+};
+
+const getTechWeight = (tech: Tech) => {
+  return (tech.slots || []).length + (tech.description ? 1 : 0) + 1;
+};
+
+const getOtherItemWeight = (item: BaseItem) => {
+  return (item.slots || []).length + (item.description ? 1 : 0) + 1;
+};
+
+const getDroneWeight = (drone: Drone) => {
+  return (drone.slots || []).length + (drone.description ? 1 : 0) + 1;
 };

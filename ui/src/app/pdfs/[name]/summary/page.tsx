@@ -74,7 +74,17 @@ export default function Home({ params: { name } }: Props) {
           borderTop: "2px solid var(--gray-10)",
         }}
       >
-        <Section title={<TitleSection>Notes</TitleSection>}></Section>
+        <Section title={<TitleSection>Notes</TitleSection>}>
+          {Array.from({ length: 10 }).map(() => (
+            <Box
+              style={{
+                width: "100%",
+                height: "calc(25px * var(--scaling)",
+                borderBottom: "1px solid var(--gray-8)",
+              }}
+            />
+          ))}
+        </Section>
       </Box>
     </PdfContainer>
   );

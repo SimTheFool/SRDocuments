@@ -41,7 +41,6 @@ export const ActionBox = ({
   ).filter((x) => x);
 
   const infosIcons = [
-    maintained && <Maintained />,
     nature && <SpellNature nature={nature} />,
     range && <SpellDistance range={range} />,
     zone && <SpellZone zone={zone} />,
@@ -70,13 +69,12 @@ export const ActionBox = ({
           <Space />
           {content}
         </Box>
-        {resourcesChildren?.length > 0 && (
-          <Box>
-            {resourcesChildren.map((r) => (
-              <Box pb={"1"}>{r}</Box>
-            ))}
-          </Box>
-        )}
+
+        <Box pl={"1"}>
+          {maintained && <Maintained />}
+          {resourcesChildren?.length > 0 &&
+            resourcesChildren.map((r) => <Box pb={"1"}>{r}</Box>)}
+        </Box>
       </Flex>
     </Card>
   );

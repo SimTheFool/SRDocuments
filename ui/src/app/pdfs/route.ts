@@ -5,7 +5,6 @@ const getCharacterSheet = (charName: string) => [
   `./pdfs/${charName}/summary`,
   `./pdfs/${charName}/powers`,
   `./pdfs/${charName}/inventory`,
-  `./pdfs/${charName}/stash`,
 ];
 
 export async function GET() {

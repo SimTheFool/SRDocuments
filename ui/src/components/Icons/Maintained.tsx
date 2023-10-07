@@ -1,6 +1,7 @@
 import { Box } from "@radix-ui/themes";
 import { PiHourglassSimpleLowFill } from "react-icons/pi";
 import { BaseIcon } from "./BaseIcon";
+import { FaHourglass } from "react-icons/fa";
 
 type MaintainedProps = {};
 export const Maintained = ({}: MaintainedProps) => {
@@ -11,10 +12,10 @@ export const Maintained = ({}: MaintainedProps) => {
         verticalAlign: "text-top",
       }}
     >
-      <BaseIcon size={14} inline>
-        <PiHourglassSimpleLowFill
+      <BaseIcon size={18} inline>
+        <FaHourglass
           style={{
-            color: "black",
+            color: "var(--gray-7)",
           }}
         />
       </BaseIcon>
