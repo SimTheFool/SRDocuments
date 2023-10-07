@@ -52,39 +52,42 @@ export const ItemCard = ({
       <Flex className={bottomItemNb > 0 ? styles.noBorderBottom : ""}>
         <Card>
           <Flex justify={"between"}>
-            <TitleMin
-              inline
-              title={
-                <TextReplaced>
-                  {`${name.toUpperCase()} ${
-                    item.quantity ? `x ${item.quantity}` : ""
-                  }`}
-                </TextReplaced>
-              }
-              subtitle={item.manufacturer}
-            />
+            <Box>
+              <TitleMin
+                inline
+                title={
+                  <TextReplaced>
+                    {`${name.toUpperCase()} ${
+                      item.quantity ? `x ${item.quantity}` : ""
+                    }`}
+                  </TextReplaced>
+                }
+                subtitle={item.manufacturer}
+              />
+              <TitleMin
+                subtitle={
+                  <>
+                    <Price
+                      price={item.price}
+                      unit={
+                        item.quantity != undefined && item.quantity > 1
+                          ? true
+                          : false
+                      }
+                    />
+                    <Space inline />
+                    {!item.legal ? "illégal" : item.licenced ? "licencié" : ""}
+                  </>
+                }
+              />
+            </Box>
             {!noHand && (
               <Box pl={"1"}>
                 <Hand />
               </Box>
             )}
           </Flex>
-          <TitleMin
-            subtitle={
-              <>
-                <Price
-                  price={item.price}
-                  unit={
-                    item.quantity != undefined && item.quantity > 1
-                      ? true
-                      : false
-                  }
-                />
-                <Space inline />
-                {!item.legal ? "illégal" : item.licenced ? "licencié" : ""}
-              </>
-            }
-          />
+
           <ParagraphStandard>
             {item.description && (
               <>

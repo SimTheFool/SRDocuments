@@ -61,6 +61,8 @@ export const CompanionBox = ({
             {(companion.effects || []).map((effect) => (
               <>
                 <Space />
+                <Space />
+                <Space />
                 <TitleMin
                   title={
                     <TextReplaced>{`${capitalize(
@@ -83,6 +85,7 @@ export const CompanionBox = ({
           </Box>
         ))}
       </MasonryGrid>
+      <Space />
     </Box>
   );
 };

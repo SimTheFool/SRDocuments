@@ -12,6 +12,7 @@ import { SpellDistance } from "../Icons/SpellDistance";
 import { SpellNature } from "../Icons/SpellNature";
 import { SpellZone } from "../Icons/SpellZone";
 import { interleave } from "@/utils/interleave";
+import { Damage } from "../Icons/Damage";
 
 type ActionBoxProps = {
   title?: string;
@@ -44,7 +45,18 @@ export const ActionBox = ({
     nature && <SpellNature nature={nature} />,
     range && <SpellDistance range={range} />,
     zone && <SpellZone zone={zone} />,
-    damage,
+    damage && (
+      <>
+        <span
+          style={{
+            fontWeight: "bold",
+          }}
+        >
+          {damage}
+        </span>
+        <Damage />
+      </>
+    ),
   ].filter((x) => x);
 
   return (

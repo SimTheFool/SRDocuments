@@ -8,6 +8,7 @@ import { Card } from "../Card";
 import { ShotAction as ShotActionType, RangeLabels } from "resources";
 import { Ruler } from "../Ruler";
 import { Bullet } from "../Icons/Bullet";
+import { Damage } from "../Icons/Damage";
 
 type ShotActionProps = {
   name: string;
@@ -16,15 +17,7 @@ type ShotActionProps = {
 };
 export const ShotAction = ({
   name,
-  action: {
-    damage,
-    damage_type,
-    major,
-    minor,
-    description,
-    ranges,
-    ammo_consumption,
-  },
+  action: { damage, major, minor, description, ranges, ammo_consumption },
   rangeLabels,
 }: ShotActionProps) => {
   return (
@@ -35,9 +28,22 @@ export const ShotAction = ({
             title={name}
             subtitle={
               <>
-                {ammo_consumption}
+                <span
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {ammo_consumption}
+                </span>
                 <Bullet />
-                {` ${damage}${damage_type}`}
+                <span
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {damage}
+                </span>
+                <Damage />
               </>
             }
             inline

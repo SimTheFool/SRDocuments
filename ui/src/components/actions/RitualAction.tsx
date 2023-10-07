@@ -14,12 +14,10 @@ type RitualActionProps = {
 };
 export const RitualAction = ({
   name,
-  action: { descriptions, nature, type, duration, threshold },
+  action: { descriptions, type, duration, threshold, ...actionInfos },
 }: RitualActionProps) => {
-  const spellSubtitle = [nature && <SpellNature nature={nature} />];
-
   return (
-    <ActionBox title={name} infos={spellSubtitle} type={type}>
+    <ActionBox title={name} infos={actionInfos} type={type}>
       {{
         content: Object.entries(descriptions || {}).map(
           ([key, description]) => (

@@ -91,6 +91,12 @@ properties:
       type: object
       $ref: "#/definitions/spirit"
 
+  other_companions:
+    type: object
+    additionalProperties:
+      type: object
+      $ref: "#/definitions/other_companion"
+
 #~~~~~~~~~~~ DEFINITIONS ~~~~~~~~~~~#
 definitions:
   #~~~ STATS ~~~#
@@ -696,3 +702,50 @@ definitions:
                     type: integer
                   factor:
                     type: integer
+
+  other_companion:
+    type: object
+    allOf:
+      - $ref: "#/definitions/companion"
+      - properties:
+          stats:
+            type: object
+            required:
+              [
+                con,
+                agi,
+                rea,
+                for,
+                vol,
+                log,
+                int,
+                cha,
+                action_min,
+                action_maj,
+                hit,
+              ]
+            properties:
+              con:
+                type: integer
+              agi:
+                type: integer
+              rea:
+                type: integer
+              for:
+                type: integer
+              vol:
+                type: integer
+              log:
+                type: integer
+              int:
+                type: integer
+              cha:
+                type: integer
+              pui:
+                type: integer
+              action_min:
+                type: integer
+              action_maj:
+                type: integer
+              hit:
+                type: number
