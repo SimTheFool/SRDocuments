@@ -3,7 +3,7 @@ rituals: !mix
         type: rituel
         duration: 7h
         threshold: 7
-        descriptions:
-            base: "Vous lancez un sort de soin dans une zone de MAG mètres. Les __SN__ déterminent la puissance du sort et ajoutent des __DR__ aux autres sorts de soin lancés dans la zone tant que le rituel est actif. Le cercle dure __SN__jours."
-            cercle_volatile: "Les cercle peut-être dissipé prématurément, redéclenchant le sort une dernière fois."
         nature: duale
+        descriptions:
+            base: "Lancez un sort de soin avec __SN__ dans une zone de --MAG-- mètres. Les autres soins lancé dans le cercle ont __SN__ __RD__. Le cercle dure __SN__jours."
+            cercle_volatile: "Le sort d'origine peut-être relancé, mais dissipe le rituel."

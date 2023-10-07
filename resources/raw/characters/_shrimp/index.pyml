@@ -93,12 +93,15 @@ identities:
       LICENCES:
         - !inc::identities/licence
             ITEM: Chasse d'arme
+            DESC: null
             QUALITY: 4
         - !inc::identities/licence
             ITEM: Packmule
+            DESC: null
             QUALITY: 4
         - !inc::identities/licence
             ITEM: Crawler
+            DESC: null
             QUALITY: 4
       CONTACTS: null
       QUALITY: 4

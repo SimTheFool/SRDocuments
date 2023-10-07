@@ -4,5 +4,5 @@ rituals: !mix
         duration: 4h
         threshold: 6
         descriptions:
-            base: "Vous créez une barrière de nature duale qui dure __SN__ semaines, d'un volume de 50m3 par MAG des participants. Sa puissance est de MAG + __SN__."
+            base: "Vous créez une barrière qui dure __SN__ semaines, d'un volume de 50m3 par --MAG-- des participants. Sa puissance est de --MAG +-- __SN__."
         nature: duale

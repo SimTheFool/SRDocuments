@@ -2,4 +2,4 @@ name: Garde magique
 major: 1
 minor: 0
 maintained: true
-description: Vous protégez les cibles des sorts adverses dans une zone de deux mètres. Faites Puiss x 2, chaques __SN__ ajoute un __RD__ aux cibles dans la zone pour se défendre contre les sorts. Dure Puiss tours.
+description: Protégez les cibles des sorts adverses dans une zone. Faites --Puiss x 2--, chaque __SN__ ajoute un __RD__ aux cibles pour se défendre contre les sorts. Dure --Puiss.-- tours.
