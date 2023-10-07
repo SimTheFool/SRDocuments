@@ -22,7 +22,7 @@ export default function Home({ params: { name } }: Props) {
   const char = characters[name];
 
   return (
-    <PdfContainer border>
+    <PdfContainer breakAfter>
       <Box pt={"2"}>
         <MasonryGrid columns={3}>
           <Box>
