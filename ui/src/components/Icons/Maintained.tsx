@@ -15,7 +15,7 @@ export const Maintained = ({}: MaintainedProps) => {
       <BaseIcon size={18} inline>
         <FaHourglass
           style={{
-            color: "var(--gray-7)",
+            color: "var(--gray-8)",
           }}
         />
       </BaseIcon>

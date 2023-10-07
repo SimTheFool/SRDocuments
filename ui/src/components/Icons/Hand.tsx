@@ -1,7 +1,6 @@
-import { BaseIcon } from "./BaseIcon";
-import { PiHandThin } from "react-icons/pi";
-import { IoHandLeft } from "react-icons/io5";
 import { Box } from "@radix-ui/themes";
+import { IoHandLeft } from "react-icons/io5";
+import { BaseIcon } from "./BaseIcon";
 
 type HandProps = {
   n?: number;
@@ -17,19 +16,19 @@ export const Hand = ({ n }: HandProps) => {
     >
       <BaseIcon size={25}>
         <IoHandLeft
-          size="18"
           style={{
-            color: "var(--gray-7)",
+            color: "var(--gray-8)",
           }}
         />
       </BaseIcon>
       <Box
         style={{
           position: "absolute",
-          fontWeight: "bold",
-          color: "var(--gray-10)",
-          top: "0%",
-          left: "20%",
+          left: "40%",
+          top: "58%",
+          zIndex: 1,
+          color: "white",
+          transform: "translate(-50%, -50%)",
         }}
       >
         {n}

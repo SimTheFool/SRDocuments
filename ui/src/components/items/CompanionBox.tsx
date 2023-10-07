@@ -101,9 +101,7 @@ export const ErgoCompanionBox = ({
     </Card>
   );
 
-  const invokSlot = noSlot ? undefined : (
-    <Slot size="INF">puiss. - serv. - vie</Slot>
-  );
+  const invokSlot = noSlot ? undefined : <Slot size="INF">pui. serv. vie</Slot>;
 
   const bottomChildren = [skills, ...effects, ...actions];
 

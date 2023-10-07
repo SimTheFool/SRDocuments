@@ -7,7 +7,7 @@ type GaugeProps = {
 };
 
 const STEP = 5;
-const SWITCH = 15;
+const SWITCH = 30;
 
 export const Gauge = ({ length, icon }: GaugeProps) => {
   const group = Math.floor(length / STEP);

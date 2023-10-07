@@ -212,7 +212,7 @@ tech:
 other:
     dérivateur_de_données:
         name: Dérivateur de données
-        description: "Copie les données transitant sur n'importe quel cable de données et de fournir une lecture sans fil à un système filaire."
+        description: "Copie les données transitant sur n'importe quel cable de données et de fournit une connexion sans fil à un système filaire."
         price: 300
         legal: true
         licenced: false

@@ -106,7 +106,7 @@ const LittleObjects = ({ char }: { char: Character }) => {
         <TitleSection>Consommables et outils</TitleSection>
         <Space />
       </Box>
-      <MasonryGrid columns={5}>
+      <MasonryGrid columns={4}>
         {Object.entries(char.other || {}).map(([name, item]) => {
           return (
             <Box pb={"4"} pr={"1"} key={name}>

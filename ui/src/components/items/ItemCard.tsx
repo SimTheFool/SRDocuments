@@ -81,9 +81,10 @@ export const ItemCard = ({
                 }
               />
             </Box>
+
             {!noHand && (
               <Box pl={"1"}>
-                <Hand />
+                <Hand n={item.concealment} />
               </Box>
             )}
           </Flex>

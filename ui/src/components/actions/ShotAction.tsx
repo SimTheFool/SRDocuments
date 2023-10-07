@@ -36,14 +36,18 @@ export const ShotAction = ({
                   {ammo_consumption}
                 </span>
                 <Bullet />
-                <span
-                  style={{
-                    fontWeight: "bold",
-                  }}
-                >
-                  {damage}
-                </span>
-                <Damage />
+                {damage != 0 && (
+                  <>
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {damage}
+                    </span>
+                    <Damage />
+                  </>
+                )}
               </>
             }
             inline
