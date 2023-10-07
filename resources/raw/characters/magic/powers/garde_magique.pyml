@@ -1,5 +1,7 @@
 name: Garde magique
 major: 1
 minor: 0
+nature: mana
+range: LDV
 maintained: true
 description: Protégez les cibles des sorts adverses dans une zone. Faites --Puiss x 2--, chaque __SN__ ajoute un __RD__ aux cibles pour se défendre contre les sorts. Dure --Puiss.-- tours.

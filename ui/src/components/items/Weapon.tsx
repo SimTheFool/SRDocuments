@@ -1,6 +1,6 @@
 import { RangeLabels } from "resources";
 import { Ruler } from "../Ruler";
-import { BaseAction } from "../actions/BaseAction";
+import { SimpleAction } from "../actions/SimpleAction";
 import { LoadAction } from "../actions/LoadAction";
 import { ShotAction } from "../actions/ShotAction";
 import { ItemCard } from "./ItemCard";
@@ -47,7 +47,7 @@ export const Weapon = ({ weapon, name }: WeaponProps) => {
             )}
             {recharger && <LoadAction action={recharger} />}
             {Object.entries(otherActions).map(([name, action]) => (
-              <BaseAction key={name} name={name} action={action} />
+              <SimpleAction key={name} name={name} action={action} />
             ))}
           </>
         ),

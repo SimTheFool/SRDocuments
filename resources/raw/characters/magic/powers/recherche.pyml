@@ -1,5 +1,6 @@
 name: Recherche
 major: 0
 minor: 0
+nature: mana
 maintained: false
-description: Depuis l'astral, permet de retrouver facilement un objet. Faites Puiss x 2 jusqu'à obtenir un seuil dépendant de la difficulté à trouver l'objet. Chaque test dure 10min. Vous devez déjà avoir aperçu l'objet.
+description: Retrouvez un objet où qu'il soit. Faites --Puiss x 2-- jusqu'à obtenir un seuil dépendant de la difficulté à trouver l'objet. Chaque test dure 10min. Vous devez déjà avoir aperçu l'objet.

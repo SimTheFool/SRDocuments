@@ -1,7 +1,7 @@
 import { MasonryGrid } from "@/components/MasonryGrid";
 import { Space } from "@/components/Space";
 import { TitleSection } from "@/components/TitleSection";
-import { BaseAction } from "@/components/actions/BaseAction";
+import { SimpleAction } from "@/components/actions/SimpleAction";
 import { Drone } from "@/components/items/Drone";
 import { ItemCard } from "@/components/items/ItemCard";
 import { Tech } from "@/components/items/Tech";
@@ -50,7 +50,7 @@ export default async function Page({ params: { name } }: Props) {
                       <>
                         {Object.entries(outfit.actions || {}).map(
                           ([name, action]) => (
-                            <BaseAction
+                            <SimpleAction
                               name={name}
                               action={action}
                               key={name}

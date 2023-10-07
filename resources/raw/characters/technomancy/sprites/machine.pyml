@@ -5,7 +5,8 @@ sprites: !mix
             corruption: 3
             traitement: 2
             attaque: 1
-            res: 0
+            action_maj: 1
+            action_min: 4
             hit:
               base: 8
               factor: 2

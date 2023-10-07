@@ -8,7 +8,7 @@ import { ParagraphStandard } from "../ParagraphStandard";
 import { Space } from "../Space";
 import { TextReplaced } from "../Text";
 import { TitleMin } from "../TitleMin";
-import { BaseAction } from "../actions/BaseAction";
+import { SimpleAction } from "../actions/SimpleAction";
 import styles from "./ItemCard.module.css";
 import { Slot } from "./Slot";
 
@@ -26,7 +26,7 @@ export const CompanionBox = ({
   children,
 }: CompanionBoxProps) => {
   const actions = Object.entries(companion.actions || {}).map(
-    ([name, action]) => <BaseAction name={name} action={action} key={name} />
+    ([name, action]) => <SimpleAction name={name} action={action} key={name} />
   );
   const invokSlot = (
     <Slot size="M">puissance - services - vie - maintient</Slot>

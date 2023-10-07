@@ -1,6 +1,6 @@
-actions: !mix
+complex_forms: !mix
     canal de données:
-        type: techno
+        type: forme
         major: 1
         minor: 0
         maintained: true

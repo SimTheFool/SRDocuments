@@ -1,6 +1,7 @@
 import { Spirit as SpiritType } from "resources";
 import { StatTable } from "../StatTable";
 import { CompanionBox } from "./CompanionBox";
+import { InlineMajorAction, InlineMinorAction } from "../Icons/Actions";
 
 type SpiritProps = {
   name: string;
@@ -29,7 +30,11 @@ export const Spirit = ({ name, spirit }: SpiritProps) => {
           <StatTable
             compact
             items={[
-              ["Vie", "Act.Maj", "Act.Min"],
+              [
+                "Vie",
+                <InlineMajorAction size={10} />,
+                <InlineMinorAction size={12} />,
+              ],
               [
                 `${stats.hit?.base}+P/${stats.hit?.factor}`,
                 `${stats.action_maj}`,

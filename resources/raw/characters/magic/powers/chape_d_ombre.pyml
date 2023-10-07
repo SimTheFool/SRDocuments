@@ -1,5 +1,7 @@
 name: Chape d'ombre
 major: 0
 minor: 1
+nature: mana
+range: perso
 maintained: true
 description: Disparaissez dans les ombres. Pour chaque __SN__ gagnez --Invisible--. Ne fonctionne pas en plein soleil.

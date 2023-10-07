@@ -1,7 +1,7 @@
 import { MasonryGrid } from "@/components/MasonryGrid";
 import { Space } from "@/components/Space";
 import { TitleSection } from "@/components/TitleSection";
-import { BaseAction } from "@/components/actions/BaseAction";
+import { SimpleAction } from "@/components/actions/SimpleAction";
 import { Sprite } from "@/components/items/Sprite";
 import { Box } from "@radix-ui/themes";
 import { characters } from "resources";
@@ -42,10 +42,10 @@ export default function Home({ params: { name } }: Props) {
               </Container>
             );
           })}
-          {Object.entries(char.actions || {}).map(([name, action]) => {
+          {Object.entries(char.complex_forms || {}).map(([name, form]) => {
             return (
               <Container key={name}>
-                <BaseAction name={name} action={action} type={action.type} />
+                <SimpleAction name={name} action={form} type={form.type} />
               </Container>
             );
           })}

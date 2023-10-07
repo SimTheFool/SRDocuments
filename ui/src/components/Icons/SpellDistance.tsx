@@ -1,8 +1,8 @@
 import { Box } from "@radix-ui/themes";
 import { PiEyeLight, PiHandWaving } from "react-icons/pi";
-import { TfiArrowsHorizontal } from "react-icons/tfi";
 import { Spell } from "resources";
 import { BaseIcon } from "./BaseIcon";
+import { IoIosBody } from "react-icons/io";
 
 type SpellDistanceProps = {
   range: Spell["range"];
@@ -32,6 +32,12 @@ export const SpellDistance = ({ range }: SpellDistanceProps) => {
               color: "black",
             }}
           />
+        </BaseIcon>
+      )}
+
+      {range == "perso" && (
+        <BaseIcon size={12} inline>
+          <IoIosBody />
         </BaseIcon>
       )}
     </Box>

@@ -1,16 +1,11 @@
 import { capitalize } from "@/utils/capitalize";
 import { Spell as SpellType } from "resources";
 import { MajorAction, MinorAction } from "../Icons/Actions";
-import { Maintained } from "../Icons/Maintained";
-import { SpellDistance } from "../Icons/SpellDistance";
-import { SpellNature } from "../Icons/SpellNature";
 import { ParagraphStandard } from "../ParagraphStandard";
 import { Space } from "../Space";
 import { TextReplaced } from "../Text";
 import { TitleMin } from "../TitleMin";
 import { ActionBox } from "./ActionBox";
-import { interleave } from "@/utils/interleave";
-import { SpellZone } from "../Icons/SpellZone";
 
 type SpellActionProps = {
   name: string;
@@ -18,21 +13,10 @@ type SpellActionProps = {
 };
 export const SpellAction = ({
   name,
-  action: { major, minor, descriptions, maintained, nature, range, type, zone },
+  action: { major, minor, descriptions, type, ...actionInfos },
 }: SpellActionProps) => {
-  const spellSubtitle = [
-    range && <SpellDistance range={range} />,
-    zone && <SpellZone zone={zone} />,
-    nature && <SpellNature nature={nature} />,
-    maintained && <Maintained />,
-  ].filter((x) => x);
-
   return (
-    <ActionBox
-      title={name}
-      subtitle={interleave(spellSubtitle, <Space inline />)}
-      type={type}
-    >
+    <ActionBox title={name} infos={actionInfos} type={type}>
       {{
         content: Object.entries(descriptions || {}).map(
           ([key, description]) => (

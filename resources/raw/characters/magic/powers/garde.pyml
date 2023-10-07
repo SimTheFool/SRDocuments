@@ -1,5 +1,7 @@
 name: Garde
 major: 1
 minor: 0
+nature: physique
+range: LDV
 maintained: true
 description: Vous protégez --Puiss.-- cibles contre les complications et les echecs critiques. Les cibles ont aussi --Puiss.-- __RD__ pour résister au pouvoir --Accident--.

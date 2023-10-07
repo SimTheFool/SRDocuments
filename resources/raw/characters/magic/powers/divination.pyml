@@ -1,5 +1,7 @@
 name: Divination
 major: 0
 minor: 0
+nature: mana
+range: LDV
 maintained: false
-description: Vous pouvez observer sujet depuis l'astral. Chaque 10min d'observation diminue le seuil de 1 (base 10, min 3). Faites Puiss + VOL pour avoir une vision d'un évènement futur concernant la cible. Faites Puiss + LOG pour interpréter la réponse.
+description: Observez un sujet. Chaque 10min diminue le seuil de 1 (base10, min 3). Faites --Puiss + VOL-- pour avoir une vision d'un évènement futur concernant la cible.

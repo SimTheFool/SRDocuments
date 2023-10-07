@@ -6,19 +6,32 @@ import { Space } from "../Space";
 import { TextReplaced } from "../Text";
 import { TitleMin } from "../TitleMin";
 import React from "react";
+import { BaseAction } from "resources";
+import { Maintained } from "../Icons/Maintained";
+import { SpellDistance } from "../Icons/SpellDistance";
+import { SpellNature } from "../Icons/SpellNature";
+import { SpellZone } from "../Icons/SpellZone";
+import { interleave } from "@/utils/interleave";
 
 type ActionBoxProps = {
   title?: string;
-  subtitle?: ReactNode;
+  infos?: {
+    range?: BaseAction["range"];
+    zone?: BaseAction["zone"];
+    nature?: BaseAction["nature"];
+    maintained?: BaseAction["maintained"];
+    damage?: BaseAction["damage"];
+  };
   type?: ReactNode;
   children: {
     resources?: ReactElement;
     content?: ReactNode;
   };
 };
+
 export const ActionBox = ({
   children: { content, resources },
-  subtitle,
+  infos: { range, zone, nature, maintained, damage } = {},
   title,
   type,
 }: ActionBoxProps) => {
@@ -26,13 +39,21 @@ export const ActionBox = ({
     resources?.props.children
   ).filter((x) => x);
 
+  const infosIcons = [
+    maintained && <Maintained />,
+    nature && <SpellNature nature={nature} />,
+    range && <SpellDistance range={range} />,
+    zone && <SpellZone zone={zone} />,
+    damage,
+  ].filter((x) => x);
+
   return (
     <Card title={type}>
       <Flex justify={"between"}>
         <Box>
           <TitleMin
             title={<TextReplaced>{capitalize(title || "")}</TextReplaced>}
-            subtitle={subtitle}
+            subtitle={interleave(infosIcons, <Space inline />)}
             inline
           />
           <Space />

@@ -31,11 +31,11 @@ properties:
     items:
       $ref: "#/definitions/effect"
 
-  actions:
+  complex_forms:
     type: object
     additionalProperties:
       type: object
-      $ref: "#/definitions/specific_action"
+      $ref: "#/definitions/complex_form"
 
   rituals:
     type: object
@@ -340,17 +340,20 @@ definitions:
   #~~~ LOAD_ACTION ~~~#
   base_action:
     type: object
-    required: [major, minor]
     properties:
       type:
         type: string
-      maintained:
-        type: boolean
       major:
         type: integer
       minor:
         type: integer
+      duration:
+        type: string
+      threshold:
+        type: integer
       gauge:
+        type: integer
+      score:
         type: integer
       description:
         type: string
@@ -358,66 +361,50 @@ definitions:
         type: integer
       damage_type:
         type: string
-      score:
-        type: integer
-
-  ritual:
-    type: object
-    properties:
-      type:
-        type: string
-      duration:
-        type: string
-      threshold:
-        type: integer
-      nature:
-        type: string
-        enum: [physique, mana, duale]
-      descriptions:
-        type: object
-        properties:
-          base:
-            type: string
-        additionalProperties:
-          type: string
-
-  spell:
-    type: object
-    required: [major, minor]
-    properties:
-      type:
-        type: string
       maintained:
         type: boolean
-      major:
-        type: integer
-      minor:
-        type: integer
-      descriptions:
-        type: object
-        properties:
-          base:
-            type: string
-        additionalProperties:
-          type: string
       nature:
         type: string
         enum: [physique, mana, duale]
       range:
         type: string
-        enum: [contact, LDV]
+        enum: [contact, LDV, perso]
       zone:
         type: boolean
 
-  specific_action:
+  ritual:
     type: object
     allOf:
-      - $ref: "#/definitions/base_action"
-      - required: [type]
-        properties:
-          type:
-            type: string
-            enum: ["techno", "spell"]
+      - required: [duration, threshold]
+        $ref: "#/definitions/base_action"
+      - properties:
+          descriptions:
+            type: object
+            properties:
+              base:
+                type: string
+            additionalProperties:
+              type: string
+
+  spell:
+    type: object
+    allOf:
+      - required: [major, minor]
+        $ref: "#/definitions/base_action"
+      - properties:
+          descriptions:
+            type: object
+            properties:
+              base:
+                type: string
+            additionalProperties:
+              type: string
+
+  complex_form:
+    type: object
+    allOf:
+      - required: [major, minor]
+        $ref: "#/definitions/base_action"
 
   load_action:
     type: object
@@ -648,7 +635,16 @@ definitions:
       - properties:
           stats:
             type: object
-            required: [firewall, corruption, traitement, attaque]
+            required:
+              [
+                firewall,
+                corruption,
+                traitement,
+                attaque,
+                action_min,
+                action_maj,
+                hit,
+              ]
             properties:
               firewall:
                 type: integer
@@ -658,7 +654,9 @@ definitions:
                 type: integer
               attaque:
                 type: integer
-              res:
+              action_min:
+                type: integer
+              action_maj:
                 type: integer
               hit:
                 type: object

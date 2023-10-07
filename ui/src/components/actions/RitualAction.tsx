@@ -19,7 +19,7 @@ export const RitualAction = ({
   const spellSubtitle = [nature && <SpellNature nature={nature} />];
 
   return (
-    <ActionBox title={name} subtitle={spellSubtitle} type={type}>
+    <ActionBox title={name} infos={spellSubtitle} type={type}>
       {{
         content: Object.entries(descriptions || {}).map(
           ([key, description]) => (
