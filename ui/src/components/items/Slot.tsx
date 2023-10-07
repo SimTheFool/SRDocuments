@@ -4,7 +4,7 @@ import { TextIndice } from "../TextIndice";
 
 type SlotProps = {
   children?: React.ReactNode;
-  size: "S" | "M" | "L" | "XL";
+  size: "S" | "M" | "L" | "XL" | "INF";
   concealment?: number;
 };
 
@@ -13,6 +13,7 @@ const sizes = {
   M: "35px",
   L: "50px",
   XL: "250px",
+  INF: "100%",
 } satisfies Record<SlotProps["size"], string>;
 
 export const Slot = ({ children, size, concealment }: SlotProps) => {

@@ -17,7 +17,7 @@ export const PdfContainer = ({ children, border = false }: A4FormatProps) => {
         boxSizing: border ? "content-box" : "border-box",
       }}
     >
-      <Box pt={"8"} px={"4"}>
+      <Box pt={"8"} px={"2"}>
         {children}
       </Box>
     </Theme>

@@ -19,30 +19,28 @@ export default function Page({ params: { name } }: Props) {
 
   return (
     <PdfContainer>
-      <Box pt={"2"}>
-        <MasonryGrid columns={4}>
-          <Box>
-            <TitleSection>Consommables et outils</TitleSection>
-            <Space />
-          </Box>
-          {Object.entries(char.other || {}).map(([name, item]) => {
-            return (
-              <Box pb={"4"} pr={"1"} key={name}>
-                <ItemCard item={item} name={name} noHand />
-                <Flex pt={"1"}>
-                  <ParagraphStandard>Restant:</ParagraphStandard>
-                </Flex>
-              </Box>
-            );
-          })}
-        </MasonryGrid>
-        <Box px={"2"}>
-          <Box>
-            <TitleSection>Stockage de données</TitleSection>
-            <Space />
-          </Box>
-          <Slot size="XL" />
+      <MasonryGrid columns={4}>
+        <Box>
+          <TitleSection>Consommables et outils</TitleSection>
+          <Space />
         </Box>
+        {Object.entries(char.other || {}).map(([name, item]) => {
+          return (
+            <Box pb={"4"} pr={"1"} key={name}>
+              <ItemCard item={item} name={name} noHand />
+              <Flex pt={"1"}>
+                <ParagraphStandard>Restant:</ParagraphStandard>
+              </Flex>
+            </Box>
+          );
+        })}
+      </MasonryGrid>
+      <Box px={"2"}>
+        <Box>
+          <TitleSection>Stockage de données</TitleSection>
+          <Space />
+        </Box>
+        <Slot size="XL" />
       </Box>
     </PdfContainer>
   );

@@ -1,7 +1,7 @@
 import { Sprite as SpriteType } from "resources";
 import { InlineMajorAction, InlineMinorAction } from "../Icons/Actions";
 import { StatTable } from "../StatTable";
-import { CompanionBox } from "./CompanionBox";
+import { CompanionBox, ErgoCompanionBox } from "./CompanionBox";
 
 type SpriteProps = {
   name: string;
@@ -11,9 +11,10 @@ type SpriteProps = {
 
 export const Sprite = ({ name, sprite, ergo = false }: SpriteProps) => {
   const stats = sprite.stats;
+  const Container = ergo ? ErgoCompanionBox : CompanionBox;
 
   return (
-    <CompanionBox companion={sprite} name={name} type={"sprite"} ergo={ergo}>
+    <Container companion={sprite} name={name} type={"sprite"}>
       {stats && (
         <>
           <StatTable
@@ -45,6 +46,6 @@ export const Sprite = ({ name, sprite, ergo = false }: SpriteProps) => {
           />
         </>
       )}
-    </CompanionBox>
+    </Container>
   );
 };

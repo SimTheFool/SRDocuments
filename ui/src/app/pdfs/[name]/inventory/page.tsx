@@ -21,58 +21,56 @@ export default async function Page({ params: { name } }: Props) {
 
   return (
     <PdfContainer>
-      <Box pt={"2"}>
-        <MasonryGrid columns={3}>
-          <Box>
-            <TitleSection>Inventaire</TitleSection>
-            <Space />
-          </Box>
-          {Object.entries(char.drones || {}).map(([name, drone]) => {
-            return (
-              <Box pb={"2"} pr={"2"} key={name}>
-                <Drone item={drone} name={name} />
-              </Box>
-            );
-          })}
-          {Object.entries(char.weapons || {}).map(([name, weapon]) => {
-            return (
-              <Box pb={"2"} pr={"2"} key={name}>
-                <Weapon weapon={weapon} name={name} />
-              </Box>
-            );
-          })}
-          {Object.entries(char.outfits || {}).map(([name, outfit]) => {
-            return (
-              <Box pb={"2"} pr={"2"} key={name}>
-                <ItemCard item={outfit} name={name}>
-                  {{
-                    bottom: (
-                      <>
-                        {Object.entries(outfit.actions || {}).map(
-                          ([name, action]) => (
-                            <SimpleAction
-                              name={name}
-                              action={action}
-                              key={name}
-                            />
-                          )
-                        )}
-                      </>
-                    ),
-                  }}
-                </ItemCard>
-              </Box>
-            );
-          })}
-          {Object.entries(char.tech || {}).map(([name, tech]) => {
-            return (
-              <Box pb={"2"} pr={"2"} key={name}>
-                <Tech tech={tech} name={name} />
-              </Box>
-            );
-          })}
-        </MasonryGrid>
-      </Box>
+      <MasonryGrid columns={3}>
+        <Box>
+          <TitleSection>Inventaire</TitleSection>
+          <Space />
+        </Box>
+        {Object.entries(char.drones || {}).map(([name, drone]) => {
+          return (
+            <Box pb={"2"} pr={"2"} key={name}>
+              <Drone item={drone} name={name} />
+            </Box>
+          );
+        })}
+        {Object.entries(char.weapons || {}).map(([name, weapon]) => {
+          return (
+            <Box pb={"2"} pr={"2"} key={name}>
+              <Weapon weapon={weapon} name={name} />
+            </Box>
+          );
+        })}
+        {Object.entries(char.outfits || {}).map(([name, outfit]) => {
+          return (
+            <Box pb={"2"} pr={"2"} key={name}>
+              <ItemCard item={outfit} name={name}>
+                {{
+                  bottom: (
+                    <>
+                      {Object.entries(outfit.actions || {}).map(
+                        ([name, action]) => (
+                          <SimpleAction
+                            name={name}
+                            action={action}
+                            key={name}
+                          />
+                        )
+                      )}
+                    </>
+                  ),
+                }}
+              </ItemCard>
+            </Box>
+          );
+        })}
+        {Object.entries(char.tech || {}).map(([name, tech]) => {
+          return (
+            <Box pb={"2"} pr={"2"} key={name}>
+              <Tech tech={tech} name={name} />
+            </Box>
+          );
+        })}
+      </MasonryGrid>
     </PdfContainer>
   );
 }

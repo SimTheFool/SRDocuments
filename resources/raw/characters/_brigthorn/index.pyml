@@ -7,7 +7,7 @@ companions: !inc::_brigthorn/ceol
 
 metatype: !inc::identities/metatype/ork
 
-global_nuyens: 20000
+global_nuyens: 25000
 
 stats: !inc::stats/base_stats
   CON: 4

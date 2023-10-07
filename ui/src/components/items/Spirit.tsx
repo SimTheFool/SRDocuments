@@ -1,6 +1,6 @@
 import { Spirit as SpiritType } from "resources";
 import { StatTable } from "../StatTable";
-import { CompanionBox } from "./CompanionBox";
+import { CompanionBox, ErgoCompanionBox } from "./CompanionBox";
 import { InlineMajorAction, InlineMinorAction } from "../Icons/Actions";
 
 type SpiritProps = {
@@ -11,9 +11,10 @@ type SpiritProps = {
 
 export const Spirit = ({ name, spirit, ergo = false }: SpiritProps) => {
   const stats = spirit.stats;
+  const Container = ergo ? ErgoCompanionBox : CompanionBox;
 
   return (
-    <CompanionBox companion={spirit} name={name} type={"esprit"} ergo={ergo}>
+    <Container companion={spirit} name={name} type={"esprit"}>
       {stats && (
         <>
           <StatTable
@@ -45,7 +46,7 @@ export const Spirit = ({ name, spirit, ergo = false }: SpiritProps) => {
           />
         </>
       )}
-    </CompanionBox>
+    </Container>
   );
 };
 

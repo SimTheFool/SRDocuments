@@ -15,9 +15,3 @@
   - ajouter tir auto multiples
   - afficher le concealment
   - afficher plus de 15 balles
-  - faire une icone pour les tests ??
-  - voir comment conditionnaliser l'affichage de l'inventaire en deux pages ou en une !!!
-
-- resources:
-  - ajouter une icone pour les action coutant du drain !
-  - ajouter une simple distance pour le sorts (contact/ldv/zone/etc...)

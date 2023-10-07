@@ -79,7 +79,7 @@ const ActionOnly = ({ char }: { char: Character }) => {
 
 const CompanionOnly = ({ char }: { char: Character }) => {
   return (
-    <MasonryGrid columns={2}>
+    <MasonryGrid columns={1}>
       <Box>
         <TitleSection>Compagnons</TitleSection>
         <Space />
@@ -173,7 +173,7 @@ const AllInOne = ({ char }: { char: Character }) => {
 
 const Container = ({ children }: { children: ReactNode }) => {
   return (
-    <Box pb={"2"} px={"2"}>
+    <Box pb={"2"} pr={"2"}>
       {children}
     </Box>
   );

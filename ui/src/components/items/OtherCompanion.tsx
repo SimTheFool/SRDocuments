@@ -1,6 +1,6 @@
 import { OtherCompanion as OtherCompanionType } from "resources";
 import { StatTable } from "../StatTable";
-import { CompanionBox } from "./CompanionBox";
+import { CompanionBox, ErgoCompanionBox } from "./CompanionBox";
 import { InlineMajorAction, InlineMinorAction } from "../Icons/Actions";
 import { Monitor } from "../Monitor";
 
@@ -16,14 +16,10 @@ export const OtherCompanion = ({
   ergo = false,
 }: OtherCompanionProps) => {
   const stats = otherCompanion.stats;
+  const Container = ergo ? ErgoCompanionBox : CompanionBox;
 
   return (
-    <CompanionBox
-      companion={otherCompanion}
-      name={name}
-      type={"esprit"}
-      ergo={ergo}
-    >
+    <Container companion={otherCompanion} name={name} type={"esprit"} noSlot>
       {stats && (
         <>
           <StatTable
@@ -54,6 +50,6 @@ export const OtherCompanion = ({
           <Monitor columns={stats.hit} hit={stats.hit} alwaysCurable />
         </>
       )}
-    </CompanionBox>
+    </Container>
   );
 };

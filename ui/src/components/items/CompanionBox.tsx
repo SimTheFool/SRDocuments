@@ -18,7 +18,7 @@ type CompanionBoxProps = {
   type?: string;
   companion: CompanionType;
   children?: ReactNode;
-  ergo?: boolean;
+  noSlot?: boolean;
 };
 
 export const CompanionBox = ({
@@ -26,7 +26,7 @@ export const CompanionBox = ({
   type,
   companion,
   children,
-  ergo = false,
+  noSlot = false,
 }: CompanionBoxProps) => {
   const actions = Object.entries(companion.actions || {}).map(
     ([name, action]) => <SimpleAction name={name} action={action} key={name} />
@@ -43,24 +43,15 @@ export const CompanionBox = ({
     </Card>
   );
 
-  const invokSlot = (
-    <Slot size="M">puissance - services - vie - maintient</Slot>
+  const invokSlot = noSlot ? undefined : (
+    <Slot size="M">puissance - services - vie</Slot>
   );
 
-  const bottomChildren = [
-    ...effects,
-    skills,
-    ...actions,
-    ...(ergo ? [] : [invokSlot]),
-  ];
+  const bottomChildren = [skills, ...effects, ...actions, invokSlot];
 
   return (
     <Box>
-      <Flex
-        className={
-          bottomChildren.length > 0 && !ergo ? styles.noBorderBottom : ""
-        }
-      >
+      <Flex className={bottomChildren.length > 0 ? styles.noBorderBottom : ""}>
         <Card title={type}>
           <TitleMin title={<TextReplaced>{capitalize(name)}</TextReplaced>} />
           <ParagraphStandard>
@@ -76,19 +67,77 @@ export const CompanionBox = ({
           </ParagraphStandard>
         </Card>
       </Flex>
-      <MasonryGrid compact columns={ergo ? 2 : 1}>
+      <MasonryGrid compact columns={1}>
         {bottomChildren.map((child, i) => (
-          <Box
-            key={i}
-            className={i == 0 || ergo ? "" : styles.bottom}
-            p={ergo ? "1" : "0"}
-          >
+          <Box key={i} className={i == 0 ? "" : styles.bottom}>
             {child}
           </Box>
         ))}
       </MasonryGrid>
-      {invokSlot}
       <Space />
     </Box>
+  );
+};
+
+export const ErgoCompanionBox = ({
+  name,
+  type,
+  companion,
+  children,
+  noSlot = false,
+}: CompanionBoxProps) => {
+  const actions = Object.entries(companion.actions || {}).map(
+    ([name, action]) => <SimpleAction name={name} action={action} key={name} />
+  );
+
+  const effects = Object.entries(companion.effects || {}).map(
+    ([name, effect]) => <Effect effect={effect} key={name} simple />
+  );
+
+  const skills = companion.skills && (
+    <Card style={{ backgroundColor: "var(--gray-6)" }}>
+      <TitleMin title={<TextReplaced>{"Compétences"}</TextReplaced>} />
+      <ParagraphStandard>{companion.skills.join(" - ")}</ParagraphStandard>
+    </Card>
+  );
+
+  const invokSlot = noSlot ? undefined : (
+    <Slot size="INF">puiss. - serv. - vie</Slot>
+  );
+
+  const bottomChildren = [skills, ...effects, ...actions];
+
+  return (
+    <MasonryGrid compact columns={3}>
+      <Flex p={"1"}>
+        <Card title={type}>
+          <TitleMin title={<TextReplaced>{capitalize(name)}</TextReplaced>} />
+          <ParagraphStandard>
+            {companion.description && (
+              <>
+                <Space />
+                <TextReplaced>{companion.description}</TextReplaced>
+              </>
+            )}
+            <Space />
+            {children}
+            <Space />
+          </ParagraphStandard>
+        </Card>
+        <Box
+          grow={"1"}
+          style={{
+            width: "30%",
+          }}
+        >
+          {invokSlot}
+        </Box>
+      </Flex>
+      {bottomChildren.map((child, i) => (
+        <Box key={i} p={"1"}>
+          {child}
+        </Box>
+      ))}
+    </MasonryGrid>
   );
 };
