@@ -3,9 +3,10 @@ import { Space } from "../Space";
 import { TextIndice } from "../TextIndice";
 
 type SlotProps = {
-  children?: React.ReactNode;
+  note?: React.ReactNode;
   size: "S" | "M" | "L" | "XL" | "XXL" | "INF";
   concealment?: number;
+  children?: React.ReactNode;
 };
 
 const sizes = {
@@ -17,15 +18,25 @@ const sizes = {
   INF: "100%",
 } satisfies Record<SlotProps["size"], string>;
 
-export const Slot = ({ children, size, concealment }: SlotProps) => {
+export const Slot = ({ children, note, size, concealment }: SlotProps) => {
   return (
     <Box
+      p={"2"}
       style={{
         border: "1px dashed var(--gray-10)",
         height: sizes[size],
         position: "relative",
       }}
     >
+      <Box
+        style={{
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+        }}
+      >
+        {children}
+      </Box>
       <Text
         size={"1"}
         style={{
@@ -40,7 +51,7 @@ export const Slot = ({ children, size, concealment }: SlotProps) => {
           paddingRight: "var(--space-1)",
         }}
       >
-        {children}
+        {note}
         {concealment && (
           <>
             <Space inline />

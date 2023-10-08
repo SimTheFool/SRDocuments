@@ -11,6 +11,7 @@ import { getCharWeights } from "@/utils/getWeights";
 import { Box } from "@radix-ui/themes";
 import { Character, characters } from "resources";
 import { PdfBreak, PdfContainer } from "../../PdfContainer";
+import { Line } from "@/components/Line";
 
 type Props = {
   params: {
@@ -120,7 +121,16 @@ const LittleObjects = ({ char }: { char: Character }) => {
           <TitleSection>Stockage de données</TitleSection>
           <Space />
         </Box>
-        <Slot size="XL" />
+        <Slot size="XL">
+          <Line />
+          <Line />
+          <Line />
+          <Line />
+          <Line />
+          <Line />
+          <Line />
+          <Line />
+        </Slot>
       </Box>
     </>
   );

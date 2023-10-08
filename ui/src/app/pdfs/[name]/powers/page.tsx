@@ -12,6 +12,7 @@ import { RitualAction } from "@/components/actions/RitualAction";
 import { Spirit } from "@/components/items/Spirit";
 import { OtherCompanion } from "@/components/items/OtherCompanion";
 import { getCharWeights } from "@/utils/getWeights";
+import { Line, LineBlack } from "@/components/Line";
 
 type Props = {
   params: {
@@ -93,6 +94,8 @@ const CompanionOnly = ({ char }: { char: Character }) => {
         );
       })}
 
+      <LineBlack />
+
       {Object.entries(char.spirits || {}).map(([name, spirit]) => {
         return (
           <Container key={name}>
@@ -100,6 +103,8 @@ const CompanionOnly = ({ char }: { char: Character }) => {
           </Container>
         );
       })}
+
+      <LineBlack />
 
       {Object.entries(char.other_companions || {}).map(([name, companion]) => {
         return (

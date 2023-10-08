@@ -44,7 +44,7 @@ export const CompanionBox = ({
   );
 
   const invokSlot = noSlot ? undefined : (
-    <Slot size="M">puissance - services - vie</Slot>
+    <Slot size="M" note={"puissance - services - vie"}></Slot>
   );
 
   const bottomChildren = [skills, ...effects, ...actions, invokSlot];
@@ -101,7 +101,9 @@ export const ErgoCompanionBox = ({
     </Card>
   );
 
-  const invokSlot = noSlot ? undefined : <Slot size="INF">pui. serv. vie</Slot>;
+  const invokSlot = noSlot ? undefined : (
+    <Slot size="INF" note={"pui. serv. vie"}></Slot>
+  );
 
   const bottomChildren = [skills, ...effects, ...actions];
 

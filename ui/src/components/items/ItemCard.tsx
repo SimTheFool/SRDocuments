@@ -38,9 +38,12 @@ export const ItemCard = ({
     ...bottomChildren,
     ...(item.slots || []).map((slot) => {
       return (
-        <Slot size={slot.size} key={slot.name} concealment={slot.concealment}>
-          {slot.name}
-        </Slot>
+        <Slot
+          size={slot.size}
+          key={slot.name}
+          concealment={slot.concealment}
+          note={slot.name}
+        ></Slot>
       );
     }),
   ];
