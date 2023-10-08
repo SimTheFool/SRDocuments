@@ -35,38 +35,46 @@ Les tests peuvent s'effectuer en avantage ou en désavantage selon la situation 
 
 Avantages:
 
-	- +1 mineur: vous relancez le test si le résultat ne vous convient pas
-	- +2 majeur: vous relancez le test et prenez le résultat qui vous arrange
-	- +3 supreme: vous relancez uniquement les dés qui ne sont pas des succés
+    - +1 mineur: vous relancez le test si le résultat ne vous convient pas
+    - +2 majeur: vous relancez le test et prenez le résultat qui vous arrange
+    - +3 supreme: vous relancez uniquement les dés qui ne sont pas des succés
 
 Désavantages: (les effets se cumulent)
 
-	- -1 mineur: les 2 comptent aussi pour les echecs
-	- -2 majeur: les complications surviennent lorsque que vous avez plus d'échecs que de succès
-	- -3 supreme: relancez tous les succès
+    - -1 mineur: les 2 comptent aussi pour les echecs
+    - -2 majeur: les complications surviennent lorsque que vous avez plus d'échecs que de succès
+    - -3 supreme: relancez tous les succès
 
 ## Atout
 
 Les points d'atouts permettent de diminuer les désavantages ou d'augmenter les avantages. Les points se récupèrent à chaque partie.
 
 Vous pouvez également cramer un point d'atout, auquel cas le point est définitivement perdu pour la campagne. Cela vous permet de:
+
 - Ressuciter votre personnage
 - Déterminer un Deus Ex Machina avec le maître du jeu
 
-
-## Drain
+## Sorts et formes complexes
 
 Lancer des sorts ou des formes complexes occasionnent des dégats de drain. Le drain endommage le moniteur étourdissant du personnage, et les dommages sont incurables jusqu'à guérion naturelle.
 
 A chaque lancer de sort ou de forme complexe, le personnage lance un 1d4. Le score du dés détermine les dommages de drain qu'il subira. Il peut y résister avec sa résistance au drain.
 
+## Conjuration
+
+?????
+
+## Enchantement
+
+?????
+
 ### Amplification des sorts
 
 Les sorts peuvent être amplifiés par l'ajout d'un dé de drain supplémentaire ou l'utilisation de 4 drachmes (réactifs magiques). Cela permet de:
+
 - Ajouter 2 dommages aux dégats du sort
 - Ajouter jusqu'à 4 mètres à la zone d'effet du sort
 - Améliorer le sort (amélioration indiquée dans la description)
-
 
 ## Soin et Guérison naturelle
 
@@ -78,18 +86,17 @@ La guérion naturelle supprime le statut incurable sur le dommage soigné.
 
 Pour chaque point d'essence inférieur à 5, vous vous soignez d'un point en moins.
 
-
-
-
 # Effets de statut
 
 ### A terre
 
 Vous avez un avantage:
+
 - à vos tests de défense à plus de 10m
 - à vos tests d'attaque à l'arme à feu
 
 Vous subissez un désavantage:
+
 - à vos tests de défense à moins de 10m
 - à vos tests de défense à l'arme à feu
 
@@ -185,7 +192,6 @@ Vos actions avec le membre estropié mobilise une action mineure supplémentaire
 
 Pour vous déplacer, faites un test d'athlétisme. Vous subissez un désavantage pour vos tests de mobilité. Sur une complication, vous tombez à terre.
 
-
 ### Nauséeux
 
 Faites un test de resistance mentale avec un seuil égal au niveau de nauséeux. Si vous ratez, vous perdez votre tour. Sinon, vous perdez uniquement une action mineure.
@@ -206,116 +212,240 @@ Empêche les être vivant de percevoir vos sons. Les machines ne sont pas affect
 
 Comme silencieux, mais affecte la perception des machines.
 
-
 # Actions
 
 ## Actions communes
 
 ### Attaque ciblée
+
 action majeure
 
 Vous ciblez un point spécifique sur la cible. Vous n'infligez que les dégats de base de l'arme. Vos **SN** sont utilisés pour provoquer un effet déterminé avec le MJ (flèche dans le genoux, etc...).
 
 ### Attaque multiple
+
 action majeure + action mineure
 
 Faites plusieurs attaques sur une ou plusieurs cibles, en répartissant votre test d'attaque pour chaques coup. Vous pouvez subir 3 désavantages pour utiliser la réserve d'attaque entière pour chaque coup.
 
+### Entrer en lutte
 
-
-###  Entrer en lutte
 action majeure
 
 Faites un test d'athlétisme pour maîtriser un adversaire. Tant que vous êtes en lutte, l'adversaire se défend avec CON + FOR et vous attaquez avec Combar rappr + FOR.
 
 ### Ajuster
+
 action mineure
 
 Gagnez 1d6 pour votre attaque suivante.
 
+### Défense totale
+
+libre - action majeure
+
+Ajoutez votre VOL à tous vos tests de défense jusqu'à votre prochain tour.
+
+### Esquiver
+
+libre - action mineure
+
+Ajoutez votre Athlétisme à votre test de défense.
+
+### Se jeter à terre
+
+libre - action mineure
+
+Obtenez l'état à terre, ainsi que 4d6 à votre test de défense.
+
+### Eviter un explosif
+
+libre - action mineure
+
+Faites un test d'Athlétisme + REA - Evitement. Vous vous déplacez d'1m pour chaque SN. Au delà de deux mètres, vous vous jetez à terre.
+
+### Bloquer
+
+libre - action mineure
+
+Ajouter Combat Rapproché à votre test de défense pour bloquer un coup.
+
+### Riposter
+
+libre - action mineure
+
+Subissez un désavantage sur votre test de défense. Si vous réussissez votre test malgré tout, vous infligez les SN de votre défense en dommages à l'adversaire.
+
+### S'interposer
+
+libre - action mineure
+
+Faites votre déplacement pour prendre l'attaque à la place de la cible. Vous ne pouvez ni bloquer, ni esquiver l'attaque.
+
+### Intercepter
+
+libre - action majeure - action mineure
+
+Attaquez une cible qui passe à portée.
+
 ### Se déplacer
+
 action mineure
 
 Déplacez vous de 10m, une seule fois par tour.
 
 ### Charger
+
 majeure + action mineure
 
 Faites votre déplacement (au moins 5 mètre), puis utilisez les SN de votre attaque pour vous déplacez plus loin et pour repousser la cible de SN (max FOR).
 
 ### Sprinter
+
 action majeure
 
 Faites un test d'athlétisme. Vous pouvez vous déplacer de 15m + SN. Vous pouvez sautez les petits obstacles (<1m).
 
 ### Escalader
+
 action majeure
 
 Faites un test d'athlétisme. Vous pouvez escalader de 1m par SN.
 
 ### Parkour
+
 action majeure + action mineure
 
 Comme Sprinter, mais vous pouvez sauter les obstacles inférieur à AGI mètres. Si vous avez Courses sur les murs, votre déplacement de base est de 18 mètres.
 
 ### Se coucher
+
 action mineure
 
 ### Se mettre à couvert
+
 action mineure
 
 ### Se relever
+
 action mineure
 
 ### Changer le mode de tir
+
 action mineure
 
 ### Transmettre une commande
+
 action mineure
 
 Envoyez un message ou un ordre à une machine, à un drone, à un sprite, à un sprite ou à un esprit.
 
+### Manoeuvre
+
+action majeure
+
+Manoeuvrez avec un appareil ou un véhicule
+
+### Accélérer
+
+action mineure
+
+### Mettre la gomme
+
+action majeure
+
+Doublez l'accélération du véhicule
+
 ## Actions sociales
 
 ### Feinte
+
 Libre - action majeure
 
-Faites Escroquerie pour distraire la cible. Tout le monde gagne un avantage à ses attaques contre elle.
+Au corps-à-corps, faites Escroquerie pour distraire la cible. Tout le monde gagne un avantage à ses attaques contre elle pour ce tour.
 
 ### Intimider
+
 action majeure
 
-Faites Influence. Vous avez un avantage à toutes vos attaque contre la cible.
-
-
-
+Faites Influence. Vous infligez Effrayé à la cible.
 
 ## Actions magiques
 
-- Action mineure pour la vision astrale
-- Action mineure pour la projection astrale
+### Activer/Désactiver vision astrale
+
+action majeure
+
+### Se projeter dans l'astral
+
+action majeure
+
+### Se manifester depuis l'astral
+
+action majeure
+
+### Invoquer un esprit
+
+action majeure
+
+Vous subissez 2 dés de drain. Vous invoquez un esprit qui dispose de TRAD services services. Répartissez les SN du tests entre le niveau de l'exprit à ivoquer et des services supplémentaires.
+
+### Entraver un esprit
+
+action majeure
+
+Les 3 premiers SN permettent de lier l'esprit à un objet pendant SN round. L'esprit ne pourra pas s'en éloigner de plus de Puiss. mètres. Répartissez les succés supplémentaire pour augmenter la durée de 1min ou réduire le rayon de 1m.
+
+### Bannir un esprit
+
+action majeure
+
+Les succès nets réduisent les services restant de l'esprit. L'esprit est banni lorsqu'il ne reste aucun service.
+
+### Observer un focus
+
+action majeure
+
+Déterminez les caracéristiques d'un focus.
+
+### Activer/Désactiver un focus
+
+action mineur
+
+### Dissocier une préparation
+
+action majeur
+
+Les SN diminue la puissance de la préparation. A 0, la préparation n'a plus d'effet
+
+### Contresort - Défense augmentée
+
+action majeur - libre - maintenue
+
+Protégez les cibles des sorts adverses dans une zone. Faites --Puiss x 2--, chaque SN ajoute 1d6 aux cibles pour se défendre contre les sorts. Dure --Puiss.-- tours.
+
+### Contresort - Dissipation
+
+action majeur - libre
+
+Faites --Puiss x 2-- avec un seuil de Puiss du sort à dissiper. Chaque SN retire un Puiss. au sort.
 
 ## Actions matricielles
 
-
-
-
-
-
 Matrice:
-	Ne plus indiquer les stats sur les actions matricielles
-	Mettre plutôt une règle de base comme suit::
+Ne plus indiquer les stats sur les actions matricielles
+Mettre plutôt une règle de base comme suit::
 TA:
-	Si legal: Electronique
-	Si illégal: Piratage
+Si legal: Electronique
+Si illégal: Piratage
 
 TD:
-	Contre la traque ou le decryptage: Corruption
-	Contre l'entrave: Traitement de données
-	Contre l'attaque ou l'intrusion: Firewall
-	Si l'appareil est subordonné: Ajoutez une stat du maitre
-	Si le maitre est protégé par un persona: ajouter une stat du persona
-	Si l'appareil n'est pas subordonné, ou que le maitre n'est pas hostile: pas de stats
+Contre la traque ou le decryptage: Corruption
+Contre l'entrave: Traitement de données
+Contre l'attaque ou l'intrusion: Firewall
+Si l'appareil est subordonné: Ajoutez une stat du maitre
+Si le maitre est protégé par un persona: ajouter une stat du persona
+Si l'appareil n'est pas subordonné, ou que le maitre n'est pas hostile: pas de stats
 
 Supprimer les règles accès administrateur ou non. Tous les accès sont administrateurs ou ne sont pas.
 Impossibilité de connaitre son score de convergence, sauf programme spécifique.
