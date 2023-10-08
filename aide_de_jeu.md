@@ -302,6 +302,23 @@ Faites Influence. Vous avez un avantage à toutes vos attaque contre la cible.
 
 
 
-Actions:
+Matrice:
+	Ne plus indiquer les stats sur les actions matricielles
+	Mettre plutôt une règle de base comme suit::
+TA:
+	Si legal: Electronique
+	Si illégal: Piratage
 
-- Attaque ciblée: 
+TD:
+	Contre la traque ou le decryptage: Corruption
+	Contre l'entrave: Traitement de données
+	Contre l'attaque ou l'intrusion: Firewall
+	Si l'appareil est subordonné: Ajoutez une stat du maitre
+	Si le maitre est protégé par un persona: ajouter une stat du persona
+	Si l'appareil n'est pas subordonné, ou que le maitre n'est pas hostile: pas de stats
+
+Supprimer les règles accès administrateur ou non. Tous les accès sont administrateurs ou ne sont pas.
+Impossibilité de connaitre son score de convergence, sauf programme spécifique.
+Une fois sur un host assujetti, les actions peuvent s'utiliser avec electronique et ne génère plus de convergence.
+
+Distinguer les actions utilitaires des actions de combat.
