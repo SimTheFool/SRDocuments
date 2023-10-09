@@ -54,19 +54,49 @@ Vous pouvez également cramer un point d'atout, auquel cas le point est définit
 - Ressuciter votre personnage
 - Déterminer un Deus Ex Machina avec le maître du jeu
 
-## Sorts et formes complexes
+## Matrice
+
+#### Statistiques de défense
+
+Lorsque vous naviguez dans un réseau avec un accés factice, celui-ci vous oppose une défense à chacune de vos actions.
+
+La corruption est utilisée pour se défendre contre la traque matricielle ou le repérage. Le traitement de données est utilisé pour se défendre contre l'entrave. Le firewall est utilisé pour se défendre contre les attaques directs.
+
+Si l'appareil est subordonné à un appareil maître, alors c'est celui-ci qui défend.
+S'il y a un decker actif sur le réseau, alors c'est lui qui défend.
+Sinon, l'appareil se défend seul.
+
+#### Convergence
+
+Sur les actions illégales, vous accumulez un score de surveillance.
+
+- +1 pour chaque SN de l'opposant sur son test de défense
+- +1 pour chaque programme utilisé sur une action illégale
+- +3/ round pour chaque machine à laquelle vous avez un accés illégal maintenu.
+
+Si vous atteignez 40, le DIEU de la grille repère votre localisation. Décampez fissa !
+
+#### Vérouillage de connexion
+
+Lorsqu'un appareil subit un verouillage connexion, l'utilisateur ne peut plus changer de mode (RA, RV, etc...).
+
+#### Reconfiguration de l'appareil
+
+Vous pouvez interchanger vos scores de traitement de données et de firewall, ainsi que vos scores d'attaque et de corruption.
+
+Certaines actions sont liées à un attribut spécifique. Cela signifie que vous subissez un désavantage si cet attribut n'est plus elevé que son équivalent interchangeable.
+
+#### Choc d'éjection
+
+Lorsque vous sortez de la matrice sans passer par la RA, vous subissez un choc d'éjection (3E en cold-sim, 3P en hot-sim). Vous êtes confus pendant 10 minutes.
+
+## Magie et technomancie
+
+### Lancement de sorts et de formes complexes
 
 Lancer des sorts ou des formes complexes occasionnent des dégats de drain. Le drain endommage le moniteur étourdissant du personnage, et les dommages sont incurables jusqu'à guérion naturelle.
 
-A chaque lancer de sort ou de forme complexe, le personnage lance un 1d4. Le score du dés détermine les dommages de drain qu'il subira. Il peut y résister avec sa résistance au drain.
-
-## Conjuration
-
-?????
-
-## Enchantement
-
-?????
+A chaque lancer de sort ou de forme complexe, le personnage lance un 1d4. Le score du dés détermine les dommages de drain qu'il subira. Il peut y résister avec sa résistance au drain. Les rituels infligent 2d4 de drain.
 
 ### Amplification des sorts
 
@@ -75,6 +105,16 @@ Les sorts peuvent être amplifiés par l'ajout d'un dé de drain supplémentaire
 - Ajouter 2 dommages aux dégats du sort
 - Ajouter jusqu'à 4 mètres à la zone d'effet du sort
 - Améliorer le sort (amélioration indiquée dans la description)
+
+### Conjuration et Enchantement
+
+Les actions de conjuration et d'enchantement infligent deux dés de drain.
+
+### Avantages/Désavantage
+
+Vous avez un avantage sur les crêtes de mana, vous en avez deux si la crête est puissante. Vous avez également un avantage pour toutes les actions magiques entreprises dans votre loge.
+
+Vous subissez un désavantage au niveau des creux de mana, vous en subissez deux si le creux est puissant.
 
 ## Soin et Guérison naturelle
 
@@ -334,11 +374,11 @@ action mineure
 
 action mineure
 
-### Transmettre une commande
+### Envoyer une commande
 
 action mineure
 
-Envoyez un message ou un ordre à une machine, à un drone, à un sprite, à un sprite ou à un esprit.
+Envoyez un message ou un ordre à une machine, à un drone, à un sprite.
 
 ### Manoeuvre
 
@@ -402,6 +442,14 @@ action majeure
 
 Les succès nets réduisent les services restant de l'esprit. L'esprit est banni lorsqu'il ne reste aucun service.
 
+### Intimider un esprit
+
+Torturez un esprit dont vous connaissez le nom véritable et infligez lui des blessures avec VOL. Les SN s'ajoutent à la réserve de dé du test d'Initimidation. Si vous réussissez, l'esprit vous obéira, pour quelques temps.
+
+### Commander un esprit
+
+action mineure
+
 ### Observer un focus
 
 action majeure
@@ -418,6 +466,10 @@ action majeur
 
 Les SN diminue la puissance de la préparation. A 0, la préparation n'a plus d'effet
 
+### Déclencher une préparation
+
+action mineure - libre
+
 ### Contresort - Défense augmentée
 
 action majeur - libre - maintenue
@@ -430,25 +482,186 @@ action majeur - libre
 
 Faites --Puiss x 2-- avec un seuil de Puiss du sort à dissiper. Chaque SN retire un Puiss. au sort.
 
+## Rituels d'esprits
+
+### Lier / Renforcer un lien d'esprit
+
+Les rituels de lien d'esprit nécessite une loge ou une rune d'une puissance équivalente à celle de l'esprit, et Puiss. x 5 drachmes. Ce sont des tests étendus dont le seuil est Puiss. x2, où chaquee test dure Puiss. heures. Lorsque vous renforcez un lien, des seuil additionnels peuvent s'ajouter en fonction des modifications que vous apportez au lien.
+
+### Concevoir une formule d'esprit libre
+
+Vous concevez une formule qui vous permettra d'attirer et de lier un esprit libre ou allié avec un test étendu d'Astral. L'interval est de un 1 jour, le seuil dépend des informations dont vous disposez:
+
+- A partir d'une signature astral: Puiss. x 5
+- A partir d'un nom véritable: Puiss. x 3
+- A partir d'une observation: Puiss. x 10
+- A partir d'une formule existante: Puiss. x 2
+
+Les esprit allié ne se rencontrent qu'à travers une quête d'observation astrale.
+
+## Rituels alchimiques
+
+## Fabrication de préparation
+
+Déterminez la difficulté de la préparation puis faites un test d'Enchantement dont le seuil est égal à la difficulté. Dépensez également 2 X Diff drachme. Les SN déterminent le potentiel de la préparation. Le potentiel de la préparation diminue de 1 tout les Potentiel x 2h.
+
+Dificulté:
+
+- 2 de base
+- +2 pour chaque amplification de sort
+- +1 pour les déclencheur suivant: contact, aura, lieu, lumière, obscurité
+- +2 pour les déclencheurs suivant: commande, délai, matériau, somatique, verbal différé (3 rounds)
+- +3 pour le déclencheur verbal, verbal différé (2 rounds)
+- +X pour le déclencheur verbal différé (1 round)
+
 ## Actions matricielles
 
-Matrice:
-Ne plus indiquer les stats sur les actions matricielles
-Mettre plutôt une règle de base comme suit::
-TA:
-Si legal: Electronique
-Si illégal: Piratage
+### Prendre le contrôle d'un appareil
 
-TD:
-Contre la traque ou le decryptage: Corruption
-Contre l'entrave: Traitement de données
-Contre l'attaque ou l'intrusion: Firewall
-Si l'appareil est subordonné: Ajoutez une stat du maitre
-Si le maitre est protégé par un persona: ajouter une stat du persona
-Si l'appareil n'est pas subordonné, ou que le maitre n'est pas hostile: pas de stats
+majeure
 
-Supprimer les règles accès administrateur ou non. Tous les accès sont administrateurs ou ne sont pas.
-Impossibilité de connaitre son score de convergence, sauf programme spécifique.
-Une fois sur un host assujetti, les actions peuvent s'utiliser avec electronique et ne génère plus de convergence.
+### Emettre une commande factice
+
+majeure
+
+### Forcer l'accès
+
+majeure
+
+Cette action est liée à l'attaque.
+Introduisez-vous de force dans un système avec un faux accès.
+
+### Trouver une backdoor
+
+Cette action est liée à la corruption.
+Faites un test étendu pour obtenir un accès sans alerter la sécurité. Le seuil du test est le Firewall de l'appareil maître et chaque test dure 1min. Les SN déterminent la dissimulation de la backdoor.
+
+### Utiliser une backdoor
+
+majeure
+
+Cette action est liée à la corruption.
+Entrer dans le systême par une backdoor. Vous avez des dés supplémentaires à votre test selon la dissimulation de la backdoor. Lorsque vous accédez à un systême de cette manière, vous avez un avantage sur tous vos tests tant que vous n'êtes pas répéré.
+
+### Formater un appareil
+
+majeure
+
+Vous plantez le kernel de l'appareil, qui plantera au prochain redémarrage.
+
+### Planter un programme
+
+majeure
+
+Le programme plante et devient indisponible jusqu'au prochain redémarrage de l'appareil.
+
+### Rebooter un appareil
+
+majeure
+
+Vous redemarrez l'appareil , qui devient indisponible jusqu'à la fin du prochain round.
+
+### Brouiller les signaux
+majeure
+
+Vous infligez 1 niveau de bruit par SN à tous les appareils sur 100m.
+
+### Empetrer
+majeure
+
+Cette action est liée à l'attaque.
+Vous infligez SN dégats à l'appareil, et réduisez son score de Traitement de données d'autant. Le Traitement de données se régénère de 1 par round.
+
+### Pic de données
+majeure
+
+Cette action est liée à l'attaque. Infligez (Attaque /2) + SN dégâts à la cible.
 
 Distinguer les actions utilitaires des actions de combat.
+
+### Poser une bombe matricielle
+majeure
+
+La puissance de la bombe doit-être inféreure aux SN. Choisissez un mot de passe pour désactiver la bombe. Vous pouvez décider que le fichier soit détruit au déclenchement de la bombe. La bombe se déclenche à la lecture du fichier et inflige 4 x Puiss.
+
+### Désamorcer une bombe matricielle
+majeure
+
+Automatique si vous avez le mot de passe.
+
+### Espionner le traffic
+majeure
+
+### Rechercher sur la grille
+
+Faites un test étendu pour trouver des informations. Chaque test dure 10min.
+
+### Rechercher un fichier sur le réseau
+
+majeure
+
+Faites un test pour trouver un fichier. Vous trouvez 32 fichiers potentiels et chaque SN divise par 2 le nombre de candidats. Si vous avez une empreinte numérique, vous avez 4 SN automatiques. Vous pouvez terminer la recherche en plusieurs actions.
+
+### Percevoir la matrice
+
+majeure
+
+Chercher des icônes dissimulées et déterminer les informations d'une icône.
+
+### Se cacher
+
+majeure
+
+Vous dissimulez votre présence. Les adversaires doivent faire Percevoir la matrice pour vous trouver, sauf s'ils vous être sur un réseau auquel ils ont un accés valide. Dans ce cas ils vous trouvent automatiquement.
+
+### Cryper un fichier
+
+majeure
+
+Déterminez un clef de cryptage. Vous cryptez un fichier. La Puiss. du cryptage est équivalent au SN.
+
+### Décryper un fichier
+
+majeure
+
+Automatique si vous avez la clef de cryptage
+
+### Vérifier son score de surveillance
+
+majeure
+
+Trouvez votre score de surveillance. Le seuil du test est de 4.
+
+### Se débrancher
+
+majeure
+
+Déconnectez-vous et rebootez votre appareil. Vous subissez des dommages de biofeedback. Cette action peut-être défendu par les decker qui vérouillent votre connexion.
+
+### Changer son icône
+
+mineure
+
+### Entrer/Sortir d'un réseau
+
+mineure
+
+### Changer de mode
+
+mineure
+
+### Reconfigurer les attributs matriciels
+
+mineure
+
+### Défense matricielle totale
+
+majeure - libre
+
+Ajouter votre Firewall à vos tests de défense jusqu'à la fin du tour.
+
+### Passer en silencieux
+
+majeure - libre
+
+Sur une grille publique uniquement. Vous ne répondez plus aux requêtes publiques mais seulement à des requêtes spécifiques. Il faut utiliser Percevoir la matrice pour vous trouver.
