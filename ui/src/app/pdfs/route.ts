@@ -1,10 +1,12 @@
 import { pdfsConfig } from "@/utils/config";
-import { characters } from "resources";
+import { NextResponse } from "next/server";
+import { characters, portraits } from "resources";
 
 const getCharacterSheet = (charName: string) => [
   `./pdfs/${charName}/summary`,
-  `./pdfs/${charName}/powers`,
   `./pdfs/${charName}/inventory`,
+  `./pdfs/${charName}/powers`,
+  /* ...(portraits[charName] ? [`./pdfs/${charName}/last`] : []), */
 ];
 
 export async function GET() {
@@ -15,7 +17,7 @@ export async function GET() {
     getCharacterSheet(charName),
   ]);
 
-  return Response.json({
+  return NextResponse.json({
     characters: {
       sheets: Object.fromEntries(charSheetsKV),
       metadata: {

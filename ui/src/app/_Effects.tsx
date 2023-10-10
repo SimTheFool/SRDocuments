@@ -13,7 +13,7 @@ export const Effects = ({ char }: EffectsProps) => {
   return (
     <Section>
       <MasonryGrid compact columns={4}>
-        <TitleSection>Effects</TitleSection>
+        <TitleSection>Effets</TitleSection>
         {char.effects?.map((e, i) => (
           <Box key={i} pr={"2"} pb={"2"}>
             <Effect effect={e} />

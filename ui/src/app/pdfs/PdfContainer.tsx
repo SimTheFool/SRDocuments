@@ -15,9 +15,17 @@ export const PdfContainer = ({ children, border = false }: A4FormatProps) => {
         height: `${pdfsConfig.size.height}px`,
         border: border ? "2px solid var(--gray-10)" : "unset",
         boxSizing: border ? "content-box" : "border-box",
+        overflow: "hidden",
       }}
     >
-      <Box pt={"8"} px={"2"}>
+      <Box
+        pt={"8"}
+        px={"2"}
+        style={{
+          height: "100%",
+          width: "100%",
+        }}
+      >
         {children}
       </Box>
     </Theme>

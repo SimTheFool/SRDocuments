@@ -20,8 +20,8 @@ export const getPDF = async (
 
   for (const endpoint of endpoints) {
     const url = new URL(endpoint, baseUrl);
-    await page.goto(url.toString());
-    await page.waitForSelector("h2");
+    await page.goto(url.toString(), { waitUntil: "domcontentloaded" });
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const data = await page.pdf({
       width: metadata.size.width,
       height: metadata.size.height,

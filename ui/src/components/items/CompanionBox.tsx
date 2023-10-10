@@ -29,7 +29,9 @@ export const CompanionBox = ({
   noSlot = false,
 }: CompanionBoxProps) => {
   const actions = Object.entries(companion.actions || {}).map(
-    ([name, action]) => <SimpleAction name={name} action={action} key={name} />
+    ([name, action]) => (
+      <SimpleAction name={name.toUpperCase()} action={action} key={name} />
+    )
   );
 
   const effects = Object.entries(companion.effects || {}).map(
