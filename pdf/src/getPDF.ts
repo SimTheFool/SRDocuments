@@ -23,6 +23,7 @@ export const getPDF = async (
     await page.goto(url.toString(), { waitUntil: "domcontentloaded" });
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const data = await page.pdf({
+      format: "a4",
       width: metadata.size.width,
       height: metadata.size.height,
     });
