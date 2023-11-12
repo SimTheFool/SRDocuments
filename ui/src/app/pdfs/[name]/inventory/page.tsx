@@ -31,7 +31,7 @@ export default async function Page({ params: { name } }: Props) {
 
   if (pageWeight < 30) {
     return (
-      <PdfContainer>
+      <PdfContainer footer={"INVENTAIRE"}>
         <AllInOne char={char} />
       </PdfContainer>
     );
@@ -39,11 +39,11 @@ export default async function Page({ params: { name } }: Props) {
 
   return (
     <>
-      <PdfContainer>
+      <PdfContainer footer={"INVENTAIRE"}>
         <BigObjects char={char} />
       </PdfContainer>
       <PdfBreak />
-      <PdfContainer>
+      <PdfContainer footer={"CONSOMMABLES"}>
         <LittleObjects char={char} />
       </PdfContainer>
     </>

@@ -5,9 +5,14 @@ import "./PdfContainer.css";
 type A4FormatProps = {
   children: React.ReactNode;
   border?: boolean;
+  footer?: React.ReactNode;
 };
 
-export const PdfContainer = ({ children, border = false }: A4FormatProps) => {
+export const PdfContainer = ({
+  children,
+  footer,
+  border = false,
+}: A4FormatProps) => {
   return (
     <Theme
       style={{
@@ -27,6 +32,17 @@ export const PdfContainer = ({ children, border = false }: A4FormatProps) => {
         }}
       >
         {children}
+        {footer && (
+          <Box
+            style={{
+              position: "absolute",
+              bottom: "0",
+              right: "0",
+            }}
+          >
+            {footer}
+          </Box>
+        )}
       </Box>
     </Theme>
   );

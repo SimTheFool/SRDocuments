@@ -51,7 +51,7 @@ other_companions: !mix
             - !inc::magic/effects/regeneration
             - name: Condensation mana
               type: esprit majeur
-              description: Une fois par cycle lunaire, vous renouvelez vos piquant et régurgitez un bezoar. Faites --Puiss.-- et pour chaque __SN__, vous gagnez 50 drachmes.
+              description: Une fois par cycle lunaire, vous renouvelez vos piquant et régurgitez un bezoar. Faites --Puiss.-- et pour chaque __SN__, vous gagnez 100 drachmes.
             - name: Toucher toxique
               type: animal éveillé
               description: Quand vous attaquez ou vous défendez, chaque __SN__ inglige --Poison--.

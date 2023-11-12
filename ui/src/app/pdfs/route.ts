@@ -1,6 +1,6 @@
 import { pdfsConfig } from "@/utils/config";
 import { NextResponse } from "next/server";
-import { characters, portraits } from "resources";
+import { characters } from "resources";
 
 const getCharacterSheet = (charName: string) => [
   `./pdfs/${charName}/summary`,

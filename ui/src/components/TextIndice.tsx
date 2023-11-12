@@ -8,9 +8,9 @@ export const TextIndice = ({ children }: TextIndiceProps) => {
       style={{
         display: "inline",
         lineHeight: 1,
-        fontSize: `calc(8px * var(--scaling))`,
+        fontSize: `calc(11px * var(--scaling))`,
+        color: "var(--gray-10)",
       }}
-      color="gray"
     >
       {children}
     </Text>

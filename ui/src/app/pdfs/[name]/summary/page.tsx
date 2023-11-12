@@ -23,7 +23,7 @@ export default function Home({ params: { name } }: Props) {
   const portrait = portraits[name];
 
   return (
-    <PdfContainer border>
+    <PdfContainer>
       <Box
         style={{
           display: "flex",

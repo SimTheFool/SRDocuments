@@ -14,7 +14,7 @@ export const Card = ({ title, children, note, style }: CardProps) => {
     <RadCard className={styles.card} style={style}>
       {title && (
         <Box className={styles.cardTitle} px={"1"}>
-          <Heading size={"1"} as={"h3"} weight={"light"}>
+          <Heading size={"1"} as={"h3"}>
             {title}
           </Heading>
         </Box>

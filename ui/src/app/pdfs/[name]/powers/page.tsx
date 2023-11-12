@@ -27,18 +27,18 @@ export default function Home({ params: { name } }: Props) {
 
   if (pageWeight < 20)
     return (
-      <PdfContainer>
+      <PdfContainer footer={"POUVOIRS"}>
         <AllInOne char={char} />
       </PdfContainer>
     );
 
   return (
     <>
-      <PdfContainer>
+      <PdfContainer footer={"POUVOIRS"}>
         <ActionOnly char={char} />
       </PdfContainer>
       <PdfBreak />
-      <PdfContainer>
+      <PdfContainer footer={"COMPAGNONS"}>
         <CompanionOnly char={char} />
       </PdfContainer>
     </>

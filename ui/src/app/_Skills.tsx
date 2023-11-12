@@ -105,10 +105,17 @@ const SkillText = ({ name, score }: { name: ReactNode; score?: number }) => {
 const MasterText = ({ label, score }: { label: string; score?: number }) => {
   return (
     <Flex pl={"2"}>
+      <Text
+        size={"1"}
+        style={{
+          lineHeight: 1,
+        }}
+      >
+        - <Space inline />
+      </Text>
       {score && (
         <Box pr={"1"} asChild>
           <Text
-            weight={"light"}
             size={"1"}
             style={{
               lineHeight: 1,
@@ -119,7 +126,6 @@ const MasterText = ({ label, score }: { label: string; score?: number }) => {
         </Box>
       )}
       <Text
-        weight={"light"}
         size={"1"}
         style={{
           maxWidth: "90%",

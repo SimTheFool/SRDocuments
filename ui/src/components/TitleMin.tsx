@@ -30,7 +30,6 @@ export const TitleMin = ({
       <Text
         size={"1"}
         as="span"
-        weight={"light"}
         style={{
           display: inline ? "inline" : "block",
           paddingLeft: inline ? "var(--space-1)" : 0,
